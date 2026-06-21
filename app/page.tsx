@@ -1096,10 +1096,10 @@ export default function MarketingPage() {
           <div className="mkt-hof-scroll" style={{ display:'flex', gap:18, width:'max-content', padding:'8px 0 20px' }}>
             {/* render cards twice for seamless loop */}
             {[...(hofCards
-              ? hofCards.map((r,i) => ({ key:`a${i}`, card:{ contentType:r.contentType||'', distribution:r.distribution||'Organic', clientName:r.clientName||'', clientLogoColor:r.clientLogoColor||P, viewCount:r.viewCount||'' }, videoSrc:r.src||undefined, poster:r.poster }))
+              ? hofCards.map((r,i) => ({ key:`a${i}`, card:{ contentType:r.contentType||'', distribution:r.distribution||'Organic', clientName:r.clientName||'', clientLogoColor:r.clientLogoColor||P, viewCount:r.viewCount||'', videoSrc:r.src||'' as string, logoSrc:undefined as string|undefined }, videoSrc:r.src||undefined, poster:r.poster }))
               : HOF_DEFAULTS.map((card,i) => ({ key:`a${i}`, card, videoSrc:card.videoSrc, poster:undefined as string|undefined }))
             ), ...(hofCards
-              ? hofCards.map((r,i) => ({ key:`b${i}`, card:{ contentType:r.contentType||'', distribution:r.distribution||'Organic', clientName:r.clientName||'', clientLogoColor:r.clientLogoColor||P, viewCount:r.viewCount||'' }, videoSrc:r.src||undefined, poster:r.poster }))
+              ? hofCards.map((r,i) => ({ key:`b${i}`, card:{ contentType:r.contentType||'', distribution:r.distribution||'Organic', clientName:r.clientName||'', clientLogoColor:r.clientLogoColor||P, viewCount:r.viewCount||'', videoSrc:r.src||'' as string, logoSrc:undefined as string|undefined }, videoSrc:r.src||undefined, poster:r.poster }))
               : HOF_DEFAULTS.map((card,i) => ({ key:`b${i}`, card, videoSrc:card.videoSrc, poster:undefined as string|undefined }))
             )].map(({key,card,videoSrc,poster}) => (
               <div key={key} style={{ flexShrink:0 }}>
