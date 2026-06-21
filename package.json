@@ -1,0 +1,41 @@
+{
+  "name": "tsv-casting-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "mongo": "tsx scripts/dev-mongo.ts",
+    "seed": "tsx scripts/seed.ts",
+    "import-actor-database": "tsx scripts/import-actor-database.ts",
+    "import-sheet": "tsx scripts/import-sheet.ts"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.4.1",
+    "cheerio": "^1.2.0",
+    "clsx": "^2.1.1",
+    "csv-parse": "^6.2.1",
+    "date-fns": "^3.6.0",
+    "googleapis": "^140.0.1",
+    "mongoose": "^8.5.1",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "resend": "^4.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "dotenv": "^16.4.5",
+    "mongodb-memory-server": "^11.1.0",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}

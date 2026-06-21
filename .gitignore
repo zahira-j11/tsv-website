@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.env
+.env.local
+.DS_Store
+*.log
+.vercel
+next-env.d.ts
+headshots/
+logos/
+
+.mongo-data/
+.claude/
+.env*
+public/videos/
