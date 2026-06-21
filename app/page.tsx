@@ -494,30 +494,33 @@ function ServiceCard({ s, i, onOpen }: { s: typeof SERVICES[0]; i: number; onOpe
         {s.desc}
       </p>
 
-      {/* Thumbnail strip */}
+      {/* Thumbnail strip — static poster images (Cloudinary auto-extracts first frame) */}
       <div style={{ display:'flex', gap:8, marginBottom:28 }}>
-        {(s.thumbs as (string|null)[]).map((src, idx) => (
-          <div key={idx} style={{
-            flex:1, aspectRatio:'9/16', borderRadius:10, overflow:'hidden',
-            background:'rgba(0,0,0,0.25)',
-            border:'1px solid rgba(255,255,255,0.12)',
-            position:'relative',
-          }}>
-            {src ? (
-              <video src={src} autoPlay muted loop playsInline style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
-            ) : (
-              <div style={{
-                width:'100%', height:'100%',
-                background:`linear-gradient(${150 + idx * 25}deg, ${s.accent}33, rgba(0,0,0,0.45))`,
-                display:'flex', alignItems:'center', justifyContent:'center',
-              }}>
-                <div style={{ width:22, height:22, borderRadius:'50%', background:'rgba(255,255,255,0.18)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                  <span style={{ fontSize:9, marginLeft:2, color:'rgba(255,255,255,0.7)' }}>▶</span>
+        {(s.thumbs as (string|null)[]).map((src, idx) => {
+          const posterSrc = src ? src.replace(/\.(mp4|mov|webm)(\?.*)?$/, '.jpg').replace('f_auto,', '').replace(',f_auto', '') : null;
+          return (
+            <div key={idx} style={{
+              flex:1, aspectRatio:'9/16', borderRadius:10, overflow:'hidden',
+              background:'rgba(0,0,0,0.25)',
+              border:'1px solid rgba(255,255,255,0.12)',
+              position:'relative',
+            }}>
+              {posterSrc ? (
+                <img src={posterSrc} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+              ) : (
+                <div style={{
+                  width:'100%', height:'100%',
+                  background:`linear-gradient(${150 + idx * 25}deg, ${s.accent}33, rgba(0,0,0,0.45))`,
+                  display:'flex', alignItems:'center', justifyContent:'center',
+                }}>
+                  <div style={{ width:22, height:22, borderRadius:'50%', background:'rgba(255,255,255,0.18)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                    <span style={{ fontSize:9, marginLeft:2, color:'rgba(255,255,255,0.7)' }}>▶</span>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {/* Arrow CTA */}
