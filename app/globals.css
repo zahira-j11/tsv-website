@@ -320,10 +320,17 @@ body::before {
 .mkt-grad-border-inner { position: relative; z-index: 1; border-radius: 15px; background: #0D001A; }
 
 /* Responsive helpers */
+.mkt-hero-h1 { white-space: nowrap; }
+
 @media (max-width: 768px) {
-  .mkt-hidden-mobile { display: none !important; }
-  .mkt-show-mobile   { display: block !important; }
-  .mkt-process-grid  { grid-template-columns: 1fr !important; }
+  .mkt-hidden-mobile  { display: none !important; }
+  .mkt-show-mobile    { display: block !important; }
+  .mkt-process-grid   { grid-template-columns: 1fr !important; }
+  .mkt-hero-h1        { white-space: normal; }
+  .mkt-case-card      { flex: 0 0 100% !important; }
+  .mkt-service-card   { flex: 0 0 calc(100vw - 80px) !important; }
+  .mkt-badge-pill     { padding: 4px 10px !important; gap: 6px !important; }
+  .mkt-badge-text     { font-size: 9px !important; letter-spacing: .03em !important; }
 }
 @media (min-width: 769px) {
   .mkt-show-mobile   { display: none !important; }

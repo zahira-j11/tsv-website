@@ -679,7 +679,7 @@ function ServicesCarousel() {
         }}
       >
         {SERVICES.map((s, i) => (
-          <div key={i} style={{ flex: `0 0 ${CARD_W}px`, scrollSnapAlign: 'start' }}>
+          <div key={i} className="mkt-service-card" style={{ flex: `0 0 ${CARD_W}px`, scrollSnapAlign: 'start' }}>
             <ServiceCard s={s} i={i} onOpen={() => setOpenService(s)} />
           </div>
         ))}
@@ -792,12 +792,16 @@ function CasesCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [openCase, setOpenCase] = useState<typeof CASES[0] | null>(null);
-  const PAGES = Math.ceil(CASES.length / 2);
+
+  const scrollTo = (idx: number) => {
+    const card = trackRef.current?.children[idx] as HTMLElement | undefined;
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  };
 
   const go = (dir: 1 | -1) => {
-    const next = Math.max(0, Math.min(PAGES - 1, page + dir));
+    const next = Math.max(0, Math.min(CASES.length - 1, page + dir));
     setPage(next);
-    trackRef.current?.scrollTo({ left: next * (trackRef.current.offsetWidth), behavior: 'smooth' });
+    scrollTo(next);
   };
 
   return (
@@ -805,7 +809,7 @@ function CasesCarousel() {
       {/* Arrows */}
       {[{ dir: -1 as const, side: 'left' as const, label: '‹' },
         { dir:  1 as const, side: 'right' as const, label: '›' }].map(({ dir, side, label }) => {
-        const disabled = dir === -1 ? page === 0 : page === PAGES - 1;
+        const disabled = dir === -1 ? page === 0 : page === CASES.length - 1;
         return (
           <button key={side} onClick={() => go(dir)} disabled={disabled} style={{
             position: 'absolute', top: '50%', [side]: -28,
@@ -822,54 +826,44 @@ function CasesCarousel() {
         );
       })}
 
-      {/* Track */}
+      {/* Track — flat cards: 2-up on desktop, 1-up on mobile via .mkt-case-card CSS */}
       <div ref={trackRef} style={{
         display: 'flex', gap: 20, overflowX: 'auto',
         scrollSnapType: 'x mandatory', scrollbarWidth: 'none', padding: '8px 4px 28px',
       }}>
-        {Array.from({ length: PAGES }).map((_, pi) => (
-          <div key={pi} style={{
-            flex: '0 0 100%', scrollSnapAlign: 'start',
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20,
-          }}>
-            {CASES.slice(pi * 2, pi * 2 + 2).map((c, i) => (
-              <div key={i} data-reveal onClick={() => setOpenCase(c)} style={{
-                background: '#fff', borderRadius: 24, overflow: 'hidden', cursor: 'pointer',
-                boxShadow: '0 4px 24px rgba(33,0,93,0.07)',
-                transition: 'transform 220ms ease, box-shadow 220ms ease',
-              }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 20px 56px rgba(33,0,93,0.13)'; }}
-                onMouseLeave={e  => { (e.currentTarget as HTMLElement).style.transform = 'none'; (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(33,0,93,0.07)'; }}
-              >
-                {/* Thumbnail */}
-                <div style={{ position: 'relative', height: 260, background: c.g, overflow: 'hidden' }}>
-                  <img src={c.thumb} alt={c.client} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                    onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
-                  {/* Pills over image */}
-                  <span style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.95)', color: P, ...DISP, fontSize: 12, fontWeight: 700, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)' }}>{c.client}</span>
-                  <span style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.90)', color: PD, fontSize: 11, fontWeight: 600, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)', maxWidth: '55%', textAlign: 'right' }}>{c.format}</span>
-                </div>
-                {/* Text */}
-                <div style={{ padding: '24px 28px 28px' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
-                    <div style={{ ...DISP, fontSize: 'clamp(22px,2.2vw,32px)', fontWeight: 800, letterSpacing: '-.04em', color: PD, lineHeight: 1.1 }}>{c.result}</div>
-                    <span style={{ fontSize: 20, color: MU, flexShrink: 0, marginTop: 4 }}>→</span>
-                  </div>
-                  <p style={{ fontSize: 14, color: MU, lineHeight: 1.8, fontWeight: 400, margin: 0 }}>{c.body}</p>
-                </div>
+        {CASES.map((c, i) => (
+          <div key={i} className="mkt-case-card" data-reveal onClick={() => setOpenCase(c)} style={{
+            flex: '0 0 calc(50% - 10px)', scrollSnapAlign: 'start',
+            background: '#fff', borderRadius: 24, overflow: 'hidden', cursor: 'pointer',
+            boxShadow: '0 4px 24px rgba(33,0,93,0.07)',
+            transition: 'transform 220ms ease, box-shadow 220ms ease',
+          }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 20px 56px rgba(33,0,93,0.13)'; }}
+            onMouseLeave={e  => { (e.currentTarget as HTMLElement).style.transform = 'none'; (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(33,0,93,0.07)'; }}
+          >
+            {/* Thumbnail */}
+            <div style={{ position: 'relative', height: 260, background: c.g, overflow: 'hidden' }}>
+              <img src={c.thumb} alt={c.client} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+              <span style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.95)', color: P, ...DISP, fontSize: 12, fontWeight: 700, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)' }}>{c.client}</span>
+              <span style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.90)', color: PD, fontSize: 11, fontWeight: 600, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)', maxWidth: '55%', textAlign: 'right' }}>{c.format}</span>
+            </div>
+            {/* Text */}
+            <div style={{ padding: '24px 28px 28px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
+                <div style={{ ...DISP, fontSize: 'clamp(22px,2.2vw,32px)', fontWeight: 800, letterSpacing: '-.04em', color: PD, lineHeight: 1.1 }}>{c.result}</div>
+                <span style={{ fontSize: 20, color: MU, flexShrink: 0, marginTop: 4 }}>→</span>
               </div>
-            ))}
+              <p style={{ fontSize: 14, color: MU, lineHeight: 1.8, fontWeight: 400, margin: 0 }}>{c.body}</p>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Dots */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 4 }}>
-        {Array.from({ length: PAGES }).map((_, i) => (
-          <button key={i} onClick={() => {
-            setPage(i);
-            trackRef.current?.scrollTo({ left: i * (trackRef.current.offsetWidth), behavior: 'smooth' });
-          }} style={{
+        {CASES.map((_, i) => (
+          <button key={i} onClick={() => { setPage(i); scrollTo(i); }} style={{
             width: i === page ? 20 : 6, height: 6, borderRadius: 3,
             background: i === page ? P : 'rgba(33,0,93,0.18)',
             border: 'none', cursor: 'pointer', padding: 0,
@@ -987,12 +981,12 @@ export default function MarketingPage() {
 
           {/* Left: copy */}
           <div style={{ flex:'1 1 500px', minWidth:0 }}>
-            <div className="mkt-h1" style={{ display:'inline-flex', alignItems:'center', gap:8, background:YEL, borderRadius:24, padding:'6px 18px', marginBottom:28 }}>
+            <div className="mkt-h1 mkt-badge-pill" style={{ display:'inline-flex', alignItems:'center', gap:8, background:YEL, borderRadius:24, padding:'6px 18px', marginBottom:28 }}>
               <span className="mkt-pulsedot" style={{ width:6, height:6, borderRadius:'50%', background:PD, flexShrink:0 }} />
-              <span style={{ ...DISP, color:PD, fontSize:11, fontWeight:700, letterSpacing:'.06em', textTransform:'uppercase' }}>Paid & organic social content agency · London</span>
+              <span className="mkt-badge-text" style={{ ...DISP, color:PD, fontSize:11, fontWeight:700, letterSpacing:'.06em', textTransform:'uppercase', whiteSpace:'nowrap' }}>Paid & organic social content agency · London</span>
             </div>
 
-            <h1 className="mkt-h2" style={{ ...DISP, fontSize:'clamp(38px,9.5vw,72px)', fontWeight:800, lineHeight:1.08, letterSpacing:'-.05em', marginBottom:24, color:PD }}>
+            <h1 className="mkt-h2 mkt-hero-h1" style={{ ...DISP, fontSize:'clamp(38px,9.5vw,72px)', fontWeight:800, lineHeight:1.08, letterSpacing:'-.05em', marginBottom:24, color:PD }}>
               Your brand<br />
               deserves more<br />
               than{' '}<em className="mkt-gradient-text" style={{ fontStyle:'italic' }}>300 views.</em>
