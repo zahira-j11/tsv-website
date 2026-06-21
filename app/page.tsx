@@ -106,11 +106,11 @@ const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews',
 const HOF_DEFAULTS = [
   { contentType:'Street Interview',    distribution:'Organic', clientName:'AIApply',      clientLogoColor:'#6B63DE', viewCount:'1M+',   videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782047854/tsv-website/aiapply-street.mp4',      logoSrc:undefined },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Habito',       clientLogoColor:'#FF6B6B', viewCount:'1.5M+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048070/tsv-website/habito-street.mp4',       logoSrc:'/logos/habito.png' },
-  { contentType:'Scripted Interaction',distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'200K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048297/tsv-website/plum-scripted.mov',       logoSrc:'/logos/plum.png' },
+  { contentType:'Scripted Interaction',distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'200K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048297/tsv-website/plum-scripted.mp4',       logoSrc:'/logos/plum.png' },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Blackbullion', clientLogoColor:'#1A1033', viewCount:'200K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782047906/tsv-website/blackbullion-street.mp4', logoSrc:'/logos/blackbullion.png' },
-  { contentType:'UGC Style',           distribution:'Paid',    clientName:'Prep Kitchen', clientLogoColor:'#D97706', viewCount:'800K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048333/tsv-website/prepkitchen-ugc.mov',     logoSrc:'/logos/prepkitchen.png' },
-  { contentType:'Podcast',             distribution:'Paid',    clientName:'Prep Kitchen', clientLogoColor:'#D97706', viewCount:'',      videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048316/tsv-website/prepkitchen-podcast.mov', logoSrc:'/logos/prepkitchen.png' },
-  { contentType:'Hi-Fi Ad Creative',   distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'',      videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048269/tsv-website/plum-hifi.mov',           logoSrc:'/logos/plum.png' },
+  { contentType:'UGC Style',           distribution:'Paid',    clientName:'Prep Kitchen', clientLogoColor:'#D97706', viewCount:'800K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048333/tsv-website/prepkitchen-ugc.mp4',     logoSrc:'/logos/prepkitchen.png' },
+  { contentType:'Podcast',             distribution:'Paid',    clientName:'Prep Kitchen', clientLogoColor:'#D97706', viewCount:'',      videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048316/tsv-website/prepkitchen-podcast.mp4', logoSrc:'/logos/prepkitchen.png' },
+  { contentType:'Hi-Fi Ad Creative',   distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'',      videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048269/tsv-website/plum-hifi.mp4',           logoSrc:'/logos/plum.png' },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Uni Compare',  clientLogoColor:'#2563EB', viewCount:'1M+',   videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048505/tsv-website/unicompare-street.mp4',   logoSrc:'/logos/unicompare.png' },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Habito',       clientLogoColor:'#FF6B6B', viewCount:'4M+',   videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048063/tsv-website/habito-street-2.mp4',     logoSrc:'/logos/habito.png' },
 ];
@@ -137,7 +137,7 @@ const SERVICES = [
   {
     key:'trend-led', tag:'Trend-Led Content', icon:'⚡',
     bg:'linear-gradient(165deg,#4a3000,#B07800 50%,#FFD600)', accent:YEL,
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048398/tsv-website/trend-1.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048410/tsv-website/trend-2.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048421/tsv-website/trend-3.mov'],
+    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048398/tsv-website/trend-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048410/tsv-website/trend-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048421/tsv-website/trend-3.mp4'],
     desc:'Timely videos leveraging platform trends that feel native to social and drive engagement.',
     modalDesc:'We track what is performing across TikTok, Reels and Shorts in real time and build content around trending sounds, formats and topics before the moment passes.',
     whenBest:'When you want your brand to feel like it is part of what is happening right now rather than playing catch-up.',
@@ -146,7 +146,7 @@ const SERVICES = [
   {
     key:'scripted', tag:'Scripted Interactions', icon:'🎬',
     bg:'linear-gradient(165deg,#022E00,#06A040 50%,#08F683)', accent:GRN,
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048353/tsv-website/scripted-1.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048375/tsv-website/scripted-2.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048392/tsv-website/scripted-3.mov'],
+    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048353/tsv-website/scripted-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048375/tsv-website/scripted-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048392/tsv-website/scripted-3.mp4'],
     desc:'Pre-planned, story-driven interactions that feel organic while delivering key brand messages.',
     modalDesc:'We script and film interactions between two or more people that are built around your brand message. Because it features a real back and forth between people rather than someone speaking directly to camera, it feels natural to watch and fits straight into someone\'s feed without standing out as an ad.',
     whenBest:'When you have a specific message to land but a traditional ad would not perform well on social. Scripted interactions let you be deliberate about what you say while still feeling like content someone would organically come across on TikTok or Reels.',
@@ -155,7 +155,7 @@ const SERVICES = [
   {
     key:'hi-fi-ads', tag:'Hi-Fi Ads', icon:'✨',
     bg:'linear-gradient(165deg,#21005D,#5B01FF 55%,#0d0030)', accent:'#5B01FF',
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048214/tsv-website/hifi-ad-1.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048226/tsv-website/hifi-ad-2.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048247/tsv-website/hifi-ad-3.mov'],
+    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048214/tsv-website/hifi-ad-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048226/tsv-website/hifi-ad-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048247/tsv-website/hifi-ad-3.mp4'],
     desc:'High-production videos for paid social. Strong hooks, clear messaging, polished visuals.',
     modalDesc:'Higher production paid social ads built for Meta, TikTok and YouTube. These are designed to perform as paid creatives while still feeling native to the platform, so they hold attention rather than getting skipped.',
     whenBest:'When you are running paid social and need a steady supply of fresh creatives. Ad fatigue is one of the biggest reasons paid performance drops, and having new content coming in consistently keeps your campaigns working harder for longer.',
@@ -164,7 +164,7 @@ const SERVICES = [
   {
     key:'ugc', tag:'UGC-Style Creatives', icon:'📱',
     bg:'linear-gradient(165deg,#3a0025,#E820A4 45%,#FF7ED3)', accent:PMAG,
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048333/tsv-website/prepkitchen-ugc.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048447/tsv-website/ugc-2.mov','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048468/tsv-website/ugc-3.mov'],
+    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048333/tsv-website/prepkitchen-ugc.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048447/tsv-website/ugc-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048468/tsv-website/ugc-3.mp4'],
     desc:'Creator storytelling meets product messaging. Relatable, authentic content that converts.',
     modalDesc:'Low-fi, sit-down videos of a creator talking through their experience with your product the way a real customer would. Filmed and edited to look and feel like something you would naturally come across scrolling through your feed.',
     whenBest:'When trust is the thing standing between someone and a purchase. We often use formats like stitches and reactions to show a problem and solution in a way that feels completely native to the platform rather than like an ad.',
@@ -1027,7 +1027,7 @@ export default function MarketingPage() {
                 <Phone phone={PHONES[2]} rotate={0} scale={1.38} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/v1782049284/tsv-website/hero2.mp4" />
               </div>
               <div className="mkt-float-c" style={{ marginTop:56, marginLeft:-20, zIndex:1 }}>
-                <Phone phone={PHONES[4]} rotate={9} scale={1.1} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048195/tsv-website/hero3.mov" />
+                <Phone phone={PHONES[4]} rotate={9} scale={1.1} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/v1782048195/tsv-website/hero3.mp4" />
               </div>
             </div>
           </div>
