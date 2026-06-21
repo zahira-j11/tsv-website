@@ -323,6 +323,7 @@ body::before {
 @media (max-width: 768px) {
   .mkt-hidden-mobile { display: none !important; }
   .mkt-show-mobile   { display: block !important; }
+  .mkt-process-grid  { grid-template-columns: 1fr !important; }
 }
 @media (min-width: 769px) {
   .mkt-show-mobile   { display: none !important; }

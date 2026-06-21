@@ -1177,7 +1177,7 @@ export default function MarketingPage() {
             <span style={{ display:'inline-block', background:'rgba(8,246,131,0.22)', color:GRN, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>How it works</span>
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:WH }}>A simple process, <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">powerful results.</em></h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'start' }}>
+          <div className="mkt-process-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'start' }}>
             {/* Steps */}
             <div style={{ display:'flex', flexDirection:'column', gap:0 }}>
               {STEPS.map((s,i)=>(
