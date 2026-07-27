@@ -98,7 +98,7 @@ const STATS = [
   { n:2,   suffix:'k+', label:'Content pieces',  c:PD  },
 ];
 
-const CLIENT_LOGOS = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
+const CLIENT_LOGOS = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
 
 const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','Ambassador Content','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','150+ Creators','200M+ Views'];
 
@@ -260,7 +260,6 @@ const PLANS = [
 
 const FAQS = [
   { q:'How quickly can we get started?',                   a:"First content goes live within 14–21 days of signing. Week 1 is strategy and creator matching. Week 2 is production. Week 3 is your first batch live." },
-  { q:'How do you pick the right creators for us?',       a:"We match from a diverse network of vetted UK creators based on your audience, category, and tone. Our network spans niche micro creators through to names with millions of followers. You see and approve the shortlist before any content is produced." },
   { q:"What's included in the monthly retainer?",         a:"Strategy, creator matching, briefing, production management, revisions, and performance reporting. All included. You're not paying for add-ons." },
   { q:'How does the creator network work?',               a:"We manage a diverse network of vetted UK creators across a wide range of niches, styles, and platforms, all briefed to your brand guidelines. You don't manage them. We do." },
   { q:'We already have an in-house team. Will this clash?', a:"Not at all. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
