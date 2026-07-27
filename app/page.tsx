@@ -1020,10 +1020,10 @@ export default function MarketingPage() {
                 <Phone phone={PHONES[0]} rotate={-9} scale={1.1} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049187/tsv-website/hero1.mp4" />
               </div>
               <div className="mkt-float-b" style={{ zIndex:3 }}>
-                <Phone phone={PHONES[2]} rotate={0} scale={1.38} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049284/tsv-website/hero2.mp4" />
+                <Phone phone={PHONES[2]} rotate={0} scale={1.38} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1785166780/tsv-website/hero3.mp4" />
               </div>
               <div className="mkt-float-c" style={{ marginTop:56, marginLeft:-20, zIndex:1 }}>
-                <Phone phone={PHONES[4]} rotate={9} scale={1.1} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1785166780/tsv-website/hero3.mp4" />
+                <Phone phone={PHONES[4]} rotate={9} scale={1.1} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049284/tsv-website/hero2.mp4" />
               </div>
             </div>
           </div>
