@@ -1067,38 +1067,6 @@ export default function MarketingPage() {
         </div>
       </div>
 
-      {/* ══ INDUSTRIES ═══════════════════════════════════════ */}
-      <section style={{ padding:'72px 28px 80px', background:WH, borderTop:`2px solid ${BR}` }}>
-        <div style={{ maxWidth:1200, margin:'0 auto' }}>
-          <p style={{ fontSize:11, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase', color:SU, textAlign:'center', marginBottom:40 }}>Industries we work with</p>
-          <div style={{ display:'flex', flexWrap:'wrap', gap:16, justifyContent:'center' }}>
-            {([
-              { label:'AI & Tech',   accent:P,   bg:'rgba(124,1,255,0.08)',   icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg> },
-              { label:'Fintech',     accent:MAG, bg:'rgba(232,32,164,0.08)',  icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> },
-              { label:'Apps',        accent:P,   bg:'rgba(124,1,255,0.08)',   icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
-              { label:'Health',      accent:'#0CB876', bg:'rgba(12,184,118,0.08)', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> },
-              { label:'Food & Bev',  accent:YEL, bg:'rgba(255,214,0,0.12)',   icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg> },
-              { label:'+ More',      accent:SU,  bg:'transparent', border: true, icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg> },
-            ] as { label:string; accent:string; bg:string; icon:React.ReactNode; border?:boolean }[]).map((item, i) => (
-              <div key={i} style={{
-                display:'flex', flexDirection:'column', alignItems:'center', gap:12,
-                background: item.border ? 'transparent' : WH,
-                border: item.border ? `2px dashed ${BR}` : `1.5px solid ${BR}`,
-                borderRadius:20, padding:'28px 32px', minWidth:120,
-                cursor:'default', transition:'transform 200ms, box-shadow 200ms',
-              }}
-                className="industry-tile">
-                <div style={{ width:52, height:52, borderRadius:16, background:item.bg, display:'flex', alignItems:'center', justifyContent:'center', color:item.accent, flexShrink:0 }}>
-                  {item.icon}
-                </div>
-                <span style={{ fontSize:13, fontWeight:700, color: item.border ? SU : PD, letterSpacing:'-.01em', textAlign:'center' }}>{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <style>{`.industry-tile:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(124,1,255,0.10); }`}</style>
-      </section>
-
       {/* ══ HALL OF FAME ══════════════════════════════════════ */}
       <section id="hall-of-fame" style={{ padding:'100px 0 120px', background:PD, position:'relative', overflow:'hidden' }}>
         {/* Big colourful gradient circles scattered behind everything */}
