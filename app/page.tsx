@@ -98,7 +98,7 @@ const STATS = [
   { n:2,   suffix:'k+', label:'Content pieces',  c:PD  },
 ];
 
-const CLIENT_LOGOS = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
+const CLIENT_LOGOS = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'];
 
 const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','Ambassador Content','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','150+ Creators','200M+ Views'];
 
@@ -949,6 +949,8 @@ export default function MarketingPage() {
               <button key={id} onClick={()=>go(id)} style={{ background:'none', border:'none', color:MU, fontSize:13, fontWeight:600, cursor:'pointer', padding:0, transition:'color 150ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>{l}</button>
             ))}
+            <a href="/blog" style={{ color:MU, fontSize:13, fontWeight:600, textDecoration:'none', transition:'color 150ms' }}
+              onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>Blog</a>
           </div>
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
@@ -966,6 +968,7 @@ export default function MarketingPage() {
             {([['How it works','how-it-works'],['Services','services'],['Case Studies','cases'],['Pricing','pricing']] as [string,string][]).map(([l,id])=>(
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
+            <a href="/blog" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>Blog</a>
             <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" onClick={()=>setMenu(false)} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>Book a call</a>
           </div>
         )}

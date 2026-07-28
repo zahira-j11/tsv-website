@@ -18,7 +18,7 @@ const dm = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'The Social Vision — Short-Form Content Agency',
+  title: 'The Social Vision | Short-Form Content Agency',
   description:
     'We build and run your entire short-form content engine. 200M+ organic views, 120+ vetted creators, first content live in 14 days.',
   icons: {
