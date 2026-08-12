@@ -98,7 +98,7 @@ const STATS = [
   { n:2,   suffix:'k+', label:'Content pieces',  c:PD  },
 ];
 
-const CLIENT_LOGOS = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'];
+const CLIENT_LOGOS = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
 
 const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','Ambassador Content','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','150+ Creators','200M+ Views'];
 
