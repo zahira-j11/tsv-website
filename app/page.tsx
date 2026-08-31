@@ -826,6 +826,21 @@ export default function MarketingPage() {
         </div>
       )}
 
+      {/* Spots sticker — straddles the banner edge and the page below */}
+      <div className="mkt-spots-sticker" aria-hidden="true" style={{
+        position:'fixed', top: bannerH - 46, right: 12, zIndex: 201,
+        width: 92, height: 92, borderRadius: '50%',
+        background: PD, color: '#fff',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        transform: 'rotate(-8deg)',
+        boxShadow: '0 10px 30px rgba(33,0,93,0.35)',
+        border: '2px solid rgba(255,255,255,0.9)',
+      }}>
+        <span style={{ ...DISP, fontSize: 30, fontWeight: 800, color: YEL, lineHeight: 1 }}>7</span>
+        <span style={{ ...DISP, fontSize: 8.5, fontWeight: 800, letterSpacing: '.1em', marginTop: 3 }}>SPOTS LEFT</span>
+        <span style={{ fontSize: 7.5, fontWeight: 700, letterSpacing: '.12em', color: 'rgba(255,253,237,0.6)', marginTop: 1 }}>SEPTEMBER</span>
+      </div>
+
       {/* ══ NAV ══════════════════════════════════════════════ */}
       <nav style={{ position:'fixed', top:bannerH + 14, left:'50%', transform:'translateX(-50%)', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
         <div style={{ height:'100%', padding:'0 10px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>

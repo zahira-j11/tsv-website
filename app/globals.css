@@ -331,6 +331,14 @@ body::before {
   }
 }
 
+/* Spots sticker only where the nav leaves gutter space; the inline
+   tag covers narrower screens so scarcity always shows exactly once. */
+.mkt-spots-sticker { display: none; }
+@media (min-width: 1400px) {
+  .mkt-spots-sticker  { display: flex !important; }
+  .mkt-banner-spots   { display: none !important; }
+}
+
 /* Offer banner: slow light sweep across the gradient */
 .mkt-banner-shimmer::after {
   content: "";
