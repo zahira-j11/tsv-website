@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { bookingToken } from '@/lib/spots';
+import { bookingToken, monthKey } from '@/lib/spots';
+import { connectDB } from '@/lib/mongodb';
+import AuditApplication from '@/models/AuditApplication';
 import { z } from 'zod';
 
 /**
@@ -91,7 +93,18 @@ export async function POST(req: NextRequest) {
   const qualified = qualify(application);
 
   // Every application is captured, qualified or not — the ones we decline are
-  // still worth nurturing.
+  // still worth nurturing. Stored first, because storage needs no configuration
+  // and notification does; a failure in either must not cost the applicant
+  // their booking, so both are caught and logged rather than surfaced.
+  if (process.env.MONGODB_URI) {
+    try {
+      await connectDB();
+      await AuditApplication.create({ ...application, qualified, month: monthKey() });
+    } catch (err) {
+      console.error('[POST /api/audit] could not store application', err, application);
+    }
+  }
+
   try {
     await notifyTeam(application, qualified);
   } catch (err) {
