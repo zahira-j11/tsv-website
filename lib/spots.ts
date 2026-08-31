@@ -9,8 +9,8 @@ export type SpotsInfo = {
   capacity: number;
   booked: number;
   month: string;
-  /** 'hubspot' when the count came from real bookings, 'config' when it fell back. */
-  source: 'hubspot' | 'config';
+  /** Where the count came from: webhook bookings, a HubSpot poll, or config. */
+  source: 'webhook' | 'hubspot' | 'config';
 };
 
 /** How many audits we take in a month. Override without a deploy. */
@@ -28,6 +28,12 @@ function targetMonth(d: Date = new Date()): Date {
 
 export function monthName(d: Date = new Date()): string {
   return targetMonth(d).toLocaleString('en-GB', { month: 'long' });
+}
+
+/** YYYY-MM for the month being sold — the key bookings are stored under. */
+export function monthKey(d: Date = new Date()): string {
+  const m = targetMonth(d);
+  return `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`;
 }
 
 export function monthBounds(d: Date = new Date()): { start: number; end: number } {

@@ -1,15 +1,17 @@
 import { NextResponse } from 'next/server';
-import { AUDIT_CAPACITY, monthBounds, monthName, type SpotsInfo } from '@/lib/spots';
+import { AUDIT_CAPACITY, monthBounds, monthKey, monthName, type SpotsInfo } from '@/lib/spots';
+import { connectDB } from '@/lib/mongodb';
+import AuditBooking from '@/models/AuditBooking';
 
 /**
  * Live audit availability.
  *
- * Counts audit meetings already booked in HubSpot for the current month and
- * returns what's left. HubSpot stays the source of truth, so a cancellation
- * puts the spot back on its own — which a webhook-driven counter would not.
+ * Counts audit bookings for the month being sold and returns what's left.
  *
- * Falls back to the configured capacity when HUBSPOT_TOKEN is absent, so the
- * site still renders a sensible number before the integration is switched on.
+ * Three sources, in order of preference:
+ *   1. Bookings recorded by the HubSpot workflow webhook (MONGODB_URI set)
+ *   2. Polling the HubSpot meetings API (HUBSPOT_TOKEN set)
+ *   3. The configured capacity, so the site always renders a sensible number
  */
 
 export const dynamic = 'force-dynamic';
@@ -50,15 +52,34 @@ async function countBookedAudits(): Promise<number | null> {
 }
 
 export async function GET() {
-  if (cache && Date.now() - cache.at < CACHE_MS) {
+  // Only the HubSpot poll is worth caching; a Mongo count is cheap, and caching
+  // it would leave the site advertising a spot that has just been taken.
+  if (cache && cache.data.source === 'hubspot' && Date.now() - cache.at < CACHE_MS) {
     return NextResponse.json(cache.data);
   }
 
   let booked: number | null = null;
-  try {
-    booked = await countBookedAudits();
-  } catch (err) {
-    console.error('[GET /api/spots] lookup failed', err);
+  let source: SpotsInfo['source'] = 'config';
+
+  // 1. Webhook-fed bookings
+  if (process.env.MONGODB_URI) {
+    try {
+      await connectDB();
+      booked = await AuditBooking.countDocuments({ month: monthKey() });
+      source = 'webhook';
+    } catch (err) {
+      console.error('[GET /api/spots] booking store unavailable', err);
+    }
+  }
+
+  // 2. Fall back to asking HubSpot directly
+  if (booked === null) {
+    try {
+      booked = await countBookedAudits();
+      if (booked !== null) source = 'hubspot';
+    } catch (err) {
+      console.error('[GET /api/spots] HubSpot lookup failed', err);
+    }
   }
 
   const data: SpotsInfo = {
@@ -66,9 +87,9 @@ export async function GET() {
     booked: booked ?? 0,
     remaining: booked === null ? AUDIT_CAPACITY : Math.max(0, AUDIT_CAPACITY - booked),
     month: monthName(),
-    source: booked === null ? 'config' : 'hubspot',
+    source,
   };
 
-  cache = { at: Date.now(), data };
+  if (source === 'hubspot') cache = { at: Date.now(), data };
   return NextResponse.json(data);
 }
