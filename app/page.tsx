@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { defaultSpots, spotsShort, spotsSlots, type SpotsInfo } from '@/lib/spots';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -15,6 +17,16 @@ const MU   = 'rgba(33,0,93,0.52)';
 const SU   = 'rgba(33,0,93,0.28)';
 const BR   = '#E4DCFF';
 const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
+
+// Modals render into <body>. Sections set `position:relative; z-index:1`,
+// which creates a stacking context that would otherwise trap a modal
+// beneath the sticky header no matter how high its own z-index is.
+function Portal({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+  return createPortal(children, document.body);
+}
 
 // ─── Floating orb helper ────────────────────────────────────
 function Orbs({ orbs }: { orbs: { size:number; color:string; opacity:number; cls:string; top?:string; bottom?:string; left?:string; right?:string; blur?:number }[] }) {
@@ -280,7 +292,7 @@ const ROUTES = [
     coverLabel:'We\u2019ll cover:',
     bullets:['What\u2019s holding your content back','What your competitors are doing differently','The formats and ideas we\u2019d test','Where your paid creative could work harder','What we\u2019d prioritise over the next 90 days'],
     bestFor:'Brands looking for an expert second opinion on their social.',
-    footnote:'7 audit slots available for September',
+
     cta:'Secure Your Free Audit', href:'/audit',
   },
 ];
@@ -482,6 +494,7 @@ function ServiceCard({ s, i, onOpen }: { s: typeof SERVICES[0]; i: number; onOpe
 // ─── Service detail modal ──────────────────────────────────
 function ServiceModal({ s, onClose }: { s: typeof SERVICES[0]; onClose: () => void }) {
   return (
+    <Portal>
     <div
       onClick={onClose}
       style={{
@@ -560,6 +573,7 @@ function ServiceModal({ s, onClose }: { s: typeof SERVICES[0]; onClose: () => vo
         </div>
       </div>
     </div>
+    </Portal>
   );
 }
 
@@ -606,6 +620,7 @@ function StatIcon({ type }: { type: string }) {
 // ─── Case detail modal ─────────────────────────────────────
 function CaseModal({ c, onClose }: { c: typeof CASES[0]; onClose: () => void }) {
   return (
+    <Portal>
     <div onClick={onClose} style={{
       position: 'fixed', inset: 0, zIndex: 2000,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -666,6 +681,7 @@ function CaseModal({ c, onClose }: { c: typeof CASES[0]; onClose: () => void }) 
         }}>Get similar results →</a>
       </div>
     </div>
+    </Portal>
   );
 }
 
@@ -771,6 +787,7 @@ export default function MarketingPage() {
   const [sent,setSent]         = useState(false);
   const [reels,setReels]       = useState<ReelData[]>([]);
   const [showCalendar,setShowCalendar] = useState(false);
+  const [spots,setSpots]       = useState<SpotsInfo>(defaultSpots());
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
 
@@ -778,6 +795,14 @@ export default function MarketingPage() {
 
   // Promo banner: remember dismissal, and measure its height so the nav
   // and hero can sit below it at whatever size it renders.
+
+  // Live audit availability — falls back to the configured capacity.
+  useEffect(() => {
+    fetch('/api/spots')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setSpots(d); })
+      .catch(() => {});
+  }, []);
 
   // Fetch backend videos
   useEffect(() => {
@@ -840,7 +865,8 @@ export default function MarketingPage() {
               • We&rsquo;ll analyse your content, competitors &amp; paid ads, then give you a 90-day roadmap to implement •
             </span>
             <span style={{ fontSize:12, fontWeight:700, whiteSpace:'nowrap', letterSpacing:'.01em' }}>
-              Only <span style={{ ...DISP, fontSize:15, fontWeight:800, color:YEL }}>7 spots</span> left for September
+              {spots.remaining > 0 ? <>Only <span style={{ ...DISP, fontSize:15, fontWeight:800, color:YEL }}>{spotsShort(spots)}</span> left for {spots.month}</>
+                                   : <span style={{ ...DISP, fontSize:15, fontWeight:800, color:YEL }}>{spots.month} is fully booked</span>}
             </span>
             <a href="/audit" style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
               onMouseEnter={e=>(e.currentTarget.style.opacity='0.85')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>
@@ -1331,7 +1357,9 @@ export default function MarketingPage() {
                 </div>
 
                 <div style={{ marginTop:'auto' }}>
-                  <p style={{ fontSize:12.5, fontWeight:700, color:SU, marginBottom:16 }}>{r.footnote}</p>
+                  <p style={{ fontSize:12.5, fontWeight:700, color:SU, marginBottom:16 }}>
+                    {r.key === 'audit' ? spotsSlots(spots) : r.footnote}
+                  </p>
                   {r.featured ? (
                     <a href={r.href} style={ctaStyle(true)}
                       onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}

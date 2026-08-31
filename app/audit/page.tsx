@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { defaultSpots, spotsSentence, type SpotsInfo } from '@/lib/spots';
 
 // ─── Brand palette (matches app/page.tsx) ──────────────────
 const BG   = '#FEFDF8';
@@ -69,6 +70,11 @@ export default function AuditPage() {
   const [error, setError]       = useState<string|null>(null);
   const [issues, setIssues]     = useState<Record<string,string[]|undefined>>({});
   const [calendarUrl, setCalendarUrl] = useState<string|null>(null);
+  const [spots, setSpots]       = useState<SpotsInfo>(defaultSpots());
+
+  useEffect(() => {
+    fetch('/api/spots').then(r => r.ok ? r.json() : null).then(d => { if (d) setSpots(d); }).catch(() => {});
+  }, []);
 
   const togglePlatform = (p: string) =>
     setPlatforms(prev => prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p]);
@@ -188,7 +194,7 @@ export default function AuditPage() {
                 <p style={{ fontSize:15, color:MU, lineHeight:1.75 }}>
                   A few details so we can prepare properly before we meet. Takes about a minute.
                 </p>
-                <p style={{ ...DISP, fontSize:12.5, fontWeight:800, color:MAG, marginTop:14 }}>Only 7 spots available for September</p>
+                <p style={{ ...DISP, fontSize:12.5, fontWeight:800, color:MAG, marginTop:14 }}>{spotsSentence(spots)}</p>
               </div>
 
               <form onSubmit={submit} style={{ background:WH, border:`1.5px solid ${BR}`, borderRadius:24, padding:'32px 30px', display:'flex', flexDirection:'column', gap:22 }}>
