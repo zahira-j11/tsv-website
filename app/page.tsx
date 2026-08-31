@@ -1347,19 +1347,6 @@ export default function MarketingPage() {
           </div>
           )}
 
-          {/* Trusted-by row, as in the reference — sits under both routes */}
-          {!showCalendar && (
-            <div style={{ marginTop:44, textAlign:'center' }}>
-              <div style={{ ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.14em', textTransform:'uppercase', color:'rgba(255,253,237,0.42)', marginBottom:22 }}>Trusted by brands like</div>
-              <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:38, flexWrap:'wrap' }}>
-                {['habito','plum','unicompare','applicaa','blackbullion','prepkitchen'].map(l=>(
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img key={l} src={`/logos/${l}.png`} alt="" style={{ height:26, width:'auto', objectFit:'contain', filter:'brightness(0) invert(1)', opacity:0.5 }} />
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Discovery calendar — same HubSpot embed, revealed inside this route */}
           {showCalendar && (
             <div style={{ background:WH, border:`2px solid ${BR}`, borderRadius:26, padding:'30px 28px 28px', boxShadow:'0 24px 64px rgba(0,0,0,0.18)' }}>

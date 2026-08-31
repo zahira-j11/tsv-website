@@ -44,6 +44,22 @@ const TEAM = [
   { v:'50-plus',  l:'50+ people' },
 ];
 
+// Same floating orbs as the main site — the mkt-orb-* animations are global.
+function Orbs({ orbs }: { orbs: { size:number; color:string; opacity:number; cls:string; top?:string; bottom?:string; left?:string; right?:string }[] }) {
+  return (
+    <div style={{ position:'absolute', inset:0, overflow:'hidden', pointerEvents:'none', zIndex:0 }}>
+      {orbs.map((o,i)=>(
+        <div key={i} className={o.cls} style={{
+          position:'absolute', width:o.size, height:o.size, borderRadius:'50%',
+          background:`radial-gradient(circle, ${o.color}CC 0%, ${o.color}AA 60%, ${o.color}22 85%, transparent 100%)`,
+          opacity:o.opacity, filter:'blur(3px)',
+          top:o.top, bottom:o.bottom, left:o.left, right:o.right,
+        }} />
+      ))}
+    </div>
+  );
+}
+
 type Step = 'form' | 'qualified' | 'declined';
 
 export default function AuditPage() {
@@ -126,7 +142,8 @@ export default function AuditPage() {
           </span>
           <h1 style={{ ...DISP, fontSize:'clamp(32px,5.4vw,58px)', fontWeight:800, letterSpacing:'-.055em', color:'#fff', lineHeight:1.06, marginBottom:20 }}>
             Find out exactly what we&rsquo;d{' '}
-            <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">change about your social.</em>
+            <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">change</em>{' '}
+            about your social.
           </h1>
           <p style={{ fontSize:17, color:'rgba(255,253,237,0.6)', lineHeight:1.8, maxWidth:700, margin:'0 auto' }}>
             We&rsquo;ll analyse your organic content, competitors and paid creative before we meet, then spend 60 minutes walking you through the biggest opportunities we see for your brand.
@@ -135,8 +152,13 @@ export default function AuditPage() {
       </section>
 
       {/* ══ WHAT YOU GET ═════════════════════════════════════ */}
-      <section style={{ padding:'64px 28px 8px', background:BG }}>
-        <div style={{ maxWidth:1060, margin:'0 auto' }}>
+      <section style={{ padding:'64px 28px 8px', background:BG, position:'relative', overflow:'hidden' }}>
+        <Orbs orbs={[
+          { size:360, color:P,   opacity:0.14, cls:'mkt-orb-a', top:'-12%',  right:'-6%' },
+          { size:260, color:YEL, opacity:0.42, cls:'mkt-orb-e', top:'34%',   left:'-4%'  },
+          { size:220, color:MAG, opacity:0.14, cls:'mkt-orb-c', bottom:'2%', right:'8%'  },
+        ]} />
+        <div style={{ maxWidth:1060, margin:'0 auto', position:'relative', zIndex:1 }}>
           <h2 style={{ ...DISP, fontSize:'clamp(24px,3vw,38px)', fontWeight:800, letterSpacing:'-.05em', color:PD, marginBottom:32, textAlign:'center' }}>What&rsquo;s included</h2>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(240px,1fr))', gap:18 }}>
             {INCLUDED.map(i=>(
@@ -151,8 +173,13 @@ export default function AuditPage() {
       </section>
 
       {/* ══ APPLY ════════════════════════════════════════════ */}
-      <section id="apply" style={{ padding:'56px 28px 100px', background:BG }}>
-        <div style={{ maxWidth: step === 'qualified' ? 1040 : 680, margin:'0 auto' }}>
+      <section id="apply" style={{ padding:'56px 28px 100px', background:BG, position:'relative', overflow:'hidden' }}>
+        <Orbs orbs={[
+          { size:400, color:MAG, opacity:0.13, cls:'mkt-orb-b', top:'-6%',    left:'-8%'  },
+          { size:300, color:YEL, opacity:0.40, cls:'mkt-orb-f', top:'40%',    right:'-4%' },
+          { size:240, color:P,   opacity:0.14, cls:'mkt-orb-d', bottom:'-4%', left:'12%'  },
+        ]} />
+        <div style={{ maxWidth: step === 'qualified' ? 1040 : 680, margin:'0 auto', position:'relative', zIndex:1 }}>
 
           {step === 'form' && (
             <>
@@ -227,9 +254,6 @@ export default function AuditPage() {
                 }}>
                   {sending ? 'Submitting…' : 'Apply for my free audit →'}
                 </button>
-                <p style={{ fontSize:12, color:SU, textAlign:'center', margin:0 }}>
-                  We&rsquo;ll come back to you within one working day.
-                </p>
               </form>
             </>
           )}
