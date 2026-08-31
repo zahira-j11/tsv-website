@@ -841,7 +841,7 @@ export default function MarketingPage() {
             </div>
 
             <h1 className="mkt-h2 mkt-hero-h1" style={{ ...DISP, fontSize:'clamp(38px,9.5vw,72px)', fontWeight:800, lineHeight:1.08, letterSpacing:'-.05em', marginBottom:32, color:PD }}>
-              Your brand deserves<br />
+              Your brand deserves{' '}<br className="mkt-h1-break" />
               more than{' '}<em className="mkt-gradient-text" style={{ fontStyle:'italic' }}>300 views.</em>
             </h1>
 
