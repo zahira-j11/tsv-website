@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { bookingToken } from '@/lib/spots';
 import { z } from 'zod';
 
 /**
@@ -97,8 +98,11 @@ export async function POST(req: NextRequest) {
     console.error('[POST /api/audit] notify failed', err);
   }
 
+  const secret = process.env.AUDIT_WEBHOOK_SECRET;
   return NextResponse.json({
     qualified,
+    // Lets the browser claim exactly one spot when HubSpot confirms the booking.
+    bookingToken: qualified && secret ? bookingToken(application.email, secret) : null,
     // Set AUDIT_CALENDAR_URL to the HubSpot meeting link for the audit (a
     // separate meeting type from the discovery call) and the calendar embeds
     // itself on the success step.

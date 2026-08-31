@@ -70,3 +70,34 @@ export const spotsSlots = (s: SpotsInfo) =>
   s.remaining > 0
     ? `${s.remaining} audit slots available for ${s.month}`
     : `${s.month} is fully booked`;
+
+/**
+ * Booking tokens.
+ *
+ * When an application qualifies, the server hands the browser a signed token.
+ * The browser sends it back when HubSpot's iframe reports a successful
+ * booking, which is what lets us take a spot without shipping the webhook
+ * secret to the client. Signed over the applicant + month, so a token can
+ * only ever consume the one spot it was issued for.
+ */
+export function bookingToken(email: string, secret: string, d: Date = new Date()): string {
+  // Lazy require keeps this module importable from client components.
+  const { createHmac } = require('crypto') as typeof import('crypto');
+  const id = `${email.trim().toLowerCase()}|${monthKey(d)}`;
+  const sig = createHmac('sha256', secret).update(id).digest('hex').slice(0, 32);
+  return `${Buffer.from(id).toString('base64url')}.${sig}`;
+}
+
+export function verifyBookingToken(token: string, secret: string): { email: string; month: string } | null {
+  const [payload, sig] = String(token).split('.');
+  if (!payload || !sig) return null;
+  let id: string;
+  try { id = Buffer.from(payload, 'base64url').toString('utf8'); } catch { return null; }
+  const { createHmac, timingSafeEqual } = require('crypto') as typeof import('crypto');
+  const expected = createHmac('sha256', secret).update(id).digest('hex').slice(0, 32);
+  const a = Buffer.from(sig), b = Buffer.from(expected);
+  if (a.length !== b.length || !timingSafeEqual(a, b)) return null;
+  const [email, month] = id.split('|');
+  if (!email || !month) return null;
+  return { email, month };
+}

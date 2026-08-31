@@ -71,10 +71,38 @@ export default function AuditPage() {
   const [issues, setIssues]     = useState<Record<string,string[]|undefined>>({});
   const [calendarUrl, setCalendarUrl] = useState<string|null>(null);
   const [spots, setSpots]       = useState<SpotsInfo>(defaultSpots());
+  const [bookingToken, setBookingToken] = useState<string|null>(null);
 
   useEffect(() => {
     fetch('/api/spots').then(r => r.ok ? r.json() : null).then(d => { if (d) setSpots(d); }).catch(() => {});
   }, []);
+
+  /**
+   * HubSpot's embedded calendar posts a message to this page when a booking
+   * succeeds, which is what takes the spot — no workflow or API scope needed.
+   * The signed token from the application proves who is claiming it.
+   */
+  useEffect(() => {
+    if (!bookingToken) return;
+    const onMessage = (e: MessageEvent) => {
+      let host = '';
+      try { host = new URL(e.origin).hostname; } catch { return; }
+      if (host !== 'hubspot.com' && !host.endsWith('.hubspot.com')) return;
+      const d = e.data as { meetingBookSucceeded?: boolean } | undefined;
+      if (!d || d.meetingBookSucceeded !== true) return;
+      fetch('/api/spots/confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: bookingToken }),
+      })
+        .then(() => fetch('/api/spots'))
+        .then(r => r.ok ? r.json() : null)
+        .then(d2 => { if (d2) setSpots(d2); })
+        .catch(() => {});
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [bookingToken]);
 
   const togglePlatform = (p: string) =>
     setPlatforms(prev => prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p]);
@@ -103,6 +131,7 @@ export default function AuditPage() {
         return;
       }
       setCalendarUrl(data.calendarUrl ?? null);
+      setBookingToken(data.bookingToken ?? null);
       setStep(data.qualified ? 'qualified' : 'declined');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch {
