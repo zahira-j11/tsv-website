@@ -814,7 +814,8 @@ export default function MarketingPage() {
             <span className="mkt-banner-detail" style={{ fontSize:11.5, fontWeight:500, color:'rgba(255,255,255,0.72)', whiteSpace:'nowrap' }}>
               • We&rsquo;ll analyse your content, competitors &amp; paid ads, then give you a 90-day roadmap to implement •
             </span>
-            <span className="mkt-banner-spots" style={{ fontSize:11.5, fontWeight:700, whiteSpace:'nowrap' }}>
+            <span className="mkt-banner-spots" style={{ display:'inline-flex', alignItems:'center', gap:6, background:'rgba(255,255,255,0.16)', border:'1px solid rgba(255,255,255,0.32)', backdropFilter:'blur(6px)', borderRadius:100, padding:'4px 11px', fontSize:11, fontWeight:800, letterSpacing:'.02em', whiteSpace:'nowrap' }}>
+              <span className="mkt-pulsedot" style={{ width:6, height:6, borderRadius:'50%', background:GRN, flexShrink:0 }} />
               Only 7 September spots left
             </span>
             <a href="#contact" style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
