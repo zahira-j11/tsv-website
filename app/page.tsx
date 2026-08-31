@@ -593,7 +593,17 @@ function ServicesCarousel() {
       <button aria-label="Previous" className="mkt-carousel-nav" onClick={() => scroll(-1)} style={{ ...nav, left: -16 }}>‹</button>
       <button aria-label="Next" className="mkt-carousel-nav" onClick={() => scroll(1)} style={{ ...nav, right: -16 }}>›</button>
       <div ref={trackRef} className="mkt-services-track" style={{
-        display: 'flex', gap: 16, overflowX: 'auto', scrollSnapType: 'x mandatory', padding: '6px 2px 14px',
+        display: 'flex', gap: 16, overflowX: 'auto', padding: '6px 2px 14px',
+        // overflow-y must be pinned. Setting overflow-x to auto silently
+        // promotes overflow-y from visible to auto, and flex stretch plus the
+        // vertical padding leaves ~26px of phantom scroll height in here — so
+        // a wheel over the carousel was spent scrolling that instead of the
+        // page, and the page appeared to freeze under the cursor. Nothing
+        // visible lives in those pixels, so hiding them changes no layout.
+        overflowY: 'hidden', alignItems: 'flex-start',
+        // proximity rather than mandatory, so a mostly-vertical gesture is not
+        // held here waiting to settle on a snap point.
+        scrollSnapType: 'x proximity', overscrollBehaviorX: 'contain',
       }}>
         {SERVICES.map((s, i) => (
           <ServiceCard key={s.key} s={s} i={i} onOpen={() => setOpenService(s)} />
@@ -727,7 +737,10 @@ function CasesCarousel() {
       {/* Track — flat cards: 2-up on desktop, 1-up on mobile via .mkt-case-card CSS */}
       <div ref={trackRef} style={{
         display: 'flex', gap: 20, overflowX: 'auto',
-        scrollSnapType: 'x mandatory', scrollbarWidth: 'none', padding: '8px 4px 28px',
+        // Same scroll trap as the formats carousel above.
+        overflowY: 'hidden', alignItems: 'flex-start',
+        scrollSnapType: 'x proximity', overscrollBehaviorX: 'contain',
+        scrollbarWidth: 'none', padding: '8px 4px 28px',
       }}>
         {CASES.map((c, i) => (
           <div key={i} className="mkt-case-card" data-reveal onClick={() => setOpenCase(c)} style={{
