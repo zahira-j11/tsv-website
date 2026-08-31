@@ -267,7 +267,7 @@ const ROUTES = [
     meta:'30\u201345 minute discovery call',
     bullets:['Your goals and current social setup','The content and service we\u2019d recommend','Relevant examples and results','Scope, pricing and timelines'],
     forWho:'Brands with budget already in place who want a long-term content partner rather than another freelancer.',
-    footnote:'Monthly partnerships from \u00a32,500 + VAT',
+    footnote:'Partnerships from \u00a32,000 + VAT per month',
     cta:'Book a Discovery Call', href:'#discovery-call',
   },
   {
@@ -290,66 +290,6 @@ const FAQS = [
   { q:'We already have an in-house team. Will this clash?', a:"Not at all. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
   { q:"What's the minimum commitment?",                   a:"Retainers start at £2,500 per month (ex. VAT) on a 3-month initial basis." },
 ];
-
-// ─── Route card visuals — real client frames, not mockups ─────
-const CLD = 'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/';
-const poster = (path: string) =>
-  (CLD + path).replace(/\.(mp4|mov|webm)$/, '.jpg').replace('f_auto,', '');
-
-// Work we've actually made, for the "hire us" route.
-const WORK = [
-  { src:'v1782048070/tsv-website/habito-street.mp4',    logo:'/logos/habito.png',      bg:'#ED7470' },
-  { src:'v1782048297/tsv-website/plum-scripted.mp4',    logo:'/logos/plum.png',        bg:WH },
-  { src:'v1782048505/tsv-website/unicompare-street.mp4',logo:'/logos/unicompare.png',  bg:WH },
-];
-
-function DiscoveryVisual() {
-  return (
-    <div style={{ display:'flex', gap:8 }}>
-      {WORK.map(w=>(
-        <div key={w.src} style={{ flex:1, aspectRatio:'9/16', borderRadius:11, overflow:'hidden', position:'relative', background:'rgba(33,0,93,0.06)' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={poster(w.src)} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
-          <div style={{ position:'absolute', bottom:7, left:7, width:22, height:22, borderRadius:'50%', background:w.bg, border:'1.5px solid rgba(255,255,255,0.9)', overflow:'hidden' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={w.logo} alt="" style={{ width:'100%', height:'100%', objectFit:'contain' }} />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// The audit, shown as us marking up a real piece of content.
-const FINDINGS = [
-  { c:P,         label:'Hook',      note:'Buried at 0:04 — move it to frame one' },
-  { c:MAG,       label:'Retention', note:'62% drop before the payoff lands' },
-  { c:'#0CB876', label:'CTA',       note:'No next step in the caption or frame' },
-];
-
-function AuditVisual() {
-  return (
-    <div style={{ display:'flex', gap:12, alignItems:'stretch' }}>
-      <div style={{ flex:'0 0 92px', aspectRatio:'9/16', borderRadius:11, overflow:'hidden', position:'relative', background:'rgba(33,0,93,0.06)' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={poster('v1782048333/tsv-website/prepkitchen-ugc.mp4')} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
-        <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,0,30,0.72), transparent 55%)' }} />
-        <span style={{ position:'absolute', bottom:6, left:0, right:0, textAlign:'center', ...DISP, fontSize:7.5, fontWeight:800, letterSpacing:'.1em', color:'rgba(255,255,255,0.9)' }}>YOUR CONTENT</span>
-      </div>
-      <div style={{ flex:1, display:'flex', flexDirection:'column', justifyContent:'space-between', gap:8 }}>
-        {FINDINGS.map(f=>(
-          <div key={f.label} style={{ background:WH, border:`1px solid ${BR}`, borderRadius:10, padding:'9px 11px' }}>
-            <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:3 }}>
-              <span style={{ width:6, height:6, borderRadius:'50%', background:f.c, flexShrink:0 }} />
-              <span style={{ ...DISP, fontSize:9.5, fontWeight:800, letterSpacing:'.08em', textTransform:'uppercase', color:f.c }}>{f.label}</span>
-            </div>
-            <p style={{ fontSize:11, color:MU, lineHeight:1.45, margin:0 }}>{f.note}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 // ─── Backend reel type ─────────────────────────────────────
 interface ReelData {
@@ -1349,8 +1289,8 @@ export default function MarketingPage() {
               <div key={r.key} data-reveal data-reveal-delay={String(i*0.1)} style={{
                 display:'flex', flexDirection:'column',
                 padding:'38px 34px 34px', borderRadius:26, background:WH,
-                border:`2px solid ${r.featured ? P : BR}`,
-                boxShadow: r.featured ? `0 24px 64px rgba(124,1,255,0.28)` : '0 12px 40px rgba(0,0,0,0.14)',
+                border:`2px solid ${BR}`,
+                boxShadow:'0 14px 44px rgba(0,0,0,0.16)',
                 position:'relative', transition:'transform 220ms ease',
               }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-5px)'; }}
@@ -1360,42 +1300,39 @@ export default function MarketingPage() {
                   <span style={{ position:'absolute', top:-13, right:28, background:YEL, color:PD, ...DISP, fontSize:11, fontWeight:800, letterSpacing:'.04em', padding:'5px 16px', borderRadius:20 }}>{r.badge}</span>
                 )}
 
-                <div style={{ ...DISP, fontSize:10, fontWeight:800, color:r.featured?P:SU, letterSpacing:'.12em', textTransform:'uppercase', marginBottom:14 }}>{r.eyebrow}</div>
+                <div style={{ ...DISP, fontSize:10, fontWeight:800, color:P, letterSpacing:'.12em', textTransform:'uppercase', marginBottom:14 }}>{r.eyebrow}</div>
                 <h3 style={{ ...DISP, fontSize:23, fontWeight:800, letterSpacing:'-.04em', color:PD, lineHeight:1.22, marginBottom:12 }}>{r.title}</h3>
                 <p style={{ fontSize:15, color:MU, lineHeight:1.8, marginBottom:16 }}>{r.body}</p>
 
-                <div style={{ display:'inline-flex', alignItems:'center', gap:7, fontSize:12.5, fontWeight:700, color:r.featured?P:MU, marginBottom:18 }}>
-                  <span style={{ width:6, height:6, borderRadius:'50%', background:r.featured?P:SU, flexShrink:0 }} />
+                <div style={{ display:'inline-flex', alignItems:'center', gap:7, fontSize:12.5, fontWeight:700, color:P, marginBottom:18 }}>
+                  <span style={{ width:6, height:6, borderRadius:'50%', background:P, flexShrink:0 }} />
                   {r.meta}
                 </div>
 
-                <div style={{ marginBottom:22 }}>
-                  {r.featured ? <AuditVisual /> : <DiscoveryVisual />}
-                </div>
 
                 <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:22, display:'flex', flexDirection:'column', gap:11 }}>
                   {r.bullets.map(b=>(
                     <div key={b} style={{ display:'flex', alignItems:'flex-start', gap:10, fontSize:14, color:MU, lineHeight:1.6 }}>
-                      <span style={{ color:r.featured?P:GRN, flexShrink:0, fontWeight:800, fontSize:12, marginTop:2 }}>✓</span>{b}
+                      <span style={{ color:P, flexShrink:0, fontWeight:800, fontSize:12, marginTop:2 }}>✓</span>{b}
                     </div>
                   ))}
                 </div>
 
                 <div style={{ borderTop:`1px solid ${BR}`, paddingTop:18, marginBottom:22 }}>
-                  <p style={{ ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase', color:r.featured?P:SU, margin:'0 0 7px' }}>Who is this for?</p>
+                  <p style={{ ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase', color:P, margin:'0 0 7px' }}>Who is this for?</p>
                   <p style={{ fontSize:13.5, color:MU, lineHeight:1.7, margin:0 }}>{r.forWho}</p>
                 </div>
 
                 <div style={{ marginTop:'auto' }}>
-                  <p style={{ fontSize:12.5, fontWeight:700, color:r.featured?MAG:SU, marginBottom:16 }}>{r.footnote}</p>
+                  <p style={{ fontSize:12.5, fontWeight:700, color:SU, marginBottom:16 }}>{r.footnote}</p>
                   {r.featured ? (
                     <a href={r.href} style={ctaStyle(true)}
                       onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}
                       onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</a>
                   ) : (
-                    <button onClick={()=>setShowCalendar(true)} style={{ ...ctaStyle(false), width:'100%', cursor:'pointer', fontFamily:'inherit' }}
-                      onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.borderColor=PD; }}
-                      onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.borderColor=BR; }}>{r.cta}</button>
+                    <button onClick={()=>setShowCalendar(true)} style={{ ...ctaStyle(true), width:'100%', cursor:'pointer', fontFamily:'inherit' }}
+                      onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}
+                      onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</button>
                   )}
                 </div>
               </div>
