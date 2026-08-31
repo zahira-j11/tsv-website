@@ -274,12 +274,12 @@ const ROUTES = [
   {
     key:'audit', featured:true, badge:'Worth \u00a3750' as string|null,
     eyebrow:'Not sure what needs fixing?',
-    title:'Get Your \u00a3750 Social Media Audit, Free',
+    title:'Get Your \u00a3750 Social Media Audit, FREE',
     body:'We\u2019ll analyse your content, competitors and paid creative before we meet, then spend 60 minutes showing you exactly what we\u2019d change.',
     meta:'We do the homework before you arrive.',
     coverLabel:'We\u2019ll cover:',
     bullets:['What\u2019s holding your content back','What your competitors are doing differently','The formats and ideas we\u2019d test','Where your paid creative could work harder','What we\u2019d prioritise over the next 90 days'],
-    closingNote:'No generic \u201cpost more consistently\u201d advice.',
+    bestFor:'Brands looking for an expert second opinion on their social.',
     footnote:'7 audit slots available for September',
     cta:'Secure Your Free Audit', href:'/audit',
   },
@@ -1326,9 +1326,7 @@ export default function MarketingPage() {
 
                 <div style={{ borderTop:`1px solid ${BR}`, paddingTop:18, marginBottom:22 }}>
                   <p style={{ fontSize:13.5, color:MU, lineHeight:1.7, margin:0 }}>
-                    {'bestFor' in r
-                      ? <><span style={{ ...DISP, fontWeight:800, color:PD }}>Best for:</span> {(r as {bestFor:string}).bestFor}</>
-                      : (r as {closingNote:string}).closingNote}
+                    <span style={{ ...DISP, fontWeight:800, color:PD }}>Best for:</span> {r.bestFor}
                   </p>
                 </div>
 
