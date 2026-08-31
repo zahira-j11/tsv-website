@@ -319,6 +319,18 @@ body::before {
 }
 .mkt-grad-border-inner { position: relative; z-index: 1; border-radius: 15px; background: #0D001A; }
 
+/* Soft fade at the left/right edges of an overflowing row */
+.mkt-edge-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+}
+@media (max-width: 768px) {
+  .mkt-edge-fade {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  }
+}
+
 /* Responsive helpers */
 .mkt-hero-h1 { white-space: nowrap; }
 
@@ -335,7 +347,9 @@ body::before {
   /* Hero: the desktop layout reserves room for the phone stack and the
      industry chips, both hidden here — reclaim that space. */
   .mkt-hero        { min-height: auto !important; padding-top: 88px !important; }
-  .mkt-hero-inner  { padding: 12px 24px 186px !important; gap: 0 !important; }
+  .mkt-hero-inner  { padding: 12px 18px 186px !important; gap: 0 !important; }
+  /* Keep the headline to two lines at phone width */
+  .mkt-hero-h1     { font-size: 34px !important; }
   .mkt-stats-row   { display: grid !important; grid-template-columns: 1fr 1fr !important;
                      gap: 18px 8px !important; padding: 20px 20px !important; }
   /* Arrows crowd the cards at phone width — swipe instead. */

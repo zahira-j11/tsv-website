@@ -958,7 +958,7 @@ export default function MarketingPage() {
         </div>
 
         {/* Auto-scrolling full-width carousel — no overflow clip on section */}
-        <div style={{ overflow:'hidden', position:'relative', zIndex:1 }}>
+        <div className="mkt-edge-fade" style={{ overflow:'hidden', position:'relative', zIndex:1 }}>
           <div className="mkt-hof-scroll" style={{ display:'flex', gap:18, width:'max-content', padding:'8px 0 20px' }}>
             {/* render cards twice for seamless loop */}
             {[...(hofCards
