@@ -16,7 +16,7 @@ const Application = z.object({
   company: z.string().trim().min(1).max(120),
   website: z.string().trim().min(3).max(200),
   platforms: z.array(z.string()).min(1),
-  budget: z.enum(['none', 'under-1k', '1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus']),
+  budget: z.enum(['under-1k', '1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus']),
   teamSize: z.enum(['solo', '2-10', '11-50', '50-plus']),
   challenge: z.string().trim().min(10).max(1200),
 });

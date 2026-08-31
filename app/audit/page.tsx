@@ -25,7 +25,6 @@ const INCLUDED = [
 const PLATFORMS = ['TikTok', 'Instagram', 'YouTube', 'LinkedIn', 'Meta Ads', 'Not posting yet'];
 
 const BUDGET = [
-  { v:'none',      l:'No budget set yet' },
   { v:'under-1k',  l:'Under £1,000 / month' },
   { v:'1k-2.5k',   l:'£1,000 – £2,500 / month' },
   { v:'2.5k-5k',   l:'£2,500 – £5,000 / month' },
