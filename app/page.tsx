@@ -273,14 +273,14 @@ const ROUTES = [
   },
   {
     key:'audit', featured:true, badge:'Worth \u00a3750' as string|null,
-    eyebrow:'Want to improve your social?',
-    title:'Get a FREE Social Media Audit',
-    body:'We\u2019ll analyse your content, competitors and paid ads before we meet, then show you exactly what we\u2019d change.',
-    meta:'60-minute personalised audit',
+    eyebrow:'Not sure what needs fixing?',
+    title:'Get Your \u00a3750 Social Media Audit, Free',
+    body:'We\u2019ll analyse your content, competitors and paid creative before we meet, then spend 60 minutes showing you exactly what we\u2019d change.',
+    meta:'We do the homework before you arrive.',
     coverLabel:'We\u2019ll cover:',
-    bullets:['Organic social review','Competitor and category analysis','Paid creative review','Personalised 90-day roadmap'],
-    bestFor:'Brands already posting or running ads who want an expert read on what to fix first.',
-    footnote:'Only 7 spots available for September',
+    bullets:['What\u2019s holding your content back','What your competitors are doing differently','The formats and ideas we\u2019d test','Where your paid creative could work harder','What we\u2019d prioritise over the next 90 days'],
+    closingNote:'No generic \u201cpost more consistently\u201d advice.',
+    footnote:'7 audit slots available for September',
     cta:'Secure Your Free Audit', href:'/audit',
   },
 ];
@@ -1326,7 +1326,9 @@ export default function MarketingPage() {
 
                 <div style={{ borderTop:`1px solid ${BR}`, paddingTop:18, marginBottom:22 }}>
                   <p style={{ fontSize:13.5, color:MU, lineHeight:1.7, margin:0 }}>
-                    <span style={{ ...DISP, fontWeight:800, color:PD }}>Best for:</span> {r.bestFor}
+                    {'bestFor' in r
+                      ? <><span style={{ ...DISP, fontWeight:800, color:PD }}>Best for:</span> {(r as {bestFor:string}).bestFor}</>
+                      : (r as {closingNote:string}).closingNote}
                   </p>
                 </div>
 
