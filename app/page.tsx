@@ -886,7 +886,7 @@ export default function MarketingPage() {
     {/* Header stack: banner + nav in normal flow inside one sticky wrapper, so
         the nav always sits under the banner at whatever height it renders —
         correct on first paint, with no dependency on hydration. */}
-    <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:BG }}>
+    <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:'rgba(254,253,248,0.7)', backdropFilter:'blur(18px)', WebkitBackdropFilter:'blur(18px)' }}>
       {/* ══ AUDIT OFFER BANNER ═══════════════════════════════ */}
       {(
         <div className="mkt-banner-shimmer" style={{ position:'relative', background:`linear-gradient(90deg, #5B01FF 0%, ${P} 40%, ${MAG} 100%)`, color:'#fff', overflow:'hidden' }}>

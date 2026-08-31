@@ -22,6 +22,11 @@ const INCLUDED = [
   { icon:'🗺️', title:'Personalised 90-day roadmap',  body:'A prioritised plan you can act on, whether you work with us or not.' },
 ];
 
+// Audit booking calendar — a SEPARATE HubSpot meeting type from the discovery
+// call, so audit bookings stay out of the sales-call pipeline.
+// Override per environment with NEXT_PUBLIC_AUDIT_CALENDAR_URL.
+const AUDIT_CALENDAR_URL = 'https://meetings-eu1.hubspot.com/thesocialvision/social-media-audit';
+
 const PLATFORMS = ['TikTok', 'Instagram', 'YouTube', 'LinkedIn', 'Meta Ads', 'Not posting yet'];
 
 const BUDGET = [
@@ -232,22 +237,17 @@ export default function AuditPage() {
           {step === 'qualified' && (
             <div style={{ background:WH, border:`2px solid ${GRN}`, borderRadius:24, padding:'40px 34px', textAlign:'center' }}>
               <span style={{ fontSize:34 }}>🎉</span>
-              <h2 style={{ ...DISP, fontSize:'clamp(23px,3vw,32px)', fontWeight:800, letterSpacing:'-.045em', color:PD, margin:'14px 0 12px' }}>You&rsquo;re a great fit — pick your slot</h2>
+              <h2 style={{ ...DISP, fontSize:'clamp(23px,3vw,32px)', fontWeight:800, letterSpacing:'-.045em', color:PD, margin:'14px 0 12px' }}>You&rsquo;re a great fit, pick your slot</h2>
               <p style={{ fontSize:15, color:MU, lineHeight:1.75, marginBottom:28 }}>
                 Choose a time below and we&rsquo;ll have your audit prepared before we meet.
               </p>
-              {calendarUrl ? (
-                <div style={{ borderRadius:18, overflow:'hidden', border:`1.5px solid ${BR}` }}>
-                  <iframe src={`${calendarUrl}${calendarUrl.includes('?') ? '&' : '?'}embed=true`} title="Book your audit" style={{ width:'100%', height:680, border:'none', display:'block' }} />
-                </div>
-              ) : (
-                /* TODO: set NEXT_PUBLIC_AUDIT_CALENDAR_URL to the HubSpot meeting
-                   link for the audit (a separate meeting type from the discovery
-                   call) and this calendar renders in place of this message. */
-                <p style={{ fontSize:14.5, color:MU, lineHeight:1.75, background:'rgba(124,1,255,0.05)', border:`1.5px solid ${BR}`, borderRadius:14, padding:'20px 22px', margin:0 }}>
-                  Thanks — your application is in. We&rsquo;ll email you a booking link shortly so you can pick a time.
-                </p>
-              )}
+              <div style={{ borderRadius:18, overflow:'hidden', border:`1.5px solid ${BR}` }}>
+                <iframe
+                  src={`${calendarUrl ?? AUDIT_CALENDAR_URL}?embed=true`}
+                  title="Book your social media audit"
+                  style={{ width:'100%', height:680, border:'none', display:'block' }}
+                />
+              </div>
             </div>
           )}
 
