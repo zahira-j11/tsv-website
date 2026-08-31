@@ -841,8 +841,10 @@ export default function MarketingPage() {
             </div>
 
             <h1 className="mkt-h2 mkt-hero-h1" style={{ ...DISP, fontSize:'clamp(38px,9.5vw,72px)', fontWeight:800, lineHeight:1.08, letterSpacing:'-.05em', marginBottom:32, color:PD }}>
-              Your brand deserves{' '}<br className="mkt-h1-break" />
-              more than{' '}<em className="mkt-gradient-text" style={{ fontStyle:'italic' }}>300 views.</em>
+              Your brand{' '}<br className="mkt-br-m" />
+              deserves{' '}<br className="mkt-br-d" />
+              more{' '}<br className="mkt-br-m" />
+              than{' '}<em className="mkt-gradient-text" style={{ fontStyle:'italic' }}>300 views.</em>
             </h1>
 
             <p className="mkt-h3" style={{ fontSize:17, color:MU, maxWidth:780, lineHeight:1.9, marginBottom:28, fontWeight:400 }}>
