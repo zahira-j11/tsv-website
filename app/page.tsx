@@ -288,7 +288,7 @@ const FAQS = [
   { q:"What's included in the monthly retainer?",         a:"Strategy, creator matching, briefing, production management, revisions, and performance reporting. All included. You're not paying for add-ons." },
   { q:'How does the creator network work?',               a:"We manage a diverse network of vetted UK creators across a wide range of niches, styles, and platforms, all briefed to your brand guidelines. You don't manage them. We do." },
   { q:'We already have an in-house team. Will this clash?', a:"Not at all. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
-  { q:"What's the minimum commitment?",                   a:"Retainers start at £2,500 per month (ex. VAT) on a 3-month initial basis." },
+  { q:"What's the minimum commitment?",                   a:"Retainers start at £2,000 per month (ex. VAT) on a 3-month initial basis." },
 ];
 
 // ─── Backend reel type ─────────────────────────────────────
@@ -1196,7 +1196,7 @@ export default function MarketingPage() {
             ))}
           </div>
           <div style={{ textAlign:'center', marginTop:32 }}>
-            <p style={{ fontSize:14, color:MU }}>Retainers start at £2,500/mo (ex. VAT). Every retainer is tailored to your brand.</p>
+            <p style={{ fontSize:14, color:MU }}>Retainers start at £2,000 per month (ex. VAT). Every retainer is tailored to your brand.</p>
           </div>
         </div>
       </section>

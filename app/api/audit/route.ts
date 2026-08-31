@@ -32,7 +32,7 @@ export type AuditApplication = z.infer<typeof Application>;
  * QUALIFYING RULE — edit this to change who gets offered a slot.
  *
  * Monthly social budget is the only gate: anything under £1,000/month is
- * declined, since retainers start at £2,500 + VAT and an audit would not lead
+ * declined, since retainers start at £2,000 + VAT and an audit would not lead
  * anywhere useful for either side. Team size is captured for context but does
  * not affect the decision.
  */
