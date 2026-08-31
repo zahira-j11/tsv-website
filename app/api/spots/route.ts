@@ -19,8 +19,21 @@ export const dynamic = 'force-dynamic';
 const CACHE_MS = 5 * 60 * 1000;
 let cache: { at: number; data: SpotsInfo } | null = null;
 
-/** Audit meetings are matched on title, so discovery calls aren't counted. */
-const TITLE_MATCH = process.env.AUDIT_MEETING_TITLE_MATCH ?? 'audit';
+/**
+ * Both booking links live in the same HubSpot portal and land on the same
+ * calendar, so the audit has to be identified positively and the discovery
+ * call excluded explicitly:
+ *
+ *   /social-media-audit-      → "Social Media Audit"          (1 hour)
+ *   /social-discovery-call-   → "Social Growth Discovery Call" (30 mins)
+ *
+ * "audit" appears in the first and in neither discovery-call variant, and the
+ * exclusion also guards the manually-created "Social Media Discovery Call"
+ * already sitting in the calendar, which a looser "social media" match on the
+ * title would wrongly count.
+ */
+const TITLE_MATCH  = process.env.AUDIT_MEETING_TITLE_MATCH ?? 'audit';
+const TITLE_EXCLUDE = process.env.AUDIT_MEETING_TITLE_EXCLUDE ?? 'discovery';
 
 async function countBookedAudits(): Promise<number | null> {
   const token = process.env.HUBSPOT_TOKEN;
@@ -35,6 +48,7 @@ async function countBookedAudits(): Promise<number | null> {
         filters: [
           { propertyName: 'hs_meeting_start_time', operator: 'BETWEEN', value: String(start), highValue: String(end) },
           { propertyName: 'hs_meeting_title', operator: 'CONTAINS_TOKEN', value: TITLE_MATCH },
+          { propertyName: 'hs_meeting_title', operator: 'NOT_CONTAINS_TOKEN', value: TITLE_EXCLUDE },
         ],
       }],
       properties: ['hs_meeting_title', 'hs_meeting_start_time'],
