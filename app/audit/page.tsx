@@ -24,12 +24,13 @@ const INCLUDED = [
 
 const PLATFORMS = ['TikTok', 'Instagram', 'YouTube', 'LinkedIn', 'Meta Ads', 'Not posting yet'];
 
-const SPEND = [
-  { v:'none',      l:'Not running paid social' },
+const BUDGET = [
+  { v:'none',      l:'No budget set yet' },
   { v:'under-1k',  l:'Under £1,000 / month' },
-  { v:'1k-5k',     l:'£1,000 – £5,000 / month' },
-  { v:'5k-20k',    l:'£5,000 – £20,000 / month' },
-  { v:'20k-plus',  l:'£20,000+ / month' },
+  { v:'1k-2.5k',   l:'£1,000 – £2,500 / month' },
+  { v:'2.5k-5k',   l:'£2,500 – £5,000 / month' },
+  { v:'5k-10k',    l:'£5,000 – £10,000 / month' },
+  { v:'10k-plus',  l:'£10,000+ / month' },
 ];
 
 const TEAM = [
@@ -63,7 +64,7 @@ export default function AuditPage() {
         body: JSON.stringify({
           name: f.get('name'), email: f.get('email'), company: f.get('company'),
           website: f.get('website'), platforms,
-          adSpend: f.get('adSpend'), teamSize: f.get('teamSize'),
+          budget: f.get('budget'), teamSize: f.get('teamSize'),
           challenge: f.get('challenge'),
         }),
       });
@@ -172,10 +173,10 @@ export default function AuditPage() {
 
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px,1fr))', gap:18 }}>
                   <div>
-                    <label style={label} htmlFor="adSpend">Monthly paid social spend</label>
-                    <select style={field} id="adSpend" name="adSpend" required defaultValue="">
+                    <label style={label} htmlFor="budget">Monthly social budget</label>
+                    <select style={field} id="budget" name="budget" required defaultValue="">
                       <option value="" disabled>Select…</option>
-                      {SPEND.map(o=><option key={o.v} value={o.v}>{o.l}</option>)}
+                      {BUDGET.map(o=><option key={o.v} value={o.v}>{o.l}</option>)}
                     </select>
                   </div>
                   <div>

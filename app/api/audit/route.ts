@@ -16,7 +16,7 @@ const Application = z.object({
   company: z.string().trim().min(1).max(120),
   website: z.string().trim().min(3).max(200),
   platforms: z.array(z.string()).min(1),
-  adSpend: z.enum(['none', 'under-1k', '1k-5k', '5k-20k', '20k-plus']),
+  budget: z.enum(['none', 'under-1k', '1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus']),
   teamSize: z.enum(['solo', '2-10', '11-50', '50-plus']),
   challenge: z.string().trim().min(10).max(1200),
 });
@@ -24,18 +24,17 @@ const Application = z.object({
 export type AuditApplication = z.infer<typeof Application>;
 
 /**
- * QUALIFYING RULES — edit these to change who gets offered a slot.
+ * QUALIFYING RULE — edit this to change who gets offered a slot.
  *
- * The audit leads to retainers from £2,500/mo, so the gate is really "could
- * this business plausibly buy that". An applicant qualifies if EITHER they
- * already spend meaningfully on paid social, OR they have a team big enough to
- * carry that budget. Solo operators spending nothing are declined.
+ * Monthly social budget is the only gate: anything under £1,000/month is
+ * declined, since retainers start at £2,500 + VAT and an audit would not lead
+ * anywhere useful for either side. Team size is captured for context but does
+ * not affect the decision.
  */
-const SPEND_QUALIFIES: AuditApplication['adSpend'][] = ['1k-5k', '5k-20k', '20k-plus'];
-const TEAM_QUALIFIES: AuditApplication['teamSize'][] = ['11-50', '50-plus'];
+const BUDGET_QUALIFIES: AuditApplication['budget'][] = ['1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus'];
 
 function qualify(a: AuditApplication): boolean {
-  return SPEND_QUALIFIES.includes(a.adSpend) || TEAM_QUALIFIES.includes(a.teamSize);
+  return BUDGET_QUALIFIES.includes(a.budget);
 }
 
 async function notifyTeam(a: AuditApplication, qualified: boolean) {
@@ -59,7 +58,7 @@ async function notifyTeam(a: AuditApplication, qualified: boolean) {
       `Company: ${a.company}`,
       `Website: ${a.website}`,
       `Platforms: ${a.platforms.join(', ')}`,
-      `Monthly ad spend: ${a.adSpend}`,
+      `Monthly social budget: ${a.budget}`,
       `Team size: ${a.teamSize}`,
       '',
       'Biggest challenge:',
