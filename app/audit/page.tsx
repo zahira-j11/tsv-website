@@ -25,7 +25,7 @@ const INCLUDED = [
 // Audit booking calendar — a SEPARATE HubSpot meeting type from the discovery
 // call, so audit bookings stay out of the sales-call pipeline.
 // Override per environment with NEXT_PUBLIC_AUDIT_CALENDAR_URL.
-const AUDIT_CALENDAR_URL = 'https://meetings-eu1.hubspot.com/thesocialvision/social-media-audit';
+const AUDIT_CALENDAR_URL = 'https://meetings-eu1.hubspot.com/thesocialvision/social-media-audit-';
 
 const PLATFORMS = ['TikTok', 'Instagram', 'YouTube', 'LinkedIn', 'Meta Ads', 'Not posting yet'];
 
