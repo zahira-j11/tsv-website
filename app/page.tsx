@@ -911,10 +911,10 @@ export default function MarketingPage() {
               { n:3000, suffix:'+',  label:'Content pieces', c:WH },
             ] as {n:number;suffix:string;label:string;c:string;fmt?:(v:number)=>string}[]).map((s,i)=>(
               <div key={i} style={{ textAlign:'center' }}>
-                <div style={{ ...DISP, fontSize:'clamp(30px,3.4vw,48px)', fontWeight:800, color:s.c, letterSpacing:'-.05em', lineHeight:1 }}>
+                <div className="mkt-stat-num" style={{ ...DISP, fontSize:'clamp(30px,3.4vw,48px)', fontWeight:800, color:s.c, letterSpacing:'-.05em', lineHeight:1 }}>
                   <StatCounter target={s.n} suffix={s.suffix} active={statsActive} fmt={s.fmt} />
                 </div>
-                <div style={{ fontSize:10, color:'rgba(255,253,237,0.45)', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', marginTop:4 }}>{s.label}</div>
+                <div className="mkt-stat-label" style={{ fontSize:10, color:'rgba(255,253,237,0.45)', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', marginTop:4 }}>{s.label}</div>
               </div>
             ))}
           </div>
