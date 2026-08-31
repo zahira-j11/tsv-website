@@ -1276,8 +1276,8 @@ export default function MarketingPage() {
           <div style={{ textAlign:'center', marginBottom:52 }}>
             <span style={{ display:'inline-block', background:YEL, color:PD, ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:24 }}>Ready to grow?</span>
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:'#fff', marginBottom:18, lineHeight:1.05 }}>
-              What can we{' '}
-              <em style={{ fontStyle:'italic', paddingRight:4 }} className="mkt-gradient-text">help you with?</em>
+              Know you need help with social?{' '}
+              <em style={{ fontStyle:'italic', paddingRight:4 }} className="mkt-gradient-text">You’ve got two ways to start.</em>
             </h2>
             <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, maxWidth:760, margin:'0 auto' }}>Whether you&rsquo;re ready to work together or want to understand where your biggest social opportunities are, choose the option that best fits where you&rsquo;re at.</p>
           </div>
