@@ -333,12 +333,10 @@ body::before {
 
 /* Spots sticker only where the nav leaves gutter space; the inline
    tag covers narrower screens so scarcity always shows exactly once. */
-.mkt-spots-sticker { display: none; }
-/* Narrow the nav on wide screens so the marker has a real gutter to sit in
-   instead of clipping the "Book a call" button. */
+/* Slightly inset nav on wide screens, so the full-bleed offer bar above it
+   reads as a separate layer rather than one continuous block. */
 @media (min-width: 1240px) {
-  .mkt-nav           { width: min(1120px, calc(100% - 250px)) !important; }
-  .mkt-spots-sticker { display: flex !important; }
+  .mkt-nav { width: min(1120px, calc(100% - 250px)) !important; }
 }
 
 /* Offer banner: slow light sweep across the gradient */

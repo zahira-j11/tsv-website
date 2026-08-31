@@ -744,7 +744,6 @@ export default function MarketingPage() {
   const [sent,setSent]         = useState(false);
   const [reels,setReels]       = useState<ReelData[]>([]);
   const [bannerH,setBannerH]   = useState(0);
-  const [spotsVariant,setSpotsVariant] = useState(1);
   const bannerRef              = useRef<HTMLDivElement>(null);
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
@@ -753,10 +752,6 @@ export default function MarketingPage() {
 
   // Promo banner: remember dismissal, and measure its height so the nav
   // and hero can sit below it at whatever size it renders.
-  useEffect(() => {
-    const v = new URLSearchParams(window.location.search).get('spots');
-    if (v) setSpotsVariant(Number(v));
-  }, []);
   useLayoutEffect(() => {
     const el = bannerRef.current;
     if (!el) return;
@@ -819,77 +814,13 @@ export default function MarketingPage() {
             <span className="mkt-banner-detail" style={{ fontSize:11.5, fontWeight:500, color:'rgba(255,255,255,0.72)', whiteSpace:'nowrap' }}>
               • We&rsquo;ll analyse your content, competitors &amp; paid ads, then give you a 90-day roadmap to implement •
             </span>
-            {spotsVariant === 4 && (
-              <span style={{ fontSize:12, fontWeight:700, whiteSpace:'nowrap', letterSpacing:'.01em' }}>
-                Only <span style={{ ...DISP, fontSize:15, fontWeight:800, color:YEL }}>7 spots</span> left for September •
-              </span>
-            )}
+            <span style={{ fontSize:12, fontWeight:700, whiteSpace:'nowrap', letterSpacing:'.01em' }}>
+              Only <span style={{ ...DISP, fontSize:15, fontWeight:800, color:YEL }}>7 spots</span> left for September
+            </span>
             <a href="#contact" style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
               onMouseEnter={e=>(e.currentTarget.style.opacity='0.85')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>
               Secure Your Spot NOW →
             </a>
-          </div>
-        </div>
-      )}
-
-      {/* Spots marker — straddles the banner edge. ?spots=1|2|3 to compare. */}
-      {spotsVariant === 1 && (
-        <div className="mkt-spots-sticker" aria-hidden="true" style={{
-          position:'fixed', top: bannerH - 42, left: 34, zIndex: 201,
-          width: 84, height: 84, borderRadius: '50%',
-          background: '#fff', display:'flex', flexDirection:'column',
-          alignItems:'center', justifyContent:'center',
-          boxShadow: '0 12px 34px rgba(33,0,93,0.22), 0 0 0 1px rgba(33,0,93,0.06)',
-        }}>
-          <span style={{ ...DISP, fontSize: 30, fontWeight: 800, lineHeight: 1, letterSpacing:'-.04em',
-            background: `linear-gradient(135deg, ${P}, ${MAG})`, WebkitBackgroundClip:'text',
-            WebkitTextFillColor:'transparent', backgroundClip:'text' }}>7</span>
-          <span style={{ ...DISP, fontSize: 8, fontWeight: 800, letterSpacing: '.14em', color: PD, marginTop: 4 }}>SPOTS LEFT</span>
-          <span style={{ fontSize: 7, fontWeight: 700, letterSpacing: '.14em', color: 'rgba(33,0,93,0.4)', marginTop: 2 }}>SEPTEMBER</span>
-        </div>
-      )}
-
-      {spotsVariant === 2 && (
-        <div className="mkt-spots-sticker" aria-hidden="true" style={{
-          position:'fixed', top: 0, left: 44, zIndex: 201,
-          background: YEL, color: PD, padding: '10px 14px 16px',
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%)',
-          boxShadow: '0 10px 26px rgba(33,0,93,0.24)', textAlign:'center', minWidth: 76,
-          paddingTop: bannerH - 26,
-        }}>
-          <span style={{ ...DISP, display:'block', fontSize: 26, fontWeight: 800, lineHeight: 1, letterSpacing:'-.04em' }}>7</span>
-          <span style={{ ...DISP, display:'block', fontSize: 7.5, fontWeight: 800, letterSpacing: '.12em', marginTop: 3 }}>SPOTS LEFT</span>
-        </div>
-      )}
-
-      {spotsVariant === 3 && (
-        <div className="mkt-spots-sticker" aria-hidden="true" style={{
-          position:'fixed', top: bannerH - 24, left: 30, zIndex: 201,
-          display:'flex', alignItems:'center', gap: 11,
-          background: '#fff', borderRadius: 100, padding: '8px 18px 8px 14px',
-          boxShadow: '0 12px 30px rgba(33,0,93,0.2), 0 0 0 1px rgba(33,0,93,0.06)',
-        }}>
-          <span style={{ ...DISP, fontSize: 26, fontWeight: 800, lineHeight: 1, letterSpacing:'-.05em',
-            background: `linear-gradient(135deg, ${P}, ${MAG})`, WebkitBackgroundClip:'text',
-            WebkitTextFillColor:'transparent', backgroundClip:'text' }}>7</span>
-          <span style={{ width:1, height:26, background:'rgba(33,0,93,0.12)' }} />
-          <span style={{ display:'flex', flexDirection:'column', lineHeight:1.25 }}>
-            <span style={{ ...DISP, fontSize: 9.5, fontWeight: 800, letterSpacing: '.1em', color: PD }}>SPOTS LEFT</span>
-            <span style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: '.1em', color: 'rgba(33,0,93,0.45)' }}>SEPTEMBER</span>
-          </span>
-        </div>
-      )}
-
-      {spotsVariant === 5 && (
-        <div className="mkt-spots-sticker" aria-hidden="true" style={{
-          position:'fixed', top:0, left:0, width:170, height:170, zIndex:201, overflow:'hidden', pointerEvents:'none',
-        }}>
-          <div style={{
-            position:'absolute', top:34, left:-46, width:220, transform:'rotate(-45deg)',
-            background:YEL, color:PD, textAlign:'center', padding:'7px 0',
-            boxShadow:'0 6px 18px rgba(33,0,93,0.28)',
-          }}>
-            <span style={{ ...DISP, fontSize:11, fontWeight:800, letterSpacing:'.1em' }}>7 SPOTS LEFT</span>
           </div>
         </div>
       )}
@@ -964,14 +895,6 @@ export default function MarketingPage() {
                 See our work ↓
               </button>
             </div>
-            {spotsVariant === 6 && (
-              <div style={{ display:'flex', alignItems:'center', gap:9, marginTop:22 }}>
-                <span className="mkt-pulsedot" style={{ width:7, height:7, borderRadius:'50%', background:MAG, flexShrink:0 }} />
-                <span style={{ fontSize:13, fontWeight:600, color:MU }}>
-                  <span style={{ ...DISP, fontWeight:800, color:PD }}>7 audit spots</span> left for September
-                </span>
-              </div>
-            )}
           </div>
 
           {/* Right: phone stack — bigger */}
