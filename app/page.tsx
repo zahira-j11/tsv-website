@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -828,9 +828,7 @@ export default function MarketingPage() {
   const [company,setCompany]   = useState('');
   const [sent,setSent]         = useState(false);
   const [reels,setReels]       = useState<ReelData[]>([]);
-  const [bannerH,setBannerH]   = useState(0);
   const [showCalendar,setShowCalendar] = useState(false);
-  const bannerRef              = useRef<HTMLDivElement>(null);
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
 
@@ -838,16 +836,6 @@ export default function MarketingPage() {
 
   // Promo banner: remember dismissal, and measure its height so the nav
   // and hero can sit below it at whatever size it renders.
-  useLayoutEffect(() => {
-    const el = bannerRef.current;
-    if (!el) return;
-    const measure = () => setBannerH(el.offsetHeight);
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    window.addEventListener('resize', measure);
-    return () => { ro.disconnect(); window.removeEventListener('resize', measure); };
-  }, []);
 
   // Fetch backend videos
   useEffect(() => {
@@ -894,11 +882,14 @@ export default function MarketingPage() {
   const btnP: React.CSSProperties = { display:'inline-block', background:`linear-gradient(135deg,${P},${PB})`, color:'#fff', fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:9, textDecoration:'none', cursor:'pointer', border:'none', fontFamily:'inherit' };
 
   return (
-    <div style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden' }}>
-
+    <>
+    {/* Header stack: banner + nav in normal flow inside one sticky wrapper, so
+        the nav always sits under the banner at whatever height it renders —
+        correct on first paint, with no dependency on hydration. */}
+    <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:BG }}>
       {/* ══ AUDIT OFFER BANNER ═══════════════════════════════ */}
       {(
-        <div ref={bannerRef} className="mkt-banner-shimmer" style={{ position:'fixed', top:0, left:0, right:0, zIndex:200, background:`linear-gradient(90deg, #5B01FF 0%, ${P} 40%, ${MAG} 100%)`, color:'#fff', overflow:'hidden' }}>
+        <div className="mkt-banner-shimmer" style={{ position:'relative', background:`linear-gradient(90deg, #5B01FF 0%, ${P} 40%, ${MAG} 100%)`, color:'#fff', overflow:'hidden' }}>
           <div className="mkt-banner" style={{ maxWidth:1320, margin:'0 auto', padding:'8px 20px', display:'flex', alignItems:'center', justifyContent:'center', gap:8, flexWrap:'wrap' }}>
             <span style={{ ...DISP, fontSize:12.5, fontWeight:800, letterSpacing:'-.01em', whiteSpace:'nowrap' }}>
               Get a FREE Social Media Audit <span style={{ whiteSpace:'nowrap' }}>(Worth £750)</span>
@@ -918,7 +909,7 @@ export default function MarketingPage() {
       )}
 
       {/* ══ NAV ══════════════════════════════════════════════ */}
-      <nav className="mkt-nav" style={{ position:'fixed', top:bannerH + 14, left:'50%', transform:'translateX(-50%)', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
+      <nav className="mkt-nav" style={{ position:'relative', margin:'14px auto 0', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
         <div style={{ height:'100%', padding:'0 10px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>
           {/* Logo icon */}
           <a href="#" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
@@ -936,7 +927,7 @@ export default function MarketingPage() {
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
             <a href="#contact" className="mkt-hidden-mobile" style={{ display:'inline-block', background:'transparent', color:PD, fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:100, textDecoration:'none', border:`1.5px solid ${BR}`, transition:'all 160ms' }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor=PD;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=BR;}}>Want to Hire Us</a>
+              onMouseEnter={e=>{e.currentTarget.style.borderColor=PD;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=BR;}}>Want to hire us?</a>
             <button onClick={()=>setMenu(!menu)} className="mkt-show-mobile" style={{ background:'none', border:'none', color:PD, fontSize:20, cursor:'pointer', padding:4 }}>{menu?'✕':'☰'}</button>
           </div>
         </div>
@@ -946,13 +937,16 @@ export default function MarketingPage() {
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
             <a href="/blog" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>Blog</a>
-            <a href="#contact" onClick={()=>setMenu(false)} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>Want to Hire Us</a>
+            <a href="#contact" onClick={()=>setMenu(false)} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>Want to hire us?</a>
           </div>
         )}
       </nav>
+    </div>
+
+    <div style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden' }}>
 
       {/* ══ HERO ═════════════════════════════════════════════ */}
-      <section className="mkt-hero" style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', paddingTop:64 + bannerH, background:BG, ['--banner-h' as any]: `${bannerH}px` }}>
+      <section className="mkt-hero" style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', background:BG }}>
         <Orbs orbs={[
           { size:500, color:YEL,  opacity:0.45, cls:'mkt-orb-c', top:'8%',    left:'-4%'  },
           { size:420, color:P,    opacity:0.18, cls:'mkt-orb-a', top:'-8%',   right:'-6%' },
@@ -979,7 +973,7 @@ export default function MarketingPage() {
               <a href="#contact" className="mkt-glow-cta" style={btnP}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
-                Want to Hire Us →
+                Want to hire us? →
               </a>
               <button onClick={()=>go('hall-of-fame')} style={{ background:WH, color:PD, fontSize:13, fontWeight:700, padding:'10px 16px', borderRadius:9, cursor:'pointer', border:`2px solid ${BR}`, transition:'all 160ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLButtonElement).style.borderColor=P; (e.currentTarget as HTMLButtonElement).style.color=P; }}
@@ -1454,5 +1448,6 @@ export default function MarketingPage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

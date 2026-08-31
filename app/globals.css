@@ -374,7 +374,7 @@ body::before {
 
   /* Hero: the desktop layout reserves room for the phone stack and the
      industry chips, both hidden here — reclaim that space. */
-  .mkt-hero        { min-height: auto !important; padding-top: calc(88px + var(--banner-h, 0px)) !important; }
+  .mkt-hero        { min-height: auto !important; padding-top: 0 !important; }
   .mkt-hero-inner  { padding: 12px 18px 116px !important; gap: 0 !important; }
   /* Keep the headline to two lines at phone width */
   /* Headline breaks: 3 fixed lines on phones */
