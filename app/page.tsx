@@ -258,6 +258,29 @@ const PLANS = [
     features:['Everything in Organic','Everything in Paid','Unified content strategy','Priority production slots'], cta:'Get started' },
 ];
 
+const ROUTES = [
+  {
+    key:'hire', featured:false, badge:null as string|null,
+    eyebrow:'Ready to work together?',
+    title:'I want to work with The Social Vision',
+    body:'Already looking for a social content partner? Let\u2019s talk through what you\u2019re looking to achieve and see what working together could look like.',
+    meta:'30\u201345 minute discovery call',
+    bullets:['Your goals and current social setup','The content and service we\u2019d recommend','Relevant examples and results','Scope, pricing and timelines'],
+    footnote:'Monthly partnerships from \u00a32,500 + VAT',
+    cta:'Book a Discovery Call', href:'#discovery-call',
+  },
+  {
+    key:'audit', featured:true, badge:'Worth \u00a3750' as string|null,
+    eyebrow:'Want to improve your social?',
+    title:'Get a FREE Social Media Audit',
+    body:'We\u2019ll analyse your content, competitors and paid ads before we meet, then show you exactly what we\u2019d change.',
+    meta:'60-minute personalised audit',
+    bullets:['Organic social review','Competitor and category analysis','Paid creative review','Personalised 90-day roadmap'],
+    footnote:'Only 7 spots available for September',
+    cta:'Secure Your Free Audit', href:'/audit',
+  },
+];
+
 const FAQS = [
   { q:'How quickly can we get started?',                   a:"First content goes live within 14–21 days of signing. Week 1 is strategy and creator matching. Week 2 is production. Week 3 is your first batch live." },
   { q:"What's included in the monthly retainer?",         a:"Strategy, creator matching, briefing, production management, revisions, and performance reporting. All included. You're not paying for add-ons." },
@@ -817,7 +840,7 @@ export default function MarketingPage() {
             <span style={{ fontSize:12, fontWeight:700, whiteSpace:'nowrap', letterSpacing:'.01em' }}>
               Only <span style={{ ...DISP, fontSize:15, fontWeight:800, color:YEL }}>7 spots</span> left for September
             </span>
-            <a href="#contact" style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
+            <a href="/audit" style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
               onMouseEnter={e=>(e.currentTarget.style.opacity='0.85')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>
               Secure Your Spot NOW →
             </a>
@@ -843,8 +866,8 @@ export default function MarketingPage() {
           </div>
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
-            <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" className="mkt-hidden-mobile" style={{ display:'inline-block', background:'transparent', color:PD, fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:100, textDecoration:'none', border:`1.5px solid ${BR}`, transition:'all 160ms' }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor=PD;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=BR;}}>Book a call</a>
+            <a href="#contact" className="mkt-hidden-mobile" style={{ display:'inline-block', background:'transparent', color:PD, fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:100, textDecoration:'none', border:`1.5px solid ${BR}`, transition:'all 160ms' }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor=PD;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=BR;}}>Want to Hire Us</a>
             <button onClick={()=>setMenu(!menu)} className="mkt-show-mobile" style={{ background:'none', border:'none', color:PD, fontSize:20, cursor:'pointer', padding:4 }}>{menu?'✕':'☰'}</button>
           </div>
         </div>
@@ -854,7 +877,7 @@ export default function MarketingPage() {
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
             <a href="/blog" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>Blog</a>
-            <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" onClick={()=>setMenu(false)} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>Book a call</a>
+            <a href="#contact" onClick={()=>setMenu(false)} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>Want to Hire Us</a>
           </div>
         )}
       </nav>
@@ -884,10 +907,10 @@ export default function MarketingPage() {
             </p>
 
             <div className="mkt-h4" style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
-              <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" className="mkt-glow-cta" style={btnP}
+              <a href="#contact" className="mkt-glow-cta" style={btnP}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
-                Book a strategy call →
+                Want to Hire Us →
               </a>
               <button onClick={()=>go('hall-of-fame')} style={{ background:WH, color:PD, fontSize:13, fontWeight:700, padding:'10px 16px', borderRadius:9, cursor:'pointer', border:`2px solid ${BR}`, transition:'all 160ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLButtonElement).style.borderColor=P; (e.currentTarget as HTMLButtonElement).style.color=P; }}
@@ -1246,16 +1269,72 @@ export default function MarketingPage() {
           { size:340, color:MAG,  opacity:0.18, cls:'mkt-orb-b', bottom:'-16%',left:'6%'     },
           { size:220, color:YEL,  opacity:0.24, cls:'mkt-orb-d', top:'30%',    right:'16%'   },
         ]} />
-        <div data-reveal style={{ maxWidth:820, margin:'0 auto', position:'relative', zIndex:1 }}>
+        <div data-reveal style={{ maxWidth:1060, margin:'0 auto', position:'relative', zIndex:1 }}>
           <div style={{ textAlign:'center', marginBottom:52 }}>
             <span style={{ display:'inline-block', background:YEL, color:PD, ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:24 }}>Ready to grow?</span>
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:'#fff', marginBottom:18, lineHeight:1.05 }}>
-              Want to see what this could{' '}
-              <em style={{ fontStyle:'italic', paddingRight:4 }} className="mkt-gradient-text">look like for your brand?</em>
+              What can we{' '}
+              <em style={{ fontStyle:'italic', paddingRight:4 }} className="mkt-gradient-text">help you with?</em>
             </h2>
-            <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400 }}>Book a free strategy call with our team and find out what this could look like for you.</p>
+            <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, maxWidth:760, margin:'0 auto' }}>Whether you&rsquo;re ready to work together or want to understand where your biggest social opportunities are, choose the option that best fits where you&rsquo;re at.</p>
           </div>
-          <div style={{ background:'#fff', borderRadius:20, overflow:'hidden', boxShadow:'0 32px 80px rgba(0,0,0,0.25)' }}>
+
+          {/* Two routes: hire us (scrolls to the existing calendar below) or the free audit */}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(340px,1fr))', gap:20, alignItems:'stretch', marginBottom:64 }}>
+            {ROUTES.map((r,i)=>(
+              <div key={r.key} data-reveal data-reveal-delay={String(i*0.1)} style={{
+                display:'flex', flexDirection:'column',
+                padding:'38px 34px 34px', borderRadius:26, background:WH,
+                border:`2px solid ${r.featured ? P : BR}`,
+                boxShadow: r.featured ? `0 24px 64px rgba(124,1,255,0.28)` : '0 12px 40px rgba(0,0,0,0.14)',
+                position:'relative', transition:'transform 220ms ease',
+              }}
+                onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-5px)'; }}
+                onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
+
+                {r.badge && (
+                  <span style={{ position:'absolute', top:-13, right:28, background:YEL, color:PD, ...DISP, fontSize:11, fontWeight:800, letterSpacing:'.04em', padding:'5px 16px', borderRadius:20 }}>{r.badge}</span>
+                )}
+
+                <div style={{ ...DISP, fontSize:10, fontWeight:800, color:r.featured?P:SU, letterSpacing:'.12em', textTransform:'uppercase', marginBottom:14 }}>{r.eyebrow}</div>
+                <h3 style={{ ...DISP, fontSize:23, fontWeight:800, letterSpacing:'-.04em', color:PD, lineHeight:1.22, marginBottom:12 }}>{r.title}</h3>
+                <p style={{ fontSize:15, color:MU, lineHeight:1.8, marginBottom:16 }}>{r.body}</p>
+
+                <div style={{ display:'inline-flex', alignItems:'center', gap:7, fontSize:12.5, fontWeight:700, color:r.featured?P:MU, marginBottom:24 }}>
+                  <span style={{ width:6, height:6, borderRadius:'50%', background:r.featured?P:SU, flexShrink:0 }} />
+                  {r.meta}
+                </div>
+
+                <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:24, display:'flex', flexDirection:'column', gap:11 }}>
+                  {r.bullets.map(b=>(
+                    <div key={b} style={{ display:'flex', alignItems:'flex-start', gap:10, fontSize:14, color:MU, lineHeight:1.6 }}>
+                      <span style={{ color:r.featured?P:GRN, flexShrink:0, fontWeight:800, fontSize:12, marginTop:2 }}>✓</span>{b}
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ marginTop:'auto' }}>
+                  <p style={{ fontSize:12.5, fontWeight:700, color:r.featured?MAG:SU, marginBottom:16 }}>{r.footnote}</p>
+                  {r.href.startsWith('#') ? (
+                    <a href={r.href} style={{ display:'block', textAlign:'center', padding:'16px', borderRadius:14, textDecoration:'none', background:r.featured?P:'transparent', color:r.featured?'#fff':PD, border:r.featured?'none':`2px solid ${BR}`, ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
+                      onMouseEnter={e=>{ const t=e.currentTarget as HTMLElement; if(r.featured){t.style.opacity='.88';} else {t.style.borderColor=PD;} }}
+                      onMouseLeave={e=>{ const t=e.currentTarget as HTMLElement; t.style.opacity='1'; if(!r.featured) t.style.borderColor=BR; }}>
+                      {r.cta}
+                    </a>
+                  ) : (
+                    <a href={r.href} style={{ display:'block', textAlign:'center', padding:'16px', borderRadius:14, textDecoration:'none', background:r.featured?P:'transparent', color:r.featured?'#fff':PD, border:r.featured?'none':`2px solid ${BR}`, ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
+                      onMouseEnter={e=>{ const t=e.currentTarget as HTMLElement; if(r.featured){t.style.opacity='.88';} else {t.style.borderColor=PD;} }}
+                      onMouseLeave={e=>{ const t=e.currentTarget as HTMLElement; t.style.opacity='1'; if(!r.featured) t.style.borderColor=BR; }}>
+                      {r.cta}
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Existing discovery-call calendar — unchanged, Card 1 scrolls here */}
+          <div id="discovery-call" style={{ background:'#fff', borderRadius:20, overflow:'hidden', boxShadow:'0 32px 80px rgba(0,0,0,0.25)', scrollMarginTop:120 }}>
             <iframe
               src="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-?embed=true"
               title="Book a discovery call"
