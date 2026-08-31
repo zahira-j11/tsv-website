@@ -291,73 +291,61 @@ const FAQS = [
   { q:"What's the minimum commitment?",                   a:"Retainers start at £2,500 per month (ex. VAT) on a 3-month initial basis." },
 ];
 
-// ─── Route card visuals — what each route actually gets you ───
+// ─── Route card visuals — real client frames, not mockups ─────
+const CLD = 'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/';
+const poster = (path: string) =>
+  (CLD + path).replace(/\.(mp4|mov|webm)$/, '.jpg').replace('f_auto,', '');
+
+// Work we've actually made, for the "hire us" route.
+const WORK = [
+  { src:'v1782048070/tsv-website/habito-street.mp4',    logo:'/logos/habito.png',      bg:'#ED7470' },
+  { src:'v1782048297/tsv-website/plum-scripted.mp4',    logo:'/logos/plum.png',        bg:WH },
+  { src:'v1782048505/tsv-website/unicompare-street.mp4',logo:'/logos/unicompare.png',  bg:WH },
+];
+
 function DiscoveryVisual() {
-  const days = ['M','T','W','T','F'];
-  const avail = [9, 11, 16];           // highlighted slots in the mini month
   return (
-    <div style={{ background:WH, border:`1px solid ${BR}`, borderRadius:14, padding:'14px 16px 16px' }}>
-      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:12 }}>
-        <span style={{ ...DISP, fontSize:12, fontWeight:800, color:PD }}>September</span>
-        <span style={{ fontSize:10, fontWeight:700, color:MU, background:'rgba(33,0,93,0.05)', padding:'3px 9px', borderRadius:100 }}>30–45 min</span>
-      </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:5, marginBottom:12 }}>
-        {days.map((d,i)=>(
-          <div key={i} style={{ ...DISP, fontSize:8.5, fontWeight:800, color:SU, textAlign:'center', letterSpacing:'.06em' }}>{d}</div>
-        ))}
-        {Array.from({length:15}).map((_,i)=>{
-          const on = avail.includes(i);
-          return (
-            <div key={i} style={{
-              aspectRatio:'1', borderRadius:7, display:'flex', alignItems:'center', justifyContent:'center',
-              fontSize:9.5, fontWeight:700,
-              background: on ? P : 'rgba(33,0,93,0.04)',
-              color: on ? '#fff' : 'rgba(33,0,93,0.3)',
-            }}>{i+1}</div>
-          );
-        })}
-      </div>
-      <div style={{ display:'flex', gap:6 }}>
-        {['10:30','14:00','16:30'].map((t,i)=>(
-          <div key={t} style={{
-            flex:1, textAlign:'center', fontSize:10, fontWeight:800, padding:'7px 0', borderRadius:8,
-            border:`1.5px solid ${i===1?P:BR}`, color:i===1?P:MU, background:i===1?'rgba(124,1,255,0.06)':'transparent',
-          }}>{t}</div>
-        ))}
-      </div>
+    <div style={{ display:'flex', gap:8 }}>
+      {WORK.map(w=>(
+        <div key={w.src} style={{ flex:1, aspectRatio:'9/16', borderRadius:11, overflow:'hidden', position:'relative', background:'rgba(33,0,93,0.06)' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={poster(w.src)} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+          <div style={{ position:'absolute', bottom:7, left:7, width:22, height:22, borderRadius:'50%', background:w.bg, border:'1.5px solid rgba(255,255,255,0.9)', overflow:'hidden' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={w.logo} alt="" style={{ width:'100%', height:'100%', objectFit:'contain' }} />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
 
+// The audit, shown as us marking up a real piece of content.
+const FINDINGS = [
+  { c:P,         label:'Hook',      note:'Buried at 0:04 — move it to frame one' },
+  { c:MAG,       label:'Retention', note:'62% drop before the payoff lands' },
+  { c:'#0CB876', label:'CTA',       note:'No next step in the caption or frame' },
+];
+
 function AuditVisual() {
-  const rows = [
-    { label:'Organic content',   pct:'72%', c:P },
-    { label:'Competitor gap',    pct:'45%', c:MAG },
-    { label:'Paid creative',     pct:'88%', c:'#0CB876' },
-  ];
   return (
-    <div style={{ background:WH, border:`1px solid ${BR}`, borderRadius:14, padding:'14px 16px 16px' }}>
-      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:14 }}>
-        <span style={{ ...DISP, fontSize:12, fontWeight:800, color:PD }}>Your Social Audit</span>
-        <span style={{ fontSize:9, fontWeight:800, color:MAG, background:'rgba(232,32,164,0.08)', padding:'3px 9px', borderRadius:100, letterSpacing:'.04em' }}>60 MIN</span>
+    <div style={{ display:'flex', gap:12, alignItems:'stretch' }}>
+      <div style={{ flex:'0 0 92px', aspectRatio:'9/16', borderRadius:11, overflow:'hidden', position:'relative', background:'rgba(33,0,93,0.06)' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={poster('v1782048333/tsv-website/prepkitchen-ugc.mp4')} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+        <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,0,30,0.72), transparent 55%)' }} />
+        <span style={{ position:'absolute', bottom:6, left:0, right:0, textAlign:'center', ...DISP, fontSize:7.5, fontWeight:800, letterSpacing:'.1em', color:'rgba(255,255,255,0.9)' }}>YOUR CONTENT</span>
       </div>
-      <div style={{ display:'flex', flexDirection:'column', gap:11, marginBottom:14 }}>
-        {rows.map(r=>(
-          <div key={r.label}>
-            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:5 }}>
-              <span style={{ fontSize:10.5, fontWeight:700, color:MU }}>{r.label}</span>
-              <span style={{ ...DISP, fontSize:10.5, fontWeight:800, color:r.c }}>{r.pct}</span>
+      <div style={{ flex:1, display:'flex', flexDirection:'column', justifyContent:'space-between', gap:8 }}>
+        {FINDINGS.map(f=>(
+          <div key={f.label} style={{ background:WH, border:`1px solid ${BR}`, borderRadius:10, padding:'9px 11px' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:3 }}>
+              <span style={{ width:6, height:6, borderRadius:'50%', background:f.c, flexShrink:0 }} />
+              <span style={{ ...DISP, fontSize:9.5, fontWeight:800, letterSpacing:'.08em', textTransform:'uppercase', color:f.c }}>{f.label}</span>
             </div>
-            <div style={{ height:6, borderRadius:99, background:'rgba(33,0,93,0.06)', overflow:'hidden' }}>
-              <div style={{ width:r.pct, height:'100%', borderRadius:99, background:r.c }} />
-            </div>
+            <p style={{ fontSize:11, color:MU, lineHeight:1.45, margin:0 }}>{f.note}</p>
           </div>
         ))}
-      </div>
-      <div style={{ display:'flex', alignItems:'center', gap:7, background:'rgba(124,1,255,0.06)', border:`1px solid ${BR}`, borderRadius:9, padding:'8px 11px' }}>
-        <span style={{ fontSize:12 }}>🗺️</span>
-        <span style={{ ...DISP, fontSize:10.5, fontWeight:800, color:PD }}>90-day roadmap</span>
-        <span style={{ marginLeft:'auto', fontSize:11, color:P }}>→</span>
       </div>
     </div>
   );
