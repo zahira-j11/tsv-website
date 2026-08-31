@@ -46,6 +46,7 @@ export default function AuditPage() {
   const [step, setStep]         = useState<Step>('form');
   const [sending, setSending]   = useState(false);
   const [error, setError]       = useState<string|null>(null);
+  const [issues, setIssues]     = useState<Record<string,string[]|undefined>>({});
   const [calendarUrl, setCalendarUrl] = useState<string|null>(null);
 
   const togglePlatform = (p: string) =>
@@ -54,6 +55,7 @@ export default function AuditPage() {
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    setIssues({});
     setSending(true);
     const f = new FormData(e.currentTarget);
     try {
@@ -68,7 +70,11 @@ export default function AuditPage() {
         }),
       });
       const data = await res.json();
-      if (!res.ok) { setError(data.error ?? 'Something went wrong. Please try again.'); return; }
+      if (!res.ok) {
+        setIssues(data.issues ?? {});
+        setError(data.error ?? 'Something went wrong. Please try again.');
+        return;
+      }
       setCalendarUrl(data.calendarUrl ?? null);
       setStep(data.qualified ? 'qualified' : 'declined');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -81,6 +87,14 @@ export default function AuditPage() {
 
   const label: React.CSSProperties = { ...DISP, display:'block', fontSize:11, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', color:PD, marginBottom:8 };
   const field: React.CSSProperties = { padding:'13px 16px', borderRadius:12, border:`1.5px solid ${BR}`, background:WH, color:PD, fontSize:14.5, outline:'none', width:'100%', boxSizing:'border-box', fontFamily:'inherit' };
+  const issueOf = (f: string) => issues[f]?.[0];
+  const fieldStyle = (f: string): React.CSSProperties =>
+    issueOf(f) ? { ...field, borderColor:'#C0392B', background:'#FDF6F5' } : field;
+  const FieldError = ({ f }: { f: string }) => {
+    const msg = issueOf(f);
+    if (!msg) return null;
+    return <p style={{ fontSize:12.5, fontWeight:600, color:'#8B1E1E', margin:'7px 0 0' }}>{msg}</p>;
+  };
 
   return (
     <div style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden', minHeight:'100vh' }}>
@@ -147,10 +161,10 @@ export default function AuditPage() {
 
               <form onSubmit={submit} style={{ background:WH, border:`1.5px solid ${BR}`, borderRadius:24, padding:'32px 30px', display:'flex', flexDirection:'column', gap:22 }}>
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px,1fr))', gap:18 }}>
-                  <div><label style={label} htmlFor="name">Your name</label><input style={field} id="name" name="name" required autoComplete="name" /></div>
-                  <div><label style={label} htmlFor="email">Work email</label><input style={field} id="email" name="email" type="email" required autoComplete="email" /></div>
-                  <div><label style={label} htmlFor="company">Company</label><input style={field} id="company" name="company" required autoComplete="organization" /></div>
-                  <div><label style={label} htmlFor="website">Website or social handle</label><input style={field} id="website" name="website" required placeholder="thesocialvision.co.uk" /></div>
+                  <div><label style={label} htmlFor="name">Your name</label><input style={fieldStyle('name')} id="name" name="name" required autoComplete="name" /><FieldError f="name" /></div>
+                  <div><label style={label} htmlFor="email">Work email</label><input style={fieldStyle('email')} id="email" name="email" type="email" required autoComplete="email" /><FieldError f="email" /></div>
+                  <div><label style={label} htmlFor="company">Company</label><input style={fieldStyle('company')} id="company" name="company" required autoComplete="organization" /><FieldError f="company" /></div>
+                  <div><label style={label} htmlFor="website">Website or social handle</label><input style={fieldStyle('website')} id="website" name="website" required placeholder="thesocialvision.co.uk" /><FieldError f="website" /></div>
                 </div>
 
                 <div>
@@ -168,28 +182,32 @@ export default function AuditPage() {
                       );
                     })}
                   </div>
+                  <FieldError f="platforms" />
                 </div>
 
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px,1fr))', gap:18 }}>
                   <div>
                     <label style={label} htmlFor="budget">Monthly social budget</label>
-                    <select style={field} id="budget" name="budget" required defaultValue="">
+                    <select style={fieldStyle('budget')} id="budget" name="budget" required defaultValue="">
                       <option value="" disabled>Select…</option>
                       {BUDGET.map(o=><option key={o.v} value={o.v}>{o.l}</option>)}
                     </select>
+                    <FieldError f="budget" />
                   </div>
                   <div>
                     <label style={label} htmlFor="teamSize">Team size</label>
-                    <select style={field} id="teamSize" name="teamSize" required defaultValue="">
+                    <select style={fieldStyle('teamSize')} id="teamSize" name="teamSize" required defaultValue="">
                       <option value="" disabled>Select…</option>
                       {TEAM.map(o=><option key={o.v} value={o.v}>{o.l}</option>)}
                     </select>
+                    <FieldError f="teamSize" />
                   </div>
                 </div>
 
                 <div>
                   <label style={label} htmlFor="challenge">What&rsquo;s your biggest social challenge right now?</label>
-                  <textarea style={{ ...field, minHeight:110, resize:'vertical', lineHeight:1.6 }} id="challenge" name="challenge" required />
+                  <textarea style={{ ...fieldStyle('challenge'), minHeight:110, resize:'vertical', lineHeight:1.6 }} id="challenge" name="challenge" required />
+                  <FieldError f="challenge" />
                 </div>
 
                 {error && (

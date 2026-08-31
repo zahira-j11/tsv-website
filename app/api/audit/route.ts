@@ -10,15 +10,20 @@ import { z } from 'zod';
  * rather than in the browser where they could be bypassed.
  */
 
+// Messages here are shown to the applicant, so keep them human.
 const Application = z.object({
-  name: z.string().trim().min(2).max(80),
-  email: z.string().trim().email().max(160),
-  company: z.string().trim().min(1).max(120),
-  website: z.string().trim().min(3).max(200),
-  platforms: z.array(z.string()).min(1),
-  budget: z.enum(['under-1k', '1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus']),
-  teamSize: z.enum(['solo', '2-10', '11-50', '50-plus']),
-  challenge: z.string().trim().min(10).max(1200),
+  name: z.string().trim().min(2, 'Please enter your name.').max(80),
+  email: z.string().trim().email('That does not look like a valid email.').max(160),
+  company: z.string().trim().min(1, 'Please enter your company name.').max(120),
+  website: z.string().trim().min(3, 'Please enter your website or social handle.').max(200),
+  platforms: z.array(z.string()).min(1, 'Pick at least one platform.'),
+  budget: z.enum(['under-1k', '1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus'], {
+    errorMap: () => ({ message: 'Please choose a monthly budget.' }),
+  }),
+  teamSize: z.enum(['solo', '2-10', '11-50', '50-plus'], {
+    errorMap: () => ({ message: 'Please choose a team size.' }),
+  }),
+  challenge: z.string().trim().min(10, 'A sentence or two is plenty — tell us a bit more.').max(1200),
 });
 
 export type AuditApplication = z.infer<typeof Application>;
@@ -76,7 +81,7 @@ export async function POST(req: NextRequest) {
   }
   if (!parsed.success) {
     return NextResponse.json(
-      { error: 'Please check the highlighted fields.', issues: parsed.error.flatten().fieldErrors },
+      { error: 'Please fix the fields marked below.', issues: parsed.error.flatten().fieldErrors },
       { status: 422 },
     );
   }
