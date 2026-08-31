@@ -331,6 +331,21 @@ body::before {
   }
 }
 
+/* Offer banner: slow light sweep across the gradient */
+.mkt-banner-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.18) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: mkt-banner-sweep 3.6s ease-in-out infinite;
+}
+@keyframes mkt-banner-sweep {
+  0%        { transform: translateX(-100%); }
+  55%, 100% { transform: translateX(100%); }
+}
+
 /* Promo banner: drop the middle clause when the row gets tight */
 @media (max-width: 1180px) {
   .mkt-banner-detail { display: none; }
@@ -365,7 +380,7 @@ body::before {
   /* Body copy sits smaller on phones */
   .mkt-h3          { font-size: 15px !important; }
   /* Promo banner: headline + spots + CTA only */
-  .mkt-banner        { padding: 8px 34px 8px 14px !important; gap: 7px !important; }
+  .mkt-banner        { padding: 8px 14px !important; gap: 7px !important; }
   .mkt-banner-detail { display: none; }
   /* Arrows crowd the cards at phone width — swipe instead. */
   .mkt-carousel-nav { display: none !important; }
