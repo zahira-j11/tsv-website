@@ -743,10 +743,33 @@ export default function MarketingPage() {
   const [company,setCompany]   = useState('');
   const [sent,setSent]         = useState(false);
   const [reels,setReels]       = useState<ReelData[]>([]);
+  const [bannerOpen,setBannerOpen] = useState(true);
+  const [bannerH,setBannerH]   = useState(0);
+  const bannerRef              = useRef<HTMLDivElement>(null);
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
 
   useReveal();
+
+  // Promo banner: remember dismissal, and measure its height so the nav
+  // and hero can sit below it at whatever size it renders.
+  useEffect(() => {
+    try { if (localStorage.getItem('tsv-audit-banner') === 'closed') setBannerOpen(false); } catch {}
+  }, []);
+  useEffect(() => {
+    if (!bannerOpen) { setBannerH(0); return; }
+    const el = bannerRef.current;
+    if (!el) return;
+    const measure = () => setBannerH(el.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [bannerOpen]);
+  const closeBanner = () => {
+    setBannerOpen(false);
+    try { localStorage.setItem('tsv-audit-banner', 'closed'); } catch {}
+  };
 
   // Fetch backend videos
   useEffect(() => {
@@ -789,8 +812,30 @@ export default function MarketingPage() {
   return (
     <div style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden' }}>
 
+      {/* ══ AUDIT OFFER BANNER ═══════════════════════════════ */}
+      {bannerOpen && (
+        <div ref={bannerRef} style={{ position:'fixed', top:0, left:0, right:0, zIndex:200, background:YEL, color:PD }}>
+          <div className="mkt-banner" style={{ maxWidth:1320, margin:'0 auto', padding:'8px 40px 8px 18px', display:'flex', alignItems:'center', justifyContent:'center', gap:8, flexWrap:'wrap' }}>
+            <span style={{ ...DISP, fontSize:12.5, fontWeight:800, letterSpacing:'-.01em', whiteSpace:'nowrap' }}>
+              Get a FREE Social Media Audit <span style={{ whiteSpace:'nowrap' }}>(Worth £750)</span>
+            </span>
+            <span className="mkt-banner-detail" style={{ fontSize:11.5, fontWeight:500, color:'rgba(33,0,93,0.72)', whiteSpace:'nowrap' }}>
+              • We&rsquo;ll analyse your content, competitors &amp; paid ads, then give you a 90-day roadmap to implement •
+            </span>
+            <span className="mkt-banner-spots" style={{ fontSize:11.5, fontWeight:700, whiteSpace:'nowrap' }}>
+              Only 7 September spots left
+            </span>
+            <a href="#contact" style={{ display:'inline-flex', alignItems:'center', gap:6, background:PD, color:'#fff', fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', transition:'opacity 160ms' }}
+              onMouseEnter={e=>(e.currentTarget.style.opacity='0.85')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>
+              Secure Your Spot NOW →
+            </a>
+          </div>
+          <button aria-label="Dismiss" onClick={closeBanner} style={{ position:'absolute', top:'50%', right:14, transform:'translateY(-50%)', background:'none', border:'none', cursor:'pointer', color:'rgba(33,0,93,0.5)', fontSize:16, lineHeight:1, padding:4, fontFamily:'inherit' }}>×</button>
+        </div>
+      )}
+
       {/* ══ NAV ══════════════════════════════════════════════ */}
-      <nav style={{ position:'fixed', top:14, left:'50%', transform:'translateX(-50%)', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
+      <nav style={{ position:'fixed', top:bannerH + 14, left:'50%', transform:'translateX(-50%)', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
         <div style={{ height:'100%', padding:'0 10px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>
           {/* Logo icon */}
           <a href="#" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
@@ -824,7 +869,7 @@ export default function MarketingPage() {
       </nav>
 
       {/* ══ HERO ═════════════════════════════════════════════ */}
-      <section className="mkt-hero" style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', paddingTop:64, background:BG }}>
+      <section className="mkt-hero" style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', paddingTop:64 + bannerH, background:BG, ['--banner-h' as any]: `${bannerH}px` }}>
         <Orbs orbs={[
           { size:500, color:YEL,  opacity:0.45, cls:'mkt-orb-c', top:'8%',    left:'-4%'  },
           { size:420, color:P,    opacity:0.18, cls:'mkt-orb-a', top:'-8%',   right:'-6%' },

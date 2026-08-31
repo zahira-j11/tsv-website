@@ -331,6 +331,11 @@ body::before {
   }
 }
 
+/* Promo banner: drop the middle clause when the row gets tight */
+@media (max-width: 1180px) {
+  .mkt-banner-detail { display: none; }
+}
+
 /* Responsive helpers */
 .mkt-hero-h1 { white-space: nowrap; }
 
@@ -346,7 +351,7 @@ body::before {
 
   /* Hero: the desktop layout reserves room for the phone stack and the
      industry chips, both hidden here — reclaim that space. */
-  .mkt-hero        { min-height: auto !important; padding-top: 88px !important; }
+  .mkt-hero        { min-height: auto !important; padding-top: calc(88px + var(--banner-h, 0px)) !important; }
   .mkt-hero-inner  { padding: 12px 18px 116px !important; gap: 0 !important; }
   /* Keep the headline to two lines at phone width */
   /* Headline breaks: 3 fixed lines on phones */
@@ -359,6 +364,9 @@ body::before {
                      white-space: nowrap; }
   /* Body copy sits smaller on phones */
   .mkt-h3          { font-size: 15px !important; }
+  /* Promo banner: headline + spots + CTA only */
+  .mkt-banner        { padding: 8px 34px 8px 14px !important; gap: 7px !important; }
+  .mkt-banner-detail { display: none; }
   /* Arrows crowd the cards at phone width — swipe instead. */
   .mkt-carousel-nav { display: none !important; }
 }
