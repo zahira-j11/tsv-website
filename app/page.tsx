@@ -969,7 +969,7 @@ export default function MarketingPage() {
             <div style={{ position:'absolute', inset:-80, background:`radial-gradient(circle, rgba(124,1,255,0.22) 0%, transparent 68%)`, pointerEvents:'none' }} />
             <div style={{ display:'flex', alignItems:'center', gap:0, position:'relative' }}>
               <div className="mkt-float-a" style={{ marginTop:56, marginRight:-20, zIndex:1 }}>
-                <Phone phone={PHONES[0]} rotate={-9} scale={1.16} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049187/tsv-website/hero1.mp4" />
+                <Phone phone={PHONES[0]} rotate={-9} scale={1.16} videoSrc="/videos/hero-back-left.mp4" />
               </div>
               <div className="mkt-float-b" style={{ zIndex:3 }}>
                 <Phone phone={PHONES[2]} rotate={0} scale={1.44} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1785166780/tsv-website/hero3.mp4" />
