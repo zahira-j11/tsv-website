@@ -549,8 +549,8 @@ function ServicesCarousel() {
   };
   return (
     <div style={{ position: 'relative' }}>
-      <button aria-label="Previous" onClick={() => scroll(-1)} style={{ ...nav, left: -16 }}>‹</button>
-      <button aria-label="Next" onClick={() => scroll(1)} style={{ ...nav, right: -16 }}>›</button>
+      <button aria-label="Previous" className="mkt-carousel-nav" onClick={() => scroll(-1)} style={{ ...nav, left: -16 }}>‹</button>
+      <button aria-label="Next" className="mkt-carousel-nav" onClick={() => scroll(1)} style={{ ...nav, right: -16 }}>›</button>
       <div ref={trackRef} className="mkt-services-track" style={{
         display: 'flex', gap: 16, overflowX: 'auto', scrollSnapType: 'x mandatory', padding: '6px 2px 14px',
       }}>
@@ -824,14 +824,14 @@ export default function MarketingPage() {
       </nav>
 
       {/* ══ HERO ═════════════════════════════════════════════ */}
-      <section style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', paddingTop:64, background:BG }}>
+      <section className="mkt-hero" style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', paddingTop:64, background:BG }}>
         <Orbs orbs={[
           { size:500, color:YEL,  opacity:0.45, cls:'mkt-orb-c', top:'8%',    left:'-4%'  },
           { size:420, color:P,    opacity:0.18, cls:'mkt-orb-a', top:'-8%',   right:'-6%' },
           { size:280, color:MAG,  opacity:0.22, cls:'mkt-orb-b', bottom:'14%',right:'4%'  },
         ]} />
 
-        <div style={{ position:'relative', zIndex:1, maxWidth:1320, margin:'0 auto', padding:'72px 48px 280px', width:'100%', display:'flex', alignItems:'center', gap:72 }}>
+        <div className="mkt-hero-inner" style={{ position:'relative', zIndex:1, maxWidth:1320, margin:'0 auto', padding:'72px 48px 280px', width:'100%', display:'flex', alignItems:'center', gap:72 }}>
 
           {/* Left: copy */}
           <div style={{ flex:'1 1 780px', minWidth:0 }}>
@@ -901,7 +901,7 @@ export default function MarketingPage() {
 
         {/* Stats strip at bottom — purple panel */}
         <div ref={statsRef} style={{ position:'absolute', bottom:0, left:0, right:0, borderTop:'1px solid rgba(255,255,255,0.08)', background:PD }}>
-          <div style={{ maxWidth:1200, margin:'0 auto', padding:'22px 28px', display:'flex', justifyContent:'space-around', flexWrap:'wrap', gap:12 }}>
+          <div className="mkt-stats-row" style={{ maxWidth:1200, margin:'0 auto', padding:'22px 28px', display:'flex', justifyContent:'space-around', flexWrap:'wrap', gap:12 }}>
             {([
               { n:200,  suffix:'M+', label:'Organic views',  c:YEL  },
               { n:15,   suffix:'M+', label:'Likes',          c:MAG  },

@@ -331,6 +331,19 @@ body::before {
   .mkt-service-card   { flex: 0 0 calc(100vw - 80px) !important; }
   .mkt-badge-pill     { padding: 4px 10px !important; gap: 6px !important; }
   .mkt-badge-text     { font-size: 9px !important; letter-spacing: .03em !important; }
+
+  /* Hero: the desktop layout reserves room for the phone stack and the
+     industry chips, both hidden here — reclaim that space. */
+  .mkt-hero        { min-height: auto !important; padding-top: 88px !important; }
+  .mkt-hero-inner  { padding: 12px 24px 186px !important; gap: 0 !important; }
+  .mkt-stats-row   { display: grid !important; grid-template-columns: 1fr 1fr !important;
+                     gap: 18px 8px !important; padding: 20px 20px !important; }
+  /* Arrows crowd the cards at phone width — swipe instead. */
+  .mkt-carousel-nav { display: none !important; }
+  .mkt-hero-h1     { font-size: 40px !important; line-height: 1.06 !important; margin-bottom: 20px !important; }
+  .mkt-h3          { font-size: 15.5px !important; line-height: 1.62 !important; margin-bottom: 24px !important; max-width: none !important; }
+  .mkt-h4          { gap: 10px !important; }
+  .mkt-h4 > *      { flex: 1 1 0; text-align: center; justify-content: center; }
 }
 @media (min-width: 769px) {
   .mkt-show-mobile   { display: none !important; }
