@@ -46,7 +46,7 @@ type PhoneData = typeof PHONES[0];
 // ─── Phone component ────────────────────────────────────────
 function Phone({ phone, rotate = 0, scale = 1, cls = '', videoSrc }: { phone: PhoneData; rotate?: number; scale?: number; cls?: string; videoSrc?: string }) {
   return (
-    <div className={cls} style={{ width:190, height:388, borderRadius:36, background:'#000', border:'1.5px solid rgba(255,255,255,0.12)', overflow:'hidden', transform:`rotate(${rotate}deg) scale(${scale})`, position:'relative', boxShadow:'0 28px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(124,1,255,0.18)', flexShrink:0 }}>
+    <div className={cls} style={{ width:160, height:326, borderRadius:32, background:'#000', border:'1.5px solid rgba(255,255,255,0.12)', overflow:'hidden', transform:`rotate(${rotate}deg) scale(${scale})`, position:'relative', boxShadow:'0 28px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(124,1,255,0.18)', flexShrink:0 }}>
       {/* Full-screen video (when provided) */}
       {videoSrc && (
         <video src={videoSrc} autoPlay muted loop playsInline
@@ -182,16 +182,16 @@ const SERVICES = [
 ];
 
 const CHALLENGES = [
-  { n:'01', accent:P,         border:P,   bg:'rgba(124,1,255,0.05)',  title:'Posting consistently',          body:'Keeping up across platforms without burning out your internal team.' },
-  { n:'02', accent:MAG,       border:MAG, bg:'rgba(232,32,164,0.05)', title:'Creating content that performs', body:'Not just posting, actually driving views, engagement, and growth.' },
-  { n:'03', accent:'#027A3A', border:GRN, bg:'rgba(8,246,131,0.07)',  title:'Scaling without the overhead',  body:'Growing your content output without hiring a full in-house production team.' },
+  { n:'1️⃣', label:'TIME',      accent:P,         border:P,   bg:'rgba(124,1,255,0.05)',  title:'When exactly are you supposed to make all this content?', body:'Planning, scripting, filming, editing and posting every week quickly becomes another full-time job.' },
+  { n:'2️⃣', label:'EXPERTISE', accent:MAG,       border:MAG, bg:'rgba(232,32,164,0.05)', title:'All that work. Then nobody watches.',                     body:'Knowing what people actually want to watch takes more than simply posting consistently.' },
+  { n:'3️⃣', label:'RESOURCES', accent:'#027A3A', border:GRN, bg:'rgba(8,246,131,0.07)',  title:'You need more content. Not more employees.',              body:'Get the strategists, creators, production and editing capacity without building an entire team in-house.' },
 ];
 
 const HOW_WE_HELP = [
-  { icon:'🧩', title:'We become your content team',  body:"No more hiring, briefing, or chasing freelancers. We plug in as your dedicated social content engine, from strategy to delivery.", accent:P },
-  { icon:'⚡', title:'We build for the algorithm',   body:"Every piece of content is reverse-engineered from what works. We study platform trends, hooks, and formats to maximise reach.",   accent:MAG },
-  { icon:'🚀', title:'We move fast',                 body:"First content delivered within 14–21 days. We match the speed of social without sacrificing quality or brand integrity.",           accent:'#027A3A' },
-  { icon:'📈', title:'We optimise relentlessly',     body:"Data drives everything. We track performance, iterate on formats, and double down on what's working to compound your growth.",    accent:'#7a5000' },
+  { icon:'🧩', title:'You approve it. We handle everything else.',                   body:"No hiring creators, chasing freelancers or organising shoots. From strategy and scripting to filming, editing and posting, we take care of it.", accent:P },
+  { icon:'⚡', title:'Make what people want to watch, not what brands want to say.', body:"We study the conversations, hooks and formats already winning attention in your category, then turn them into ideas that make sense for your brand.", accent:MAG },
+  { icon:'🚀', title:'From idea to feed while it still matters.',                     body:"Your first content lands within 14–21 days, then we keep pace with the conversations your audience is already having.", accent:'#027A3A' },
+  { icon:'📈', title:'Stop starting from scratch every month.',                       body:"We track what gets watched, shared and acted on, find the patterns behind your winners, then use them to make the next batch stronger.", accent:'#7a5000' },
 ];
 
 const STEPS = [
@@ -403,144 +403,54 @@ function ServiceThumb({ src, poster }: { src?: string; poster?: string }) {
 // ─── Service gradient card ─────────────────────────────────
 function ServiceCard({ s, i, onOpen }: { s: typeof SERVICES[0]; i: number; onOpen: () => void }) {
   const [hovered, setHovered] = useState(false);
+  const src = (s.thumbs as (string|null)[])[0];
+  const poster = src ? src.replace(/\.(mp4|mov|webm)(\?.*)?$/, '.jpg').replace('f_auto,', '').replace(',f_auto', '') : null;
   return (
     <div
       data-reveal
-      data-reveal-delay={String(i * 0.09)}
+      data-reveal-delay={String(i * 0.07)}
       onClick={onOpen}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        position: 'relative',
-        borderRadius: 24,
-        overflow: 'hidden',
-        background: s.bg,
-        padding: '40px 36px 36px',
-        cursor: 'pointer',
-        transform: hovered ? 'translateY(-8px) scale(1.015)' : 'none',
+        width: 252, flexShrink: 0, scrollSnapAlign: 'start',
+        borderRadius: 18, overflow: 'hidden', background: PD, cursor: 'pointer',
+        transform: hovered ? 'translateY(-6px)' : 'none',
         transition: 'transform 280ms cubic-bezier(0.16,1,0.3,1), box-shadow 280ms ease',
-        boxShadow: hovered
-          ? `0 32px 72px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.1), 0 0 80px ${s.accent}55`
-          : '0 8px 32px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.06)',
+        boxShadow: hovered ? '0 26px 60px rgba(33,0,93,0.30)' : '0 6px 26px rgba(33,0,93,0.18)',
       }}
     >
-      {/* Animated shimmer sweep on hover */}
-      <div style={{
-        position: 'absolute', inset: 0, borderRadius: 24, pointerEvents: 'none',
-        background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.07) 50%, transparent 70%)',
-        transform: hovered ? 'translateX(100%)' : 'translateX(-100%)',
-        transition: 'transform 700ms ease',
-      }} />
-      {/* Soft radial glow from accent */}
-      <div style={{
-        position: 'absolute', top: '-30%', right: '-10%', width: 260, height: 260,
-        borderRadius: '50%', background: `radial-gradient(circle, ${s.accent}44 0%, transparent 65%)`,
-        pointerEvents: 'none',
-        transform: hovered ? 'scale(1.3)' : 'scale(1)',
-        transition: 'transform 500ms ease',
-      }} />
-      {/* Corner dot grid */}
-      <div style={{
-        position: 'absolute', bottom: 20, right: 20, display: 'grid',
-        gridTemplateColumns: 'repeat(4,6px)', gap: 5, pointerEvents: 'none', opacity: 0.18,
-      }}>
-        {Array.from({ length: 16 }).map((_,j) => (
-          <div key={j} style={{ width: 4, height: 4, borderRadius: '50%', background: '#fff' }} />
-        ))}
+      <div style={{ aspectRatio: '4/5', overflow: 'hidden', position: 'relative', background: 'rgba(255,255,255,0.06)' }}>
+        {poster && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={poster} alt="" loading="lazy" style={{
+            width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+            transform: hovered ? 'scale(1.05)' : 'scale(1)',
+            transition: 'transform 500ms cubic-bezier(0.16,1,0.3,1)',
+          }} />
+        )}
+        <div style={{
+          position: 'absolute', top: 11, right: 11, width: 26, height: 26, borderRadius: '50%',
+          background: 'rgba(255,255,255,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 10, color: PD,
+          transform: hovered ? 'scale(1.12)' : 'scale(1)', transition: 'transform 250ms ease',
+        }}>▶</div>
       </div>
-
-      {/* Number badge */}
-      <div style={{
-        position: 'absolute', top: 22, right: 26,
-        fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 800,
-        color: 'rgba(255,255,255,0.25)', letterSpacing: '.06em',
-      }}>
-        0{i + 1}
-      </div>
-
-      {/* Icon */}
-      <div style={{
-        width: 56, height: 56, borderRadius: 16,
-        background: 'rgba(255,255,255,0.13)',
-        backdropFilter: 'blur(12px)',
-        border: '1.5px solid rgba(255,255,255,0.2)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: 26, marginBottom: 28,
-        transform: hovered ? 'scale(1.12) rotate(-4deg)' : 'scale(1) rotate(0deg)',
-        transition: 'transform 300ms cubic-bezier(0.34,1.56,0.64,1)',
-        boxShadow: hovered ? `0 8px 24px ${s.accent}55` : 'none',
-      }}>
-        {s.icon}
-      </div>
-
-      {/* Tag pill */}
-      <div style={{
-        display: 'inline-block', background: 'rgba(255,255,255,0.15)',
-        border: '1px solid rgba(255,255,255,0.25)',
-        borderRadius: 20, padding: '4px 14px', marginBottom: 14,
-        fontSize: 11, fontWeight: 800, color: 'rgba(255,255,255,0.9)',
-        letterSpacing: '.05em', textTransform: 'uppercase',
-        backdropFilter: 'blur(8px)',
-      }}>
-        {s.tag}
-      </div>
-
-      {/* Description */}
-      <p style={{
-        fontSize: 15, color: 'rgba(255,255,255,0.62)', lineHeight: 1.8,
-        fontWeight: 400, margin: '0 0 20px',
-      }}>
-        {s.desc}
-      </p>
-
-      {/* Thumbnail strip — static poster images (Cloudinary auto-extracts first frame) */}
-      <div style={{ display:'flex', gap:8, marginBottom:28 }}>
-        {(s.thumbs as (string|null)[]).map((src, idx) => {
-          const posterSrc = src ? src.replace(/\.(mp4|mov|webm)(\?.*)?$/, '.jpg').replace('f_auto,', '').replace(',f_auto', '') : null;
-          return (
-            <div key={idx} style={{
-              flex:1, aspectRatio:'9/16', borderRadius:10, overflow:'hidden',
-              background:'rgba(0,0,0,0.25)',
-              border:'1px solid rgba(255,255,255,0.12)',
-              position:'relative',
-            }}>
-              {posterSrc ? (
-                <img src={posterSrc} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
-              ) : (
-                <div style={{
-                  width:'100%', height:'100%',
-                  background:`linear-gradient(${150 + idx * 25}deg, ${s.accent}33, rgba(0,0,0,0.45))`,
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                }}>
-                  <div style={{ width:22, height:22, borderRadius:'50%', background:'rgba(255,255,255,0.18)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <span style={{ fontSize:9, marginLeft:2, color:'rgba(255,255,255,0.7)' }}>▶</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Arrow CTA */}
-      <div style={{
-        display: 'inline-flex', alignItems: 'center', gap: 8,
-        fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.9)',
-        transform: hovered ? 'translateX(4px)' : 'translateX(0)',
-        transition: 'transform 250ms ease',
-      }}>
-        Learn more
-        <span style={{
-          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-          width: 28, height: 28, borderRadius: '50%',
-          background: 'rgba(255,255,255,0.15)', fontSize: 14,
-          transform: hovered ? 'translateX(3px)' : 'none',
-          transition: 'transform 250ms ease',
-        }}>→</span>
+      <div style={{ height: 3, background: s.accent }} />
+      <div style={{ padding: '14px 16px 16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+          <span style={{ fontSize: 14 }}>{s.icon}</span>
+          <span style={{ ...DISP, fontSize: 14, fontWeight: 800, color: WH, letterSpacing: '-.02em' }}>{s.tag}</span>
+        </div>
+        <p style={{
+          fontSize: 11.5, color: 'rgba(255,253,237,0.55)', lineHeight: 1.55, margin: '7px 0 0',
+          display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+        }}>{s.desc}</p>
       </div>
     </div>
   );
 }
+
 
 // ─── Service detail modal ──────────────────────────────────
 function ServiceModal({ s, onClose }: { s: typeof SERVICES[0]; onClose: () => void }) {
@@ -629,87 +539,30 @@ function ServiceModal({ s, onClose }: { s: typeof SERVICES[0]; onClose: () => vo
 // ─── Services horizontal carousel ─────────────────────────
 function ServicesCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [activeIdx, setActiveIdx] = useState(0);
   const [openService, setOpenService] = useState<typeof SERVICES[0] | null>(null);
-  const CARD_W = 380;
-  const GAP    = 20;
-
-  const scroll = (dir: 1 | -1) => {
-    const next = Math.max(0, Math.min(SERVICES.length - 1, activeIdx + dir));
-    setActiveIdx(next);
-    trackRef.current?.scrollTo({ left: next * (CARD_W + GAP), behavior: 'smooth' });
+  const scroll = (dir: 1 | -1) => trackRef.current?.scrollBy({ left: dir * (252 + 16) * 2, behavior: 'smooth' });
+  const nav: React.CSSProperties = {
+    position: 'absolute', top: '50%', transform: 'translateY(-50%)',
+    width: 38, height: 38, borderRadius: '50%', border: 'none', background: PD, color: '#fff',
+    fontSize: 16, cursor: 'pointer', zIndex: 3, boxShadow: '0 6px 20px rgba(33,0,93,0.28)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'inherit',
   };
-
   return (
     <div style={{ position: 'relative' }}>
-      {/* Arrow buttons */}
-      {[{ dir: -1 as const, side: 'left'  as const, label: '‹' },
-        { dir:  1 as const, side: 'right' as const, label: '›' }].map(({ dir, side, label }) => {
-        const disabled = dir === -1 ? activeIdx === 0 : activeIdx === SERVICES.length - 1;
-        return (
-          <button
-            key={side}
-            onClick={() => scroll(dir)}
-            disabled={disabled}
-            style={{
-              position: 'absolute', top: '46%', [side]: -28,
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-              width: 56, height: 56, borderRadius: '50%',
-              background: disabled ? 'rgba(33,0,93,0.08)' : PD,
-              border: `2px solid ${disabled ? 'rgba(33,0,93,0.12)' : PD}`,
-              boxShadow: disabled ? 'none' : '0 8px 28px rgba(33,0,93,0.35)',
-              color: disabled ? 'rgba(33,0,93,0.3)' : '#fff',
-              fontSize: 32, lineHeight: 1, cursor: disabled ? 'default' : 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'opacity 200ms, background 200ms, box-shadow 200ms',
-              paddingBottom: 2,
-            }}
-          >
-            {label}
-          </button>
-        );
-      })}
-
-      {/* Track */}
-      <div
-        ref={trackRef}
-        style={{
-          display: 'flex', gap: GAP,
-          overflowX: 'auto', scrollSnapType: 'x mandatory',
-          scrollbarWidth: 'none', padding: '8px 4px 28px',
-        }}
-      >
+      <button aria-label="Previous" onClick={() => scroll(-1)} style={{ ...nav, left: -16 }}>‹</button>
+      <button aria-label="Next" onClick={() => scroll(1)} style={{ ...nav, right: -16 }}>›</button>
+      <div ref={trackRef} className="mkt-services-track" style={{
+        display: 'flex', gap: 16, overflowX: 'auto', scrollSnapType: 'x mandatory', padding: '6px 2px 14px',
+      }}>
         {SERVICES.map((s, i) => (
-          <div key={i} className="mkt-service-card" style={{ flex: `0 0 ${CARD_W}px`, scrollSnapAlign: 'start' }}>
-            <ServiceCard s={s} i={i} onOpen={() => setOpenService(s)} />
-          </div>
+          <ServiceCard key={s.key} s={s} i={i} onOpen={() => setOpenService(s)} />
         ))}
       </div>
-
-      {/* Dot indicators */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 4 }}>
-        {SERVICES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              setActiveIdx(i);
-              trackRef.current?.scrollTo({ left: i * (CARD_W + GAP), behavior: 'smooth' });
-            }}
-            style={{
-              width: i === activeIdx ? 20 : 6, height: 6, borderRadius: 3,
-              background: i === activeIdx ? MAG : 'rgba(33,0,93,0.22)',
-              border: 'none', cursor: 'pointer', padding: 0,
-              transition: 'width 250ms ease, background 250ms ease',
-            }}
-          />
-        ))}
-      </div>
-
       {openService && <ServiceModal s={openService} onClose={() => setOpenService(null)} />}
     </div>
   );
 }
+
 
 // ─── Case stat icon ────────────────────────────────────────
 function StatIcon({ type }: { type: string }) {
@@ -931,7 +784,7 @@ export default function MarketingPage() {
 
   const go = (id:string) => { setMenu(false); document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }); };
   const inp: React.CSSProperties = { padding:'14px 18px', borderRadius:12, border:`1.5px solid ${BR}`, background:WH, color:PD, fontSize:14, outline:'none', width:'100%', boxSizing:'border-box', fontFamily:'inherit' };
-  const btnP: React.CSSProperties = { display:'inline-block', background:`linear-gradient(135deg,${P},${PB})`, color:'#fff', fontSize:15, fontWeight:700, padding:'16px 36px', borderRadius:14, textDecoration:'none', cursor:'pointer', border:'none', fontFamily:'inherit' };
+  const btnP: React.CSSProperties = { display:'inline-block', background:`linear-gradient(135deg,${P},${PB})`, color:'#fff', fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:9, textDecoration:'none', cursor:'pointer', border:'none', fontFamily:'inherit' };
 
   return (
     <div style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden' }}>
@@ -954,10 +807,6 @@ export default function MarketingPage() {
           </div>
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
-            <a href="/coming-soon" className="mkt-hidden-mobile" style={{ display:'inline-block', background:'transparent', color:P, fontSize:13, fontWeight:700, padding:'9px 16px', borderRadius:100, textDecoration:'none', border:`1.5px solid ${P}`, transition:'all 160ms' }}
-              onMouseEnter={e=>{e.currentTarget.style.background=P;e.currentTarget.style.color=WH}} onMouseLeave={e=>{e.currentTarget.style.background='transparent';e.currentTarget.style.color=P}}>Client portal</a>
-            <a href="/coming-soon" className="mkt-hidden-mobile" style={{ display:'inline-block', background:MAG, color:WH, fontSize:13, fontWeight:700, padding:'9px 16px', borderRadius:100, textDecoration:'none', transition:'opacity 160ms' }}
-              onMouseEnter={e=>(e.currentTarget.style.opacity='0.82')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>Creator signup</a>
             <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" className="mkt-hidden-mobile" style={{ display:'inline-block', background:PD, color:'#fff', fontSize:13, fontWeight:700, padding:'11px 24px', borderRadius:100, textDecoration:'none', transition:'opacity 160ms' }}
               onMouseEnter={e=>(e.currentTarget.style.opacity='0.82')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>Book a call</a>
             <button onClick={()=>setMenu(!menu)} className="mkt-show-mobile" style={{ background:'none', border:'none', color:PD, fontSize:20, cursor:'pointer', padding:4 }}>{menu?'✕':'☰'}</button>
@@ -982,32 +831,31 @@ export default function MarketingPage() {
           { size:280, color:MAG,  opacity:0.22, cls:'mkt-orb-b', bottom:'14%',right:'4%'  },
         ]} />
 
-        <div style={{ position:'relative', zIndex:1, maxWidth:1200, margin:'0 auto', padding:'100px 48px 240px', width:'100%', display:'flex', alignItems:'center', gap:100 }}>
+        <div style={{ position:'relative', zIndex:1, maxWidth:1320, margin:'0 auto', padding:'72px 48px 280px', width:'100%', display:'flex', alignItems:'center', gap:72 }}>
 
           {/* Left: copy */}
-          <div style={{ flex:'1 1 500px', minWidth:0 }}>
-            <div className="mkt-h1 mkt-badge-pill" style={{ display:'inline-flex', alignItems:'center', gap:8, background:YEL, borderRadius:24, padding:'6px 18px', marginBottom:28 }}>
+          <div style={{ flex:'1 1 780px', minWidth:0 }}>
+            <div className="mkt-h1 mkt-badge-pill" style={{ display:'inline-flex', alignItems:'center', gap:8, background:YEL, borderRadius:24, padding:'6px 18px', marginBottom:38 }}>
               <span className="mkt-pulsedot" style={{ width:6, height:6, borderRadius:'50%', background:PD, flexShrink:0 }} />
               <span className="mkt-badge-text" style={{ ...DISP, color:PD, fontSize:11, fontWeight:700, letterSpacing:'.06em', textTransform:'uppercase', whiteSpace:'nowrap' }}>Paid & organic social content agency · London</span>
             </div>
 
-            <h1 className="mkt-h2 mkt-hero-h1" style={{ ...DISP, fontSize:'clamp(38px,9.5vw,72px)', fontWeight:800, lineHeight:1.08, letterSpacing:'-.05em', marginBottom:24, color:PD }}>
-              Your brand<br />
-              deserves more<br />
-              than{' '}<em className="mkt-gradient-text" style={{ fontStyle:'italic' }}>300 views.</em>
+            <h1 className="mkt-h2 mkt-hero-h1" style={{ ...DISP, fontSize:'clamp(38px,9.5vw,72px)', fontWeight:800, lineHeight:1.08, letterSpacing:'-.05em', marginBottom:32, color:PD }}>
+              Your brand deserves<br />
+              more than{' '}<em className="mkt-gradient-text" style={{ fontStyle:'italic' }}>300 views.</em>
             </h1>
 
-            <p className="mkt-h3" style={{ fontSize:'clamp(16px,1.5vw,20px)', color:MU, maxWidth:520, lineHeight:1.85, marginBottom:40, fontWeight:400 }}>
-              We build and run your entire short-form content engine. Strategy, production, posting. So you don't have to.
+            <p className="mkt-h3" style={{ fontSize:17, color:MU, maxWidth:780, lineHeight:1.9, marginBottom:28, fontWeight:400 }}>
+              Imagine never having to think about what to post, who’s going to film it or whether anyone’s going to watch it. We handle your organic social and paid ad creative from idea to finished content.
             </p>
 
-            <div className="mkt-h4" style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+            <div className="mkt-h4" style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
               <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" className="mkt-glow-cta" style={btnP}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
                 Book a strategy call →
               </a>
-              <button onClick={()=>go('hall-of-fame')} style={{ background:WH, color:PD, fontSize:15, fontWeight:700, padding:'16px 28px', borderRadius:14, cursor:'pointer', border:`2px solid ${BR}`, transition:'all 160ms', fontFamily:'inherit' }}
+              <button onClick={()=>go('hall-of-fame')} style={{ background:WH, color:PD, fontSize:13, fontWeight:700, padding:'10px 16px', borderRadius:9, cursor:'pointer', border:`2px solid ${BR}`, transition:'all 160ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLButtonElement).style.borderColor=P; (e.currentTarget as HTMLButtonElement).style.color=P; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLButtonElement).style.borderColor=BR; (e.currentTarget as HTMLButtonElement).style.color=PD; }}>
                 See our work ↓
@@ -1020,13 +868,13 @@ export default function MarketingPage() {
             <div style={{ position:'absolute', inset:-80, background:`radial-gradient(circle, rgba(124,1,255,0.22) 0%, transparent 68%)`, pointerEvents:'none' }} />
             <div style={{ display:'flex', alignItems:'center', gap:0, position:'relative' }}>
               <div className="mkt-float-a" style={{ marginTop:56, marginRight:-20, zIndex:1 }}>
-                <Phone phone={PHONES[0]} rotate={-9} scale={1.1} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049187/tsv-website/hero1.mp4" />
+                <Phone phone={PHONES[0]} rotate={-9} scale={1.16} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049187/tsv-website/hero1.mp4" />
               </div>
               <div className="mkt-float-b" style={{ zIndex:3 }}>
-                <Phone phone={PHONES[2]} rotate={0} scale={1.38} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1785166780/tsv-website/hero3.mp4" />
+                <Phone phone={PHONES[2]} rotate={0} scale={1.44} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1785166780/tsv-website/hero3.mp4" />
               </div>
               <div className="mkt-float-c" style={{ marginTop:56, marginLeft:-20, zIndex:1 }}>
-                <Phone phone={PHONES[4]} rotate={9} scale={1.1} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049284/tsv-website/hero2.mp4" />
+                <Phone phone={PHONES[4]} rotate={9} scale={1.16} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049284/tsv-website/hero2.mp4" />
               </div>
 
             </div>
@@ -1034,20 +882,18 @@ export default function MarketingPage() {
         </div>
 
         {/* Industry chips row — in empty space above stats strip */}
-        <div className="mkt-hidden-mobile" style={{ position:'absolute', bottom:132, left:0, right:0, display:'flex', justifyContent:'center', gap:10, zIndex:5, pointerEvents:'none' }}>
+        <div className="mkt-hidden-mobile" style={{ position:'absolute', bottom:172, left:0, right:0, display:'flex', justifyContent:'center', gap:10, zIndex:5, pointerEvents:'none' }}>
           {([
-            { label:'AI & Tech',  color:P,          bg:'rgba(124,1,255,0.1)',  icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg> },
-            { label:'Fintech',    color:MAG,         bg:'rgba(232,32,164,0.1)', icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> },
-            { label:'Health',     color:'#0CB876',   bg:'rgba(12,184,118,0.1)', icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> },
-            { label:'Food & Bev', color:'#B07800',   bg:'rgba(255,214,0,0.18)', icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg> },
-            { label:'Apps',       color:P,           bg:'rgba(124,1,255,0.1)',  icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
-            { label:'Consumer',   color:'#E05C00',   bg:'rgba(224,92,0,0.1)',   icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> },
-            { label:'+ More',     color:MU,          bg:'rgba(33,0,93,0.06)',   icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg> },
-          ] as {label:string;color:string;bg:string;icon:React.ReactNode}[]).map((chip, i) => (
-            <div key={i} style={{ display:'flex', alignItems:'center', gap:8, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(14px)', borderRadius:12, padding:'9px 16px', boxShadow:'0 4px 20px rgba(33,0,93,0.12)', border:'1px solid rgba(255,255,255,0.85)', whiteSpace:'nowrap' }}>
-              <div style={{ width:26, height:26, borderRadius:7, background:chip.bg, display:'flex', alignItems:'center', justifyContent:'center', color:chip.color, flexShrink:0 }}>
-                {chip.icon}
-              </div>
+            { label:'AI & Tech',  emoji:'🤖' },
+            { label:'Fintech',    emoji:'💳' },
+            { label:'Health',     emoji:'🩺' },
+            { label:'Food & Bev', emoji:'🍽️' },
+            { label:'Apps',       emoji:'📲' },
+            { label:'Consumer',   emoji:'🛍️' },
+            { label:'+ More',     emoji:'🌍' },
+          ] as {label:string;emoji:string}[]).map((chip, i) => (
+            <div key={i} style={{ display:'flex', alignItems:'center', gap:9, background:WH, borderRadius:100, padding:'9px 18px', boxShadow:'0 2px 10px rgba(33,0,93,0.06)', whiteSpace:'nowrap' }}>
+              <span style={{ fontSize:16, lineHeight:1 }}>{chip.emoji}</span>
               <span style={{ fontSize:12, fontWeight:700, color:PD }}>{chip.label}</span>
             </div>
           ))}
@@ -1063,7 +909,7 @@ export default function MarketingPage() {
               { n:3000, suffix:'+',  label:'Content pieces', c:WH },
             ] as {n:number;suffix:string;label:string;c:string;fmt?:(v:number)=>string}[]).map((s,i)=>(
               <div key={i} style={{ textAlign:'center' }}>
-                <div style={{ ...DISP, fontSize:'clamp(22px,2.4vw,34px)', fontWeight:800, color:s.c, letterSpacing:'-.05em', lineHeight:1 }}>
+                <div style={{ ...DISP, fontSize:'clamp(30px,3.4vw,48px)', fontWeight:800, color:s.c, letterSpacing:'-.05em', lineHeight:1 }}>
                   <StatCounter target={s.n} suffix={s.suffix} active={statsActive} fmt={s.fmt} />
                 </div>
                 <div style={{ fontSize:10, color:'rgba(255,253,237,0.45)', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', marginTop:4 }}>{s.label}</div>
@@ -1139,10 +985,10 @@ export default function MarketingPage() {
           { size:220, color:MAG, opacity:0.18, cls:'mkt-orb-c', bottom:'5%', left:'-3%'  },
         ]} />
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
-          <div data-reveal style={{ maxWidth:640, marginBottom:64 }}>
+          <div data-reveal style={{ maxWidth:860, marginBottom:64 }}>
             <span style={{ display:'inline-block', background:YEL, color:PD, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>The challenge</span>
             <h2 style={{ ...DISP, fontSize:'clamp(30px,4vw,58px)', fontWeight:800, letterSpacing:'-.055em', color:PD, lineHeight:1.05 }}>
-              Brands face <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">3 core challenges</em> when trying to grow on social.
+              <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">3 headaches</em> stand between you and <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">better social</em> content
             </h2>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(290px,1fr))', gap:20 }}>
@@ -1150,8 +996,11 @@ export default function MarketingPage() {
               <div key={i} data-reveal data-reveal-delay={String(i*0.12)} style={{ padding:'40px 36px', background:c.bg, border:`2px solid ${c.border}`, borderRadius:22, transition:'transform 200ms ease' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-5px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
-                <div style={{ ...DISP, width:40, height:40, borderRadius:12, background:c.accent, display:'flex', alignItems:'center', justifyContent:'center', fontSize:11, color:'#fff', fontWeight:800, marginBottom:22 }}>{c.n}</div>
-                <h3 style={{ ...DISP, fontSize:21, fontWeight:800, letterSpacing:'-.04em', color:PD, marginBottom:14, lineHeight:1.2 }}>{c.title}</h3>
+                <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:20 }}>
+                  <span style={{ fontSize:28, lineHeight:1 }}>{c.n}</span>
+                  <span style={{ ...DISP, fontSize:11, fontWeight:800, letterSpacing:'.14em', color:c.accent }}>{c.label}</span>
+                </div>
+                <h3 style={{ ...DISP, fontSize:20, fontWeight:800, letterSpacing:'-.035em', color:PD, marginBottom:14, lineHeight:1.3 }}>{c.title}</h3>
                 <p style={{ fontSize:15, color:MU, lineHeight:1.85, fontWeight:400 }}>{c.body}</p>
               </div>
             ))}
@@ -1169,7 +1018,7 @@ export default function MarketingPage() {
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
           <div data-reveal style={{ textAlign:'center', marginBottom:72 }}>
             <span style={{ display:'inline-block', background:'rgba(124,1,255,0.09)', color:P, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Why us</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Your unfair advantage on <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">social.</em></h2>
+            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD, lineHeight:1.05 }}>Never let social <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">fall</em> to the bottom of your list <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">again!</em></h2>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(260px,1fr))', gap:20 }}>
             {HOW_WE_HELP.map((h,i)=>(
@@ -1177,7 +1026,7 @@ export default function MarketingPage() {
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-6px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 20px 54px rgba(33,0,93,0.09)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; (e.currentTarget as HTMLElement).style.boxShadow='none'; }}>
                 <div style={{ fontSize:32, marginBottom:22 }}>{h.icon}</div>
-                <h3 style={{ ...DISP, fontSize:20, fontWeight:800, letterSpacing:'-.04em', color:PD, marginBottom:14 }}>{h.title}</h3>
+                <h3 style={{ ...DISP, fontSize:18, fontWeight:800, letterSpacing:'-.035em', color:PD, marginBottom:14, lineHeight:1.3 }}>{h.title}</h3>
                 <p style={{ fontSize:15, color:MU, lineHeight:1.85, fontWeight:400 }}>{h.body}</p>
               </div>
             ))}
@@ -1186,7 +1035,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ══ HOW IT WORKS ══════════════════════════════════════ */}
-      <section id="how-it-works" style={{ padding:'110px 28px', background:PD, position:'relative', overflow:'hidden' }}>
+      <section id="how-it-works" style={{ padding:'88px 28px 72px', background:PD, position:'relative', overflow:'hidden' }}>
         <Orbs orbs={[
           { size:360, color:GRN, opacity:0.22, cls:'mkt-orb-a', bottom:'5%', left:'-4%'  },
           { size:300, color:YEL, opacity:0.32, cls:'mkt-orb-h', bottom:'20%',right:'10%' },
@@ -1195,7 +1044,8 @@ export default function MarketingPage() {
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
           <div data-reveal style={{ marginBottom:72 }}>
             <span style={{ display:'inline-block', background:'rgba(8,246,131,0.22)', color:GRN, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>How it works</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:WH }}>A simple process, <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">powerful results.</em></h2>
+            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:WH, lineHeight:1.05 }}>Never <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">agonise</em> over who’s going to be <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">on camera</em> again</h2>
+            <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, marginTop:18, maxWidth:640 }}>We activate our 150+ creator network and put the right people in front of the camera for you.</p>
           </div>
           <div className="mkt-process-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'start' }}>
             {/* Steps */}
@@ -1209,7 +1059,7 @@ export default function MarketingPage() {
               ))}
             </div>
             {/* Creator headshot collage */}
-            <div className="mkt-hidden-mobile" data-reveal data-reveal-delay="0.2" style={{ position:'relative', width:'100%', maxWidth:560, margin:'0 auto' }}>
+            <div className="mkt-hidden-mobile" data-reveal data-reveal-delay="0.2" style={{ position:'relative', width:'100%', maxWidth:560, margin:'0 auto', marginTop:-150 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/creators-collage.png" alt="Creator network" style={{ width:'100%', objectFit:'contain', display:'block' }} />
             </div>

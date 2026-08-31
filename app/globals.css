@@ -351,3 +351,10 @@ body::before {
     transition-duration: 1ms !important;
   }
 }
+
+/* Services carousel track — hide scrollbar, keep drag + snap */
+.mkt-services-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.mkt-services-track::-webkit-scrollbar { display: none; }
