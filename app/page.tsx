@@ -291,23 +291,75 @@ const FAQS = [
   { q:"What's the minimum commitment?",                   a:"Retainers start at £2,500 per month (ex. VAT) on a 3-month initial basis." },
 ];
 
-// ─── Audit Venn — the roadmap falls out of the three analyses ──
-function AuditVenn() {
-  const ring = (cx:number, cy:number, fill:string) => (
-    <circle cx={cx} cy={cy} r={54} fill={fill} fillOpacity={0.16} stroke={fill} strokeOpacity={0.5} strokeWidth={1.5} />
-  );
-  const cap: React.CSSProperties = { ...DISP, fontSize: 9, fontWeight: 800, letterSpacing: '.06em' };
+// ─── Route card visuals — what each route actually gets you ───
+function DiscoveryVisual() {
+  const days = ['M','T','W','T','F'];
+  const avail = [9, 11, 16];           // highlighted slots in the mini month
   return (
-    <svg viewBox="0 0 260 200" style={{ width:'100%', maxWidth:300, display:'block', margin:'0 auto' }} role="img" aria-label="Organic review, competitor analysis and paid creative review combine into a 90-day roadmap">
-      {ring(96, 74, P)}
-      {ring(164, 74, MAG)}
-      {ring(130, 132, '#0CB876')}
-      <text x="66" y="56" textAnchor="middle" style={cap} fill={P}>ORGANIC</text>
-      <text x="196" y="56" textAnchor="middle" style={cap} fill={MAG}>COMPETITOR</text>
-      <text x="130" y="176" textAnchor="middle" style={cap} fill="#0CB876">PAID CREATIVE</text>
-      <text x="130" y="94" textAnchor="middle" style={{ ...DISP, fontSize:11, fontWeight:800, letterSpacing:'-.01em' }} fill={PD}>90-DAY</text>
-      <text x="130" y="107" textAnchor="middle" style={{ ...DISP, fontSize:11, fontWeight:800, letterSpacing:'-.01em' }} fill={PD}>ROADMAP</text>
-    </svg>
+    <div style={{ background:WH, border:`1px solid ${BR}`, borderRadius:14, padding:'14px 16px 16px' }}>
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:12 }}>
+        <span style={{ ...DISP, fontSize:12, fontWeight:800, color:PD }}>September</span>
+        <span style={{ fontSize:10, fontWeight:700, color:MU, background:'rgba(33,0,93,0.05)', padding:'3px 9px', borderRadius:100 }}>30–45 min</span>
+      </div>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:5, marginBottom:12 }}>
+        {days.map((d,i)=>(
+          <div key={i} style={{ ...DISP, fontSize:8.5, fontWeight:800, color:SU, textAlign:'center', letterSpacing:'.06em' }}>{d}</div>
+        ))}
+        {Array.from({length:15}).map((_,i)=>{
+          const on = avail.includes(i);
+          return (
+            <div key={i} style={{
+              aspectRatio:'1', borderRadius:7, display:'flex', alignItems:'center', justifyContent:'center',
+              fontSize:9.5, fontWeight:700,
+              background: on ? P : 'rgba(33,0,93,0.04)',
+              color: on ? '#fff' : 'rgba(33,0,93,0.3)',
+            }}>{i+1}</div>
+          );
+        })}
+      </div>
+      <div style={{ display:'flex', gap:6 }}>
+        {['10:30','14:00','16:30'].map((t,i)=>(
+          <div key={t} style={{
+            flex:1, textAlign:'center', fontSize:10, fontWeight:800, padding:'7px 0', borderRadius:8,
+            border:`1.5px solid ${i===1?P:BR}`, color:i===1?P:MU, background:i===1?'rgba(124,1,255,0.06)':'transparent',
+          }}>{t}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AuditVisual() {
+  const rows = [
+    { label:'Organic content',   pct:'72%', c:P },
+    { label:'Competitor gap',    pct:'45%', c:MAG },
+    { label:'Paid creative',     pct:'88%', c:'#0CB876' },
+  ];
+  return (
+    <div style={{ background:WH, border:`1px solid ${BR}`, borderRadius:14, padding:'14px 16px 16px' }}>
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:14 }}>
+        <span style={{ ...DISP, fontSize:12, fontWeight:800, color:PD }}>Your Social Audit</span>
+        <span style={{ fontSize:9, fontWeight:800, color:MAG, background:'rgba(232,32,164,0.08)', padding:'3px 9px', borderRadius:100, letterSpacing:'.04em' }}>60 MIN</span>
+      </div>
+      <div style={{ display:'flex', flexDirection:'column', gap:11, marginBottom:14 }}>
+        {rows.map(r=>(
+          <div key={r.label}>
+            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:5 }}>
+              <span style={{ fontSize:10.5, fontWeight:700, color:MU }}>{r.label}</span>
+              <span style={{ ...DISP, fontSize:10.5, fontWeight:800, color:r.c }}>{r.pct}</span>
+            </div>
+            <div style={{ height:6, borderRadius:99, background:'rgba(33,0,93,0.06)', overflow:'hidden' }}>
+              <div style={{ width:r.pct, height:'100%', borderRadius:99, background:r.c }} />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display:'flex', alignItems:'center', gap:7, background:'rgba(124,1,255,0.06)', border:`1px solid ${BR}`, borderRadius:9, padding:'8px 11px' }}>
+        <span style={{ fontSize:12 }}>🗺️</span>
+        <span style={{ ...DISP, fontSize:10.5, fontWeight:800, color:PD }}>90-day roadmap</span>
+        <span style={{ marginLeft:'auto', fontSize:11, color:P }}>→</span>
+      </div>
+    </div>
   );
 }
 
@@ -1330,16 +1382,14 @@ export default function MarketingPage() {
                 <h3 style={{ ...DISP, fontSize:23, fontWeight:800, letterSpacing:'-.04em', color:PD, lineHeight:1.22, marginBottom:12 }}>{r.title}</h3>
                 <p style={{ fontSize:15, color:MU, lineHeight:1.8, marginBottom:16 }}>{r.body}</p>
 
-                <div style={{ display:'inline-flex', alignItems:'center', gap:7, fontSize:12.5, fontWeight:700, color:r.featured?P:MU, marginBottom:r.featured?18:24 }}>
+                <div style={{ display:'inline-flex', alignItems:'center', gap:7, fontSize:12.5, fontWeight:700, color:r.featured?P:MU, marginBottom:18 }}>
                   <span style={{ width:6, height:6, borderRadius:'50%', background:r.featured?P:SU, flexShrink:0 }} />
                   {r.meta}
                 </div>
 
-                {r.featured && (
-                  <div style={{ background:'rgba(124,1,255,0.04)', border:`1px solid ${BR}`, borderRadius:16, padding:'14px 12px 8px', marginBottom:22 }}>
-                    <AuditVenn />
-                  </div>
-                )}
+                <div style={{ marginBottom:22 }}>
+                  {r.featured ? <AuditVisual /> : <DiscoveryVisual />}
+                </div>
 
                 <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:22, display:'flex', flexDirection:'column', gap:11 }}>
                   {r.bullets.map(b=>(
