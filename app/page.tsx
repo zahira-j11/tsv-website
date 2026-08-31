@@ -830,7 +830,7 @@ export default function MarketingPage() {
       {/* Spots marker — straddles the banner edge. ?spots=1|2|3 to compare. */}
       {spotsVariant === 1 && (
         <div className="mkt-spots-sticker" aria-hidden="true" style={{
-          position:'fixed', top: bannerH - 42, right: 34, zIndex: 201,
+          position:'fixed', top: bannerH - 42, left: 34, zIndex: 201,
           width: 84, height: 84, borderRadius: '50%',
           background: '#fff', display:'flex', flexDirection:'column',
           alignItems:'center', justifyContent:'center',
@@ -846,7 +846,7 @@ export default function MarketingPage() {
 
       {spotsVariant === 2 && (
         <div className="mkt-spots-sticker" aria-hidden="true" style={{
-          position:'fixed', top: 0, right: 44, zIndex: 201,
+          position:'fixed', top: 0, left: 44, zIndex: 201,
           background: YEL, color: PD, padding: '10px 14px 16px',
           clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%)',
           boxShadow: '0 10px 26px rgba(33,0,93,0.24)', textAlign:'center', minWidth: 76,
@@ -859,7 +859,7 @@ export default function MarketingPage() {
 
       {spotsVariant === 3 && (
         <div className="mkt-spots-sticker" aria-hidden="true" style={{
-          position:'fixed', top: bannerH - 24, right: 30, zIndex: 201,
+          position:'fixed', top: bannerH - 24, left: 30, zIndex: 201,
           display:'flex', alignItems:'center', gap: 11,
           background: '#fff', borderRadius: 100, padding: '8px 18px 8px 14px',
           boxShadow: '0 12px 30px rgba(33,0,93,0.2), 0 0 0 1px rgba(33,0,93,0.06)',
@@ -893,8 +893,8 @@ export default function MarketingPage() {
           </div>
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
-            <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" className="mkt-hidden-mobile" style={{ display:'inline-block', background:PD, color:'#fff', fontSize:13, fontWeight:700, padding:'11px 24px', borderRadius:100, textDecoration:'none', transition:'opacity 160ms' }}
-              onMouseEnter={e=>(e.currentTarget.style.opacity='0.82')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>Book a call</a>
+            <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" className="mkt-hidden-mobile" style={{ display:'inline-block', background:'transparent', color:PD, fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:100, textDecoration:'none', border:`1.5px solid ${BR}`, transition:'all 160ms' }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor=PD;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=BR;}}>Book a call</a>
             <button onClick={()=>setMenu(!menu)} className="mkt-show-mobile" style={{ background:'none', border:'none', color:PD, fontSize:20, cursor:'pointer', padding:4 }}>{menu?'✕':'☰'}</button>
           </div>
         </div>
