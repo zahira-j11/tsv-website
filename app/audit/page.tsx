@@ -314,10 +314,13 @@ export default function AuditPage() {
             <div style={{ background:WH, border:`1.5px solid ${BR}`, borderRadius:24, padding:'40px 34px', textAlign:'center' }}>
               <h2 style={{ ...DISP, fontSize:'clamp(22px,3vw,30px)', fontWeight:800, letterSpacing:'-.045em', color:PD, marginBottom:14 }}>Thanks for applying</h2>
               <p style={{ fontSize:15, color:MU, lineHeight:1.8, marginBottom:24 }}>
-                The September audit spots are aimed at brands already investing in social at scale, so we don&rsquo;t think it&rsquo;s the right use of your time just yet. We&rsquo;ll keep your details and come back to you when we open spots that suit where you&rsquo;re at.
+                Thanks so much for taking the time to apply for a Social Media Audit.
+              </p>
+              <p style={{ fontSize:15, color:MU, lineHeight:1.8, marginBottom:24 }}>
+                We only have a limited number of audit spots available each month, and based on where you&rsquo;re at right now, we don&rsquo;t think a full audit would be the most useful next step for you.
               </p>
               <p style={{ fontSize:15, color:MU, lineHeight:1.8, marginBottom:28 }}>
-                In the meantime, our blog covers most of what we&rsquo;d put in a roadmap.
+                We&rsquo;ll keep your details, and as your social activity grows, we&rsquo;d love to welcome you back for a future audit.
               </p>
               <a href="/blog" style={{ display:'inline-block', background:P, color:'#fff', ...DISP, fontSize:14, fontWeight:800, padding:'15px 30px', borderRadius:14, textDecoration:'none' }}>
                 Read the blog →
