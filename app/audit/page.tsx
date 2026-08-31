@@ -152,7 +152,7 @@ export default function AuditPage() {
 
       {/* ══ APPLY ════════════════════════════════════════════ */}
       <section id="apply" style={{ padding:'56px 28px 100px', background:BG }}>
-        <div style={{ maxWidth:680, margin:'0 auto' }}>
+        <div style={{ maxWidth: step === 'qualified' ? 1040 : 680, margin:'0 auto' }}>
 
           {step === 'form' && (
             <>
@@ -235,7 +235,7 @@ export default function AuditPage() {
           )}
 
           {step === 'qualified' && (
-            <div style={{ background:WH, border:`2px solid ${GRN}`, borderRadius:24, padding:'40px 34px', textAlign:'center' }}>
+            <div style={{ background:WH, border:`2px solid ${GRN}`, borderRadius:24, padding:'36px 20px 20px', textAlign:'center' }}>
               <span style={{ fontSize:34 }}>🎉</span>
               <h2 style={{ ...DISP, fontSize:'clamp(23px,3vw,32px)', fontWeight:800, letterSpacing:'-.045em', color:PD, margin:'14px 0 12px' }}>You&rsquo;re a great fit, pick your slot</h2>
               <p style={{ fontSize:15, color:MU, lineHeight:1.75, marginBottom:28 }}>
@@ -245,7 +245,7 @@ export default function AuditPage() {
                 <iframe
                   src={`${calendarUrl ?? AUDIT_CALENDAR_URL}?embed=true`}
                   title="Book your social media audit"
-                  style={{ width:'100%', height:680, border:'none', display:'block' }}
+                  style={{ width:'100%', height:720, border:'none', display:'block' }}
                 />
               </div>
             </div>
