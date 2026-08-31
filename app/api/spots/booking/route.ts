@@ -39,8 +39,14 @@ async function parse(req: NextRequest) {
   if (!process.env.MONGODB_URI) {
     return { error: NextResponse.json({ error: 'Storage not configured' }, { status: 503 }) };
   }
-  let json: unknown;
-  try { json = await req.json(); } catch { json = {}; }
+  // Accept the details in the JSON body or as query params — HubSpot's webhook
+  // action cannot always shape a custom body, but the URL is always editable.
+  let json: Record<string, unknown> = {};
+  try { json = (await req.json()) as Record<string, unknown>; } catch { /* no body */ }
+  const q = req.nextUrl.searchParams;
+  for (const k of ['bookingId', 'email', 'name', 'startTime'] as const) {
+    if (json[k] == null && q.get(k)) json[k] = q.get(k)!;
+  }
   const parsed = Body.safeParse(json);
   if (!parsed.success) {
     return { error: NextResponse.json({ error: 'bookingId is required' }, { status: 422 }) };
