@@ -266,6 +266,7 @@ const ROUTES = [
     body:'Already looking for a social content partner? Let\u2019s talk through what you\u2019re looking to achieve and see what working together could look like.',
     meta:'30\u201345 minute discovery call',
     bullets:['Your goals and current social setup','The content and service we\u2019d recommend','Relevant examples and results','Scope, pricing and timelines'],
+    forWho:'Brands with budget already in place who want a long-term content partner rather than another freelancer.',
     footnote:'Monthly partnerships from \u00a32,500 + VAT',
     cta:'Book a Discovery Call', href:'#discovery-call',
   },
@@ -276,6 +277,7 @@ const ROUTES = [
     body:'We\u2019ll analyse your content, competitors and paid ads before we meet, then show you exactly what we\u2019d change.',
     meta:'60-minute personalised audit',
     bullets:['Organic social review','Competitor and category analysis','Paid creative review','Personalised 90-day roadmap'],
+    forWho:'Brands already posting or running ads who want an expert read on what to fix first \u2014 no commitment either way.',
     footnote:'Only 7 spots available for September',
     cta:'Secure Your Free Audit', href:'/audit',
   },
@@ -288,6 +290,26 @@ const FAQS = [
   { q:'We already have an in-house team. Will this clash?', a:"Not at all. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
   { q:"What's the minimum commitment?",                   a:"Retainers start at £2,500 per month (ex. VAT) on a 3-month initial basis." },
 ];
+
+// ─── Audit Venn — the roadmap falls out of the three analyses ──
+function AuditVenn() {
+  const ring = (cx:number, cy:number, fill:string) => (
+    <circle cx={cx} cy={cy} r={54} fill={fill} fillOpacity={0.16} stroke={fill} strokeOpacity={0.5} strokeWidth={1.5} />
+  );
+  const cap: React.CSSProperties = { ...DISP, fontSize: 9, fontWeight: 800, letterSpacing: '.06em' };
+  return (
+    <svg viewBox="0 0 260 200" style={{ width:'100%', maxWidth:300, display:'block', margin:'0 auto' }} role="img" aria-label="Organic review, competitor analysis and paid creative review combine into a 90-day roadmap">
+      {ring(96, 74, P)}
+      {ring(164, 74, MAG)}
+      {ring(130, 132, '#0CB876')}
+      <text x="66" y="56" textAnchor="middle" style={cap} fill={P}>ORGANIC</text>
+      <text x="196" y="56" textAnchor="middle" style={cap} fill={MAG}>COMPETITOR</text>
+      <text x="130" y="176" textAnchor="middle" style={cap} fill="#0CB876">PAID CREATIVE</text>
+      <text x="130" y="94" textAnchor="middle" style={{ ...DISP, fontSize:11, fontWeight:800, letterSpacing:'-.01em' }} fill={PD}>90-DAY</text>
+      <text x="130" y="107" textAnchor="middle" style={{ ...DISP, fontSize:11, fontWeight:800, letterSpacing:'-.01em' }} fill={PD}>ROADMAP</text>
+    </svg>
+  );
+}
 
 // ─── Backend reel type ─────────────────────────────────────
 interface ReelData {
@@ -767,6 +789,7 @@ export default function MarketingPage() {
   const [sent,setSent]         = useState(false);
   const [reels,setReels]       = useState<ReelData[]>([]);
   const [bannerH,setBannerH]   = useState(0);
+  const [showCalendar,setShowCalendar] = useState(false);
   const bannerRef              = useRef<HTMLDivElement>(null);
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
@@ -822,6 +845,12 @@ export default function MarketingPage() {
 
   const go = (id:string) => { setMenu(false); document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }); };
   const inp: React.CSSProperties = { padding:'14px 18px', borderRadius:12, border:`1.5px solid ${BR}`, background:WH, color:PD, fontSize:14, outline:'none', width:'100%', boxSizing:'border-box', fontFamily:'inherit' };
+  const ctaStyle = (filled: boolean): React.CSSProperties => ({
+    display:'block', textAlign:'center', padding:'16px', borderRadius:14, textDecoration:'none',
+    background: filled ? P : 'transparent', color: filled ? '#fff' : PD,
+    border: filled ? 'none' : `2px solid ${BR}`,
+    ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms',
+  });
   const btnP: React.CSSProperties = { display:'inline-block', background:`linear-gradient(135deg,${P},${PB})`, color:'#fff', fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:9, textDecoration:'none', cursor:'pointer', border:'none', fontFamily:'inherit' };
 
   return (
@@ -1279,8 +1308,9 @@ export default function MarketingPage() {
             <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, maxWidth:760, margin:'0 auto' }}>Whether you&rsquo;re ready to work together or want to understand where your biggest social opportunities are, choose the option that best fits where you&rsquo;re at.</p>
           </div>
 
-          {/* Two routes: hire us (scrolls to the existing calendar below) or the free audit */}
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(340px,1fr))', gap:20, alignItems:'stretch', marginBottom:64 }}>
+          {/* Two routes: hire us (expands the calendar in place) or the free audit */}
+          {!showCalendar && (
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(340px,1fr))', gap:20, alignItems:'stretch' }}>
             {ROUTES.map((r,i)=>(
               <div key={r.key} data-reveal data-reveal-delay={String(i*0.1)} style={{
                 display:'flex', flexDirection:'column',
@@ -1300,12 +1330,18 @@ export default function MarketingPage() {
                 <h3 style={{ ...DISP, fontSize:23, fontWeight:800, letterSpacing:'-.04em', color:PD, lineHeight:1.22, marginBottom:12 }}>{r.title}</h3>
                 <p style={{ fontSize:15, color:MU, lineHeight:1.8, marginBottom:16 }}>{r.body}</p>
 
-                <div style={{ display:'inline-flex', alignItems:'center', gap:7, fontSize:12.5, fontWeight:700, color:r.featured?P:MU, marginBottom:24 }}>
+                <div style={{ display:'inline-flex', alignItems:'center', gap:7, fontSize:12.5, fontWeight:700, color:r.featured?P:MU, marginBottom:r.featured?18:24 }}>
                   <span style={{ width:6, height:6, borderRadius:'50%', background:r.featured?P:SU, flexShrink:0 }} />
                   {r.meta}
                 </div>
 
-                <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:24, display:'flex', flexDirection:'column', gap:11 }}>
+                {r.featured && (
+                  <div style={{ background:'rgba(124,1,255,0.04)', border:`1px solid ${BR}`, borderRadius:16, padding:'14px 12px 8px', marginBottom:22 }}>
+                    <AuditVenn />
+                  </div>
+                )}
+
+                <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:22, display:'flex', flexDirection:'column', gap:11 }}>
                   {r.bullets.map(b=>(
                     <div key={b} style={{ display:'flex', alignItems:'flex-start', gap:10, fontSize:14, color:MU, lineHeight:1.6 }}>
                       <span style={{ color:r.featured?P:GRN, flexShrink:0, fontWeight:800, fontSize:12, marginTop:2 }}>✓</span>{b}
@@ -1313,34 +1349,46 @@ export default function MarketingPage() {
                   ))}
                 </div>
 
+                <div style={{ borderTop:`1px solid ${BR}`, paddingTop:18, marginBottom:22 }}>
+                  <p style={{ ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase', color:r.featured?P:SU, margin:'0 0 7px' }}>Who is this for?</p>
+                  <p style={{ fontSize:13.5, color:MU, lineHeight:1.7, margin:0 }}>{r.forWho}</p>
+                </div>
+
                 <div style={{ marginTop:'auto' }}>
                   <p style={{ fontSize:12.5, fontWeight:700, color:r.featured?MAG:SU, marginBottom:16 }}>{r.footnote}</p>
-                  {r.href.startsWith('#') ? (
-                    <a href={r.href} style={{ display:'block', textAlign:'center', padding:'16px', borderRadius:14, textDecoration:'none', background:r.featured?P:'transparent', color:r.featured?'#fff':PD, border:r.featured?'none':`2px solid ${BR}`, ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
-                      onMouseEnter={e=>{ const t=e.currentTarget as HTMLElement; if(r.featured){t.style.opacity='.88';} else {t.style.borderColor=PD;} }}
-                      onMouseLeave={e=>{ const t=e.currentTarget as HTMLElement; t.style.opacity='1'; if(!r.featured) t.style.borderColor=BR; }}>
-                      {r.cta}
-                    </a>
+                  {r.featured ? (
+                    <a href={r.href} style={ctaStyle(true)}
+                      onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}
+                      onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</a>
                   ) : (
-                    <a href={r.href} style={{ display:'block', textAlign:'center', padding:'16px', borderRadius:14, textDecoration:'none', background:r.featured?P:'transparent', color:r.featured?'#fff':PD, border:r.featured?'none':`2px solid ${BR}`, ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
-                      onMouseEnter={e=>{ const t=e.currentTarget as HTMLElement; if(r.featured){t.style.opacity='.88';} else {t.style.borderColor=PD;} }}
-                      onMouseLeave={e=>{ const t=e.currentTarget as HTMLElement; t.style.opacity='1'; if(!r.featured) t.style.borderColor=BR; }}>
-                      {r.cta}
-                    </a>
+                    <button onClick={()=>setShowCalendar(true)} style={{ ...ctaStyle(false), width:'100%', cursor:'pointer', fontFamily:'inherit' }}
+                      onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.borderColor=PD; }}
+                      onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.borderColor=BR; }}>{r.cta}</button>
                   )}
                 </div>
               </div>
             ))}
           </div>
+          )}
 
-          {/* Existing discovery-call calendar — unchanged, Card 1 scrolls here */}
-          <div id="discovery-call" style={{ background:'#fff', borderRadius:20, overflow:'hidden', boxShadow:'0 32px 80px rgba(0,0,0,0.25)', scrollMarginTop:120 }}>
-            <iframe
-              src="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-?embed=true"
-              title="Book a discovery call"
-              style={{ width:'100%', height:700, border:'none', display:'block' }}
-            />
-          </div>
+          {/* Discovery calendar — same HubSpot embed, revealed inside this route */}
+          {showCalendar && (
+            <div style={{ background:WH, border:`2px solid ${BR}`, borderRadius:26, padding:'30px 28px 28px', boxShadow:'0 24px 64px rgba(0,0,0,0.18)' }}>
+              <button onClick={()=>setShowCalendar(false)} style={{ background:'none', border:'none', color:MU, fontSize:13, fontWeight:700, cursor:'pointer', padding:0, marginBottom:18, fontFamily:'inherit' }}>
+                ← Back to options
+              </button>
+              <div style={{ ...DISP, fontSize:10, fontWeight:800, color:SU, letterSpacing:'.12em', textTransform:'uppercase', marginBottom:10 }}>Ready to work together?</div>
+              <h3 style={{ ...DISP, fontSize:23, fontWeight:800, letterSpacing:'-.04em', color:PD, marginBottom:8 }}>Book your discovery call</h3>
+              <p style={{ fontSize:14.5, color:MU, lineHeight:1.7, marginBottom:22 }}>30&ndash;45 minutes to talk through your goals, what we&rsquo;d recommend, and scope and pricing.</p>
+              <div style={{ borderRadius:18, overflow:'hidden', border:`1.5px solid ${BR}` }}>
+                <iframe
+                  src="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-?embed=true"
+                  title="Book a discovery call"
+                  style={{ width:'100%', height:700, border:'none', display:'block' }}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
