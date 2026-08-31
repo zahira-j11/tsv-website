@@ -293,6 +293,119 @@ const FAQS = [
   { q:"What's the minimum commitment?",                   a:"Retainers start at £2,000 per month (ex. VAT) on a 3-month initial basis." },
 ];
 
+// ─── Route card deliverable previews ──────────────────────────
+// Mock documents, warm paper tones, real client frames with pastel
+// annotations — showing what each route actually hands you.
+const PAPER='#FDFBF7', INK='#2B1A3D';
+const PINK='#FBE4EE', MINT='#DFF3EA', LILAC='#EDE6FF', BUTTER='#FCF1D4';
+const CLD='https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/';
+const frame=(p:string)=>(CLD+p).replace(/\.(mp4|mov|webm)$/,'.jpg').replace('f_auto,','');
+const F_HABITO='v1782048070/tsv-website/habito-street.mp4';
+const F_UNI='v1782048505/tsv-website/unicompare-street.mp4';
+const F_PREP='v1782048333/tsv-website/prepkitchen-ugc.mp4';
+
+function Sheet({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ background:PAPER, borderRadius:14, border:'1px solid rgba(43,26,61,0.09)',
+      boxShadow:'0 10px 26px rgba(43,26,61,0.10), 0 2px 5px rgba(43,26,61,0.05)', overflow:'hidden' }}>
+      {children}
+    </div>
+  );
+}
+
+function Row({ title, body, img, tag, tagBg }:{ title:string; body:string; img:string; tag:string; tagBg:string }) {
+  return (
+    <div style={{ display:'flex', gap:11, padding:'12px 13px', borderBottom:'1px solid rgba(43,26,61,0.07)' }}>
+      <div style={{ flex:1, minWidth:0 }}>
+        <div style={{ ...DISP, fontSize:9.5, fontWeight:800, letterSpacing:'.07em', color:INK, marginBottom:4 }}>{title}</div>
+        <p style={{ fontSize:10, color:'rgba(43,26,61,0.6)', lineHeight:1.5, margin:0 }}>{body}</p>
+      </div>
+      <div style={{ position:'relative', flexShrink:0 }}>
+        <div style={{ width:46, height:66, borderRadius:7, overflow:'hidden', background:'rgba(43,26,61,0.06)' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={frame(img)} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+        </div>
+        <span style={{ position:'absolute', top:14, left:-16, background:tagBg, color:INK, fontSize:7.5, fontWeight:800,
+          padding:'3px 6px', borderRadius:5, whiteSpace:'nowrap', boxShadow:'0 2px 6px rgba(43,26,61,0.12)' }}>{tag}</span>
+      </div>
+    </div>
+  );
+}
+
+function AuditDoc() {
+  return (
+    <Sheet>
+      <div style={{ background:INK, padding:'13px 14px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+        <div>
+          <div style={{ ...DISP, fontSize:11.5, fontWeight:800, color:'#fff', letterSpacing:'-.01em' }}>SOCIAL MEDIA AUDIT</div>
+          <div style={{ fontSize:8.5, fontWeight:700, letterSpacing:'.1em', color:'rgba(255,255,255,0.5)', marginTop:2 }}>YOUR BRAND</div>
+        </div>
+        <span style={{ width:22, height:22, borderRadius:'50%', background:P, display:'flex', alignItems:'center', justifyContent:'center', fontSize:10 }}>👁</span>
+      </div>
+      <Row title="CONTENT ANALYSIS"  body="Your hooks are too slow and aren’t stopping the scroll." img={F_HABITO} tag="hook too slow" tagBg={PINK} />
+      <Row title="COMPETITOR GAP"    body="Competitors are using this format and you’re not showing up here." img={F_UNI} tag="opportunity" tagBg={MINT} />
+      <Row title="CONTENT OPPORTUNITY" body="Test relatable, first-person stories in this angle." img={F_PREP} tag="test this" tagBg={LILAC} />
+      <div style={{ padding:'12px 13px 13px' }}>
+        <div style={{ ...DISP, fontSize:9.5, fontWeight:800, letterSpacing:'.07em', color:INK, marginBottom:9 }}>90-DAY ROADMAP</div>
+        <div style={{ display:'flex', alignItems:'center', gap:0 }}>
+          {[['30','Foundation'],['60','Test'],['90','Scale']].map(([d,l],i)=>(
+            <div key={d} style={{ flex:1, display:'flex', alignItems:'center' }}>
+              <div style={{ textAlign:'center', flexShrink:0 }}>
+                <span style={{ display:'block', width:9, height:9, borderRadius:'50%', background:P, margin:'0 auto 5px' }} />
+                <div style={{ ...DISP, fontSize:8.5, fontWeight:800, color:INK }}>{d} DAYS</div>
+                <div style={{ fontSize:7.5, color:'rgba(43,26,61,0.5)' }}>{l}</div>
+              </div>
+              {i<2 && <div style={{ flex:1, height:1.5, background:'rgba(124,1,255,0.25)', margin:'0 6px 22px' }} />}
+            </div>
+          ))}
+        </div>
+      </div>
+    </Sheet>
+  );
+}
+
+const WEEKS = [
+  ['UGC Testimonial', PINK], ['Street Interview', MINT], ['How-To', LILAC], ['Behind the Scenes', BUTTER],
+  ['Listicle', LILAC], ['POV Story', PINK], ['Myth Busting', MINT], ['Trend React', BUTTER],
+];
+
+function PlanDoc() {
+  return (
+    <Sheet>
+      <div style={{ background:INK, padding:'13px 14px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+        <div>
+          <div style={{ ...DISP, fontSize:11.5, fontWeight:800, color:'#fff', letterSpacing:'-.01em' }}>CONTENT CALENDAR</div>
+          <div style={{ fontSize:8.5, fontWeight:700, letterSpacing:'.1em', color:'rgba(255,255,255,0.5)', marginTop:2 }}>PLANNED, FILMED, POSTED BY US</div>
+        </div>
+        <span style={{ width:22, height:22, borderRadius:'50%', background:P, display:'flex', alignItems:'center', justifyContent:'center', fontSize:10 }}>👁</span>
+      </div>
+      <div style={{ padding:'12px 13px 13px' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:6, marginBottom:8 }}>
+          {['WEEK 1','WEEK 2','WEEK 3','WEEK 4'].map(w=>(
+            <div key={w} style={{ ...DISP, fontSize:8, fontWeight:800, letterSpacing:'.06em', color:'rgba(43,26,61,0.45)', textAlign:'center' }}>{w}</div>
+          ))}
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:6 }}>
+          {WEEKS.map(([label,bg],i)=>(
+            <div key={i} style={{ background:bg as string, borderRadius:7, padding:'9px 6px', minHeight:44,
+              display:'flex', alignItems:'center', justifyContent:'center', textAlign:'center' }}>
+              <span style={{ fontSize:8.5, fontWeight:700, color:INK, lineHeight:1.3 }}>{label as string}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ display:'flex', gap:6, marginTop:8 }}>
+          {[F_HABITO,F_UNI,F_PREP].map(f=>(
+            <div key={f} style={{ flex:1, height:40, borderRadius:6, overflow:'hidden', background:'rgba(43,26,61,0.06)' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={frame(f)} alt="" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </Sheet>
+  );
+}
+
 // ─── Backend reel type ─────────────────────────────────────
 interface ReelData {
   _id: string;
@@ -1313,6 +1426,10 @@ export default function MarketingPage() {
                 </div>
 
 
+                <div style={{ marginBottom:22 }}>
+                  {r.featured ? <AuditDoc /> : <PlanDoc />}
+                </div>
+
                 <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:22 }}>
                   <p style={{ ...DISP, fontSize:12.5, fontWeight:800, color:PD, margin:'0 0 13px' }}>{r.coverLabel}</p>
                   <div style={{ display:'flex', flexDirection:'column', gap:11 }}>
@@ -1345,6 +1462,19 @@ export default function MarketingPage() {
               </div>
             ))}
           </div>
+          )}
+
+          {/* Trusted-by row, as in the reference — sits under both routes */}
+          {!showCalendar && (
+            <div style={{ marginTop:44, textAlign:'center' }}>
+              <div style={{ ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.14em', textTransform:'uppercase', color:'rgba(255,253,237,0.42)', marginBottom:22 }}>Trusted by brands like</div>
+              <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:38, flexWrap:'wrap' }}>
+                {['habito','plum','unicompare','applicaa','blackbullion','prepkitchen'].map(l=>(
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={l} src={`/logos/${l}.png`} alt="" style={{ height:26, width:'auto', objectFit:'contain', filter:'brightness(0) invert(1)', opacity:0.5 }} />
+                ))}
+              </div>
+            </div>
           )}
 
           {/* Discovery calendar — same HubSpot embed, revealed inside this route */}
