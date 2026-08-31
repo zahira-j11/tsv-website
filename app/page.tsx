@@ -261,13 +261,14 @@ const PLANS = [
 const ROUTES = [
   {
     key:'hire', featured:false, badge:null as string|null,
-    eyebrow:'Ready to work together?',
-    title:'I want to work with The Social Vision',
-    body:'Already looking for a social content partner? Let\u2019s talk through what you\u2019re looking to achieve and see what working together could look like.',
+    eyebrow:'Ready to hand it over?',
+    title:'Take Social Off Your To-Do List',
+    body:'If you already know you need more from social, let\u2019s talk about what handing strategy, production and organic posting over to us could look like.',
     meta:'30\u201345 minute discovery call',
-    bullets:['Your goals and current social setup','The content and service we\u2019d recommend','Relevant examples and results','Scope, pricing and timelines'],
-    forWho:'Brands with budget already in place who want a long-term content partner rather than another freelancer.',
-    footnote:'Partnerships from \u00a32,000 + VAT per month',
+    coverLabel:'We\u2019ll cover:',
+    bullets:['Your goals and what\u2019s getting in the way','What we\u2019d take off your plate','The content and formats we\u2019d recommend','Relevant results from brands like yours','Scope, pricing and next steps'],
+    bestFor:'Brands ready for an ongoing social content partner.',
+    footnote:'Partnerships from \u00a32,000 + VAT/month',
     cta:'Book a Discovery Call', href:'#discovery-call',
   },
   {
@@ -276,8 +277,9 @@ const ROUTES = [
     title:'Get a FREE Social Media Audit',
     body:'We\u2019ll analyse your content, competitors and paid ads before we meet, then show you exactly what we\u2019d change.',
     meta:'60-minute personalised audit',
+    coverLabel:'We\u2019ll cover:',
     bullets:['Organic social review','Competitor and category analysis','Paid creative review','Personalised 90-day roadmap'],
-    forWho:'Brands already posting or running ads who want an expert read on what to fix first \u2014 no commitment either way.',
+    bestFor:'Brands already posting or running ads who want an expert read on what to fix first.',
     footnote:'Only 7 spots available for September',
     cta:'Secure Your Free Audit', href:'/audit',
   },
@@ -1311,17 +1313,21 @@ export default function MarketingPage() {
                 </div>
 
 
-                <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:22, display:'flex', flexDirection:'column', gap:11 }}>
+                <div style={{ borderTop:`1px solid ${BR}`, paddingTop:22, marginBottom:22 }}>
+                  <p style={{ ...DISP, fontSize:12.5, fontWeight:800, color:PD, margin:'0 0 13px' }}>{r.coverLabel}</p>
+                  <div style={{ display:'flex', flexDirection:'column', gap:11 }}>
                   {r.bullets.map(b=>(
                     <div key={b} style={{ display:'flex', alignItems:'flex-start', gap:10, fontSize:14, color:MU, lineHeight:1.6 }}>
                       <span style={{ color:P, flexShrink:0, fontWeight:800, fontSize:12, marginTop:2 }}>✓</span>{b}
                     </div>
                   ))}
+                  </div>
                 </div>
 
                 <div style={{ borderTop:`1px solid ${BR}`, paddingTop:18, marginBottom:22 }}>
-                  <p style={{ ...DISP, fontSize:10, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase', color:P, margin:'0 0 7px' }}>Who is this for?</p>
-                  <p style={{ fontSize:13.5, color:MU, lineHeight:1.7, margin:0 }}>{r.forWho}</p>
+                  <p style={{ fontSize:13.5, color:MU, lineHeight:1.7, margin:0 }}>
+                    <span style={{ ...DISP, fontWeight:800, color:PD }}>Best for:</span> {r.bestFor}
+                  </p>
                 </div>
 
                 <div style={{ marginTop:'auto' }}>
