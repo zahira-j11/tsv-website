@@ -866,24 +866,41 @@ export default function MarketingPage() {
   };
 
   /**
-   * Testimonials advance on their own, a card at a time, and wrap back to the
-   * start at the end. Paused while someone is hovering or has just touched the
-   * track, so it never pulls a quote away mid-sentence, and disabled outright
-   * for anyone who has asked for reduced motion.
+   * Testimonials drift continuously rather than stepping card to card, so the
+   * section always looks busy. The list is rendered twice and the position
+   * wraps at the halfway mark, which lands on an identical card and makes the
+   * loop seamless — there is no visible jump back to the start.
+   *
+   * Paused on hover, touch and focus, and skipped entirely under
+   * prefers-reduced-motion.
    */
+  const tPos = useRef(0);
   useEffect(() => {
     if (tPaused) return;
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const id = window.setInterval(() => {
+    const SPEED = 42; // px per second — moving enough to notice, still readable
+    let raf = 0;
+    let last = 0;
+    const step = (ts: number) => {
       const el = testimonialsRef.current;
-      if (!el) return;
-      const max = el.scrollWidth - el.clientWidth;
-      const card = el.firstElementChild as HTMLElement | null;
-      const step = card ? card.offsetWidth + 20 : 360;
-      if (el.scrollLeft >= max - 4) el.scrollTo({ left: 0, behavior:'smooth' });
-      else el.scrollBy({ left: step, behavior:'smooth' });
-    }, 4500);
-    return () => window.clearInterval(id);
+      if (el) {
+        // Read the browser's own hover state rather than relying on enter/leave
+        // events firing, so the drift always stops under the cursor.
+        const hovered = el.matches(':hover');
+        if (last && !hovered) {
+          const half = el.scrollWidth / 2;
+          // If the arrows or a drag moved the track, carry on from there.
+          if (Math.abs(el.scrollLeft - tPos.current) > 2) tPos.current = el.scrollLeft;
+          tPos.current += (SPEED * (ts - last)) / 1000;
+          if (half > 0 && tPos.current >= half) tPos.current -= half;
+          el.scrollLeft = tPos.current;
+        }
+        last = ts;
+      }
+      raf = window.requestAnimationFrame(step);
+    };
+    raf = window.requestAnimationFrame(step);
+    return () => window.cancelAnimationFrame(raf);
   }, [tPaused]);
 
   const tNav: React.CSSProperties = {
@@ -1411,10 +1428,12 @@ export default function MarketingPage() {
             // Same scroll trap as the other tracks: overflow-x:auto promotes
             // overflow-y to auto, which then eats vertical wheel gestures.
             overflowY:'hidden', alignItems:'stretch',
-            scrollSnapType:'x proximity', overscrollBehaviorX:'contain',
+            // No scroll snapping here: snap points fight a constant drift,
+            // dragging the track back a few pixels every frame.
+            overscrollBehaviorX:'contain',
           }}>
-            {TESTIMONIALS.map((t,i)=>(
-              <div key={i} data-reveal data-reveal-delay={String(i*0.09)} style={{ flex:'0 0 min(340px, 82vw)', scrollSnapAlign:'start', padding:'36px', background:BG, border:`2px solid ${BR}`, borderRadius:26, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 220ms ease, box-shadow 220ms ease' }}
+            {[...TESTIMONIALS,...TESTIMONIALS].map((t,i)=>(
+              <div key={i} aria-hidden={i >= TESTIMONIALS.length} style={{ flex:'0 0 min(340px, 82vw)', padding:'36px', background:BG, border:`2px solid ${BR}`, borderRadius:26, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 220ms ease, box-shadow 220ms ease' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-7px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 24px 64px rgba(33,0,93,0.1)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; (e.currentTarget as HTMLElement).style.boxShadow='none'; }}>
                 <div style={{ position:'absolute', top:0, left:0, right:0, height:4, background:t.g }} />
