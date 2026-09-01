@@ -256,6 +256,9 @@ const TESTIMONIALS = [
   { quote:"The Social Vision has unlocked a new level of creative production for us. We have been able to test new creatives and styles at speed which has helped us grow our paid social channels significantly.",   name:'Georgie Hodgkins-Brown', role:'Performance Marketing Manager, Plum',         initials:'GH', g:`linear-gradient(135deg,${MAG},${PMAG})`,  logoSrc:'/logos/plum.png',      logoScale:1.0, logoBg:WH },
   { quote:"The Social Vision have helped us go viral multiple times without us having to lift a finger. They've helped us generate over 1 Million views amongst students.",                                          name:'Mandy Sangha',           role:'Marketing Manager, Applicaa',                 initials:'MS', g:'linear-gradient(135deg,#027A3A,#08F683)',   logoSrc:'/logos/applicaa.png',  logoScale:1.6, logoBg:'#ED7470' },
   { quote:"They have a deep understanding of audience psychology and are able to translate that insight into genuinely engaging content. Their production process is seamless and high-quality.",                     name:'Amy Young',              role:'Performance Marketing Manager, Prep Kitchen', initials:'AY', g:`linear-gradient(135deg,${PD},${P})`,      logoSrc:'/logos/prepkitchen.png', logoScale:1.0, logoBg:WH },
+  { quote:'Working with The Social Vision has been an excellent experience. Their work ethic is second to none, and their attention to detail gives real confidence at every stage of the process. They combine strong strategic thinking with flawless execution, ensuring nothing is overlooked.', name:'Marc Castro',            role:'Content Manager, Plum',                       initials:'MC', g:`linear-gradient(135deg,${P},${MAG})`,     logoSrc:'/logos/plum.png',      logoScale:1.0, logoBg:WH },
+  { quote:'The Social Vision played a pivotal role in helping TALAB reach 1 million views within just the first 5 weeks of our collaboration. Their innovative approach and strategic insights were key to this rapid success. We\u2019re excited to continue working together and achieving even greater milestones.', name:'Mirkazim Seyidzade',     role:'CEO, Talab',                                  initials:'MS', g:`linear-gradient(135deg,${PD},${PB})`,     logoSrc:undefined,              logoScale:1.0, logoBg:WH },
+  { quote:"The Social Vision have done what they\u2019ve said they would at every single stage \u2014 and that\u2019s rare! It\u2019s been easy and a pleasure to work with the team and we hope for continued success.", name:'Danielle Coe',           role:'COO, Blackbullion',                           initials:'DC', g:`linear-gradient(135deg,${MAG},${PMAG})`,  logoSrc:'/logos/blackbullion.png', logoScale:1.4, logoBg:'#1A1033' },
 ];
 
 const PLANS = [
@@ -803,6 +806,7 @@ export default function MarketingPage() {
   const [spots,setSpots]       = useState<SpotsInfo>(defaultSpots());
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
+  const testimonialsRef        = useRef<HTMLDivElement>(null);
 
   useReveal();
 
@@ -849,6 +853,22 @@ export default function MarketingPage() {
   const scrollHof = (dir: 'left' | 'right') => {
     if (!hofRef.current) return;
     hofRef.current.scrollBy({ left: dir === 'right' ? 460 : -460, behavior:'smooth' });
+  };
+
+  // One card plus its gap, so the arrows advance the testimonial track by a
+  // whole card rather than landing mid-quote.
+  const scrollTestimonials = (dir: 1 | -1) => {
+    if (!testimonialsRef.current) return;
+    const card = testimonialsRef.current.firstElementChild as HTMLElement | null;
+    const step = card ? card.offsetWidth + 20 : 360;
+    testimonialsRef.current.scrollBy({ left: dir * step, behavior:'smooth' });
+  };
+
+  const tNav: React.CSSProperties = {
+    position:'absolute', top:'50%', transform:'translateY(-50%)',
+    width:38, height:38, borderRadius:'50%', border:'none', background:PD, color:'#fff',
+    fontSize:16, cursor:'pointer', zIndex:3, boxShadow:'0 6px 20px rgba(33,0,93,0.28)',
+    display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'inherit',
   };
 
   const go = (id:string) => { setMenu(false); document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }); };
@@ -1254,9 +1274,18 @@ export default function MarketingPage() {
             <span style={{ display:'inline-block', background:'rgba(232,32,164,0.1)', color:MAG, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Testimonials</span>
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Don't take <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">our word</em> for it.</h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px,1fr))', gap:20 }}>
+          <div style={{ position:'relative' }}>
+            <button aria-label="Previous testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(-1)} style={{ ...tNav, left:-16 }}>&lsaquo;</button>
+            <button aria-label="Next testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(1)} style={{ ...tNav, right:-16 }}>&rsaquo;</button>
+          <div ref={testimonialsRef} className="mkt-services-track" style={{
+            display:'flex', gap:20, overflowX:'auto', padding:'10px 2px 24px',
+            // Same scroll trap as the other tracks: overflow-x:auto promotes
+            // overflow-y to auto, which then eats vertical wheel gestures.
+            overflowY:'hidden', alignItems:'stretch',
+            scrollSnapType:'x proximity', overscrollBehaviorX:'contain',
+          }}>
             {TESTIMONIALS.map((t,i)=>(
-              <div key={i} data-reveal data-reveal-delay={String(i*0.09)} style={{ padding:'36px', background:BG, border:`2px solid ${BR}`, borderRadius:26, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 220ms ease, box-shadow 220ms ease' }}
+              <div key={i} data-reveal data-reveal-delay={String(i*0.09)} style={{ flex:'0 0 min(340px, 82vw)', scrollSnapAlign:'start', padding:'36px', background:BG, border:`2px solid ${BR}`, borderRadius:26, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 220ms ease, box-shadow 220ms ease' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-7px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 24px 64px rgba(33,0,93,0.1)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; (e.currentTarget as HTMLElement).style.boxShadow='none'; }}>
                 <div style={{ position:'absolute', top:0, left:0, right:0, height:4, background:t.g }} />
@@ -1277,6 +1306,7 @@ export default function MarketingPage() {
                 </div>
               </div>
             ))}
+          </div>
           </div>
         </div>
       </section>
