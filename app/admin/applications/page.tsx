@@ -20,6 +20,7 @@ type Application = {
   name: string;
   email: string;
   company: string;
+  jobTitle: string;
   website: string;
   platforms: string[];
   budget: string;
@@ -29,10 +30,10 @@ type Application = {
 
 /** The form values, spelled the way you'd say them rather than the stored keys. */
 const BUDGET_LABEL: Record<string, string> = {
-  'under-2k':  'Under £2,000',
-  '2k-3.5k':   '£2,000 – £3,500',
-  '3.5k-5k':   '£3,500 – £5,000',
-  '5k-10k':    '£5,000 – £10,000',
+  'under-2k':  '£0 – £1,999',
+  '2k-3.5k':   '£2,000 – £3,499',
+  '3.5k-5k':   '£3,500 – £4,999',
+  '5k-10k':    '£5,000 – £9,999',
   '10k-plus':  '£10,000+',
   // Brackets used before the gate moved to £2,000 — kept so applications
   // submitted under the old form still read as money rather than a slug.
@@ -41,10 +42,14 @@ const BUDGET_LABEL: Record<string, string> = {
   '2.5k-5k':   '£2,500 – £5,000',
 };
 const TEAM_LABEL: Record<string, string> = {
-  'solo':     'Just me',
-  '2-10':     '2 – 10',
-  '11-50':    '11 – 50',
-  '50-plus':  '50+',
+  'solo':      'Just me',
+  '2-10':      '2 – 10',
+  '11-50':     '11 – 50',
+  '51-200':    '51 – 200',
+  '201-1000':  '201 – 999',
+  '1000-plus': '1,000+',
+  // Retired when the upper bands were split out.
+  '50-plus':   '50+',
 };
 
 type Filter = 'declined' | 'qualified' | 'all';
@@ -90,11 +95,11 @@ export default function ApplicationsPage() {
   /** Everything on screen, as a spreadsheet. */
   const downloadCsv = () => {
     const cell = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-    const head = ['Date','Outcome','Month','Name','Email','Company','Website','Platforms','Budget','Team size','Biggest challenge'];
+    const head = ['Date','Outcome','Month','Name','Job title','Email','Company','Website','Platforms','Budget','Team size','Biggest challenge'];
     const body = shown.map(a => [
       new Date(a.createdAt).toLocaleString('en-GB'),
       a.qualified ? 'Qualified' : 'Declined',
-      a.month, a.name, a.email, a.company, a.website,
+      a.month, a.name, a.jobTitle, a.email, a.company, a.website,
       a.platforms.join(' / '),
       BUDGET_LABEL[a.budget] ?? a.budget,
       TEAM_LABEL[a.teamSize] ?? a.teamSize,
@@ -195,7 +200,7 @@ export default function ApplicationsPage() {
                       {a.qualified ? 'Qualified' : 'Declined'}
                     </span>
                     <span style={{ ...DISP, fontSize:15, fontWeight:800 }}>{a.company}</span>
-                    <span style={{ fontSize:13, color:MU }}>{a.name}</span>
+                    <span style={{ fontSize:13, color:MU }}>{a.name}{a.jobTitle ? `, ${a.jobTitle}` : ''}</span>
                     <div style={{ flex:1 }} />
                     <span style={{ ...DISP, fontSize:13, fontWeight:800, color: a.qualified ? PD : MAG }}>
                       {BUDGET_LABEL[a.budget] ?? a.budget}

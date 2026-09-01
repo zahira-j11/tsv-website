@@ -30,19 +30,23 @@ const AUDIT_CALENDAR_URL = 'https://meetings-eu1.hubspot.com/thesocialvision/soc
 
 const PLATFORMS = ['TikTok', 'Instagram', 'YouTube', 'LinkedIn', 'Meta Ads', 'Not posting yet'];
 
+// Bands are cumulative and never share a boundary, so there is exactly one
+// correct answer for any figure.
 const BUDGET = [
-  { v:'under-2k',  l:'Under £2,000 / month' },
-  { v:'2k-3.5k',   l:'£2,000 – £3,500 / month' },
-  { v:'3.5k-5k',   l:'£3,500 – £5,000 / month' },
-  { v:'5k-10k',    l:'£5,000 – £10,000 / month' },
+  { v:'under-2k',  l:'£0 – £1,999 / month' },
+  { v:'2k-3.5k',   l:'£2,000 – £3,499 / month' },
+  { v:'3.5k-5k',   l:'£3,500 – £4,999 / month' },
+  { v:'5k-10k',    l:'£5,000 – £9,999 / month' },
   { v:'10k-plus',  l:'£10,000+ / month' },
 ];
 
 const TEAM = [
-  { v:'solo',     l:'Just me' },
-  { v:'2-10',     l:'2 – 10 people' },
-  { v:'11-50',    l:'11 – 50 people' },
-  { v:'50-plus',  l:'50+ people' },
+  { v:'solo',      l:'Just me' },
+  { v:'2-10',      l:'2 – 10 people' },
+  { v:'11-50',     l:'11 – 50 people' },
+  { v:'51-200',    l:'51 – 200 people' },
+  { v:'201-1000',  l:'201 – 999 people' },
+  { v:'1000-plus', l:'1,000+ people' },
 ];
 
 // Same floating orbs as the main site — the mkt-orb-* animations are global.
@@ -119,6 +123,7 @@ export default function AuditPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: f.get('name'), email: f.get('email'), company: f.get('company'),
+          jobTitle: f.get('jobTitle'),
           website: f.get('website'), platforms,
           budget: f.get('budget'), teamSize: f.get('teamSize'),
           challenge: f.get('challenge'),
@@ -231,6 +236,7 @@ export default function AuditPage() {
                   <div><label style={label} htmlFor="name">Your name</label><input style={fieldStyle('name')} id="name" name="name" required autoComplete="name" /><FieldError f="name" /></div>
                   <div><label style={label} htmlFor="email">Work email</label><input style={fieldStyle('email')} id="email" name="email" type="email" required autoComplete="email" /><FieldError f="email" /></div>
                   <div><label style={label} htmlFor="company">Company</label><input style={fieldStyle('company')} id="company" name="company" required autoComplete="organization" /><FieldError f="company" /></div>
+                  <div><label style={label} htmlFor="jobTitle">Job title</label><input style={fieldStyle('jobTitle')} id="jobTitle" name="jobTitle" required autoComplete="organization-title" placeholder="Head of Marketing" /><FieldError f="jobTitle" /></div>
                   <div><label style={label} htmlFor="website">Website or social handle</label><input style={fieldStyle('website')} id="website" name="website" required placeholder="thesocialvision.co.uk" /><FieldError f="website" /></div>
                 </div>
 

@@ -12,6 +12,7 @@ export interface IAuditApplication extends Document {
   name: string;
   email: string;
   company: string;
+  jobTitle: string;
   website: string;
   platforms: string[];
   budget: string;
@@ -30,6 +31,7 @@ const AuditApplicationSchema = new Schema<IAuditApplication>(
     name:      { type: String, required: true },
     email:     { type: String, required: true, index: true },
     company:   { type: String, default: '' },
+    jobTitle:  { type: String, default: '' },
     website:   { type: String, default: '' },
     platforms: { type: [String], default: [] },
     budget:    { type: String, default: '' },

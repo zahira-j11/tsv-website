@@ -18,12 +18,14 @@ const Application = z.object({
   name: z.string().trim().min(2, 'Please enter your name.').max(80),
   email: z.string().trim().email('That does not look like a valid email.').max(160),
   company: z.string().trim().min(1, 'Please enter your company name.').max(120),
+  jobTitle: z.string({ required_error: 'Please enter your job title.' })
+    .trim().min(2, 'Please enter your job title.').max(120),
   website: z.string().trim().min(3, 'Please enter your website or social handle.').max(200),
   platforms: z.array(z.string()).min(1, 'Pick at least one platform.'),
   budget: z.enum(['under-2k', '2k-3.5k', '3.5k-5k', '5k-10k', '10k-plus'], {
     errorMap: () => ({ message: 'Please choose a monthly budget.' }),
   }),
-  teamSize: z.enum(['solo', '2-10', '11-50', '50-plus'], {
+  teamSize: z.enum(['solo', '2-10', '11-50', '51-200', '201-1000', '1000-plus'], {
     errorMap: () => ({ message: 'Please choose a team size.' }),
   }),
   challenge: z.string().trim().min(10, 'A sentence or two is plenty — tell us a bit more.').max(1200),
@@ -64,6 +66,7 @@ async function notifyTeam(a: AuditApplication, qualified: boolean) {
       `Name: ${a.name}`,
       `Email: ${a.email}`,
       `Company: ${a.company}`,
+      `Job title: ${a.jobTitle}`,
       `Website: ${a.website}`,
       `Platforms: ${a.platforms.join(', ')}`,
       `Monthly social budget: ${a.budget}`,

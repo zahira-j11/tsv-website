@@ -54,6 +54,7 @@ async function rows() {
     name: d.name,
     email: d.email,
     company: d.company,
+    jobTitle: d.jobTitle ?? '',
     website: d.website,
     platforms: d.platforms ?? [],
     budget: d.budget,
