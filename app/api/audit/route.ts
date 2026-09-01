@@ -20,7 +20,7 @@ const Application = z.object({
   company: z.string().trim().min(1, 'Please enter your company name.').max(120),
   website: z.string().trim().min(3, 'Please enter your website or social handle.').max(200),
   platforms: z.array(z.string()).min(1, 'Pick at least one platform.'),
-  budget: z.enum(['under-1k', '1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus'], {
+  budget: z.enum(['under-2k', '2k-3.5k', '3.5k-5k', '5k-10k', '10k-plus'], {
     errorMap: () => ({ message: 'Please choose a monthly budget.' }),
   }),
   teamSize: z.enum(['solo', '2-10', '11-50', '50-plus'], {
@@ -34,12 +34,12 @@ export type AuditApplication = z.infer<typeof Application>;
 /**
  * QUALIFYING RULE — edit this to change who gets offered a slot.
  *
- * Monthly social budget is the only gate: anything under £1,000/month is
- * declined, since retainers start at £2,000 + VAT and an audit would not lead
- * anywhere useful for either side. Team size is captured for context but does
- * not affect the decision.
+ * Monthly social budget is the only gate, and it is set at the retainer
+ * minimum: partnerships start at £2,000 + VAT, so anyone below that cannot
+ * act on the audit even if it goes well. Team size is captured for context
+ * but does not affect the decision.
  */
-const BUDGET_QUALIFIES: AuditApplication['budget'][] = ['1k-2.5k', '2.5k-5k', '5k-10k', '10k-plus'];
+const BUDGET_QUALIFIES: AuditApplication['budget'][] = ['2k-3.5k', '3.5k-5k', '5k-10k', '10k-plus'];
 
 function qualify(a: AuditApplication): boolean {
   return BUDGET_QUALIFIES.includes(a.budget);

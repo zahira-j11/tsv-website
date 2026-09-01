@@ -29,11 +29,16 @@ type Application = {
 
 /** The form values, spelled the way you'd say them rather than the stored keys. */
 const BUDGET_LABEL: Record<string, string> = {
+  'under-2k':  'Under £2,000',
+  '2k-3.5k':   '£2,000 – £3,500',
+  '3.5k-5k':   '£3,500 – £5,000',
+  '5k-10k':    '£5,000 – £10,000',
+  '10k-plus':  '£10,000+',
+  // Brackets used before the gate moved to £2,000 — kept so applications
+  // submitted under the old form still read as money rather than a slug.
   'under-1k':  'Under £1,000',
   '1k-2.5k':   '£1,000 – £2,500',
   '2.5k-5k':   '£2,500 – £5,000',
-  '5k-10k':    '£5,000 – £10,000',
-  '10k-plus':  '£10,000+',
 };
 const TEAM_LABEL: Record<string, string> = {
   'solo':     'Just me',

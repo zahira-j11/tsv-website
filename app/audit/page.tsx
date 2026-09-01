@@ -31,9 +31,9 @@ const AUDIT_CALENDAR_URL = 'https://meetings-eu1.hubspot.com/thesocialvision/soc
 const PLATFORMS = ['TikTok', 'Instagram', 'YouTube', 'LinkedIn', 'Meta Ads', 'Not posting yet'];
 
 const BUDGET = [
-  { v:'under-1k',  l:'Under £1,000 / month' },
-  { v:'1k-2.5k',   l:'£1,000 – £2,500 / month' },
-  { v:'2.5k-5k',   l:'£2,500 – £5,000 / month' },
+  { v:'under-2k',  l:'Under £2,000 / month' },
+  { v:'2k-3.5k',   l:'£2,000 – £3,500 / month' },
+  { v:'3.5k-5k',   l:'£3,500 – £5,000 / month' },
   { v:'5k-10k',    l:'£5,000 – £10,000 / month' },
   { v:'10k-plus',  l:'£10,000+ / month' },
 ];
