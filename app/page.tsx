@@ -258,7 +258,7 @@ const TESTIMONIALS = [
   { quote:"They have a deep understanding of audience psychology and are able to translate that insight into genuinely engaging content. Their production process is seamless and high-quality.",                     name:'Amy Young',              role:'Performance Marketing Manager, Prep Kitchen', initials:'AY', g:`linear-gradient(135deg,${PD},${P})`,      logoSrc:'/logos/prepkitchen.png', logoScale:1.0, logoBg:WH },
   { quote:'Working with The Social Vision has been an excellent experience. Their work ethic is second to none, and their attention to detail gives real confidence at every stage of the process. They combine strong strategic thinking with flawless execution, ensuring nothing is overlooked.', name:'Marc Castro',            role:'Content Manager, Plum',                       initials:'MC', g:`linear-gradient(135deg,${P},${MAG})`,     logoSrc:'/logos/plum.png',      logoScale:1.0, logoBg:WH },
   { quote:'The Social Vision played a pivotal role in helping TALAB reach 1 million views within just the first 5 weeks of our collaboration. Their innovative approach and strategic insights were key to this rapid success. We\u2019re excited to continue working together and achieving even greater milestones.', name:'Mirkazim Seyidzade',     role:'CEO, Talab',                                  initials:'MS', g:`linear-gradient(135deg,${PD},${PB})`,     logoSrc:undefined,              logoScale:1.0, logoBg:WH },
-  { quote:"The Social Vision have done what they\u2019ve said they would at every single stage \u2014 and that\u2019s rare! It\u2019s been easy and a pleasure to work with the team and we hope for continued success.", name:'Danielle Coe',           role:'COO, Blackbullion',                           initials:'DC', g:`linear-gradient(135deg,${MAG},${PMAG})`,  logoSrc:'/logos/blackbullion.png', logoScale:1.4, logoBg:'#1A1033' },
+  { quote:"The Social Vision have done what they\u2019ve said they would at every single stage \u2014 and that\u2019s rare! It\u2019s been easy and a pleasure to work with the team and we hope for continued success.", name:'Danielle Coe',           role:'COO, Blackbullion',                           initials:'DC', g:`linear-gradient(135deg,${MAG},${PMAG})`,  logoSrc:'/logos/blackbullion.png', logoScale:1.0, logoBg:'#1A1033' },
 ];
 
 const PLANS = [
@@ -807,6 +807,7 @@ export default function MarketingPage() {
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
   const testimonialsRef        = useRef<HTMLDivElement>(null);
+  const [tPaused,setTPaused]   = useState(false);
 
   useReveal();
 
@@ -863,6 +864,27 @@ export default function MarketingPage() {
     const step = card ? card.offsetWidth + 20 : 360;
     testimonialsRef.current.scrollBy({ left: dir * step, behavior:'smooth' });
   };
+
+  /**
+   * Testimonials advance on their own, a card at a time, and wrap back to the
+   * start at the end. Paused while someone is hovering or has just touched the
+   * track, so it never pulls a quote away mid-sentence, and disabled outright
+   * for anyone who has asked for reduced motion.
+   */
+  useEffect(() => {
+    if (tPaused) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = window.setInterval(() => {
+      const el = testimonialsRef.current;
+      if (!el) return;
+      const max = el.scrollWidth - el.clientWidth;
+      const card = el.firstElementChild as HTMLElement | null;
+      const step = card ? card.offsetWidth + 20 : 360;
+      if (el.scrollLeft >= max - 4) el.scrollTo({ left: 0, behavior:'smooth' });
+      else el.scrollBy({ left: step, behavior:'smooth' });
+    }, 4500);
+    return () => window.clearInterval(id);
+  }, [tPaused]);
 
   const tNav: React.CSSProperties = {
     position:'absolute', top:'50%', transform:'translateY(-50%)',
@@ -1262,80 +1284,6 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* ══ TESTIMONIALS ══════════════════════════════════════ */}
-      <section id="testimonials" style={{ padding:'110px 28px', background:WH, borderTop:`2px solid ${BR}`, position:'relative', overflow:'hidden' }}>
-        <Orbs orbs={[
-          { size:380, color:MAG,  opacity:0.16, cls:'mkt-orb-c', bottom:'5%', right:'-4%' },
-          { size:280, color:YEL,  opacity:0.48, cls:'mkt-orb-e', top:'33%',   right:'4%'  },
-          { size:260, color:P,    opacity:0.16, cls:'mkt-orb-g', top:'-8%',   left:'-5%'  },
-        ]} />
-        <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
-          <div data-reveal style={{ textAlign:'center', marginBottom:72 }}>
-            <span style={{ display:'inline-block', background:'rgba(232,32,164,0.1)', color:MAG, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Testimonials</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Don't take <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">our word</em> for it.</h2>
-          </div>
-          <div style={{ position:'relative' }}>
-            <button aria-label="Previous testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(-1)} style={{ ...tNav, left:-16 }}>&lsaquo;</button>
-            <button aria-label="Next testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(1)} style={{ ...tNav, right:-16 }}>&rsaquo;</button>
-          <div ref={testimonialsRef} className="mkt-services-track" style={{
-            display:'flex', gap:20, overflowX:'auto', padding:'10px 2px 24px',
-            // Same scroll trap as the other tracks: overflow-x:auto promotes
-            // overflow-y to auto, which then eats vertical wheel gestures.
-            overflowY:'hidden', alignItems:'stretch',
-            scrollSnapType:'x proximity', overscrollBehaviorX:'contain',
-          }}>
-            {TESTIMONIALS.map((t,i)=>(
-              <div key={i} data-reveal data-reveal-delay={String(i*0.09)} style={{ flex:'0 0 min(340px, 82vw)', scrollSnapAlign:'start', padding:'36px', background:BG, border:`2px solid ${BR}`, borderRadius:26, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 220ms ease, box-shadow 220ms ease' }}
-                onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-7px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 24px 64px rgba(33,0,93,0.1)'; }}
-                onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; (e.currentTarget as HTMLElement).style.boxShadow='none'; }}>
-                <div style={{ position:'absolute', top:0, left:0, right:0, height:4, background:t.g }} />
-                <div style={{ ...DISP, fontSize:52, lineHeight:1, marginBottom:16, marginTop:8, background:t.g, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:800 }}>"</div>
-                <p style={{ fontSize:14, color:PD, lineHeight:1.9, marginBottom:24, flex:1, fontStyle:'italic', fontWeight:400 }}>{t.quote}</p>
-                <div style={{ borderTop:`1.5px solid ${BR}`, paddingTop:20, display:'flex', alignItems:'center', gap:12 }}>
-                  {t.logoSrc ? (
-                    <div style={{ width:44, height:44, borderRadius:'50%', background:t.logoBg||WH, border:`1.5px solid ${BR}`, flexShrink:0, overflow:'hidden' }}>
-                      <img src={t.logoSrc} alt="" style={{ width:'100%', height:'100%', objectFit:'contain', transform:`scale(${t.logoScale||1.8})`, transformOrigin:'center' }} />
-                    </div>
-                  ) : (
-                    <div style={{ width:44, height:44, borderRadius:'50%', background:t.g, display:'flex', alignItems:'center', justifyContent:'center', ...DISP, fontSize:13, fontWeight:800, color:'#fff', flexShrink:0 }}>{t.initials}</div>
-                  )}
-                  <div style={{ flex:1, minWidth:0 }}>
-                    <div style={{ ...DISP, fontSize:13, fontWeight:800, color:PD }}>{t.name}</div>
-                    <div style={{ fontSize:12, color:MU, marginTop:2, fontWeight:400 }}>{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ FAQ ═══════════════════════════════════════════════ */}
-      <section style={{ padding:'110px 28px', background:BG, position:'relative', overflow:'hidden' }}>
-        <Orbs orbs={[
-          { size:320, color:P,   opacity:0.16, cls:'mkt-orb-c', top:'-8%',   right:'-4%' },
-          { size:240, color:YEL, opacity:0.48, cls:'mkt-orb-a', top:'33%',   left:'3%'   },
-        ]} />
-        <div style={{ maxWidth:740, margin:'0 auto', position:'relative', zIndex:1 }}>
-          <div data-reveal style={{ textAlign:'center', marginBottom:68 }}>
-            <span style={{ display:'inline-block', background:'rgba(124,1,255,0.09)', color:P, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>FAQ</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(28px,3.8vw,56px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Common questions</h2>
-          </div>
-          <div style={{ display:'flex', flexDirection:'column', gap:6 }}>
-            {FAQS.map((f,i)=>(
-              <div key={i} data-reveal data-reveal-delay={String(i*0.07)} style={{ border:`2px solid ${faq===i?P:BR}`, borderRadius:18, overflow:'hidden', background:faq===i?'rgba(124,1,255,0.04)':BG, transition:'all 200ms' }}>
-                <button onClick={()=>setFaq(faq===i?null:i)} style={{ width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', padding:'22px 28px', background:'none', border:'none', color:PD, ...DISP, fontSize:15, fontWeight:700, cursor:'pointer', textAlign:'left', gap:16, fontFamily:'inherit' }}>
-                  <span>{f.q}</span>
-                  <span style={{ color:P, fontSize:26, flexShrink:0, transition:'transform 220ms', transform:faq===i?'rotate(45deg)':'none', display:'inline-block', fontWeight:300, lineHeight:1 }}>+</span>
-                </button>
-                {faq===i&&<div className="mkt-faq-open" style={{ padding:'0 28px 24px', fontSize:15, color:MU, lineHeight:1.9, fontWeight:400 }}>{f.a}</div>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ══ CTA ═══════════════════════════════════════════════ */}
       <section id="contact" style={{ padding:'110px 28px', background:`linear-gradient(150deg,${PD} 0%,${P} 100%)`, position:'relative', overflow:'hidden' }}>
         <Orbs orbs={[
@@ -1438,6 +1386,85 @@ export default function MarketingPage() {
           )}
         </div>
       </section>
+
+      {/* ══ TESTIMONIALS ══════════════════════════════════════ */}
+      <section id="testimonials" style={{ padding:'110px 28px', background:WH, borderTop:`2px solid ${BR}`, position:'relative', overflow:'hidden' }}>
+        <Orbs orbs={[
+          { size:380, color:MAG,  opacity:0.16, cls:'mkt-orb-c', bottom:'5%', right:'-4%' },
+          { size:280, color:YEL,  opacity:0.48, cls:'mkt-orb-e', top:'33%',   right:'4%'  },
+          { size:260, color:P,    opacity:0.16, cls:'mkt-orb-g', top:'-8%',   left:'-5%'  },
+        ]} />
+        <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
+          <div data-reveal style={{ textAlign:'center', marginBottom:72 }}>
+            <span style={{ display:'inline-block', background:'rgba(232,32,164,0.1)', color:MAG, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Testimonials</span>
+            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Don't take <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">our word</em> for it.</h2>
+          </div>
+          <div style={{ position:'relative' }}>
+            <button aria-label="Previous testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(-1)} style={{ ...tNav, left:-16 }}>&lsaquo;</button>
+            <button aria-label="Next testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(1)} style={{ ...tNav, right:-16 }}>&rsaquo;</button>
+          <div ref={testimonialsRef} className="mkt-services-track"
+            onMouseEnter={()=>setTPaused(true)} onMouseLeave={()=>setTPaused(false)}
+            onFocusCapture={()=>setTPaused(true)} onBlurCapture={()=>setTPaused(false)}
+            onTouchStart={()=>setTPaused(true)}
+            style={{
+            display:'flex', gap:20, overflowX:'auto', padding:'10px 2px 24px',
+            // Same scroll trap as the other tracks: overflow-x:auto promotes
+            // overflow-y to auto, which then eats vertical wheel gestures.
+            overflowY:'hidden', alignItems:'stretch',
+            scrollSnapType:'x proximity', overscrollBehaviorX:'contain',
+          }}>
+            {TESTIMONIALS.map((t,i)=>(
+              <div key={i} data-reveal data-reveal-delay={String(i*0.09)} style={{ flex:'0 0 min(340px, 82vw)', scrollSnapAlign:'start', padding:'36px', background:BG, border:`2px solid ${BR}`, borderRadius:26, display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 220ms ease, box-shadow 220ms ease' }}
+                onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-7px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 24px 64px rgba(33,0,93,0.1)'; }}
+                onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; (e.currentTarget as HTMLElement).style.boxShadow='none'; }}>
+                <div style={{ position:'absolute', top:0, left:0, right:0, height:4, background:t.g }} />
+                <div style={{ ...DISP, fontSize:52, lineHeight:1, marginBottom:16, marginTop:8, background:t.g, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:800 }}>"</div>
+                <p style={{ fontSize:14, color:PD, lineHeight:1.9, marginBottom:24, flex:1, fontStyle:'italic', fontWeight:400 }}>{t.quote}</p>
+                <div style={{ borderTop:`1.5px solid ${BR}`, paddingTop:20, display:'flex', alignItems:'center', gap:12 }}>
+                  {t.logoSrc ? (
+                    <div style={{ width:44, height:44, borderRadius:'50%', background:t.logoBg||WH, border:`1.5px solid ${BR}`, flexShrink:0, overflow:'hidden' }}>
+                      <img src={t.logoSrc} alt="" style={{ width:'100%', height:'100%', objectFit:'contain', transform:`scale(${t.logoScale||1.8})`, transformOrigin:'center' }} />
+                    </div>
+                  ) : (
+                    <div style={{ width:44, height:44, borderRadius:'50%', background:t.g, display:'flex', alignItems:'center', justifyContent:'center', ...DISP, fontSize:13, fontWeight:800, color:'#fff', flexShrink:0 }}>{t.initials}</div>
+                  )}
+                  <div style={{ flex:1, minWidth:0 }}>
+                    <div style={{ ...DISP, fontSize:13, fontWeight:800, color:PD }}>{t.name}</div>
+                    <div style={{ fontSize:12, color:MU, marginTop:2, fontWeight:400 }}>{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ FAQ ═══════════════════════════════════════════════ */}
+      <section style={{ padding:'110px 28px', background:BG, position:'relative', overflow:'hidden' }}>
+        <Orbs orbs={[
+          { size:320, color:P,   opacity:0.16, cls:'mkt-orb-c', top:'-8%',   right:'-4%' },
+          { size:240, color:YEL, opacity:0.48, cls:'mkt-orb-a', top:'33%',   left:'3%'   },
+        ]} />
+        <div style={{ maxWidth:740, margin:'0 auto', position:'relative', zIndex:1 }}>
+          <div data-reveal style={{ textAlign:'center', marginBottom:68 }}>
+            <span style={{ display:'inline-block', background:'rgba(124,1,255,0.09)', color:P, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>FAQ</span>
+            <h2 style={{ ...DISP, fontSize:'clamp(28px,3.8vw,56px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Common questions</h2>
+          </div>
+          <div style={{ display:'flex', flexDirection:'column', gap:6 }}>
+            {FAQS.map((f,i)=>(
+              <div key={i} data-reveal data-reveal-delay={String(i*0.07)} style={{ border:`2px solid ${faq===i?P:BR}`, borderRadius:18, overflow:'hidden', background:faq===i?'rgba(124,1,255,0.04)':BG, transition:'all 200ms' }}>
+                <button onClick={()=>setFaq(faq===i?null:i)} style={{ width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', padding:'22px 28px', background:'none', border:'none', color:PD, ...DISP, fontSize:15, fontWeight:700, cursor:'pointer', textAlign:'left', gap:16, fontFamily:'inherit' }}>
+                  <span>{f.q}</span>
+                  <span style={{ color:P, fontSize:26, flexShrink:0, transition:'transform 220ms', transform:faq===i?'rotate(45deg)':'none', display:'inline-block', fontWeight:300, lineHeight:1 }}>+</span>
+                </button>
+                {faq===i&&<div className="mkt-faq-open" style={{ padding:'0 28px 24px', fontSize:15, color:MU, lineHeight:1.9, fontWeight:400 }}>{f.a}</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ══ FOOTER ════════════════════════════════════════════ */}
       <footer style={{ padding:'52px 28px', background:PD, position:'relative', overflow:'hidden' }}>
