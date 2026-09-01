@@ -104,6 +104,18 @@ export default function ApplicationsPage() {
     URL.revokeObjectURL(url);
   };
 
+  /** For clearing out test entries and the occasional bit of spam. */
+  const remove = async (id: string, company: string) => {
+    if (!confirm(`Remove the application from ${company}? This cannot be undone.`)) return;
+    const res = await fetch('/api/audit/applications', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (res.ok) setApps(prev => (prev ?? []).filter(a => a.id !== id));
+    else setError('Could not remove that application.');
+  };
+
   const tab = (key: Filter, label: string): React.CSSProperties => ({
     ...DISP, fontSize:12, fontWeight:800, letterSpacing:'.04em', textTransform:'uppercase',
     padding:'9px 16px', borderRadius:11, cursor:'pointer', fontFamily:'inherit',
@@ -202,6 +214,14 @@ export default function ApplicationsPage() {
                       <Field label="Month">{a.month}</Field>
                       <div style={{ gridColumn:'1/-1' }}>
                         <Field label="Biggest challenge">{a.challenge}</Field>
+                      </div>
+                      <div style={{ gridColumn:'1/-1' }}>
+                        <button onClick={e=>{ e.stopPropagation(); remove(a.id, a.company); }}
+                          style={{ ...DISP, fontSize:11, fontWeight:800, letterSpacing:'.05em', textTransform:'uppercase',
+                                   padding:'8px 14px', borderRadius:10, border:`1.5px solid ${BR}`,
+                                   background:WH, color:MAG, cursor:'pointer', fontFamily:'inherit' }}>
+                          Remove
+                        </button>
                       </div>
                     </div>
                   )}

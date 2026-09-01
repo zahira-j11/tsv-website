@@ -9,6 +9,7 @@ import AuditApplication from '@/models/AuditApplication';
  *
  *   POST { password }  → checks the password, sets a session cookie, returns rows
  *   GET                → returns rows if the cookie is valid, otherwise 401
+ *   DELETE { id }      → removes one row, for test entries and spam
  *
  * The password is only ever sent in a POST body, never a query string, and the
  * cookie holds an expiry signed with AUDIT_WEBHOOK_SECRET rather than the
@@ -116,5 +117,31 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error('[POST /api/audit/applications]', err);
     return NextResponse.json({ error: 'Could not read applications' }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  const bad = configError();
+  if (bad) return bad;
+  if (!sessionValid(req.cookies.get(COOKIE)?.value, process.env.AUDIT_WEBHOOK_SECRET!)) {
+    return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
+  }
+
+  let id = '';
+  try {
+    const body = (await req.json()) as { id?: string };
+    id = String(body?.id ?? '');
+  } catch { /* no body */ }
+  if (!/^[0-9a-f]{24}$/.test(id)) {
+    return NextResponse.json({ error: 'Invalid id' }, { status: 422 });
+  }
+
+  try {
+    await connectDB();
+    const res = await AuditApplication.deleteOne({ _id: id });
+    return NextResponse.json({ ok: true, removed: res.deletedCount ?? 0 });
+  } catch (err) {
+    console.error('[DELETE /api/audit/applications]', err);
+    return NextResponse.json({ error: 'Could not remove application' }, { status: 500 });
   }
 }
