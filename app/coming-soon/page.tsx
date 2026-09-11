@@ -35,7 +35,7 @@ export default function ComingSoonPage() {
       </h1>
 
       <p style={{
-        fontSize: 17, color: 'rgba(33,0,93,0.52)', lineHeight: 1.75,
+        fontSize: 17, color: 'rgba(33,0,93,0.64)', lineHeight: 1.75,
         maxWidth: 440, marginBottom: 40,
       }}>
         This feature is on its way. In the meantime, book a call with our team and we&apos;ll get you set up directly.

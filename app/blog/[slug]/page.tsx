@@ -23,7 +23,7 @@ const WH  = '#FFFFFF';
 const P   = '#7C01FF';
 const PD  = '#21005D';
 const MAG = '#E820A4';
-const MU  = 'rgba(33,0,93,0.52)';
+const MU  = 'rgba(33,0,93,0.64)';
 const SU  = 'rgba(33,0,93,0.28)';
 const BR  = '#E4DCFF';
 
