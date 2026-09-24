@@ -1002,7 +1002,7 @@ export default function MarketingPage() {
           {/* Left: copy */}
           <div style={{ flex:'1 1 780px', minWidth:0 }}>
 
-            <h1 className="mkt-h2 mkt-hero-h1" style={{ fontFamily:"'TSV Hero', Arial, sans-serif", fontSize:'clamp(32px,4.5vw,60px)', fontWeight:900, lineHeight:1, letterSpacing:'-.03em', marginBottom:32, color:PD }}>
+            <h1 className="mkt-h2 mkt-hero-h1" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(32px,4.5vw,60px)', fontWeight:800, lineHeight:1, letterSpacing:'-.055em', marginBottom:32, color:PD }}>
               Your brand{' '}<br className="mkt-br-m" />
               deserves{' '}<br className="mkt-br-d" />
               more{' '}<br className="mkt-br-m" />
@@ -1017,7 +1017,7 @@ export default function MarketingPage() {
               <a href="#contact" className="mkt-glow-cta" style={btnP}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
-                Talk to Our Team
+                Talk to our team
               </a>
               <button onClick={()=>go('hall-of-fame')} style={{ background:WH, color:PD, fontSize:13, fontWeight:700, padding:'10px 16px', borderRadius:9, cursor:'pointer', border:`2px solid ${BR}`, transition:'all 160ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLButtonElement).style.borderColor=P; (e.currentTarget as HTMLButtonElement).style.color=P; }}
