@@ -425,6 +425,29 @@ body::before {
   .mkt-banner-detail { display: none; }
   /* Arrows crowd the cards at phone width — swipe instead. */
   .mkt-carousel-nav { display: none !important; }
+  /* Nav: no bar on phones. The logo sits on the hero and fades once the
+     page scrolls; only the round menu button stays pinned. The nav lets
+     taps through to the page except on its own controls. */
+  .mkt-nav {
+    width: 100% !important; margin: 0 !important; padding: 10px 6px 0;
+    background: transparent !important; border: none !important;
+    box-shadow: none !important; backdrop-filter: none !important;
+    pointer-events: none;
+  }
+  .mkt-nav-logo, .mkt-nav-menu-btn, .mkt-nav-menu { pointer-events: auto; }
+  .mkt-nav-logo { transition: opacity 200ms; }
+  .mkt-nav-scrolled .mkt-nav-logo { opacity: 0; pointer-events: none; }
+  /* Pull the page up under the nav so the hero's moving background runs
+     behind the logo and menu button instead of a flat strip. */
+  .mkt-page { margin-top: -54px; }
+  /* Hero buttons stack full width so they match in size. */
+  .mkt-hero-ctas { flex-direction: column; gap: 12px !important; }
+  .mkt-hero-ctas > * { width: 100%; }
+  .mkt-hero { padding-top: 54px !important; }
+  .mkt-nav-menu {
+    margin: 10px 10px 0; border: 1px solid #E4DCFF !important;
+    border-radius: 24px !important; box-shadow: 0 12px 40px rgba(33,0,93,0.16);
+  }
 }
 @media (min-width: 769px) {
   .mkt-show-mobile   { display: none !important; }

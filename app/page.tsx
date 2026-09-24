@@ -17,6 +17,8 @@ const MU   = 'rgba(33,0,93,0.64)';
 const SU   = 'rgba(33,0,93,0.28)';
 const BR   = '#E4DCFF';
 const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
+// Shared box for the two hero buttons so they always match in size.
+const HERO_BTN: React.CSSProperties = { display:'inline-flex', alignItems:'center', justifyContent:'center', boxSizing:'border-box', height:46, minWidth:172, padding:'0 22px', fontSize:14, fontWeight:700, borderRadius:10 };
 
 // Modals render into <body>. Sections set `position:relative; z-index:1`,
 // which creates a stacking context that would otherwise trap a modal
@@ -953,11 +955,11 @@ export default function MarketingPage() {
       )}
 
       {/* ══ NAV ══════════════════════════════════════════════ */}
-      <nav className="mkt-nav" style={{ position:'relative', margin:'14px auto 0', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
+      <nav className={`mkt-nav${scrolled?' mkt-nav-scrolled':''}`} style={{ position:'relative', margin:'14px auto 0', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
         <div style={{ height:'100%', padding:'0 10px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>
           {/* Logo icon */}
-          <a href="#" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
-            <img src="/logos/tsv-logo.jpeg" alt="The Social Vision" style={{ width:38, height:38, borderRadius:'50%', objectFit:'cover', flexShrink:0 }} />
+          <a href="#" className="mkt-nav-logo" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
+            <img src="/logos/tsv-logo-mark.png" alt="The Social Vision" style={{ width:38, height:38, borderRadius:'50%', objectFit:'cover', flexShrink:0 }} />
           </a>
           {/* Links */}
           <div className="mkt-hidden-mobile" style={{ display:'flex', gap:28, flex:1, justifyContent:'center' }}>
@@ -972,11 +974,16 @@ export default function MarketingPage() {
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
             <a href="https://www.tsvportal.co.uk/creator" target="_blank" rel="noopener noreferrer" className="mkt-hidden-mobile" style={{ display:'inline-block', background:'transparent', color:PD, fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:100, textDecoration:'none', border:`1.5px solid ${BR}`, transition:'all 160ms' }}
               onMouseEnter={e=>{e.currentTarget.style.borderColor=PD;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=BR;}}>For Creators</a>
-            <button onClick={()=>setMenu(!menu)} className="mkt-show-mobile" style={{ background:'none', border:'none', color:PD, fontSize:20, cursor:'pointer', padding:4 }}>{menu?'✕':'☰'}</button>
+            <button onClick={()=>setMenu(!menu)} className="mkt-show-mobile mkt-nav-menu-btn" aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu}
+              style={{ width:42, height:42, borderRadius:'50%', background:PD, border:'none', color:'#fff', cursor:'pointer', padding:0, boxShadow:'0 6px 20px rgba(33,0,93,0.28)' }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true" style={{ display:'block', margin:'0 auto' }}>
+                {menu ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+              </svg>
+            </button>
           </div>
         </div>
         {menu&&(
-          <div style={{ background:BG, borderTop:`1px solid ${BR}`, padding:'16px 28px 24px', borderRadius:'0 0 28px 28px' }}>
+          <div className="mkt-nav-menu" style={{ background:BG, borderTop:`1px solid ${BR}`, padding:'16px 28px 24px', borderRadius:'0 0 28px 28px' }}>
             {([['How it works','how-it-works'],['Services','services'],['Case Studies','cases'],['Pricing','pricing']] as [string,string][]).map(([l,id])=>(
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
@@ -987,7 +994,7 @@ export default function MarketingPage() {
       </nav>
     </div>
 
-    <div style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden' }}>
+    <div className="mkt-page" style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden' }}>
 
       {/* ══ HERO ═════════════════════════════════════════════ */}
       <section className="mkt-hero" style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', background:BG }}>
@@ -1013,13 +1020,13 @@ export default function MarketingPage() {
               Imagine never having to think about what to post, who’s going to film it or whether anyone’s going to watch it. We handle your organic social and paid ad creative from idea to finished content.
             </p>
 
-            <div className="mkt-h4" style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
-              <a href="#contact" className="mkt-glow-cta" style={btnP}
+            <div className="mkt-h4 mkt-hero-ctas" style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
+              <a href="#contact" className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
                 Talk to our team
               </a>
-              <button onClick={()=>go('hall-of-fame')} style={{ background:WH, color:PD, fontSize:13, fontWeight:700, padding:'10px 16px', borderRadius:9, cursor:'pointer', border:`2px solid ${BR}`, transition:'all 160ms', fontFamily:'inherit' }}
+              <button onClick={()=>go('hall-of-fame')} style={{ ...HERO_BTN, background:WH, color:PD, cursor:'pointer', border:`2px solid ${BR}`, transition:'all 160ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLButtonElement).style.borderColor=P; (e.currentTarget as HTMLButtonElement).style.color=P; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLButtonElement).style.borderColor=BR; (e.currentTarget as HTMLButtonElement).style.color=PD; }}>
                 See our work
