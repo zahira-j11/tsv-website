@@ -17,6 +17,36 @@ const MU   = 'rgba(33,0,93,0.64)';
 const SU   = 'rgba(33,0,93,0.28)';
 const BR   = '#E4DCFF';
 const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
+// Footer. Icons are Tabler's outline brand marks, drawn with stroke.
+const FOOTER_SOCIALS = [
+  { label:'Instagram', href:'https://www.instagram.com/thesocialvisionuk/',
+    icon:'M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8 M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0 M16.5 7.5v.01' },
+  { label:'TikTok', href:'https://www.tiktok.com/@thesocialvisionuk',
+    icon:'M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917' },
+  { label:'LinkedIn', href:'https://www.linkedin.com/company/104219836/',
+    icon:'M8 11v5 M8 8v.01 M12 16v-5 M16 16v-3a2 2 0 1 0 -4 0 M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10' },
+];
+type FooterLink = { label:string; section:string } | { label:string; href:string; external?:boolean };
+const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
+  { title:'Company', links:[
+    { label:'How it works', section:'how-it-works' },
+    { label:'Case Studies', section:'cases' },
+    { label:'Testimonials', section:'testimonials' },
+    { label:'Blog', href:'/blog' },
+  ]},
+  { title:'Services', links:[
+    { label:'Organic content', section:'services' },
+    { label:'Paid ad creative', section:'services' },
+    { label:'Pricing', section:'pricing' },
+    { label:'Free audit', href:'/audit' },
+  ]},
+  { title:'Work with us', links:[
+    { label:'For Creators', href:'https://www.tsvportal.co.uk/creator', external:true },
+    { label:'Talk to our team', section:'contact' },
+    { label:'FAQ', section:'faq' },
+  ]},
+];
+
 // Shared box for the two hero buttons so they always match in size.
 const HERO_BTN: React.CSSProperties = { display:'inline-flex', alignItems:'center', justifyContent:'center', boxSizing:'border-box', height:46, minWidth:172, padding:'0 22px', fontSize:14, fontWeight:700, borderRadius:10 };
 
@@ -1471,7 +1501,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ══ FAQ ═══════════════════════════════════════════════ */}
-      <section style={{ padding:'110px 28px', background:BG, position:'relative', overflow:'hidden' }}>
+      <section id="faq" style={{ padding:'110px 28px', background:BG, position:'relative', overflow:'hidden' }}>
         <Orbs orbs={[
           { size:320, color:P,   opacity:0.16, cls:'mkt-orb-c', top:'-8%',   right:'-4%' },
           { size:240, color:YEL, opacity:0.48, cls:'mkt-orb-a', top:'33%',   left:'3%'   },
@@ -1496,27 +1526,68 @@ export default function MarketingPage() {
       </section>
 
 
+      {/* ══ FINAL CTA ═════════════════════════════════════════ */}
+      <section style={{ padding:'96px 28px', background:BG, position:'relative', overflow:'hidden', borderTop:`1px solid ${BR}` }}>
+        <Orbs orbs={[
+          { size:360, color:YEL, opacity:0.40, cls:'mkt-orb-a', top:'-20%',   left:'-6%'  },
+          { size:300, color:P,   opacity:0.16, cls:'mkt-orb-b', bottom:'-24%',right:'-4%' },
+        ]} />
+        <div data-reveal style={{ maxWidth:760, margin:'0 auto', position:'relative', zIndex:1, textAlign:'center' }}>
+          <h2 style={{ ...DISP, fontSize:'clamp(30px,4.2vw,56px)', fontWeight:800, letterSpacing:'-.055em', color:PD, lineHeight:1.05, marginBottom:18 }}>
+            Ready for more than <span className="mkt-gradient-text">300 views?</span>
+          </h2>
+          <p style={{ fontSize:17, color:MU, lineHeight:1.8, maxWidth:560, margin:'0 auto 32px' }}>
+            Get a free social media audit worth £750. We&rsquo;ll review your content, competitors and ads, then hand you a 90-day plan.
+          </p>
+          <div className="mkt-hero-ctas" style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
+            <a href="/audit" className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}>Get my free audit</a>
+            <a href="#contact" style={{ ...HERO_BTN, background:WH, color:PD, border:`2px solid ${BR}`, textDecoration:'none' }}>Talk to our team</a>
+          </div>
+          <p style={{ fontSize:13, fontWeight:700, color:PD, marginTop:18 }}>
+            {spots.remaining > 0 ? <>Only <span style={{ color:MAG }}>{spotsShort(spots)}</span> left for {spots.month}</> : <>{spots.month} is fully booked</>}
+          </p>
+        </div>
+      </section>
+
       {/* ══ FOOTER ════════════════════════════════════════════ */}
-      <footer style={{ padding:'52px 28px', background:PD, position:'relative', overflow:'hidden' }}>
+      <footer style={{ padding:'64px 28px 28px', background:PD, position:'relative', overflow:'hidden' }}>
         <Orbs orbs={[
           { size:200, color:P,   opacity:0.15, cls:'mkt-orb-c', top:'-20%', right:'5%'   },
           { size:100, color:MAG, opacity:0.12, cls:'mkt-orb-e', bottom:'-10%',left:'10%' },
-          { size:50,  color:YEL, opacity:0.20, cls:'mkt-orb-a', top:'30%',   left:'40%'  },
         ]} />
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
-          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:24, paddingBottom:36, borderBottom:`1px solid rgba(255,253,237,0.1)`, marginBottom:28 }}>
-            <div>
-              <div style={{ ...DISP, fontSize:20, fontWeight:800, color:WH, letterSpacing:'-.03em', marginBottom:5 }}>The Social Vision</div>
-              <div style={{ fontSize:13, color:'rgba(255,253,237,0.38)', fontWeight:400 }}>Short-form content for brands that want to grow.</div>
+          <div className="mkt-footer-grid" style={{ display:'grid', gridTemplateColumns:'1.6fr 1fr 1fr 1fr', gap:32, paddingBottom:40, borderBottom:'1px solid rgba(255,253,237,0.12)' }}>
+            <div className="mkt-footer-brand">
+              <img src="/logos/tsv-logo-mark.png" alt="" style={{ width:40, height:40, display:'block' }} />
+              <div style={{ ...DISP, fontSize:20, fontWeight:800, color:WH, letterSpacing:'-.03em', margin:'14px 0 6px' }}>The Social Vision</div>
+              <p style={{ fontSize:13, color:'rgba(255,253,237,0.55)', lineHeight:1.6, maxWidth:260 }}>Short-form content for brands that want to grow.</p>
+              <div style={{ display:'flex', gap:10, marginTop:20 }}>
+                {FOOTER_SOCIALS.map(s=>(
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                    style={{ width:38, height:38, borderRadius:'50%', border:'1px solid rgba(255,253,237,0.25)', display:'flex', alignItems:'center', justifyContent:'center', color:WH, transition:'all 150ms' }}
+                    onMouseEnter={e=>{e.currentTarget.style.borderColor=YEL; e.currentTarget.style.color=YEL;}} onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,253,237,0.25)'; e.currentTarget.style.color=WH;}}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={s.icon} /></svg>
+                  </a>
+                ))}
+              </div>
             </div>
-            <div style={{ display:'flex', gap:28, flexWrap:'wrap' }}>
-              {(['How it works','Services','Case Studies','Pricing','Testimonials'] as string[]).map(l=>(
-                <a key={l} href="#" style={{ fontSize:13, color:'rgba(255,253,237,0.45)', textDecoration:'none', fontWeight:600, transition:'color 150ms' }}
-                  onMouseEnter={e=>(e.currentTarget.style.color=YEL)} onMouseLeave={e=>(e.currentTarget.style.color='rgba(255,253,237,0.45)')}>{l}</a>
-              ))}
-            </div>
+            {FOOTER_COLUMNS.map(col=>(
+              <div key={col.title}>
+                <div style={{ fontSize:11, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', color:YEL, marginBottom:16 }}>{col.title}</div>
+                {col.links.map(l=>{
+                  const st: React.CSSProperties = { display:'block', background:'none', border:'none', padding:0, marginBottom:11, fontSize:14, fontWeight:500, color:'rgba(255,253,237,0.7)', textDecoration:'none', cursor:'pointer', fontFamily:'inherit', textAlign:'left', transition:'color 150ms' };
+                  const on = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color=YEL);
+                  const off = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color='rgba(255,253,237,0.7)');
+                  return 'section' in l
+                    ? <button key={l.label} onClick={()=>go(l.section)} style={st} onMouseEnter={on} onMouseLeave={off}>{l.label}</button>
+                    : <a key={l.label} href={l.href} {...(l.external ? { target:'_blank', rel:'noopener noreferrer' } : {})} style={st} onMouseEnter={on} onMouseLeave={off}>{l.label}</a>;
+                })}
+              </div>
+            ))}
           </div>
-          <div style={{ fontSize:12, color:'rgba(255,253,237,0.22)', fontWeight:400 }}>© 2025 The Social Vision. All rights reserved.</div>
+          <div style={{ paddingTop:22, fontSize:12, color:'rgba(255,253,237,0.45)' }}>
+            © {new Date().getFullYear()} The Social Vision Ltd · Company no. 15844979
+          </div>
         </div>
       </footer>
     </div>

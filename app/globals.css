@@ -440,6 +440,9 @@ body::before {
   /* Pull the page up under the nav so the hero's moving background runs
      behind the logo and menu button instead of a flat strip. */
   .mkt-page { margin-top: -54px; }
+  /* Footer: brand block full width, link columns two across. */
+  .mkt-footer-grid  { grid-template-columns: 1fr 1fr !important; gap: 32px 20px !important; }
+  .mkt-footer-brand { grid-column: 1 / -1; }
   /* Hero buttons stack full width so they match in size. */
   .mkt-hero-ctas { flex-direction: column; gap: 12px !important; }
   .mkt-hero-ctas > * { width: 100%; }
