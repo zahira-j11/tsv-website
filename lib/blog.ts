@@ -37,13 +37,13 @@ export const AUTHORS: Record<string, Author> = {
     name: 'Zahira Jaigirdar',
     role: 'Founder & Creative Director',
     bio: 'Zahira founded The Social Vision to help brands build real audiences through short-form content. She has overseen campaigns generating over 200M views across TikTok, Instagram Reels, and YouTube Shorts.',
-    avatar: '/authors/zahira.png',
+    avatar: '/authors/zahira.jpg',
   },
   elisa: {
     name: 'Elisa Brookes',
     role: 'Account Manager @ The Social Vision',
     bio: 'Elisa manages client accounts at The Social Vision, working closely with brands to build and execute their short-form content strategy across TikTok and Instagram Reels.',
-    avatar: '/logos/tsv-logo.jpeg',
+    avatar: '/authors/elisa.jpg',
   },
   tsv: {
     name: 'TSV Team',

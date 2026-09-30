@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import SiteNav from '../../SiteNav';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -113,39 +114,19 @@ export default async function PostPage({ params }: Props) {
           .prose-tsv li { margin-bottom: 0.35rem; }
           .prose-tsv hr { border: none; border-top: 1px solid ${BR}; margin: 2.5rem 0; }
           .prose-tsv blockquote { border-left: 3px solid ${P}; padding-left: 1.2rem; color: ${MU}; margin: 1.5rem 0; font-style: italic; }
+          /* One column on phones and small tablets: the article first, then contents and the call-to-action. */
+          @media (max-width: 900px) {
+            .blog-post-grid { grid-template-columns: minmax(0,1fr) !important; gap: 40px !important; }
+            .blog-post-aside { position: static !important; }
+          }
           .prose-tsv code { color: ${P}; background: rgba(124,1,255,0.08); padding: 2px 6px; border-radius: 5px; font-size: 14px; }
         `}</style>
 
-        {/* Nav */}
-        <nav style={{ position: 'fixed', top: 14, left: '50%', transform: 'translateX(-50%)', zIndex: 100, width: 'min(1200px,calc(100% - 32px))', height: 54, background: 'rgba(255,255,255,0.94)', backdropFilter: 'blur(24px)', borderRadius: 100, border: `1px solid ${BR}`, boxShadow: '0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset' }}>
-          <div style={{ height: '100%', padding: '0 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logos/tsv-logo.jpeg" alt="The Social Vision" style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }} />
-            </Link>
-            <div style={{ display: 'flex', gap: 28, flex: 1, justifyContent: 'center' }}>
-              {(['How it works', 'Services', 'Case Studies', 'Pricing', 'Testimonials'] as string[]).map(l => (
-                <Link key={l} href={`/#${l.toLowerCase().replace(/\s+/g, '-')}`} className="blog-nav-link" style={{ color: MU, fontSize: 13, fontWeight: 600, textDecoration: 'none', transition: 'color 150ms' }}>{l}</Link>
-              ))}
-              <Link href="/blog" style={{ color: P, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Blog</Link>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-              <Link href="/coming-soon" style={{ display: 'inline-block', background: 'transparent', color: P, fontSize: 13, fontWeight: 700, padding: '9px 16px', borderRadius: 100, textDecoration: 'none', border: `1.5px solid ${P}` }}>
-                Client portal
-              </Link>
-              <Link href="/coming-soon" style={{ display: 'inline-block', background: MAG, color: '#fff', fontSize: 13, fontWeight: 700, padding: '9px 16px', borderRadius: 100, textDecoration: 'none' }}>
-                Creator signup
-              </Link>
-              <Link href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer"
-                style={{ display: 'inline-block', background: PD, color: '#fff', fontSize: 13, fontWeight: 700, padding: '11px 24px', borderRadius: 100, textDecoration: 'none' }}>
-                Book a call
-              </Link>
-            </div>
-          </div>
-        </nav>
+        {/* Same nav as the homepage */}
+        <SiteNav active="blog" />
 
         <div style={{ paddingTop: 100, paddingBottom: 80, paddingLeft: 24, paddingRight: 24, maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: 64, alignItems: 'start' }}>
+          <div className="blog-post-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 280px', gap: 64, alignItems: 'start' }}>
 
             {/* Main */}
             <article>
@@ -212,7 +193,7 @@ export default async function PostPage({ params }: Props) {
             </article>
 
             {/* Sidebar */}
-            <aside style={{ position: 'sticky', top: 88 }}>
+            <aside className="blog-post-aside" style={{ position: 'sticky', top: 88 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
 
                 {/* TOC */}

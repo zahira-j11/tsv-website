@@ -483,3 +483,12 @@ body::before {
 /* Stat counters: the server HTML carries the real totals for crawlers; in a
    script-capable browser they stay hidden until the count-up begins. */
 .js [data-count-pending] { visibility: hidden; }
+
+/* SiteNav (blog and other inner pages): the fixed wrapper spans the width,
+   so only the nav itself takes clicks; on phones the mkt-nav rules above let
+   taps through everywhere except the logo, menu button and menu. */
+.site-nav-wrap { pointer-events: none; }
+.site-nav-wrap .mkt-nav { pointer-events: auto; }
+@media (max-width: 768px) {
+  .site-nav-wrap .mkt-nav { pointer-events: none; }
+}
