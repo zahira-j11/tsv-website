@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Blog | The Social Vision',
     description: 'Strategy, case studies, and platform insights from The Social Vision.',
-    url: 'https://thesocialvision.co.uk/blog',
+    url: 'https://www.thesocialvision.co.uk/blog',
     siteName: 'The Social Vision',
     type: 'website',
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Strategy, case studies, and platform insights from The Social Vision.',
   },
   alternates: {
-    canonical: 'https://thesocialvision.co.uk/blog',
+    canonical: 'https://www.thesocialvision.co.uk/blog',
     types: { 'application/rss+xml': '/feed.xml' },
   },
 };
@@ -191,6 +191,7 @@ export default function BlogIndex() {
       <footer style={{ borderTop: `1px solid ${BR}`, padding: '24px', maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span style={{ fontSize: 12, color: SU }}>© {new Date().getFullYear()} The Social Vision</span>
         <div style={{ display: 'flex', gap: 20 }}>
+          <Link href="/privacy" style={{ fontSize: 12, color: SU, textDecoration: 'none' }}>Privacy</Link>
           <Link href="/feed.xml" style={{ fontSize: 12, color: SU, textDecoration: 'none' }}>RSS</Link>
           <Link href="/sitemap.xml" style={{ fontSize: 12, color: SU, textDecoration: 'none' }}>Sitemap</Link>
         </div>

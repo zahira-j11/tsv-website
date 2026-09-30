@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { defaultSpots, spotsSentence, type SpotsInfo } from '@/lib/spots';
+import { track, isHubSpotBooking } from '@/lib/analytics';
 
 // ─── Brand palette (matches app/page.tsx) ──────────────────
 const BG   = '#FEFDF8';
@@ -38,6 +39,18 @@ const BUDGET = [
   { v:'3.5k-5k',   l:'£3,500 – £4,999 / month' },
   { v:'5k-10k',    l:'£5,000 – £9,999 / month' },
   { v:'10k-plus',  l:'£10,000+ / month' },
+];
+
+// Where they found us. "ChatGPT / AI assistant" matters most: AI referrals
+// often arrive with no referrer, so asking is the only reliable way to count them.
+const HEARD_FROM = [
+  { v:'ai-assistant', l:'ChatGPT or another AI assistant' },
+  { v:'google',       l:'Google search' },
+  { v:'linkedin',     l:'LinkedIn' },
+  { v:'social',       l:'Instagram or TikTok' },
+  { v:'referral',     l:'Recommended by someone' },
+  { v:'outreach',     l:'You contacted me' },
+  { v:'other',        l:'Somewhere else' },
 ];
 
 const TEAM = [
@@ -89,11 +102,8 @@ export default function AuditPage() {
   useEffect(() => {
     if (!bookingToken) return;
     const onMessage = (e: MessageEvent) => {
-      let host = '';
-      try { host = new URL(e.origin).hostname; } catch { return; }
-      if (host !== 'hubspot.com' && !host.endsWith('.hubspot.com')) return;
-      const d = e.data as { meetingBookSucceeded?: boolean } | undefined;
-      if (!d || d.meetingBookSucceeded !== true) return;
+      if (!isHubSpotBooking(e)) return;
+      track('audit_booked');
       fetch('/api/spots/confirm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -127,6 +137,7 @@ export default function AuditPage() {
           website: f.get('website'), platforms,
           budget: f.get('budget'), teamSize: f.get('teamSize'),
           challenge: f.get('challenge'),
+          heardFrom: f.get('heardFrom'),
         }),
       });
       const data = await res.json();
@@ -137,6 +148,8 @@ export default function AuditPage() {
       }
       setCalendarUrl(data.calendarUrl ?? null);
       setBookingToken(data.bookingToken ?? null);
+      track('audit_submit');
+      track(data.qualified ? 'audit_qualified' : 'audit_declined');
       setStep(data.qualified ? 'qualified' : 'declined');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch {
@@ -278,6 +291,15 @@ export default function AuditPage() {
                 </div>
 
                 <div>
+                  <label style={label} htmlFor="heardFrom">How did you hear about us?</label>
+                  <select style={fieldStyle('heardFrom')} id="heardFrom" name="heardFrom" required defaultValue="">
+                    <option value="" disabled>Select…</option>
+                    {HEARD_FROM.map(o=><option key={o.v} value={o.v}>{o.l}</option>)}
+                  </select>
+                  <FieldError f="heardFrom" />
+                </div>
+
+                <div>
                   <label style={label} htmlFor="challenge">What&rsquo;s your biggest social challenge right now?</label>
                   <textarea style={{ ...fieldStyle('challenge'), minHeight:110, resize:'vertical', lineHeight:1.6 }} id="challenge" name="challenge" required />
                   <FieldError f="challenge" />
@@ -340,7 +362,7 @@ export default function AuditPage() {
       <footer style={{ padding:'40px 28px', background:PD }}>
         <div style={{ maxWidth:1060, margin:'0 auto', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:16 }}>
           <div style={{ ...DISP, fontSize:16, fontWeight:800, color:'#fff', letterSpacing:'-.03em' }}>The Social Vision</div>
-          <div style={{ fontSize:12.5, color:'rgba(255,253,237,0.4)' }}>© 2025 The Social Vision. All rights reserved.</div>
+          <div style={{ fontSize:12.5, color:'rgba(255,253,237,0.4)' }}>© {new Date().getFullYear()} The Social Vision Ltd · London-based short-form content agency · <a href="/privacy" style={{ color:'inherit' }}>Privacy</a></div>
         </div>
       </footer>
     </div>

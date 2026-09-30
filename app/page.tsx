@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { defaultSpots, spotsShort, spotsSlots, type SpotsInfo } from '@/lib/spots';
+import { track, isHubSpotBooking } from '@/lib/analytics';
+import { openCookieSettings } from '@/lib/consent';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -44,6 +46,7 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'For Creators', href:'https://www.tsvportal.co.uk/creator', external:true },
     { label:'Talk to our team', section:'contact' },
     { label:'FAQ', section:'faq' },
+    { label:'Privacy policy', href:'/privacy' },
   ]},
 ];
 
@@ -142,7 +145,25 @@ const STATS = [
   { n:2,   suffix:'k+', label:'Content pieces',  c:PD  },
 ];
 
-const CLIENT_LOGOS = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
+// Named so crawlers and screen readers know who the logos are.
+const CLIENT_LOGOS = [
+  { file:'4',  name:'Applicaa One' },
+  { file:'5',  name:'TALAB' },
+  { file:'6',  name:'Fr.' },
+  { file:'7',  name:'Yoodee' },
+  { file:'8',  name:'Amber' },
+  { file:'9',  name:'Cino' },
+  { file:'10', name:'Uni Compare' },
+  { file:'11', name:'Years' },
+  { file:'12', name:'The Student Room' },
+  { file:'13', name:'Habito' },
+  { file:'14', name:'Plum' },
+  { file:'15', name:'Blackbullion' },
+  { file:'16', name:'SuperNutrio' },
+  { file:'17', name:'Freetrade' },
+  { file:'18', name:'Cannaray' },
+  { file:'19', name:'Hey Savi' },
+];
 
 const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','Ambassador Content','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','250+ Creators','200M+ Views'];
 
@@ -380,9 +401,16 @@ function useReveal() {
 
 // ─── Stat counter ─────────────────────────────────────────
 function StatCounter({ target, suffix, active, fmt }: { target:number; suffix:string; active:boolean; fmt?: (v:number)=>string }) {
-  const [val, setVal] = useState(0);
+  // The server renders the real total, so crawlers and AI fetchers that don't
+  // run scripts read "200M+" rather than "0M+". In the browser the total stays
+  // hidden (see [data-count-pending] in globals.css) until the count-up starts.
+  const [val, setVal] = useState(target);
+  const [pending, setPending] = useState(true);
   useEffect(() => {
     if (!active) return;
+    setPending(false);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setVal(target); return; }
+    setVal(0);
     let raf = 0;
     const t0 = performance.now(), dur = 1800;
     const tick = (now: number) => {
@@ -393,7 +421,7 @@ function StatCounter({ target, suffix, active, fmt }: { target:number; suffix:st
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [active, target]);
-  return <>{fmt ? fmt(val) : `${val}${suffix}`}</>;
+  return <span data-count-pending={pending ? '' : undefined}>{fmt ? fmt(val) : `${val}${suffix}`}</span>;
 }
 
 // ─── Portrait video card (Hall of Fame) ───────────────────
@@ -718,7 +746,7 @@ function CaseModal({ c, onClose }: { c: typeof CASES[0]; onClose: () => void }) 
         <p style={{ fontSize: 15, color: 'rgba(33,0,93,0.62)', lineHeight: 1.8, margin: '0 0 32px' }}>{c.modalBody}</p>
 
         {/* CTA */}
-        <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" style={{
+        <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" onClick={()=>track('cta_click',{ location:`case_${c.client.toLowerCase().replace(/\s+/g,'_')}` })} style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,
           background: P, color: '#fff', fontSize: 15, fontWeight: 700,
           padding: '14px 28px', borderRadius: 50, textDecoration: 'none',
@@ -854,6 +882,14 @@ export default function MarketingPage() {
       .catch(() => {});
   }, []);
 
+  // The discovery calendar is a HubSpot embed; it tells the page when a
+  // booking goes through, which is the conversion that matters most.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => { if (isHubSpotBooking(e)) track('call_booked', { location:'homepage_calendar' }); };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
   // Fetch backend videos
   useEffect(() => {
     fetch('/api/reels')
@@ -974,7 +1010,7 @@ export default function MarketingPage() {
                   {spots.remaining > 0 ? <>Only <span style={{ font: 'inherit', fontWeight:800, color:YEL }}>{spotsShort(spots)}</span> left for {spots.month}</>
                                        : <span style={{ font:'inherit', fontWeight:800, color:YEL }}>{spots.month} is fully booked</span>}
                 </span>
-                <a href="/audit" tabIndex={copy > 0 ? -1 : undefined} style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
+                <a href="/audit" onClick={()=>track('cta_click',{ location:'banner_audit' })} tabIndex={copy > 0 ? -1 : undefined} style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
                   onMouseEnter={e=>(e.currentTarget.style.opacity='0.85')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>
                   Secure Your Spot NOW →
                 </a>
@@ -1051,7 +1087,7 @@ export default function MarketingPage() {
             </p>
 
             <div className="mkt-h4 mkt-hero-ctas" style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
-              <a href="#contact" className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}
+              <a href="#contact" onClick={()=>track('cta_click',{ location:'hero_talk' })} className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
                 Talk to our team
@@ -1126,9 +1162,9 @@ export default function MarketingPage() {
         <div style={{ overflow:'hidden' }}>
           <div className="mkt-ticker" style={{ display:'flex', whiteSpace:'nowrap', width:'max-content', alignItems:'center', gap:0 }}>
             {[...CLIENT_LOGOS,...CLIENT_LOGOS].map((logo,i)=>(
-              <div key={i} style={{ display:'inline-flex', alignItems:'center', padding:'0 48px', flexShrink:0 }}>
+              <div key={i} aria-hidden={i >= CLIENT_LOGOS.length} style={{ display:'inline-flex', alignItems:'center', padding:'0 48px', flexShrink:0 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/logos/${logo}.png`} alt="" height={150} style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
+                <img src={`/logos/${logo.file}.png`} alt={i < CLIENT_LOGOS.length ? logo.name : ''} height={150} style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
               </div>
             ))}
           </div>
@@ -1328,7 +1364,7 @@ export default function MarketingPage() {
                     </div>
                   ))}
                 </div>
-                <a href="#contact" style={{ display:'block', textAlign:'center', padding:'17px', borderRadius:14, textDecoration:'none', background:plan.hero?YEL:P, color:plan.hero?PD:'#fff', ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
+                <a href="#contact" onClick={()=>track('cta_click',{ location:`pricing_${plan.name.toLowerCase().replace(/\s+/g,'_')}` })} style={{ display:'block', textAlign:'center', padding:'17px', borderRadius:14, textDecoration:'none', background:plan.hero?YEL:P, color:plan.hero?PD:'#fff', ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
                   onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; (e.currentTarget as HTMLElement).style.transform='translateY(-1px)'; }}
                   onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; (e.currentTarget as HTMLElement).style.transform='none'; }}>
                   {plan.cta}
@@ -1410,11 +1446,11 @@ export default function MarketingPage() {
                     {r.key === 'audit' ? spotsSlots(spots) : r.footnote}
                   </p>
                   {r.featured ? (
-                    <a href={r.href} style={ctaStyle(true)}
+                    <a href={r.href} onClick={()=>track('cta_click',{ location:'contact_audit' })} style={ctaStyle(true)}
                       onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}
                       onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</a>
                   ) : (
-                    <button onClick={()=>setShowCalendar(true)} style={{ ...ctaStyle(true), width:'100%', cursor:'pointer', fontFamily:'inherit' }}
+                    <button onClick={()=>{ setShowCalendar(true); track('cta_click',{ location:'contact_discovery' }); track('calendar_open',{ location:'homepage_contact' }); }} style={{ ...ctaStyle(true), width:'100%', cursor:'pointer', fontFamily:'inherit' }}
                       onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}
                       onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</button>
                   )}
@@ -1514,11 +1550,12 @@ export default function MarketingPage() {
           <div style={{ display:'flex', flexDirection:'column', gap:6 }}>
             {FAQS.map((f,i)=>(
               <div key={i} data-reveal data-reveal-delay={String(i*0.07)} style={{ border:`2px solid ${faq===i?P:BR}`, borderRadius:18, overflow:'hidden', background:faq===i?'rgba(124,1,255,0.04)':BG, transition:'all 200ms' }}>
-                <button onClick={()=>setFaq(faq===i?null:i)} style={{ width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', padding:'22px 28px', background:'none', border:'none', color:PD, ...DISP, fontSize:15, fontWeight:700, cursor:'pointer', textAlign:'left', gap:16, fontFamily:'inherit' }}>
+                <button onClick={()=>setFaq(faq===i?null:i)} aria-expanded={faq===i} aria-controls={`faq-${i}`} style={{ width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', padding:'22px 28px', background:'none', border:'none', color:PD, ...DISP, fontSize:15, fontWeight:700, cursor:'pointer', textAlign:'left', gap:16, fontFamily:'inherit' }}>
                   <span>{f.q}</span>
                   <span style={{ color:P, fontSize:26, flexShrink:0, transition:'transform 220ms', transform:faq===i?'rotate(45deg)':'none', display:'inline-block', fontWeight:300, lineHeight:1 }}>+</span>
                 </button>
-                {faq===i&&<div className="mkt-faq-open" style={{ padding:'0 28px 24px', fontSize:15, color:MU, lineHeight:1.9, fontWeight:400 }}>{f.a}</div>}
+                {/* Always in the HTML so search engines and AI can read the answers; hidden until opened. */}
+                <div id={`faq-${i}`} hidden={faq!==i} className="mkt-faq-open" style={{ padding:'0 28px 24px', fontSize:15, color:MU, lineHeight:1.9, fontWeight:400 }}>{f.a}</div>
               </div>
             ))}
           </div>
@@ -1540,8 +1577,8 @@ export default function MarketingPage() {
             Get a free social media audit worth £750. We&rsquo;ll review your content, competitors and ads, then hand you a 90-day plan.
           </p>
           <div className="mkt-hero-ctas" style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <a href="/audit" className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}>Get my free audit</a>
-            <a href="#contact" style={{ ...HERO_BTN, background:WH, color:PD, border:`2px solid ${BR}`, textDecoration:'none' }}>Talk to our team</a>
+            <a href="/audit" onClick={()=>track('cta_click',{ location:'final_audit' })} className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}>Get my free audit</a>
+            <a href="#contact" onClick={()=>track('cta_click',{ location:'final_talk' })} style={{ ...HERO_BTN, background:WH, color:PD, border:`2px solid ${BR}`, textDecoration:'none' }}>Talk to our team</a>
           </div>
           <p style={{ fontSize:13, fontWeight:700, color:PD, marginTop:18 }}>
             {spots.remaining > 0 ? <>Only <span style={{ color:MAG }}>{spotsShort(spots)}</span> left for {spots.month}</> : <>{spots.month} is fully booked</>}
@@ -1586,7 +1623,8 @@ export default function MarketingPage() {
             ))}
           </div>
           <div style={{ paddingTop:22, fontSize:12, color:'rgba(255,253,237,0.45)' }}>
-            © {new Date().getFullYear()} The Social Vision Ltd · Company no. 15844979
+            © {new Date().getFullYear()} The Social Vision Ltd · Company no. 15844979 · London-based short-form content agency ·{' '}
+            <button onClick={openCookieSettings} style={{ background:'none', border:'none', padding:0, font:'inherit', color:'inherit', textDecoration:'underline', cursor:'pointer' }}>Cookie settings</button>
           </div>
         </div>
       </footer>

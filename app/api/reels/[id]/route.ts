@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
 import Reel from '@/models/Reel';
+import { isAdmin } from '@/lib/adminSession';
+import { pickWritable } from '@/lib/reelFields';
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+  if (!isAdmin(req)) {
+    return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
+  }
   try {
     await connectDB();
-    const body = await req.json();
+    const body = pickWritable(await req.json());
     const reel = await Reel.findByIdAndUpdate(params.id, body, { new: true, runValidators: true });
     if (!reel) return NextResponse.json({ error: 'Reel not found' }, { status: 404 });
     return NextResponse.json({ reel });
@@ -15,7 +20,10 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   }
 }
 
-export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  if (!isAdmin(req)) {
+    return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
+  }
   try {
     await connectDB();
     await Reel.findByIdAndDelete(params.id);

@@ -121,4 +121,6 @@ export function extractHeadings(content: string): { id: string; text: string; le
   return headings;
 }
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://thesocialvision.co.uk';
+// The live site serves from www (the bare domain redirects there), so every
+// canonical, sitemap entry and schema URL must use it too.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.thesocialvision.co.uk';

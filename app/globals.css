@@ -479,3 +479,7 @@ body::before {
   -ms-overflow-style: none;
 }
 .mkt-services-track::-webkit-scrollbar { display: none; }
+
+/* Stat counters: the server HTML carries the real totals for crawlers; in a
+   script-capable browser they stay hidden until the count-up begins. */
+.js [data-count-pending] { visibility: hidden; }

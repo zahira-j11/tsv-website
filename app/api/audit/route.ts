@@ -29,6 +29,9 @@ const Application = z.object({
     errorMap: () => ({ message: 'Please choose a team size.' }),
   }),
   challenge: z.string().trim().min(10, 'A sentence or two is plenty — tell us a bit more.').max(1200),
+  heardFrom: z.enum(['ai-assistant', 'google', 'linkedin', 'social', 'referral', 'outreach', 'other'], {
+    errorMap: () => ({ message: 'Please tell us where you heard about us.' }),
+  }),
 });
 
 export type AuditApplication = z.infer<typeof Application>;
@@ -71,6 +74,7 @@ async function notifyTeam(a: AuditApplication, qualified: boolean) {
       `Platforms: ${a.platforms.join(', ')}`,
       `Monthly social budget: ${a.budget}`,
       `Team size: ${a.teamSize}`,
+      `Heard about us via: ${a.heardFrom}`,
       '',
       'Biggest challenge:',
       a.challenge,

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createHmac, timingSafeEqual } from 'crypto';
 import { connectDB } from '@/lib/mongodb';
 import AuditApplication from '@/models/AuditApplication';
+import { ADMIN_COOKIE as COOKIE, ADMIN_SESSION_MS as SESSION_MS, signSession as sign, sessionValid, safeEqual as matches } from '@/lib/adminSession';
 
 /**
  * Reads back audit applications — mainly the declined ones, which never reach
@@ -17,28 +17,6 @@ import AuditApplication from '@/models/AuditApplication';
  */
 
 export const dynamic = 'force-dynamic';
-
-const COOKIE = 'tsv_admin';
-const SESSION_MS = 12 * 60 * 60 * 1000;
-
-function sign(exp: number, secret: string): string {
-  return `${exp}.${createHmac('sha256', secret).update(String(exp)).digest('hex').slice(0, 32)}`;
-}
-
-function sessionValid(token: string | undefined, secret: string): boolean {
-  if (!token) return false;
-  const [expRaw, sig] = token.split('.');
-  const exp = Number(expRaw);
-  if (!exp || !sig || Date.now() > exp) return false;
-  const expected = sign(exp, secret).split('.')[1];
-  const a = Buffer.from(sig), b = Buffer.from(expected);
-  return a.length === b.length && timingSafeEqual(a, b);
-}
-
-function matches(given: string, actual: string): boolean {
-  const a = Buffer.from(given), b = Buffer.from(actual);
-  return a.length === b.length && timingSafeEqual(a, b);
-}
 
 async function rows() {
   await connectDB();
@@ -60,6 +38,7 @@ async function rows() {
     budget: d.budget,
     teamSize: d.teamSize,
     challenge: d.challenge,
+    heardFrom: d.heardFrom ?? '',
   }));
 }
 

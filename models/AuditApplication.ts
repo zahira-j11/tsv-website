@@ -18,6 +18,8 @@ export interface IAuditApplication extends Document {
   budget: string;
   teamSize: string;
   challenge: string;
+  /** Where they say they found us, e.g. 'ai-assistant', 'google'. */
+  heardFrom: string;
   /** Whether the budget gate let them through to the calendar. */
   qualified: boolean;
   /** The month being sold when they applied, as YYYY-MM. */
@@ -37,6 +39,7 @@ const AuditApplicationSchema = new Schema<IAuditApplication>(
     budget:    { type: String, default: '' },
     teamSize:  { type: String, default: '' },
     challenge: { type: String, default: '' },
+    heardFrom: { type: String, default: '', index: true },
     qualified: { type: Boolean, required: true, index: true },
     month:     { type: String, required: true, index: true },
   },

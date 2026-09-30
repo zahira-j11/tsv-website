@@ -26,9 +26,20 @@ type Application = {
   budget: string;
   teamSize: string;
   challenge: string;
+  heardFrom: string;
 };
 
 /** The form values, spelled the way you'd say them rather than the stored keys. */
+const HEARD_LABEL: Record<string, string> = {
+  'ai-assistant': 'ChatGPT / AI assistant',
+  'google':       'Google search',
+  'linkedin':     'LinkedIn',
+  'social':       'Instagram or TikTok',
+  'referral':     'Recommendation',
+  'outreach':     'Our outreach',
+  'other':        'Somewhere else',
+};
+
 const BUDGET_LABEL: Record<string, string> = {
   'under-2k':  '£0 – £1,999',
   '2k-3.5k':   '£2,000 – £3,499',
@@ -95,7 +106,7 @@ export default function ApplicationsPage() {
   /** Everything on screen, as a spreadsheet. */
   const downloadCsv = () => {
     const cell = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-    const head = ['Date','Outcome','Month','Name','Job title','Email','Company','Website','Platforms','Budget','Team size','Biggest challenge'];
+    const head = ['Date','Outcome','Month','Name','Job title','Email','Company','Website','Platforms','Budget','Team size','Heard via','Biggest challenge'];
     const body = shown.map(a => [
       new Date(a.createdAt).toLocaleString('en-GB'),
       a.qualified ? 'Qualified' : 'Declined',
@@ -103,6 +114,7 @@ export default function ApplicationsPage() {
       a.platforms.join(' / '),
       BUDGET_LABEL[a.budget] ?? a.budget,
       TEAM_LABEL[a.teamSize] ?? a.teamSize,
+      HEARD_LABEL[a.heardFrom] ?? a.heardFrom,
       a.challenge,
     ].map(cell).join(','));
     const blob = new Blob([[head.map(cell).join(','), ...body].join('\n')], { type:'text/csv;charset=utf-8' });
@@ -219,6 +231,7 @@ export default function ApplicationsPage() {
                            target="_blank" rel="noopener noreferrer" style={{ color:P }}>{a.website}</a>
                       </Field>
                       <Field label="Team size">{TEAM_LABEL[a.teamSize] ?? a.teamSize}</Field>
+                      <Field label="Heard via">{HEARD_LABEL[a.heardFrom] ?? (a.heardFrom || '—')}</Field>
                       <Field label="Active on">{a.platforms.join(', ') || '—'}</Field>
                       <Field label="Applied">{new Date(a.createdAt).toLocaleString('en-GB')}</Field>
                       <Field label="Month">{a.month}</Field>
