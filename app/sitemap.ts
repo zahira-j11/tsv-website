@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts, SITE_URL } from '@/lib/blog';
+import { CASES } from '@/lib/caseStudies';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -17,6 +18,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    {
+      url: `${SITE_URL}/case-studies`,
+      lastModified: new Date('2026-10-07'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    ...CASES.map(c => ({
+      url: `${SITE_URL}/case-studies/${c.slug}`,
+      lastModified: new Date('2026-10-07'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
     {
       url: `${SITE_URL}/privacy`,
       lastModified: new Date('2026-09-30'),

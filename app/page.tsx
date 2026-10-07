@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { defaultSpots, spotsShort, spotsSlots, type SpotsInfo } from '@/lib/spots';
 import { track, isHubSpotBooking } from '@/lib/analytics';
 import { openCookieSettings } from '@/lib/consent';
+import { CASES, TESTIMONIALS, BOOK_CALL_HREF } from '@/lib/caseStudies';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -32,7 +33,7 @@ type FooterLink = { label:string; section:string } | { label:string; href:string
 const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
   { title:'Company', links:[
     { label:'How it works', section:'how-it-works' },
-    { label:'Case Studies', section:'cases' },
+    { label:'Case Studies', href:'/case-studies' },
     { label:'Testimonials', section:'testimonials' },
     { label:'Blog', href:'/blog' },
   ]},
@@ -48,6 +49,13 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'FAQ', section:'faq' },
     { label:'Privacy policy', href:'/privacy' },
   ]},
+];
+
+// Named results under the hero buttons, each linking to its case study.
+const HERO_PROOF = [
+  { slug:'habito',      client:'Habito',      result:'25M organic views in 8 months' },
+  { slug:'talab',       client:'TALAB',       result:'6,000 users from launch' },
+  { slug:'uni-compare', client:'Uni Compare', result:'1M+ views in 6 weeks' },
 ];
 
 // Shared box for the two hero buttons so they always match in size.
@@ -265,55 +273,6 @@ const STEPS = [
   { n:'03', icon:'🎬', title:'Produce content brands can scale',          body:'Consistent, high-quality content delivered on time, every time.',                                 accent:'#027A3A', light:'rgba(8,246,131,0.09)'  },
 ];
 
-const CASES = [
-  {
-    client:'Habito', format:'Street Interviews', result:'25 Million Views', sub:'8 months · zero ad spend',
-    body:"Habito hadn't posted on social media for over a year. Within 6 months we took them from 1,000 views per video to over 156,000.",
-    g:`linear-gradient(135deg,${P},${PB})`, accent:P, thumb:'/case-studies/habito.jpg',
-    overview:'Habito is a UK-based digital mortgage broker on a mission to make mortgages simpler for first-time buyers. They came to us looking to build a genuine organic presence on TikTok and turn social media into a real brand awareness channel.',
-    strategy:'Street Interviews',
-    stats:[{icon:'eye',val:'25M+',label:'Views'},{icon:'users',val:'10K+',label:'Followers gained'},{icon:'heart',val:'450K+',label:'Likes'},{icon:'bar',val:'156K+',label:'Average views per video'}],
-    modalBody:'Over 8 months we produced street interviews built around topics that current and potential homebuyers actually care about. In one of the hardest categories to make work on social, Habito built a loyal following and became one of the most recognised mortgage brands on TikTok.',
-  },
-  {
-    client:'Plum', format:'Hi-Fi Ads + UGC + Scripted', result:'Scaled Creative Production', sub:'Consistent creative pipeline',
-    body:"Plum needed a faster way to test paid social creatives. We gave them a pipeline of hi-fi ads and UGC-style content that scaled their paid channels.",
-    g:`linear-gradient(135deg,${MAG},${PMAG})`, accent:MAG, thumb:'/case-studies/plum.jpg',
-    overview:'Plum is an AI-powered money management app that needed a reliable creative partner to produce paid social content at volume without sacrificing quality.',
-    strategy:'Hi-Fi Ad Creatives + UGC Style + Scripted Interactions',
-    stats:[{icon:'bolt',val:'3× increase',label:'Creative output'},{icon:'trend',val:'Scaled',label:'Paid channels'},{icon:'bar',val:'Faster',label:'Creative turnaround'},{icon:'users',val:'Zero',label:'Creator management'}],
-    modalBody:"We became Plum's dedicated creative partner for paid social, producing hi-fi ads, UGC-style content and scripted interactions that let their performance marketing team test new formats and scale winning concepts without the usual back and forth of managing creators themselves.",
-  },
-  {
-    client:'Uni Compare', format:'Street Interviews', result:'1M+ Views First 6 weeks', sub:'First 6 weeks',
-    body:"From under 1,000 views per video to an average of 83,000. We helped Uni Compare build a genuine organic audience among students in 8 weeks.",
-    g:'linear-gradient(135deg,#027A3A,#08F683)', accent:'#027A3A', thumb:'/case-studies/unicompare.png',
-    overview:'Uni Compare is a UK university comparison platform helping students find and apply for the right course. They wanted to build an organic presence on TikTok and Reels that actually reached students, without relying on paid ads.',
-    strategy:'Street Interviews',
-    stats:[{icon:'eye',val:'16M+',label:'Views'},{icon:'users',val:'10K+',label:'Followers gained'},{icon:'heart',val:'200K+',label:'Likes'},{icon:'trend',val:'83K',label:'Average views per video'}],
-    modalBody:'We created street interviews and scripted interactions built around the topics students actually care about when choosing a university. The content drove multiple viral moments, took their average video from under 1,000 views to 83,000, and directly contributed to a significant rise in app downloads.',
-  },
-  {
-    client:'TALAB', format:'Street Interviews', result:'6,000+ New Users', sub:'From zero audience',
-    body:"From a brand new launch with no audience, TALAB grew to 6,000 users with organic short-form content driving the majority of that growth.",
-    g:`linear-gradient(135deg,${PD},${P})`, accent:PD, thumb:'/case-studies/talab.webp',
-    overview:'TALAB is a student concierge app that came to us right at the point of launch. With no existing audience and a brand new product, they needed content that could build awareness fast among university students and convert that attention into app downloads.',
-    strategy:'Street Interviews',
-    stats:[{icon:'eye',val:'1M+',label:'Views in first 5 weeks'},{icon:'eye',val:'15M+',label:'Total views'},{icon:'users',val:'10K+',label:'Followers gained'},{icon:'trend',val:'6,000',label:'App users acquired'}],
-    modalBody:'We hit the streets from day one, creating content built around student life, culture and the kind of topics their audience genuinely cared about. TALAB grew from a brand new app with no social presence to 6,000 users, with organic short-form content playing a central role in driving that growth.',
-  },
-];
-
-const TESTIMONIALS = [
-  { quote:'TSV have taken our organic TikTok to 25 million views in just eight months with zero ad spend. They combine strategy with standout creativity and execution. TSV feel like a true extension of our team.', name:'Lucinda Mistretta',      role:'Digital Marketing Manager, Habito',           initials:'LM', g:`linear-gradient(135deg,${P},${PB})`,      logoSrc:'/logos/habito.png',    logoScale:1.4, logoBg:'#ED7470' },
-  { quote:"The Social Vision has unlocked a new level of creative production for us. We have been able to test new creatives and styles at speed which has helped us grow our paid social channels significantly.",   name:'Georgie Hodgkins-Brown', role:'Performance Marketing Manager, Plum',         initials:'GH', g:`linear-gradient(135deg,${MAG},${PMAG})`,  logoSrc:'/logos/plum.png',      logoScale:1.0, logoBg:WH },
-  { quote:"The Social Vision have helped us go viral multiple times without us having to lift a finger. They've helped us generate over 1 Million views amongst students.",                                          name:'Mandy Sangha',           role:'Marketing Manager, Applicaa',                 initials:'MS', g:'linear-gradient(135deg,#027A3A,#08F683)',   logoSrc:'/logos/applicaa.png',  logoScale:1.6, logoBg:'#ED7470' },
-  { quote:"They have a deep understanding of audience psychology and are able to translate that insight into genuinely engaging content. Their production process is seamless and high-quality.",                     name:'Amy Young',              role:'Performance Marketing Manager, Prep Kitchen', initials:'AY', g:`linear-gradient(135deg,${PD},${P})`,      logoSrc:'/logos/prepkitchen.png', logoScale:1.0, logoBg:WH },
-  { quote:'Working with The Social Vision has been an excellent experience. Their work ethic is second to none, and their attention to detail gives real confidence at every stage of the process. They combine strong strategic thinking with flawless execution, ensuring nothing is overlooked.', name:'Marc Castro',            role:'Content Manager, Plum',                       initials:'MC', g:`linear-gradient(135deg,${P},${MAG})`,     logoSrc:'/logos/plum.png',      logoScale:1.0, logoBg:WH },
-  { quote:'The Social Vision played a pivotal role in helping TALAB reach 1 million views within just the first 5 weeks of our collaboration. Their innovative approach and strategic insights were key to this rapid success. We\u2019re excited to continue working together and achieving even greater milestones.', name:'Mirkazim Seyidzade',     role:'CEO, Talab',                                  initials:'MS', g:`linear-gradient(135deg,${PD},${PB})`,     logoSrc:'/logos/talab.png',     logoScale:1.5, logoBg:'#141210' },
-  { quote:"The Social Vision have done what they\u2019ve said they would at every single stage \u2014 and that\u2019s rare! It\u2019s been easy and a pleasure to work with the team and we hope for continued success.", name:'Danielle Coe',           role:'COO, Blackbullion',                           initials:'DC', g:`linear-gradient(135deg,${MAG},${PMAG})`,  logoSrc:'/logos/blackbullion.png', logoScale:1.0, logoBg:'#1A1033' },
-];
-
 const PLANS = [
   { name:'Organic Content',  tag:null as string|null, hero:false,
     desc:'High-performing social content designed to build your audience and grow your brand organically across TikTok, Reels, and Shorts.',
@@ -353,13 +312,26 @@ const ROUTES = [
   },
 ];
 
+// Phrased the way buyers ask AI assistants, and answered in the first
+// sentence, because those answers get quoted. Also published as FAQPage
+// schema below, so keep each answer plain text.
 const FAQS = [
+  { q:'Are you based in London?',                         a:"Yes. The Social Vision is a London-based short-form content agency, and we work with apps and consumer brands across the UK." },
+  { q:'Are you a big agency?',                            a:"No, and that's on purpose. We're a small, founder-led team rather than a large network agency, backed by a vetted network of 250+ UK creators." },
+  { q:'How much does it cost?',                           a:"Retainers start at £2,000 per month (ex. VAT) on a 3-month initial basis. Strategy, creators, production and reporting are all included." },
   { q:'How quickly can we get started?',                   a:"First content goes live within 14–21 days of signing. Week 1 is strategy and creator matching. Week 2 is production. Week 3 is your first batch live." },
+  { q:'What results have you got?',                       a:"Habito reached 25M organic views in 8 months with zero ad spend. Uni Compare passed 1M views in its first 6 weeks. TALAB went from launch, with no audience, to 6,000 users. Each one is written up on our case studies page." },
+  { q:'Do you work with startups before launch?',         a:"Yes. TALAB came to us right at launch with no audience, and organic short-form content drove most of its growth to 6,000 users." },
   { q:"What's included in the monthly retainer?",         a:"Strategy, creator matching, briefing, production management, revisions, and performance reporting. All included. You're not paying for add-ons." },
   { q:'How does the creator network work?',               a:"We manage a diverse network of vetted UK creators across a wide range of niches, styles, and platforms, all briefed to your brand guidelines. You don't manage them. We do." },
   { q:'We already have an in-house team. Will this clash?', a:"Not at all. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
-  { q:"What's the minimum commitment?",                   a:"Retainers start at £2,000 per month (ex. VAT) on a 3-month initial basis." },
 ];
+
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 
 // ─── Backend reel type ─────────────────────────────────────
 interface ReelData {
@@ -752,6 +724,7 @@ function CaseModal({ c, onClose }: { c: typeof CASES[0]; onClose: () => void }) 
           padding: '14px 28px', borderRadius: 50, textDecoration: 'none',
           boxShadow: `0 8px 28px ${P}44`,
         }}>Get similar results →</a>
+        <a href={`/case-studies/${c.slug}`} style={{ display:'inline-block', marginLeft:20, marginTop:14, color:P, fontSize:14, fontWeight:700, textDecoration:'none' }}>Read the full case study</a>
       </div>
     </div>
     </Portal>
@@ -890,6 +863,19 @@ export default function MarketingPage() {
     return () => window.removeEventListener('message', onMessage);
   }, []);
 
+  // Other pages link to /#book-a-call: open the calendar on arrival.
+  useEffect(() => {
+    const open = () => {
+      if (window.location.hash !== '#book-a-call') return;
+      setShowCalendar(true);
+      track('calendar_open',{ location:'link' });
+      window.setTimeout(() => document.getElementById('contact')?.scrollIntoView(), 0);
+    };
+    open();
+    window.addEventListener('hashchange', open);
+    return () => window.removeEventListener('hashchange', open);
+  }, []);
+
   // Fetch backend videos
   useEffect(() => {
     fetch('/api/reels')
@@ -979,6 +965,12 @@ export default function MarketingPage() {
   };
 
   const go = (id:string) => { setMenu(false); document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }); };
+  const bookCall = (location:string) => {
+    setShowCalendar(true);
+    track('cta_click',{ location });
+    track('calendar_open',{ location });
+    go('contact');
+  };
   const inp: React.CSSProperties = { padding:'14px 18px', borderRadius:12, border:`1.5px solid ${BR}`, background:WH, color:PD, fontSize:14, outline:'none', width:'100%', boxSizing:'border-box', fontFamily:'inherit' };
   const ctaStyle = (filled: boolean): React.CSSProperties => ({
     display:'block', textAlign:'center', padding:'16px', borderRadius:14, textDecoration:'none',
@@ -1038,8 +1030,10 @@ export default function MarketingPage() {
           </div>
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
-            <a href="https://www.tsvportal.co.uk/creator" target="_blank" rel="noopener noreferrer" className="mkt-hidden-mobile" style={{ display:'inline-block', background:'transparent', color:PD, fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:100, textDecoration:'none', border:`1.5px solid ${BR}`, transition:'all 160ms' }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor=PD;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=BR;}}>For Creators</a>
+            <a href="https://www.tsvportal.co.uk/creator" target="_blank" rel="noopener noreferrer" className="mkt-hidden-mobile" style={{ color:MU, fontSize:13, fontWeight:600, textDecoration:'none', padding:'10px 8px', transition:'color 150ms' }}
+              onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>For Creators</a>
+            <a href={BOOK_CALL_HREF} onClick={e=>{ e.preventDefault(); bookCall('nav_book'); }} className="mkt-hidden-mobile" style={{ display:'inline-block', background:PD, color:'#fff', fontSize:13, fontWeight:700, padding:'10px 20px', borderRadius:100, textDecoration:'none', transition:'opacity 160ms' }}
+              onMouseEnter={e=>(e.currentTarget.style.opacity='.88')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>Book a call</a>
             <button onClick={()=>setMenu(!menu)} className="mkt-show-mobile mkt-nav-menu-btn" aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu}
               style={{ width:42, height:42, borderRadius:'50%', background:PD, border:'none', color:'#fff', cursor:'pointer', padding:0, boxShadow:'0 6px 20px rgba(33,0,93,0.28)' }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true" style={{ display:'block', margin:'0 auto' }}>
@@ -1054,7 +1048,8 @@ export default function MarketingPage() {
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
             <a href="/blog" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>Blog</a>
-            <a href="https://www.tsvportal.co.uk/creator" target="_blank" rel="noopener noreferrer" onClick={()=>setMenu(false)} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>For Creators</a>
+            <a href="https://www.tsvportal.co.uk/creator" target="_blank" rel="noopener noreferrer" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>For Creators</a>
+            <a href={BOOK_CALL_HREF} onClick={e=>{ e.preventDefault(); bookCall('nav_book_mobile'); }} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>Book a call</a>
           </div>
         )}
       </nav>
@@ -1074,6 +1069,10 @@ export default function MarketingPage() {
 
           {/* Left: copy */}
           <div style={{ flex:'1 1 780px', minWidth:0 }}>
+
+            <p className="mkt-h1" style={{ display:'inline-block', fontSize:11, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase', color:P, background:'rgba(124,1,255,0.09)', padding:'6px 16px', borderRadius:20, margin:'0 0 22px' }}>
+              London short-form content agency · TikTok, Reels &amp; Shorts
+            </p>
 
             <h1 className="mkt-h2 mkt-hero-h1" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(32px,4.5vw,60px)', fontWeight:800, lineHeight:1, letterSpacing:'-.055em', marginBottom:32, color:PD }}>
               Your brand{' '}<br className="mkt-br-m" />
@@ -1098,6 +1097,17 @@ export default function MarketingPage() {
                 See our work
               </button>
             </div>
+
+            <ul className="mkt-h5 mkt-hero-proof" aria-label="Client results" style={{ listStyle:'none', padding:0, margin:'26px 0 0', display:'flex', flexWrap:'wrap', gap:'8px 22px', fontSize:13, color:MU }}>
+              {HERO_PROOF.map(p=>(
+                <li key={p.slug}>
+                  <a href={`/case-studies/${p.slug}`} style={{ color:'inherit', textDecoration:'none' }}
+                    onMouseEnter={e=>(e.currentTarget.style.color=P)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>
+                    <strong style={{ color:PD, fontWeight:800 }}>{p.client}</strong> {p.result}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Right: phone stack — bigger */}
@@ -1333,6 +1343,9 @@ export default function MarketingPage() {
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>See what <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">we've done.</em></h2>
           </div>
           <CasesCarousel />
+          <div style={{ textAlign:'center', marginTop:28 }}>
+            <a href="/case-studies" style={{ color:P, fontSize:14, fontWeight:700, textDecoration:'none' }}>Read all our case studies →</a>
+          </div>
         </div>
       </section>
 
@@ -1538,6 +1551,7 @@ export default function MarketingPage() {
 
       {/* ══ FAQ ═══════════════════════════════════════════════ */}
       <section id="faq" style={{ padding:'110px 28px', background:BG, position:'relative', overflow:'hidden' }}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
         <Orbs orbs={[
           { size:320, color:P,   opacity:0.16, cls:'mkt-orb-c', top:'-8%',   right:'-4%' },
           { size:240, color:YEL, opacity:0.48, cls:'mkt-orb-a', top:'33%',   left:'3%'   },
