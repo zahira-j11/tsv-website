@@ -198,8 +198,8 @@ body::before {
   padding-right: 0.2em;
   margin-right: -0.08em;
   /* Same for descenders (g, y, p) in tight headline line-heights. */
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
 }
 
 /* Shimmer text — for dark-section big stat */
