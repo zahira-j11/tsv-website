@@ -9,7 +9,6 @@ const WH = '#FFFFFF';
 const P  = '#7C01FF';
 const PD = '#21005D';
 const MU = 'rgba(33,0,93,0.64)';
-const BR = '#E4DCFF';
 const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
 
 const TITLE = 'Case Studies | The Social Vision, London Short-Form Content Agency';
@@ -71,12 +70,10 @@ export default function CaseStudiesPage() {
             ))}
           </div>
 
-          <section style={{ marginTop: 56, background: WH, border: `1.5px solid ${BR}`, borderRadius: 24, padding: '30px 30px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 18 }}>
-            <div style={{ maxWidth: 560 }}>
-              <h2 style={{ ...DISP, fontSize: 24, fontWeight: 800, letterSpacing: '-.03em', margin: '0 0 6px' }}>Want results like these?</h2>
-              <p style={{ fontSize: 15, color: MU, lineHeight: 1.7, margin: 0 }}>Retainers start at £2,000 a month (ex. VAT). First content goes live within 14&ndash;21 days.</p>
-            </div>
-            <TrackedLink href={BOOK_CALL_HREF} location="case_index" style={{ background: PD, color: '#fff', fontWeight: 700, fontSize: 14, padding: '13px 24px', borderRadius: 100, textDecoration: 'none' }}>Book a discovery call</TrackedLink>
+          <section style={{ marginTop: 56, background: `linear-gradient(150deg,${PD} 0%,${P} 100%)`, color: '#fff', borderRadius: 24, padding: '36px 32px', textAlign: 'center' }}>
+            <h2 style={{ ...DISP, fontSize: 'clamp(24px,3vw,32px)', fontWeight: 800, letterSpacing: '-.03em', margin: '0 0 10px' }}>Want results like these?</h2>
+            <p style={{ fontSize: 15.5, color: 'rgba(255,253,237,0.75)', lineHeight: 1.7, margin: '0 auto 22px', maxWidth: 520 }}>Tell us where your social is stuck and we&rsquo;ll show you what we&rsquo;d change.</p>
+            <TrackedLink href={BOOK_CALL_HREF} location="case_index" style={{ display: 'inline-block', background: '#FFD600', color: PD, fontWeight: 800, fontSize: 14, padding: '13px 26px', borderRadius: 100, textDecoration: 'none' }}>Book a discovery call</TrackedLink>
           </section>
         </main>
       </div>

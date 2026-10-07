@@ -51,13 +51,6 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
   ]},
 ];
 
-// Named results under the hero buttons, each linking to its case study.
-const HERO_PROOF = [
-  { slug:'habito',      client:'Habito',      result:'25M organic views in 8 months' },
-  { slug:'talab',       client:'TALAB',       result:'6,000 users from launch' },
-  { slug:'uni-compare', client:'Uni Compare', result:'1M+ views in 6 weeks' },
-];
-
 // Shared box for the two hero buttons so they always match in size.
 const HERO_BTN: React.CSSProperties = { display:'inline-flex', alignItems:'center', justifyContent:'center', boxSizing:'border-box', height:46, minWidth:172, padding:'0 22px', fontSize:14, fontWeight:700, borderRadius:10 };
 
@@ -295,7 +288,7 @@ const ROUTES = [
     coverLabel:'We\u2019ll cover:',
     bullets:['Your goals and what\u2019s getting in the way','What we\u2019d take off your plate','The content and formats we\u2019d recommend','Relevant results from brands like yours','Scope, pricing and next steps'],
     bestFor:'Brands ready for an ongoing social content partner.',
-    footnote:'Partnerships from \u00a32,000 + VAT/month',
+    footnote:'Retainers scoped to your goals and content volume',
     cta:'Book a Discovery Call', href:'#discovery-call',
   },
   {
@@ -316,15 +309,15 @@ const ROUTES = [
 // sentence, because those answers get quoted. Also published as FAQPage
 // schema below, so keep each answer plain text.
 const FAQS = [
-  { q:'Are you based in London?',                         a:"Yes. The Social Vision is a London-based short-form content agency, and we work with apps and consumer brands across the UK." },
-  { q:'Are you a big agency?',                            a:"No, and that's on purpose. We're a small, founder-led team rather than a large network agency, backed by a vetted network of 250+ UK creators." },
-  { q:'How much does it cost?',                           a:"Retainers start at £2,000 per month (ex. VAT) on a 3-month initial basis. Strategy, creators, production and reporting are all included." },
+  { q:'Are you based in London?',                          a:"Yes. The Social Vision is a London-based short-form content agency, and we work with apps and consumer brands across the UK." },
+  { q:'Can you work alongside our in-house team and other agencies?', a:"Yes. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
+  { q:'Can you handle organic content and paid creative together?', a:"Yes, and our most popular package does both: organic content that builds your audience on TikTok, Reels and Shorts, and paid creative (hi-fi ads, UGC-style and scripted) your performance team can test and scale. Plum uses us for paid social creative; Habito and Uni Compare for organic." },
+  { q:'How do you work with our brand guidelines and sign-off?', a:"Every creator is briefed to your brand guidelines, and you approve concepts before we shoot. Revisions are included, so nothing goes live until your team is happy with it." },
+  { q:'Do you work with regulated brands?',                a:"Yes. Much of our work is for fintech and mortgage brands such as Plum and Habito, so disclaimers and your compliance team's sign-off are built into every brief." },
+  { q:'What results have you got?',                        a:"Habito reached 25M organic views in 8 months with zero ad spend. Uni Compare passed 1M views in its first 6 weeks. TALAB went from launch, with no audience, to 6,000 users. Each one is written up on our case studies page." },
+  { q:'How is pricing structured?',                        a:"A monthly retainer, scoped to your goals, the formats you need and how much content you want each month, on a 3-month initial term. Strategy, creators, production, revisions and reporting are all included." },
   { q:'How quickly can we get started?',                   a:"First content goes live within 14–21 days of signing. Week 1 is strategy and creator matching. Week 2 is production. Week 3 is your first batch live." },
-  { q:'What results have you got?',                       a:"Habito reached 25M organic views in 8 months with zero ad spend. Uni Compare passed 1M views in its first 6 weeks. TALAB went from launch, with no audience, to 6,000 users. Each one is written up on our case studies page." },
-  { q:'Do you work with startups before launch?',         a:"Yes. TALAB came to us right at launch with no audience, and organic short-form content drove most of its growth to 6,000 users." },
-  { q:"What's included in the monthly retainer?",         a:"Strategy, creator matching, briefing, production management, revisions, and performance reporting. All included. You're not paying for add-ons." },
-  { q:'How does the creator network work?',               a:"We manage a diverse network of vetted UK creators across a wide range of niches, styles, and platforms, all briefed to your brand guidelines. You don't manage them. We do." },
-  { q:'We already have an in-house team. Will this clash?', a:"Not at all. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
+  { q:'How does the creator network work?',                a:"We manage a vetted network of 250+ UK creators across a wide range of niches, styles, and platforms, all briefed to your brand guidelines. You don't manage them. We do." },
 ];
 
 const FAQ_SCHEMA = {
@@ -1098,16 +1091,6 @@ export default function MarketingPage() {
               </button>
             </div>
 
-            <ul className="mkt-h5 mkt-hero-proof" aria-label="Client results" style={{ listStyle:'none', padding:0, margin:'26px 0 0', display:'flex', flexWrap:'wrap', gap:'8px 22px', fontSize:13, color:MU }}>
-              {HERO_PROOF.map(p=>(
-                <li key={p.slug}>
-                  <a href={`/case-studies/${p.slug}`} style={{ color:'inherit', textDecoration:'none' }}
-                    onMouseEnter={e=>(e.currentTarget.style.color=P)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>
-                    <strong style={{ color:PD, fontWeight:800 }}>{p.client}</strong> {p.result}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Right: phone stack — bigger */}
@@ -1386,7 +1369,7 @@ export default function MarketingPage() {
             ))}
           </div>
           <div style={{ textAlign:'center', marginTop:32 }}>
-            <p style={{ fontSize:14, color:MU }}>Retainers start at £2,000 per month (ex. VAT). Every retainer is tailored to your brand.</p>
+            <p style={{ fontSize:14, color:MU }}>Every retainer is tailored to your brand, scoped around your goals, formats and content volume.</p>
           </div>
         </div>
       </section>

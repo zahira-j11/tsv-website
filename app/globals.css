@@ -197,6 +197,9 @@ body::before {
      such as k and l are not clipped by the background-painted text layer. */
   padding-right: 0.2em;
   margin-right: -0.08em;
+  /* Same for descenders (g, y, p) in tight headline line-heights. */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
 }
 
 /* Shimmer text — for dark-section big stat */
