@@ -36,11 +36,21 @@ export function openCookieSettings() {
   window.dispatchEvent(new Event(OPEN_SETTINGS_EVENT));
 }
 
-/** Inline, runs before GA: default everything to denied unless already accepted. */
+/**
+ * Set on <html> before first paint when the visitor has already chosen (or is
+ * in /admin), so the server-rendered cookie banner never flashes up.
+ */
+export const CONSENTED_CLASS = 'tsv-consented';
+
+/**
+ * Inline, runs before GA: default everything to denied unless already
+ * accepted, and hide the cookie banner for anyone who has already chosen.
+ */
 export const CONSENT_DEFAULT_SCRIPT = `
 window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 window.gtag=window.gtag||gtag;
 var c=null;try{c=localStorage.getItem('${CONSENT_KEY}');}catch(e){}
 gtag('consent','default',{analytics_storage:c==='granted'?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+if(c||location.pathname.indexOf('/admin')===0)document.documentElement.classList.add('${CONSENTED_CLASS}');
 `;

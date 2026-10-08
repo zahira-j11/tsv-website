@@ -495,3 +495,7 @@ body::before {
 @media (max-width: 768px) {
   .site-nav-wrap .mkt-nav { pointer-events: none; }
 }
+
+/* Cookie banner: server-rendered, hidden before paint once a choice is stored
+   (see CONSENT_DEFAULT_SCRIPT in lib/consent.ts). */
+.tsv-consented .tsv-cookie-banner { display: none !important; }
