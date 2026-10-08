@@ -1063,10 +1063,6 @@ export default function MarketingPage() {
           {/* Left: copy */}
           <div style={{ flex:'1 1 780px', minWidth:0 }}>
 
-            <p className="mkt-h1" style={{ display:'inline-block', fontSize:11, fontWeight:800, letterSpacing:'.12em', textTransform:'uppercase', color:P, background:'rgba(124,1,255,0.09)', padding:'6px 16px', borderRadius:20, margin:'0 0 22px' }}>
-              London short-form content agency · TikTok, Reels &amp; Shorts
-            </p>
-
             <h1 className="mkt-h2 mkt-hero-h1" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(32px,4.5vw,60px)', fontWeight:800, lineHeight:1, letterSpacing:'-.055em', marginBottom:32, color:PD }}>
               Your brand{' '}<br className="mkt-br-m" />
               deserves{' '}<br className="mkt-br-d" />
