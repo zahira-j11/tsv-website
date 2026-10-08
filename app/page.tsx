@@ -32,6 +32,7 @@ const FOOTER_SOCIALS = [
 type FooterLink = { label:string; section:string } | { label:string; href:string; external?:boolean };
 const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
   { title:'Company', links:[
+    { label:'About us', href:'/about' },
     { label:'How it works', section:'how-it-works' },
     { label:'Case Studies', href:'/case-studies' },
     { label:'Testimonials', section:'testimonials' },

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { defaultSpots, spotsSentence, type SpotsInfo } from '@/lib/spots';
 import { track, isHubSpotBooking } from '@/lib/analytics';
+import { TESTIMONIALS } from '@/lib/caseStudies';
 
 // ─── Brand palette (matches app/page.tsx) ──────────────────
 const BG   = '#FEFDF8';
@@ -28,6 +29,18 @@ const INCLUDED = [
 // call, so audit bookings stay out of the sales-call pipeline.
 // Override per environment with NEXT_PUBLIC_AUDIT_CALENDAR_URL.
 const AUDIT_CALENDAR_URL = 'https://meetings-eu1.hubspot.com/thesocialvision/social-media-audit-';
+
+// Proof beside the form: the same greyed logos as the homepage ticker, and
+// the Habito quote, which carries the strongest number.
+const PROOF_LOGOS = [
+  { file:'13', name:'Habito' },
+  { file:'14', name:'Plum' },
+  { file:'10', name:'Uni Compare' },
+  { file:'5',  name:'TALAB' },
+  { file:'15', name:'Blackbullion' },
+  { file:'17', name:'Freetrade' },
+];
+const PROOF_QUOTE = TESTIMONIALS.find(t => t.client === 'Habito')!;
 
 const PLATFORMS = ['TikTok', 'Instagram', 'YouTube', 'LinkedIn', 'Meta Ads', 'Not posting yet'];
 
@@ -222,6 +235,26 @@ export default function AuditPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ══ PROOF ════════════════════════════════════════════ */}
+      <section aria-label="Clients" style={{ padding:'56px 28px 0', background:BG }}>
+        <div style={{ maxWidth:860, margin:'0 auto', textAlign:'center' }}>
+          <p style={{ fontSize:13, fontWeight:700, color:SU, margin:'0 0 18px' }}>Trusted by brands including</p>
+          <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', alignItems:'center', gap:'4px 28px', marginBottom:34 }}>
+            {PROOF_LOGOS.map(l=>(
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={l.file} src={`/logos/${l.file}.png`} alt={l.name} style={{ height:84, width:'auto', filter:'brightness(0) opacity(0.32)' }} />
+            ))}
+          </div>
+          <figure style={{ margin:0, background:WH, border:`1.5px solid ${BR}`, borderRadius:22, padding:'28px 30px' }}>
+            <blockquote style={{ margin:'0 0 16px', fontSize:17, lineHeight:1.75, color:PD, fontStyle:'italic' }}>&ldquo;{PROOF_QUOTE.quote}&rdquo;</blockquote>
+            <figcaption style={{ fontSize:13.5, color:MU }}>
+              <strong style={{ color:PD }}>{PROOF_QUOTE.name}</strong>, {PROOF_QUOTE.role} ·{' '}
+              <a href="/case-studies/habito" style={{ color:P, fontWeight:700, textDecoration:'none' }}>Read the case study</a>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
