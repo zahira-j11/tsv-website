@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import SiteNav from '../../SiteNav';
+import TrackedLink from '../../case-studies/TrackedLink';
+import { BOOK_CALL_HREF } from '@/lib/caseStudies';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -219,10 +221,10 @@ export default async function PostPage({ params }: Props) {
                   <p style={{ fontSize: 13, color: MU, lineHeight: 1.6, marginBottom: 16 }}>
                     Book a call.
                   </p>
-                  <Link href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer"
+                  <TrackedLink href={BOOK_CALL_HREF} location={`blog_sidebar_${post.slug}`}
                     style={{ display: 'block', textAlign: 'center', fontSize: 13, fontWeight: 700, color: WH, background: PD, borderRadius: 100, padding: '12px 20px', textDecoration: 'none' }}>
                     Book a call
-                  </Link>
+                  </TrackedLink>
                 </div>
 
                 {/* Tags */}

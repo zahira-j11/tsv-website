@@ -25,6 +25,10 @@ const LEGACY_REDIRECTS = [
   ['/case-study', '/case-studies'],
   ['/pricing', '/#pricing'],
   ['/post/:slug*', '/blog'],
+  // Blog posts retired or reworked in Oct 2026.
+  ['/blog/tiktok-views-dropped', '/blog/stuck-on-300-views'],
+  ['/blog/tiktok-algorithm-2026', '/blog/shares-beat-views'],
+  ['/blog/ugc-vs-brand-content-tiktok', '/case-studies/plum'],
   ['/case-habito.png', '/case-studies/habito.jpg'],
   ['/privacy-policy', '/privacy'],
 ];
