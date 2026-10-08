@@ -1369,7 +1369,7 @@ export default function MarketingPage() {
             ))}
           </div>
           <div style={{ textAlign:'center', marginTop:32 }}>
-            <p style={{ fontSize:14, color:MU }}>Every retainer is tailored to your brand, scoped around your goals, formats and content volume.</p>
+            <p style={{ fontSize:14, color:MU }}>Retainers start at £2,000 per month (ex. VAT). Every retainer is tailored to your brand.</p>
           </div>
         </div>
       </section>
