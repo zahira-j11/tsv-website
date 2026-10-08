@@ -40,10 +40,10 @@ export const CASES = [
     modalBody:"We became Plum's dedicated creative partner for paid social, producing hi-fi ads, UGC-style content and scripted interactions that let their performance marketing team test new formats and scale winning concepts without the usual back and forth of managing creators themselves.",
   },
   {
-    slug:'uni-compare', title:'How Uni Compare passed 1 million views in 6 weeks',
-    client:'Uni Compare', format:'Street Interviews', result:'1M+ Views First 6 weeks', sub:'First 6 weeks',
+    slug:'uni-compare', title:'How Uni Compare passed 1 million views in 8 weeks',
+    client:'Uni Compare', format:'Street Interviews', result:'1M+ Views First 8 weeks', sub:'First 8 weeks',
     industry:'Edtech and student brands',
-    headline:'Uni Compare passed 1 million views in its first 6 weeks of short-form content with The Social Vision, and average views per video rose from under 1,000 to 83,000.',
+    headline:'Uni Compare passed 1 million views in its first 8 weeks of short-form content with The Social Vision, and average views per video rose from under 1,000 to 83,000.',
     body:"From under 1,000 views per video to an average of 83,000. We helped Uni Compare build a genuine organic audience among students in 8 weeks.",
     g:'linear-gradient(135deg,#027A3A,#08F683)', accent:'#027A3A', thumb:'/case-studies/unicompare.png',
     overview:'Uni Compare is a UK university comparison platform helping students find and apply for the right course. They wanted to build an organic presence on TikTok and Reels that actually reached students, without relying on paid ads.',

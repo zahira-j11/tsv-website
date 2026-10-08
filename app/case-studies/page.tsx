@@ -13,7 +13,7 @@ const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
 
 const TITLE = 'Case Studies | The Social Vision, London Short-Form Content Agency';
 const DESCRIPTION =
-  'Short-form content results for apps and consumer brands: Habito’s 25M organic views with zero ad spend, Uni Compare’s 1M views in 6 weeks, TALAB’s 6,000 users from launch, and Plum’s paid social creative.';
+  'Short-form content results for apps and consumer brands: Habito’s 25M organic views with zero ad spend, Uni Compare’s 1M views in 8 weeks, TALAB’s 6,000 users from launch, and Plum’s paid social creative.';
 
 export const metadata: Metadata = {
   title: TITLE,
