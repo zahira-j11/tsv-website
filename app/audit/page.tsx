@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { defaultSpots, spotsSentence, type SpotsInfo } from '@/lib/spots';
 import { track, isHubSpotBooking } from '@/lib/analytics';
 import { TESTIMONIALS } from '@/lib/caseStudies';
@@ -244,8 +245,7 @@ export default function AuditPage() {
           <p style={{ fontSize:13, fontWeight:700, color:SU, margin:'0 0 18px' }}>Trusted by brands including</p>
           <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', alignItems:'center', gap:'4px 28px', marginBottom:34 }}>
             {PROOF_LOGOS.map(l=>(
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={l.file} src={`/logos/${l.file}.png`} alt={l.name} style={{ height:84, width:'auto', filter:'brightness(0) opacity(0.32)' }} />
+              <Image key={l.file} src={`/logos/${l.file}.png`} alt={l.name} width={84} height={84} sizes="84px" style={{ height:84, width:'auto', filter:'brightness(0) opacity(0.32)' }} />
             ))}
           </div>
           <figure style={{ margin:0, background:WH, border:`1.5px solid ${BR}`, borderRadius:22, padding:'28px 30px' }}>

@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 import { defaultSpots, spotsShort, spotsSlots, type SpotsInfo } from '@/lib/spots';
 import { track, isHubSpotBooking } from '@/lib/analytics';
 import { openCookieSettings } from '@/lib/consent';
@@ -93,12 +94,17 @@ const PHONES = [
 type PhoneData = typeof PHONES[0];
 
 // ─── Phone component ────────────────────────────────────────
-function Phone({ phone, rotate = 0, scale = 1, cls = '', videoSrc }: { phone: PhoneData; rotate?: number; scale?: number; cls?: string; videoSrc?: string }) {
+// `load` stays false on phones, where the phone stack is hidden, so the hero
+// videos (about 14 MB together) are never downloaded there.
+function Phone({ phone, rotate = 0, scale = 1, cls = '', videoSrc, load = true }: { phone: PhoneData; rotate?: number; scale?: number; cls?: string; videoSrc?: string; load?: boolean }) {
+  const vRef = useRef<HTMLVideoElement>(null);
+  // autoPlay alone doesn't always fire when the source is added after mount.
+  useEffect(() => { if (load && videoSrc) vRef.current?.play().catch(() => {}); }, [load, videoSrc]);
   return (
     <div className={cls} style={{ width:160, height:326, borderRadius:32, background:'#000', border:'1.5px solid rgba(255,255,255,0.12)', overflow:'hidden', transform:`rotate(${rotate}deg) scale(${scale})`, position:'relative', boxShadow:'0 28px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(124,1,255,0.18)', flexShrink:0 }}>
       {/* Full-screen video (when provided) */}
       {videoSrc && (
-        <video src={videoSrc} autoPlay muted loop playsInline
+        <video ref={vRef} src={load ? videoSrc : undefined} autoPlay muted loop playsInline
           style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', zIndex:0 }} />
       )}
       {/* Background (fallback when no video) */}
@@ -413,7 +419,7 @@ function HofCard({ card, videoSrc, poster }: {
       {/* Video area — fills to bottom, brand pill + view count overlaid */}
       <div style={{ position:'relative', margin:'10px 12px 12px', borderRadius:12, overflow:'hidden', background:'rgba(33,0,93,0.06)', aspectRatio:'9/16' }}>
         {videoSrc ? (
-          <video ref={vRef} src={videoSrc} poster={poster} playsInline loop muted={false}
+          <video ref={vRef} src={videoSrc} poster={poster} playsInline loop muted={false} preload={poster ? 'none' : 'metadata'}
             style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }} />
         ) : (
           <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(33,0,93,0.06) 0%, rgba(33,0,93,0.12) 100%)' }} />
@@ -456,7 +462,7 @@ function ServiceThumb({ src, poster }: { src?: string; poster?: string }) {
   return (
     <div onClick={toggle} style={{ flex:1, borderRadius:10, overflow:'hidden', background:'rgba(33,0,93,0.07)', aspectRatio:'9/16', position:'relative', cursor:src?'pointer':'default', minWidth:0 }}>
       {src && (
-        <video ref={vRef} src={src} poster={poster} playsInline loop muted={false}
+        <video ref={vRef} src={src} poster={poster} playsInline loop muted={false} preload={poster ? 'none' : 'metadata'}
           style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }} />
       )}
       <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', opacity: playing ? 0 : 1, transition:'opacity 200ms' }}>
@@ -784,7 +790,7 @@ function CasesCarousel() {
           >
             {/* Thumbnail */}
             <div style={{ position: 'relative', height: 260, background: c.g, overflow: 'hidden' }}>
-              <img src={c.thumb} alt={c.client} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              <Image src={c.thumb} alt={c.client} fill sizes="(max-width: 768px) 100vw, 580px" style={{ objectFit: 'cover' }}
                 onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
               <span style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.95)', color: P, ...DISP, fontSize: 12, fontWeight: 700, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)' }}>{c.client}</span>
               <span style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.90)', color: PD, fontSize: 11, fontWeight: 600, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)', maxWidth: '55%', textAlign: 'right' }}>{c.format}</span>
@@ -837,6 +843,16 @@ export default function MarketingPage() {
   const [tPaused,setTPaused]   = useState(false);
 
   useReveal();
+
+  // The hero phone stack only shows above 768px; below that its videos stay unloaded.
+  const [desktop,setDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 769px)');
+    const update = () => setDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   // Promo banner: remember dismissal, and measure its height so the nav
   // and hero can sit below it at whatever size it renders.
@@ -1095,13 +1111,13 @@ export default function MarketingPage() {
             <div style={{ position:'absolute', inset:-80, background:`radial-gradient(circle, rgba(124,1,255,0.22) 0%, transparent 68%)`, pointerEvents:'none' }} />
             <div style={{ display:'flex', alignItems:'center', gap:0, position:'relative' }}>
               <div className="mkt-float-a" style={{ marginTop:56, marginRight:-20, zIndex:1 }}>
-                <Phone phone={PHONES[0]} rotate={-9} scale={1.16} videoSrc="/videos/hero-back-left.mp4" />
+                <Phone phone={PHONES[0]} rotate={-9} scale={1.16} videoSrc="/videos/hero-back-left.mp4" load={desktop} />
               </div>
               <div className="mkt-float-b" style={{ zIndex:3 }}>
-                <Phone phone={PHONES[2]} rotate={0} scale={1.44} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1785166780/tsv-website/hero3.mp4" />
+                <Phone phone={PHONES[2]} rotate={0} scale={1.44} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1785166780/tsv-website/hero3.mp4" load={desktop} />
               </div>
               <div className="mkt-float-c" style={{ marginTop:56, marginLeft:-20, zIndex:1 }}>
-                <Phone phone={PHONES[4]} rotate={9} scale={1.16} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049284/tsv-website/hero2.mp4" />
+                <Phone phone={PHONES[4]} rotate={9} scale={1.16} videoSrc="https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782049284/tsv-website/hero2.mp4" load={desktop} />
               </div>
 
             </div>
@@ -1153,8 +1169,7 @@ export default function MarketingPage() {
           <div className="mkt-ticker" style={{ display:'flex', whiteSpace:'nowrap', width:'max-content', alignItems:'center', gap:0 }}>
             {[...CLIENT_LOGOS,...CLIENT_LOGOS].map((logo,i)=>(
               <div key={i} aria-hidden={i >= CLIENT_LOGOS.length} style={{ display:'inline-flex', alignItems:'center', padding:'0 48px', flexShrink:0 }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/logos/${logo.file}.png`} alt={i < CLIENT_LOGOS.length ? logo.name : ''} height={150} style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
+                <Image src={`/logos/${logo.file}.png`} alt={i < CLIENT_LOGOS.length ? logo.name : ''} width={150} height={150} sizes="150px" style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
               </div>
             ))}
           </div>
@@ -1287,8 +1302,7 @@ export default function MarketingPage() {
             </div>
             {/* Creator headshot collage */}
             <div className="mkt-hidden-mobile" data-reveal data-reveal-delay="0.2" style={{ position:'relative', width:'100%', maxWidth:560, margin:'0 auto', marginTop:-150 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/creators-collage.png" alt="Creator network" style={{ width:'100%', objectFit:'contain', display:'block' }} />
+              <Image src="/creators-collage.png" alt="Creator network" width={1080} height={1350} sizes="560px" style={{ width:'100%', height:'auto', objectFit:'contain', display:'block' }} />
             </div>
           </div>
         </div>

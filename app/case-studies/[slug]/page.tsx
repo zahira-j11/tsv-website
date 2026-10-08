@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import SiteNav from '../../SiteNav';
 import TrackedLink from '../TrackedLink';
@@ -101,8 +102,9 @@ export default async function CaseStudyPage({ params }: Props) {
             <p style={{ fontSize: 19, lineHeight: 1.65, color: PD, margin: 0, borderLeft: `3px solid ${P}`, paddingLeft: 18 }}>{c.headline}</p>
           </header>
 
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={c.thumb} alt={`${c.client} short-form content by The Social Vision`} style={{ width: '100%', aspectRatio: '16 / 9', objectFit: 'cover', borderRadius: 22, display: 'block', background: c.g, marginBottom: 28 }} />
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', borderRadius: 22, overflow: 'hidden', background: c.g, marginBottom: 28 }}>
+            <Image src={c.thumb} alt={`${c.client} short-form content by The Social Vision`} fill priority sizes="(max-width: 900px) 100vw, 820px" style={{ objectFit: 'cover' }} />
+          </div>
 
           <section aria-label="Results" className="cs-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12, marginBottom: 48 }}>
             {c.stats.map(st => (
