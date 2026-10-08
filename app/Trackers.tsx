@@ -20,12 +20,21 @@ import { readConsent, CONSENT_EVENT, type Consent } from '@/lib/consent';
 // The HubSpot account (146922833) is on the EU1 data centre (the meetings
 // links are meetings-eu1.hubspot.com), so its tracking code comes from js-eu1.
 //
-// Opt-in via NEXT_PUBLIC_HUBSPOT_PORTAL_ID=146922833. The tracking code also
-// switches on whatever HubSpot pop-ups, chat and banners are live in the
-// account — at the time of writing that included an overlay CTA (463078028485)
-// opening the audit calendar directly, which skips the budget gate on /audit.
-// Check HubSpot's live pop-ups before setting the variable.
-const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
+// The tracking code also switches on whatever HubSpot pop-ups are live in the
+// account. One of them (overlay CTA 463078028485, still live on 8 Oct 2026)
+// opens the audit calendar directly and skips the budget gate on /audit, so
+// HUBSPOT_POPUPS_OFF hides every HubSpot web interactive on this site, and
+// undoes the scroll lock they put on <body>. The
+// site's own buttons do that job. Set NEXT_PUBLIC_HUBSPOT_PORTAL_ID to an
+// empty string to switch HubSpot tracking off altogether.
+const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID ?? '146922833';
+const HUBSPOT_POPUPS_OFF = `
+  #hs-interactives-modal-overlay,
+  [id^="hs-overlay-cta-"],
+  [id^="hs-web-interactives-"] { display: none !important; }
+  /* An open pop-up also locks scrolling with a generated class on <body>. */
+  body { overflow: visible !important; }
+`;
 
 export default function Trackers() {
   const pathname = usePathname();
@@ -45,11 +54,14 @@ export default function Trackers() {
     <>
       {gaId && <GoogleAnalytics gaId={gaId} />}
       {HUBSPOT_PORTAL_ID && consent === 'granted' && (
-        <Script
-          id="hs-script-loader"
-          src={`https://js-eu1.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`}
-          strategy="afterInteractive"
-        />
+        <>
+          <style>{HUBSPOT_POPUPS_OFF}</style>
+          <Script
+            id="hs-script-loader"
+            src={`https://js-eu1.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`}
+            strategy="afterInteractive"
+          />
+        </>
       )}
     </>
   );
