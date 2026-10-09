@@ -121,6 +121,25 @@ export function extractHeadings(content: string): { id: string; text: string; le
   return headings;
 }
 
+/**
+ * The "## Quick answers" section at the end of a post, as question/answer
+ * pairs: each question is a bold line, its answer the lines after it. Used
+ * for FAQPage schema, so assistants can quote the answers directly.
+ */
+export function extractQuickAnswers(content: string): { q: string; a: string }[] {
+  const section = content.split(/^## Quick answers\s*$/m)[1];
+  if (!section) return [];
+  const body = section.split(/^## /m)[0];
+  const pairs: { q: string; a: string }[] = [];
+  const regex = /^\*\*(.+?)\*\*\s*\n([\s\S]*?)(?=\n\s*\n|$)/gm;
+  let m;
+  while ((m = regex.exec(body)) !== null) {
+    const a = m[2].replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\s+/g, ' ').trim();
+    if (a) pairs.push({ q: m[1].trim(), a });
+  }
+  return pairs;
+}
+
 // The live site serves from www (the bare domain redirects there), so every
 // canonical, sitemap entry and schema URL must use it too.
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.thesocialvision.co.uk';

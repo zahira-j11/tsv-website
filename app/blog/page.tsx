@@ -73,7 +73,7 @@ function PostCard({ post }: { post: Post }) {
         <div>
           <p style={{ fontSize: 13, fontWeight: 600, color: PD, margin: 0 }}>{author.name}</p>
           <p style={{ fontSize: 12, color: SU, margin: 0 }}>
-            {new Date(post.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            {new Date(post.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}
           </p>
         </div>
       </div>

@@ -12,6 +12,7 @@ import {
   getAllPosts,
   getRelatedPosts,
   extractHeadings,
+  extractQuickAnswers,
   CATEGORIES,
   AUTHORS,
   SITE_URL,
@@ -75,7 +76,13 @@ function JsonLd({ post }: { post: Post }) {
     image: `${SITE_URL}/blog/${post.slug}/opengraph-image`,
     keywords: post.tags.join(', '),
   };
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+  const answers = extractQuickAnswers(post.content);
+  const faq = answers.length > 0 && {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: answers.map(x => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })),
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq ? [schema, faq] : schema) }} />;
 }
 
 function CategoryChip({ category }: { category: Category }) {
@@ -156,7 +163,7 @@ export default async function PostPage({ params }: Props) {
                   <div>
                     <p style={{ fontSize: 14, fontWeight: 600, color: PD, margin: 0 }}>{author.name}</p>
                     <p style={{ fontSize: 12, color: SU, margin: 0 }}>
-                      {new Date(post.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} · {post.readingTime}
+                      {new Date(post.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })} · {post.readingTime}
                     </p>
                   </div>
                 </div>
