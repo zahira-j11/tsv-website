@@ -3,6 +3,7 @@ import { Manrope } from 'next/font/google';
 import { SITE_URL } from '@/lib/blog';
 import Trackers from './Trackers';
 import CookieBanner from './CookieBanner';
+import SiteAnalytics from './SiteAnalytics';
 import { CONSENT_DEFAULT_SCRIPT } from '@/lib/consent';
 import './globals.css';
 
@@ -108,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={manrope.variable}>
         {children}
         <Trackers />
+        <SiteAnalytics />
         <CookieBanner />
       </body>
     </html>

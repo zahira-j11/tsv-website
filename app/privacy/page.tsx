@@ -15,7 +15,7 @@ const P  = '#7C01FF';
 const MU = 'rgba(33,0,93,0.72)';
 const BR = '#E4DCFF';
 
-const UPDATED = '30 September 2026';
+const UPDATED = '9 October 2026';
 const CONTACT_EMAIL = 'zahira@thesocialvision.co.uk';
 
 const h2: React.CSSProperties = { fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 800, letterSpacing: '-.03em', color: PD, margin: '40px 0 12px' };
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
         <ul style={{ paddingLeft: 20, margin: '0 0 14px' }}>
           <li style={li}><strong>HubSpot</strong>: CRM, meeting booking and (if you accept cookies) website analytics. Our account is hosted in HubSpot&rsquo;s EU data centre.</li>
           <li style={li}><strong>Google Analytics</strong>: website analytics.</li>
-          <li style={li}><strong>Vercel</strong>: website hosting.</li>
+          <li style={li}><strong>Vercel</strong>: website hosting, and cookieless visit counts (Vercel Web Analytics) showing which pages are viewed and which site you came from, without cookies or anything that identifies you.</li>
           <li style={li}><strong>MongoDB Atlas</strong>: storage for audit applications.</li>
           <li style={li}><strong>Resend</strong>: sends us a notification email when you apply.</li>
           <li style={li}><strong>Cloudinary</strong>: hosts the videos on this site (it sees standard request data such as your IP address).</li>
@@ -91,7 +91,7 @@ export default function PrivacyPage() {
         <p style={p}>Some of these providers are based in, or have staff in, the United States. Where personal information leaves the UK, it is protected by the UK&rsquo;s adequacy regulations (including the UK–US data bridge) or by the International Data Transfer Addendum to standard contractual clauses.</p>
 
         <h2 id="cookies" style={h2}>Cookies</h2>
-        <p style={p}>We only set analytics cookies if you click &ldquo;Accept&rdquo; in the cookie banner. If you reject or ignore it, Google Analytics runs in consent mode without cookies, and HubSpot&rsquo;s tracking code isn&rsquo;t loaded.</p>
+        <p style={p}>We only set analytics cookies if you click &ldquo;Accept&rdquo; in the cookie banner. If you reject or ignore it, Google Analytics runs in consent mode without cookies, and HubSpot&rsquo;s tracking code isn&rsquo;t loaded. We also count page views with Vercel Web Analytics, which doesn&rsquo;t use cookies or store anything on your device, so it runs whether or not you accept.</p>
         <div style={{ overflowX: 'auto', margin: '6px 0 14px' }}>
           <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 520 }}>
             <thead><tr><th style={th}>Cookie</th><th style={th}>Set by</th><th style={th}>Purpose</th><th style={th}>Lasts</th></tr></thead>
