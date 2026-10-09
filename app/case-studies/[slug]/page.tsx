@@ -5,6 +5,7 @@ import SiteNav from '../../SiteNav';
 import TrackedLink from '../TrackedLink';
 import { CASES, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
+import { industriesFor } from '@/lib/industries';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -75,6 +76,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
   const quotes = testimonialsFor(c.client);
   const others = CASES.filter(o => o.slug !== c.slug);
+  const industries = industriesFor(c.slug);
 
   return (
     <>
@@ -139,6 +141,12 @@ export default async function CaseStudyPage({ params }: Props) {
               </div>
             </section>
           )}
+
+          {industries.map(i => (
+            <p key={i.slug} style={{ fontSize: 15.5, margin: '0 0 40px' }}>
+              <a href={`/industries/${i.slug}`} style={{ color: P, fontWeight: 700, textDecoration: 'none' }}>More on our work in {i.label.toLowerCase()} →</a>
+            </p>
+          ))}
 
           <section style={{ background: `linear-gradient(150deg,${PD} 0%,${P} 100%)`, color: '#fff', borderRadius: 24, padding: '34px 30px', marginBottom: 56 }}>
             <h2 style={{ ...DISP, fontSize: 'clamp(24px,3vw,32px)', fontWeight: 800, letterSpacing: '-.03em', margin: '0 0 10px' }}>Your brand deserves more than 300 views.</h2>
