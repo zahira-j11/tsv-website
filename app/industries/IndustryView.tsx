@@ -31,7 +31,8 @@ function JsonLd({ ind }: { ind: Industry }) {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: `Short-form content for ${ind.label.toLowerCase()}`,
+      // Format and service pages (own path) are named as they are; industries get a prefix.
+      name: ind.path ? ind.label : `Short-form content for ${ind.label.toLowerCase()}`,
       serviceType: 'Short-form video content (TikTok, Instagram Reels, YouTube Shorts)',
       description: ind.metaDescription,
       url,
@@ -75,7 +76,9 @@ export default function IndustryView({ ind }: { ind: Industry }) {
         <main className="ind-body" style={{ padding: '120px 20px 80px', maxWidth: 860, margin: '0 auto' }}>
           <header style={{ marginBottom: 48 }}>
             <h1 style={{ ...DISP, fontSize: 'clamp(34px,5.2vw,58px)', fontWeight: 800, letterSpacing: '-.05em', lineHeight: 1.04, margin: '0 0 26px' }}>
-              {ind.headlineStart} more than <span className="mkt-gradient-text">300 views.</span>
+              {ind.headline
+                ? <>{ind.headline[0]}<span className="mkt-gradient-text">{ind.headline[1]}</span></>
+                : <>{ind.headlineStart} more than <span className="mkt-gradient-text">300 views.</span></>}
             </h1>
             {ind.intro.map(p => <p key={p.slice(0, 24)} style={{ ...body, fontSize: 18 }}>{p}</p>)}
           </header>

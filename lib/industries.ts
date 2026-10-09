@@ -16,8 +16,13 @@ export type Industry = {
   label: string;
   metaTitle: string;
   metaDescription: string;
-  /** H1 is `${headlineStart} more than 300 views.` */
+  /** H1 is `${headlineStart} more than 300 views.`, unless `headline` is set. */
   headlineStart: string;
+  /**
+   * A full H1, for pages where "300 views" isn't the pain (paid creative).
+   * `[0]` is plain, `[1]` gets the gradient highlight.
+   */
+  headline?: [string, string];
   intro: string[];
   formatsHeading: string;
   formats: { title: string; body: string }[];
@@ -194,6 +199,47 @@ export const INDUSTRIES: Industry[] = [
       { q: 'Do street interviews work for regulated brands?', a: 'Yes. Habito, a mortgage broker, reached 25 million organic views with street interviews. The brand asks the question rather than making claims.' },
     ],
     closing: 'Your brand deserves more than 300 views.',
+  },
+  {
+    slug: 'paid-social-creative',
+    path: '/paid-social-creative',
+    label: 'Paid social creative',
+    metaTitle: 'Paid Social Creative and UGC Ad Agency in London | The Social Vision',
+    metaDescription:
+      'A steady pipeline of paid social creative for performance teams: Paid Social Productions and Remote Creator UGC for TikTok, Meta and YouTube, so testing never waits on production.',
+    headlineStart: '',
+    headline: ['Your performance team deserves creative ', 'as fast as it can test.'],
+    intro: [
+      'Your media buyers can launch a new test in minutes. Getting the next batch of creative usually takes weeks: briefs, finding creators, shoots, edits and rounds of feedback. So the best ideas wait, winning ads run until they wear out, and the whole account slows down to the speed of production.',
+      "We take creative production off your team's plate and keep a steady pipeline of new ads coming, so testing never has to wait.",
+    ],
+    formatsHeading: 'What we make for paid',
+    formats: [
+      { title: 'Paid Social Productions.', body: 'Higher-production ads built for paid: scripted scenarios, story-led concepts and game-show formats, with strong hooks, clear messaging and polished visuals.' },
+      { title: 'Remote Creator UGC.', body: 'Creators from our network film from their own space, so you get new faces and new angles without organising a shoot.' },
+      { title: 'Every piece built to test.', body: 'At least two hook variations per piece, plus square versions when you need them, so one concept becomes several tests.' },
+      { title: 'The next batch built from the last.', body: "We look at what's winning and make more of it: new hooks on winning concepts, new creators on winning scripts." },
+    ],
+    processHeading: 'A creative pipeline, not a one-off project',
+    processBody:
+      'We brief from your performance data and brand guidelines, cast from our network of 250+ vetted UK creators, and deliver ads on a rolling basis through the month, ready for TikTok, Meta and YouTube. You approve every concept before we shoot and every edit before it goes live. Your team never has to find, brief or chase a creator.',
+    resultsHeading: 'Results from paid creative',
+    results: [
+      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We became its dedicated paid social creative partner, producing hi-fi ads, UGC-style content and scripted interactions so its performance team could test new formats and scale winning concepts. That meant three times the creative output, with no creator management on Plum's side." },
+    ],
+    quote: {
+      text: 'The Social Vision has unlocked a new level of creative production for us. We have been able to test new creatives and styles at speed which has helped us grow our paid social channels significantly.',
+      name: 'Georgie Hodgkins-Brown',
+      role: 'Performance Marketing Manager, Plum',
+    },
+    clientsLine: "Brands we've made paid creative for include Plum and Prep Kitchen.",
+    faqs: [
+      { q: 'How quickly can we get new creative?', a: 'First content goes live within 14 to 21 days of signing. After that, we deliver new ads on a rolling basis every month.' },
+      { q: 'How many ad variations do you give us?', a: 'Every piece comes with at least two hook variations, plus square versions when you need them.' },
+      { q: "What's the difference between Paid Social Productions and Remote Creator UGC?", a: 'Paid Social Productions are higher-production ads we plan and film, from scripted scenarios to game-show concepts. Remote Creator UGC is filmed by creators from our network in their own space, so it feels like a recommendation from a real customer.' },
+      { q: 'Do you run the ads?', a: 'We focus on making the creative. Your performance team or media agency runs the campaigns, and we use the results to shape the next batch.' },
+    ],
+    closing: 'Your performance team deserves creative as fast as it can test.',
   },
 ];
 
