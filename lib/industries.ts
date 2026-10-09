@@ -70,6 +70,46 @@ export const INDUSTRIES: Industry[] = [
     ],
     closing: 'Your fintech brand deserves more than 300 views.',
   },
+  {
+    slug: 'education',
+    label: 'Education and student brands',
+    metaTitle: 'Short-Form Content Agency for Education and Student Brands | The Social Vision',
+    metaDescription:
+      'London short-form content agency for education and student brands. TikTok, Reels and Shorts that students actually watch and share, from street interviews to results-day content.',
+    headlineStart: 'Your student brand deserves',
+    intro: [
+      'Students are the hardest audience to fake it with. They spot an ad in under a second, they live on TikTok, and they trust each other far more than any brand. Most education and student brands post content that looks like a prospectus, and it gets scrolled straight past.',
+      'The brands that win with students make content students would make themselves, about the things they actually talk about.',
+    ],
+    formatsHeading: 'What works for reaching students on short-form',
+    formats: [
+      { title: 'Street interviews with students.', body: 'Real students answering questions about uni life, money, choosing a course and everything in between. The answers are relatable, the comments fill up, and the brand owns the conversation.' },
+      { title: 'Useful content they send to friends.', body: 'Lists and guides that solve a real problem. For one edtech client, a results-day list of every place giving away free food reached nearly a million views and 28,000 shares.' },
+      { title: 'Moments in the student calendar.', body: 'Results day, clearing, freshers and exam season are when students are searching and sharing most. We plan around them.' },
+      { title: 'Presenters students relate to.', body: 'People from our network who look and sound like your audience, so the content feels like it came from a peer, not a brand.' },
+    ],
+    processHeading: 'Built around the student year',
+    processBody:
+      'We plan each month around what students are going through, cast presenters your audience will relate to, and turn round content fast enough to catch the big moments. You approve every concept before we shoot and every edit before it goes live.',
+    resultsHeading: 'Results from student brands',
+    results: [
+      { slug: 'uni-compare', client: 'Uni Compare', body: 'a UK university comparison platform. Street interviews and scripted interactions about choosing a university passed 1 million views in the first 8 weeks, took average views per video from under 1,000 to 83,000, and contributed to a significant rise in app downloads.' },
+      { slug: 'talab', client: 'TALAB', body: 'a student concierge app that came to us at launch with no audience. Street interviews about student life reached 1 million views in the first 5 weeks and helped it grow to 6,000 users.' },
+    ],
+    quote: {
+      text: "The Social Vision have helped us go viral multiple times without us having to lift a finger. They've helped us generate over 1 Million views amongst students.",
+      name: 'Mandy Sangha',
+      role: 'Marketing Manager, Applicaa',
+    },
+    clientsLine: "Education and student brands we've worked with include Uni Compare, Applicaa, Blackbullion, TALAB and The Student Room.",
+    faqs: [
+      { q: 'What content works best for reaching students on TikTok?', a: 'Street interviews with students, useful lists and guides they want to share with friends, and content timed to moments like results day, clearing and freshers.' },
+      { q: 'How do you make content students trust?', a: 'Students trust people more than brands, so we put relatable presenters on camera and talk about what students actually talk about, with the brand as the context rather than the message.' },
+      { q: 'What results have you had with student brands?', a: 'Uni Compare passed 1 million views in its first 8 weeks, and TALAB went from launch with no audience to 6,000 users.' },
+      { q: 'Can you work alongside our in-house marketing team?', a: 'Yes. We can run everything, or handle creators and production while your team leads strategy.' },
+    ],
+    closing: 'Your student brand deserves more than 300 views.',
+  },
 ];
 
 export function getIndustry(slug: string): Industry | undefined {
