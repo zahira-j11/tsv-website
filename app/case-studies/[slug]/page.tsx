@@ -5,7 +5,7 @@ import SiteNav from '../../SiteNav';
 import TrackedLink from '../TrackedLink';
 import { CASES, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
-import { industriesFor } from '@/lib/industries';
+import { industriesFor, industryPath } from '@/lib/industries';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -144,7 +144,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
           {industries.map(i => (
             <p key={i.slug} style={{ fontSize: 15.5, margin: '0 0 40px' }}>
-              <a href={`/industries/${i.slug}`} style={{ color: P, fontWeight: 700, textDecoration: 'none' }}>More on our work in {i.label.toLowerCase()} →</a>
+              <a href={industryPath(i)} style={{ color: P, fontWeight: 700, textDecoration: 'none' }}>More on our work in {i.label.toLowerCase()} →</a>
             </p>
           ))}
 

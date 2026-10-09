@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts, SITE_URL } from '@/lib/blog';
 import { CASES } from '@/lib/caseStudies';
-import { INDUSTRIES } from '@/lib/industries';
+import { INDUSTRIES, industryPath } from '@/lib/industries';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     ...INDUSTRIES.map(i => ({
-      url: `${SITE_URL}/industries/${i.slug}`,
+      url: `${SITE_URL}${industryPath(i)}`,
       lastModified: new Date('2026-10-09'),
       changeFrequency: 'monthly' as const,
       priority: 0.8,

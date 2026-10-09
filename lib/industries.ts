@@ -10,6 +10,8 @@
 
 export type Industry = {
   slug: string;
+  /** Where the page lives, if not /industries/{slug} (formats like street interviews). */
+  path?: string;
   /** Short name for links, the footer and breadcrumbs. */
   label: string;
   metaTitle: string;
@@ -151,7 +153,53 @@ export const INDUSTRIES: Industry[] = [
     ],
     closing: 'Your app deserves more than 300 views.',
   },
+  {
+    slug: 'street-interviews',
+    path: '/street-interviews',
+    label: 'Street interviews',
+    metaTitle: 'Street Interview Content Agency in London | The Social Vision',
+    metaDescription:
+      "We plan, cast, film and edit street interview content for brands in London and across the UK. The format behind Habito's 25 million organic views.",
+    headlineStart: 'Street interviews that get',
+    intro: [
+      "Street interviews look simple: a presenter, a microphone and a question. That's why so many brands try them and end up with awkward answers, the wrong locations and videos nobody finishes.",
+      "The format works when every part is planned: the question, the presenter, the place and the edit. It's the format behind most of our biggest results.",
+    ],
+    formatsHeading: 'What goes into a street interview that works',
+    formats: [
+      { title: 'The question.', body: 'It has to be something people genuinely want to answer and others want to hear, connected to your brand without being about your product. We pitch the questions each month and you approve them.' },
+      { title: 'The presenter.', body: 'Cast from our network to suit your audience: someone people stop for and open up to.' },
+      { title: 'The place and time.', body: 'Different parts of London give very different answers. We pick locations and times to find the people your brand wants to hear from.' },
+      { title: 'Consent and the edit.', body: "Everyone gives consent on camera before they're used. We interview 20 to 25 people per shoot, so only the best answers make the final cut." },
+    ],
+    processHeading: 'How a shoot runs',
+    processBody:
+      'Each month starts with a strategy call where we pitch the concepts and questions for your approval. We cast the presenter, film for around four hours with a presenter, a videographer and someone from our team, and deliver edits on a rolling basis for you to approve before we schedule and post. First content is usually live within 14 to 21 days of signing.',
+    resultsHeading: 'Results from street interviews',
+    results: [
+      { slug: 'habito', client: 'Habito', body: 'street interviews about buying a home took this digital mortgage broker to 25 million organic views in 8 months with zero ad spend.' },
+      { slug: 'uni-compare', client: 'Uni Compare', body: 'street interviews about choosing a university passed 1 million views in the first 8 weeks.' },
+      { slug: 'talab', client: 'TALAB', body: 'street interviews about student life reached 1 million views in the first 5 weeks and helped the app grow to 6,000 users.' },
+    ],
+    quote: {
+      text: 'The Social Vision played a pivotal role in helping TALAB reach 1 million views within just the first 5 weeks of our collaboration.',
+      name: 'Mirkazim Seyidzade',
+      role: 'CEO, TALAB',
+    },
+    clientsLine: "Brands we've made street interviews for include Habito, Uni Compare, TALAB and Blackbullion.",
+    faqs: [
+      { q: 'How long does a street interview shoot take?', a: 'Usually around four hours for one day, with the presenter, a videographer and someone from our team.' },
+      { q: 'Do people need to give consent to be in a street interview?', a: "Yes. We read a consent line to every person at the start and record their answer on camera. Anyone who declines isn't used." },
+      { q: 'Where in London do you film street interviews?', a: 'It depends on who you want to hear from. Commuter and office areas like the City or King’s Cross suit most brand briefs; tourist-heavy areas give fewer UK-relevant answers.' },
+      { q: 'Do street interviews work for regulated brands?', a: 'Yes. Habito, a mortgage broker, reached 25 million organic views with street interviews. The brand asks the question rather than making claims.' },
+    ],
+    closing: 'Your brand deserves more than 300 views.',
+  },
 ];
+
+export function industryPath(i: Industry): string {
+  return i.path ?? `/industries/${i.slug}`;
+}
 
 export function getIndustry(slug: string): Industry | undefined {
   return INDUSTRIES.find(i => i.slug === slug);
