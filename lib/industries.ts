@@ -110,6 +110,47 @@ export const INDUSTRIES: Industry[] = [
     ],
     closing: 'Your student brand deserves more than 300 views.',
   },
+  {
+    slug: 'apps',
+    label: 'Consumer apps',
+    metaTitle: 'Short-Form Content Agency for Consumer Apps | The Social Vision',
+    metaDescription:
+      'London short-form content agency for consumer apps. Organic TikTok, Reels and Shorts that build an audience, plus paid creative in volume for your performance team.',
+    headlineStart: 'Your app deserves',
+    intro: [
+      'Getting someone to download an app from a short video is a big ask. They have to stop scrolling, understand what the app does, believe it’s for them and care enough to leave TikTok. Most app content fails at the first step, because it opens on a screen recording and a logo.',
+      'The apps that grow on short-form lead with the problem the app solves, put a real person on camera, and test hooks relentlessly.',
+    ],
+    formatsHeading: 'What works for apps on short-form',
+    formats: [
+      { title: 'Problem-first storytelling.', body: 'Open on the moment your user feels the problem, not on the app. The product shows up as the answer.' },
+      { title: 'UGC-style creative.', body: 'Creators from our network using the app the way your users do, filmed to feel native to the feed.' },
+      { title: 'Street interviews.', body: 'Real people talking about the thing your app solves, which builds an audience around the topic, not just the product.' },
+      { title: 'Paid creative in volume.', body: 'Hi-fi ads, UGC-style content and scripted interactions with at least two hook variations per piece, so your performance team always has something new to test.' },
+    ],
+    processHeading: 'Organic and paid working together',
+    processBody:
+      'Organic content builds the audience and tells you which messages land. Paid creative takes the winners and scales them. We run both, so what we learn on one side feeds the other. You approve every concept before we shoot and every edit before it goes live.',
+    resultsHeading: 'Results from apps',
+    results: [
+      { slug: 'talab', client: 'TALAB', body: 'a student concierge app that came to us at launch with no audience. Organic short-form content drove most of its growth to 6,000 users, with 1 million views in the first 5 weeks.' },
+      { slug: 'uni-compare', client: 'Uni Compare', body: 'a university comparison platform. Average views per video went from under 1,000 to 83,000, and the content contributed to a significant rise in app downloads.' },
+      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We're its paid social creative partner, producing hi-fi ads, UGC-style content and scripted interactions so its performance team can test new formats at speed." },
+    ],
+    quote: {
+      text: 'The Social Vision has unlocked a new level of creative production for us. We have been able to test new creatives and styles at speed which has helped us grow our paid social channels significantly.',
+      name: 'Georgie Hodgkins-Brown',
+      role: 'Performance Marketing Manager, Plum',
+    },
+    clientsLine: "Apps we've worked with include Plum, TALAB, Uni Compare, Habito and Freetrade.",
+    faqs: [
+      { q: 'Can short-form content drive app downloads?', a: 'Yes. TALAB grew from launch to 6,000 users with organic short-form content driving most of that growth, and Uni Compare saw a significant rise in app downloads.' },
+      { q: 'Should we focus on organic or paid creative?', a: 'They work best together: organic builds an audience and shows which messages land, and paid scales the winners. We can do either or both.' },
+      { q: 'How many ad variations do you produce?', a: 'Every paid piece comes with at least two hook variations, so your team can test from day one.' },
+      { q: 'Do we need to be on camera?', a: 'No. We cast creators and presenters from our network of 250+ vetted UK creators.' },
+    ],
+    closing: 'Your app deserves more than 300 views.',
+  },
 ];
 
 export function getIndustry(slug: string): Industry | undefined {

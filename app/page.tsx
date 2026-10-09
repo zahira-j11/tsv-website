@@ -44,6 +44,7 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'Paid ad creative', section:'services' },
     { label:'Fintech and finance', href:'/industries/fintech' },
     { label:'Education brands', href:'/industries/education' },
+    { label:'Consumer apps', href:'/industries/apps' },
     { label:'Pricing', section:'pricing' },
     { label:'Free audit', href:'/audit' },
   ]},
