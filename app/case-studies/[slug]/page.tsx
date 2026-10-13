@@ -155,7 +155,6 @@ export default async function CaseStudyPage({ params }: Props) {
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
               <TrackedLink href={BOOK_CALL_HREF} location={`case_page_${c.slug}`} style={{ background: '#FFD600', color: PD, fontWeight: 800, fontSize: 14, padding: '13px 24px', borderRadius: 100, textDecoration: 'none' }}>Book a discovery call</TrackedLink>
-              <TrackedLink href="/audit" location={`case_page_${c.slug}_audit`} style={{ border: '1.5px solid rgba(255,255,255,0.4)', color: '#fff', fontWeight: 700, fontSize: 14, padding: '12px 22px', borderRadius: 100, textDecoration: 'none' }}>Get a free audit</TrackedLink>
             </div>
           </section>
 

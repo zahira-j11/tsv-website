@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
-import { defaultSpots, spotsShort, spotsSlots, type SpotsInfo } from '@/lib/spots';
 import { track, isHubSpotBooking } from '@/lib/analytics';
 import { openCookieSettings } from '@/lib/consent';
 import { CASES, TESTIMONIALS, BOOK_CALL_HREF } from '@/lib/caseStudies';
@@ -47,7 +46,6 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'Consumer apps', href:'/industries/apps' },
     { label:'Street interviews', href:'/street-interviews' },
     { label:'Pricing', section:'pricing' },
-    { label:'Free audit', href:'/audit' },
   ]},
   { title:'Work with us', links:[
     { label:'For Creators', href:'https://www.tsvportal.co.uk/creator', external:true },
@@ -301,18 +299,6 @@ const ROUTES = [
     bestFor:'Brands ready for an ongoing social content partner.',
     footnote:'Retainers scoped to your goals and content volume',
     cta:'Book a Discovery Call', href:'#discovery-call',
-  },
-  {
-    key:'audit', featured:true, badge:'Worth \u00a3750' as string|null,
-    eyebrow:'Not sure what needs fixing?',
-    title:'Get Your \u00a3750 Social Media Audit, FREE',
-    body:'We\u2019ll analyse your content, competitors and paid creative before we meet, then spend 60 minutes showing you exactly what we\u2019d change.',
-    meta:'We do the homework before you arrive.',
-    coverLabel:'We\u2019ll cover:',
-    bullets:['What\u2019s holding your content back','What your competitors are doing differently','The formats and ideas we\u2019d test','Where your paid creative could work harder','What we\u2019d prioritise over the next 90 days'],
-    bestFor:'Brands looking for an expert second opinion on their social.',
-
-    cta:'Secure Your Free Audit', href:'/audit',
   },
 ];
 
@@ -840,7 +826,6 @@ export default function MarketingPage() {
   const [sent,setSent]         = useState(false);
   const [reels,setReels]       = useState<ReelData[]>([]);
   const [showCalendar,setShowCalendar] = useState(false);
-  const [spots,setSpots]       = useState<SpotsInfo>(defaultSpots());
   const statsRef               = useRef<HTMLDivElement>(null);
   const hofRef                 = useRef<HTMLDivElement>(null);
   const testimonialsRef        = useRef<HTMLDivElement>(null);
@@ -860,14 +845,6 @@ export default function MarketingPage() {
 
   // Promo banner: remember dismissal, and measure its height so the nav
   // and hero can sit below it at whatever size it renders.
-
-  // Live audit availability — falls back to the configured capacity.
-  useEffect(() => {
-    fetch('/api/spots')
-      .then(r => r.ok ? r.json() : null)
-      .then(d => { if (d) setSpots(d); })
-      .catch(() => {});
-  }, []);
 
   // The discovery calendar is a HubSpot embed; it tells the page when a
   // booking goes through, which is the conversion that matters most.
@@ -1000,32 +977,6 @@ export default function MarketingPage() {
         the nav always sits under the banner at whatever height it renders —
         correct on first paint, with no dependency on hydration. */}
     <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:'transparent' }}>
-      {/* ══ AUDIT OFFER BANNER ═══════════════════════════════ */}
-      {(
-        <div className="mkt-banner-shimmer" style={{ position:'relative', background:`linear-gradient(90deg, #5B01FF 0%, ${P} 40%, ${MAG} 100%)`, color:'#fff', overflow:'hidden' }}>
-          <div className="mkt-banner-track">
-            {[0,1,2,3].map((copy) => (
-              <div key={copy} className="mkt-banner" aria-hidden={copy > 0}>
-                <span style={{ ...DISP, fontSize:12.5, fontWeight:800, letterSpacing:'-.01em', whiteSpace:'nowrap' }}>
-                  Get a FREE Social Media Audit <span style={{ whiteSpace:'nowrap' }}>(Worth £750)</span>
-                </span>
-                <span className="mkt-banner-detail" style={{ fontSize:11.5, fontWeight:500, color:'#fff', whiteSpace:'nowrap' }}>
-                  • We&rsquo;ll analyse your content, competitors &amp; paid ads, then give you a 90-day roadmap to implement •
-                </span>
-                <span style={{ fontSize:12, fontWeight:700, whiteSpace:'nowrap', letterSpacing:'.01em' }}>
-                  {spots.remaining > 0 ? <>Only <span style={{ font: 'inherit', fontWeight:800, color:YEL }}>{spotsShort(spots)}</span> left for {spots.month}</>
-                                       : <span style={{ font:'inherit', fontWeight:800, color:YEL }}>{spots.month} is fully booked</span>}
-                </span>
-                <a href="/audit" onClick={()=>track('cta_click',{ location:'banner_audit' })} tabIndex={copy > 0 ? -1 : undefined} style={{ display:'inline-flex', alignItems:'center', gap:6, background:YEL, color:PD, fontSize:11.5, fontWeight:800, padding:'6px 14px', borderRadius:100, textDecoration:'none', whiteSpace:'nowrap', position:'relative', zIndex:2, transition:'opacity 160ms' }}
-                  onMouseEnter={e=>(e.currentTarget.style.opacity='0.85')} onMouseLeave={e=>(e.currentTarget.style.opacity='1')}>
-                  Secure Your Spot NOW →
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* ══ NAV ══════════════════════════════════════════════ */}
       <nav className={`mkt-nav${scrolled?' mkt-nav-scrolled':''}`} style={{ position:'relative', margin:'14px auto 0', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
         <div style={{ height:'100%', padding:'0 10px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>
@@ -1402,14 +1353,14 @@ export default function MarketingPage() {
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:'#fff', marginBottom:18, lineHeight:1.05 }}>
               Know you need{' '}
               <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">help with social?</em>{' '}
-              You’ve got two ways to start:
+              Let&rsquo;s talk.
             </h2>
-            <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, maxWidth:760, margin:'0 auto' }}>Whether you&rsquo;re ready to work together or want to understand where your biggest social opportunities are, choose the option that best fits where you&rsquo;re at.</p>
+            <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, maxWidth:760, margin:'0 auto' }}>Book a discovery call and we&rsquo;ll walk you through what handing social over to us would look like for your brand.</p>
           </div>
 
-          {/* Two routes: hire us (expands the calendar in place) or the free audit */}
+          {/* Discovery call card (expands the calendar in place) */}
           {!showCalendar && (
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(340px,1fr))', gap:20, alignItems:'stretch' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'minmax(0,1fr)', gap:20, maxWidth:560, margin:'0 auto' }}>
             {ROUTES.map((r,i)=>(
               <div key={r.key} data-reveal data-reveal-delay={String(i*0.1)} style={{
                 display:'flex', flexDirection:'column',
@@ -1454,17 +1405,11 @@ export default function MarketingPage() {
 
                 <div style={{ marginTop:'auto' }}>
                   <p style={{ fontSize:12.5, fontWeight:700, color:SU, marginBottom:16 }}>
-                    {r.key === 'audit' ? spotsSlots(spots) : r.footnote}
+                    {r.footnote}
                   </p>
-                  {r.featured ? (
-                    <a href={r.href} onClick={()=>track('cta_click',{ location:'contact_audit' })} style={ctaStyle(true)}
+                  <button onClick={()=>{ setShowCalendar(true); track('cta_click',{ location:'contact_discovery' }); track('calendar_open',{ location:'homepage_contact' }); }} style={{ ...ctaStyle(true), width:'100%', cursor:'pointer', fontFamily:'inherit' }}
                       onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}
-                      onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</a>
-                  ) : (
-                    <button onClick={()=>{ setShowCalendar(true); track('cta_click',{ location:'contact_discovery' }); track('calendar_open',{ location:'homepage_contact' }); }} style={{ ...ctaStyle(true), width:'100%', cursor:'pointer', fontFamily:'inherit' }}
-                      onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; }}
-                      onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</button>
-                  )}
+                    onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; }}>{r.cta}</button>
                 </div>
               </div>
             ))}
@@ -1586,15 +1531,11 @@ export default function MarketingPage() {
             Ready for more than <span className="mkt-gradient-text">300 views?</span>
           </h2>
           <p style={{ fontSize:17, color:MU, lineHeight:1.8, maxWidth:560, margin:'0 auto 32px' }}>
-            Get a free social media audit worth £750. We&rsquo;ll review your content, competitors and ads, then hand you a 90-day plan.
+            Tell us where your social is stuck and we&rsquo;ll show you what we&rsquo;d change, from strategy and creators to production and posting.
           </p>
           <div className="mkt-hero-ctas" style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <a href="/audit" onClick={()=>track('cta_click',{ location:'final_audit' })} className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}>Get my free audit</a>
-            <a href="#contact" onClick={()=>track('cta_click',{ location:'final_talk' })} style={{ ...HERO_BTN, background:WH, color:PD, border:`2px solid ${BR}`, textDecoration:'none' }}>Talk to our team</a>
+            <a href="#book-a-call" onClick={()=>track('cta_click',{ location:'final_book' })} className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}>Book a discovery call</a>
           </div>
-          <p style={{ fontSize:13, fontWeight:700, color:PD, marginTop:18 }}>
-            {spots.remaining > 0 ? <>Only <span style={{ color:MAG }}>{spotsShort(spots)}</span> left for {spots.month}</> : <>{spots.month} is fully booked</>}
-          </p>
         </div>
       </section>
 

@@ -2,14 +2,12 @@
  * GA4 events for the enquiry funnel. Every route to a conversation fires one
  * of these, so a lead can be traced from the button pressed to the booking:
  *
- *   cta_click       { location }  — any button that leads towards a call or audit
+ *   cta_click       { location }  — any button that leads towards a call
  *   calendar_open   { location }  — the discovery calendar is shown
  *   call_booked     { location }  — HubSpot confirms a discovery call
- *   audit_submit                  — audit application sent
- *   audit_qualified / audit_declined
- *   audit_booked                  — HubSpot confirms an audit slot
  *
- * Mark call_booked, audit_submit and audit_booked as key events in GA4.
+ * Mark call_booked as a key event in GA4. The audit_* events stopped when the
+ * free audit was retired in Oct 2026.
  */
 
 type Params = Record<string, string | number | boolean | undefined>;

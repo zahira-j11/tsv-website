@@ -22,7 +22,7 @@ import { readConsent, CONSENT_EVENT, type Consent } from '@/lib/consent';
 //
 // The tracking code also switches on whatever HubSpot pop-ups are live in the
 // account. One of them (overlay CTA 463078028485, still live on 8 Oct 2026)
-// opens the audit calendar directly and skips the budget gate on /audit, so
+// opens the old audit calendar directly (the audit is retired), so
 // HUBSPOT_POPUPS_OFF hides every HubSpot web interactive on this site, and
 // undoes the scroll lock they put on <body>. The
 // site's own buttons do that job. Set NEXT_PUBLIC_HUBSPOT_PORTAL_ID to an

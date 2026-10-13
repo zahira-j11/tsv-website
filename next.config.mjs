@@ -31,6 +31,8 @@ const LEGACY_REDIRECTS = [
   ['/blog/ugc-vs-brand-content-tiktok', '/case-studies/plum'],
   ['/case-habito.png', '/case-studies/habito.jpg'],
   ['/privacy-policy', '/privacy'],
+  // Free audit retired Oct 2026: it drew leads outside our budget and sector.
+  ['/audit', '/#contact'],
 ];
 
 /** @type {import('next').NextConfig} */
