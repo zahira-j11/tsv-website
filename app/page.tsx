@@ -973,12 +973,12 @@ export default function MarketingPage() {
 
   return (
     <div style={{ background:BG }}>
-    {/* Header stack: banner + nav in normal flow inside one sticky wrapper, so
-        the nav always sits under the banner at whatever height it renders —
-        correct on first paint, with no dependency on hydration. */}
-    <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:'transparent' }}>
+    {/* Sticky header. The gap above the nav is padding, not the nav's margin:
+        a margin would collapse through to the page and leave a strip of body
+        background showing above it. */}
+    <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:'transparent', paddingTop:14 }}>
       {/* ══ NAV ══════════════════════════════════════════════ */}
-      <nav className={`mkt-nav${scrolled?' mkt-nav-scrolled':''}`} style={{ position:'relative', margin:'14px auto 0', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
+      <nav className={`mkt-nav${scrolled?' mkt-nav-scrolled':''}`} style={{ position:'relative', margin:'0 auto', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
         <div style={{ height:'100%', padding:'0 10px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>
           {/* Logo icon */}
           <a href="#" className="mkt-nav-logo" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
