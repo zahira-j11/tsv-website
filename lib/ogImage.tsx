@@ -1,7 +1,6 @@
 import { ImageResponse } from 'next/og';
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import { type Industry, industryPath } from '@/lib/industries';
+import { TSV_LOGO_MARK } from '@/lib/tsvLogoMark';
 
 /**
  * The share card for pages without their own (blog posts have theirs).
@@ -37,8 +36,6 @@ async function loadManrope(weight: number) {
 }
 
 export async function renderOgImage({ headline, kicker, path = '' }: Props) {
-  const logo = await readFile(join(process.cwd(), 'public/logos/tsv-logo-mark.png'));
-  const logoSrc = `data:image/png;base64,${logo.toString('base64')}`;
   const fonts = (await Promise.all([loadManrope(600), loadManrope(800)])).filter(f => f !== null);
   const length = headline[0].length + headline[1].length;
   // One span per word, so the highlighted part wraps like the rest of the line.
@@ -126,7 +123,7 @@ export async function renderOgImage({ headline, kicker, path = '' }: Props) {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoSrc} width={44} height={44} style={{ borderRadius: '50%' }} alt="" />
+          <img src={TSV_LOGO_MARK} width={44} height={44} style={{ borderRadius: '50%' }} alt="" />
           <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: 20, fontWeight: 600 }}>The Social Vision</div>
           <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 20 }}>·</div>
           <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 20 }}>{`thesocialvision.co.uk${path}`}</div>
