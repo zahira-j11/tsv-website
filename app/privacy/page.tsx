@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | The Social Vision',
   description: 'How The Social Vision Ltd collects, uses and protects personal information on thesocialvision.co.uk, including cookies and audit applications.',
   alternates: { canonical: `${SITE_URL}/privacy` },
+  openGraph: { title: 'Privacy Policy | The Social Vision', url: `${SITE_URL}/privacy`, siteName: 'The Social Vision', type: 'website', images: ['/opengraph-image'] },
 };
 
 const BG = '#FEFDF8';

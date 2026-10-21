@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/case-studies` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/case-studies`, siteName: 'The Social Vision', type: 'website' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/case-studies`, siteName: 'The Social Vision', type: 'website', images: ['/opengraph-image'] },
 };
 
 const SCHEMA = {

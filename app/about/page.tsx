@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/about` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/about`, siteName: 'The Social Vision', type: 'website' },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/about`, siteName: 'The Social Vision', type: 'website', images: ['/opengraph-image'] },
 };
 
 // Only people who are on the team today.

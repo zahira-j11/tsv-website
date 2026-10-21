@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     url: 'https://www.thesocialvision.co.uk/blog',
     siteName: 'The Social Vision',
     type: 'website',
+    images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
