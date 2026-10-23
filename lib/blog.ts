@@ -8,6 +8,10 @@ export type Post = {
   slug: string;
   title: string;
   description: string;
+  /** Google title in full, when it should differ from the H1 (e.g. to fit ~60 characters). */
+  seoTitle?: string;
+  /** Google description, when it should differ from the on-page standfirst. */
+  seoDescription?: string;
   publishedAt: string;
   updatedAt?: string;
   author: string;
@@ -79,6 +83,8 @@ function parsePost(slug: string): Post {
     slug,
     title: data.title ?? '',
     description: data.description ?? '',
+    seoTitle: data.seoTitle,
+    seoDescription: data.seoDescription,
     publishedAt: data.publishedAt ?? '',
     updatedAt: data.updatedAt,
     author: data.author ?? 'tsv',

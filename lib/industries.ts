@@ -205,7 +205,7 @@ export const INDUSTRIES: Industry[] = [
     slug: 'paid-social-creative',
     path: '/paid-social-creative',
     label: 'Paid social creative',
-    metaTitle: 'Paid Social Creative and UGC Ad Agency in London | The Social Vision',
+    metaTitle: 'Performance Creative and UGC Agency in London | The Social Vision',
     metaDescription:
       'A steady pipeline of paid social creative for performance teams: Paid Social Productions and Remote Creator UGC for TikTok, Meta and YouTube, so testing never waits on production.',
     headlineStart: '',

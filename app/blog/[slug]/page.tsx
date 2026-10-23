@@ -41,8 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
   const author = AUTHORS[post.author] ?? AUTHORS.tsv;
   return {
-    title: `${post.title} | The Social Vision`,
-    description: post.description,
+    title: { absolute: post.seoTitle ?? `${post.title} | The Social Vision` },
+    description: post.seoDescription ?? post.description,
     authors: [{ name: author.name }],
     openGraph: {
       title: post.title,
