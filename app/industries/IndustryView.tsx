@@ -88,7 +88,9 @@ export default function IndustryView({ ind }: { ind: Industry }) {
             <div className="ind-formats" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0,1fr))', gap: 14 }}>
               {ind.formats.map(f => (
                 <div key={f.title} style={{ background: WH, border: `1.5px solid ${BR}`, borderRadius: 18, padding: '22px 22px 20px' }}>
-                  <div style={{ ...DISP, fontSize: 17, fontWeight: 800, marginBottom: 8 }}>{f.title.replace(/\.$/, '')}</div>
+                  <div style={{ ...DISP, fontSize: 17, fontWeight: 800, marginBottom: 8 }}>
+                    {f.href ? <a href={f.href} style={{ fontWeight: 800 }}>{f.title.replace(/\.$/, '')}</a> : f.title.replace(/\.$/, '')}
+                  </div>
                   <p style={{ fontSize: 15, lineHeight: 1.7, color: MU, margin: 0 }}>{f.body}</p>
                 </div>
               ))}

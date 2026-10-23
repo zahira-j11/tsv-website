@@ -25,7 +25,8 @@ export type Industry = {
   headline?: [string, string];
   intro: string[];
   formatsHeading: string;
-  formats: { title: string; body: string }[];
+  /** `href` links a format's title to its own page (e.g. /street-interviews). */
+  formats: { title: string; body: string; href?: string }[];
   processHeading: string;
   processBody: string;
   resultsHeading: string;
@@ -50,10 +51,10 @@ export const INDUSTRIES: Industry[] = [
     ],
     formatsHeading: 'What works for financial brands on short-form',
     formats: [
-      { title: 'Street interviews about money.', body: "Real people answering the questions everyone wonders about: how much they spend, what they earn, whether they've started saving for a house. The brand asks the question and owns the conversation, without making claims." },
+      { title: 'Street interviews about money.', href: '/street-interviews', body: "Real people answering the questions everyone wonders about: how much they spend, what they earn, whether they've started saving for a house. The brand asks the question and owns the conversation, without making claims." },
       { title: 'Storytime and real-life scenarios.', body: 'Relatable money moments, told by a presenter your audience trusts, that turn an abstract product into something people recognise from their own lives.' },
       { title: 'Educational explainers.', body: "Short, plain-English answers to the questions people actually search for. This is the content that keeps getting found months after it's posted." },
-      { title: 'Paid creative built to test.', body: 'Hi-fi ads, UGC-style content and scripted interactions, made in volume so your performance team can test hooks and scale what wins.' },
+      { title: 'Paid creative built to test.', href: '/paid-social-creative', body: 'Hi-fi ads, UGC-style content and scripted interactions, made in volume so your performance team can test hooks and scale what wins.' },
     ],
     processHeading: 'Built for regulated categories',
     processBody:
@@ -90,7 +91,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     formatsHeading: 'What works for reaching students on short-form',
     formats: [
-      { title: 'Street interviews with students.', body: 'Real students answering questions about uni life, money, choosing a course and everything in between. The answers are relatable, the comments fill up, and the brand owns the conversation.' },
+      { title: 'Street interviews with students.', href: '/street-interviews', body: 'Real students answering questions about uni life, money, choosing a course and everything in between. The answers are relatable, the comments fill up, and the brand owns the conversation.' },
       { title: 'Useful content they send to friends.', body: 'Lists and guides that solve a real problem. For one edtech client, a results-day list of every place giving away free food reached nearly a million views and 28,000 shares.' },
       { title: 'Moments in the student calendar.', body: 'Results day, clearing, freshers and exam season are when students are searching and sharing most. We plan around them.' },
       { title: 'Presenters students relate to.', body: 'People from our network who look and sound like your audience, so the content feels like it came from a peer, not a brand.' },
@@ -132,8 +133,8 @@ export const INDUSTRIES: Industry[] = [
     formats: [
       { title: 'Problem-first storytelling.', body: 'Open on the moment your user feels the problem, not on the app. The product shows up as the answer.' },
       { title: 'UGC-style creative.', body: 'Creators from our network using the app the way your users do, filmed to feel native to the feed.' },
-      { title: 'Street interviews.', body: 'Real people talking about the thing your app solves, which builds an audience around the topic, not just the product.' },
-      { title: 'Paid creative in volume.', body: 'Hi-fi ads, UGC-style content and scripted interactions with at least two hook variations per piece, so your performance team always has something new to test.' },
+      { title: 'Street interviews.', href: '/street-interviews', body: 'Real people talking about the thing your app solves, which builds an audience around the topic, not just the product.' },
+      { title: 'Paid creative in volume.', href: '/paid-social-creative', body: 'Hi-fi ads, UGC-style content and scripted interactions with at least two hook variations per piece, so your performance team always has something new to test.' },
     ],
     processHeading: 'Organic and paid working together',
     processBody:
