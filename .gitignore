@@ -11,4 +11,5 @@ headshots/
 .mongo-data/
 .claude/
 .env*
+!.env.example
 public/videos/
