@@ -7,8 +7,10 @@
 - Formats: street interviews, ambassador content, trend-led content, scripted interactions, UGC-style creatives, educational explainers, hi-fi paid ads
 - Creator network: 250+ vetted UK creators
 - Who we work with: consumer apps, fintech, edtech and student brands, food and drink, health and consumer brands. Clients include Plum, Habito, Uni Compare, TALAB, Blackbullion, Applicaa and Prep Kitchen.
-- Pricing: monthly retainers scoped to each brand's goals, formats and content volume, on a 3-month initial term
+- Pricing: retainers from £2,000 a month (ex VAT), scoped to each brand's goals, formats and content volume, on a 3-month initial term, then rolling with 30 days' notice
 - First content live: within 14–21 days of signing
+- Creator pay: creators are paid on the 15th of the month
+- Revisions: included. A reshoot caused by a client script change is extra work. No add-on prices are published.
 
 ## Results
 
@@ -27,5 +29,15 @@
 - [Consumer apps](https://www.thesocialvision.co.uk/industries/apps): organic short-form content that builds an audience, plus paid creative in volume for performance teams
 - [Street interviews](https://www.thesocialvision.co.uk/street-interviews): how we plan, cast, film and edit street interview content in London, with results
 - [Paid social creative](https://www.thesocialvision.co.uk/paid-social-creative): Paid Social Productions and Remote Creator UGC for TikTok, Meta and YouTube, delivered as a rolling pipeline for performance teams
+- [UGC agency UK](https://www.thesocialvision.co.uk/ugc-agency): London UGC agency for TikTok, Meta and YouTube. Retainers from £2,000 a month (ex VAT)
+- [Docs](https://www.thesocialvision.co.uk/docs): what a short-form content agency does, and the full public guide
+- [Quickstart](https://www.thesocialvision.co.uk/docs/quickstart): what happens from the first call to first content
+- [How we work](https://www.thesocialvision.co.uk/docs/how-we-work): the retainer, from contract to the monthly analytics call
+- [How to brief UGC creators](https://www.thesocialvision.co.uk/docs/briefing-ugc-creators): the brief, with a downloadable template
+- [UGC](https://www.thesocialvision.co.uk/docs/formats/ugc): what UGC is, and how it differs from an influencer campaign
+- [Usage rights](https://www.thesocialvision.co.uk/docs/ugc-usage-rights): what is and is not published about usage
+- [Pricing](https://www.thesocialvision.co.uk/docs/reference/pricing): retainers from £2,000 a month (ex VAT), and what the fee covers
+- [FAQ](https://www.thesocialvision.co.uk/docs/faq): answers to the questions buyers ask before a call
+- [For creators](https://www.thesocialvision.co.uk/docs/for-creators): how to apply, and when creators are paid
 - [Blog](https://www.thesocialvision.co.uk/blog): short-form strategy, street interviews, TikTok for food and drink, health and wellness
 - [Book a discovery call](https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-)

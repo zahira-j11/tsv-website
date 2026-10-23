@@ -24,6 +24,7 @@ const DESKTOP_LINKS: [string, string, string?][] = [
   ['How it works', '/#how-it-works'],
   ['Services', '/#services'],
   ['Case Studies', '/case-studies', 'cases'],
+  ['UGC', '/ugc-agency', 'ugc'],
   ['Pricing', '/#pricing'],
   ['Testimonials', '/#testimonials'],
   ['Blog', '/blog', 'blog'],
@@ -32,7 +33,7 @@ const MOBILE_LINKS = DESKTOP_LINKS.filter(([l]) => l !== 'Testimonials');
 
 const CREATOR_PORTAL = 'https://www.tsvportal.co.uk/creator';
 
-export default function SiteNav({ active }: { active?: 'blog' | 'cases' }) {
+export default function SiteNav({ active }: { active?: 'blog' | 'cases' | 'ugc' }) {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 

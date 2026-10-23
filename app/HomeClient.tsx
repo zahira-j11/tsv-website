@@ -35,6 +35,7 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'About us', href:'/about' },
     { label:'How it works', section:'how-it-works' },
     { label:'Case Studies', href:'/case-studies' },
+    { label:'Docs', href:'/docs' },
     { label:'Testimonials', section:'testimonials' },
     { label:'Blog', href:'/blog' },
   ]},
@@ -45,6 +46,7 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'Education brands', href:'/industries/education' },
     { label:'Consumer apps', href:'/industries/apps' },
     { label:'Street interviews', href:'/street-interviews' },
+    { label:'UGC agency', href:'/ugc-agency' },
     { label:'Pricing', section:'pricing' },
   ]},
   { title:'Work with us', links:[
@@ -986,7 +988,13 @@ export default function MarketingPage() {
           </a>
           {/* Links */}
           <div className="mkt-hidden-mobile" style={{ display:'flex', gap:28, flex:1, justifyContent:'center' }}>
-            {([['How it works','how-it-works'],['Services','services'],['Case Studies','cases'],['Pricing','pricing'],['Testimonials','testimonials']] as [string,string][]).map(([l,id])=>(
+            {([['How it works','how-it-works'],['Services','services'],['Case Studies','cases']] as [string,string][]).map(([l,id])=>(
+              <button key={id} onClick={()=>go(id)} style={{ background:'none', border:'none', color:MU, fontSize:13, fontWeight:600, cursor:'pointer', padding:0, transition:'color 150ms', fontFamily:'inherit' }}
+                onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>{l}</button>
+            ))}
+            <a href="/ugc-agency" style={{ color:MU, fontSize:13, fontWeight:600, textDecoration:'none', transition:'color 150ms' }}
+              onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>UGC</a>
+            {([['Pricing','pricing'],['Testimonials','testimonials']] as [string,string][]).map(([l,id])=>(
               <button key={id} onClick={()=>go(id)} style={{ background:'none', border:'none', color:MU, fontSize:13, fontWeight:600, cursor:'pointer', padding:0, transition:'color 150ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>{l}</button>
             ))}
@@ -1009,7 +1017,11 @@ export default function MarketingPage() {
         </div>
         {menu&&(
           <div className="mkt-nav-menu" style={{ background:BG, borderTop:`1px solid ${BR}`, padding:'16px 28px 24px', borderRadius:'0 0 28px 28px' }}>
-            {([['How it works','how-it-works'],['Services','services'],['Case Studies','cases'],['Pricing','pricing']] as [string,string][]).map(([l,id])=>(
+            {([['How it works','how-it-works'],['Services','services'],['Case Studies','cases']] as [string,string][]).map(([l,id])=>(
+              <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
+            ))}
+            <a href="/ugc-agency" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>UGC</a>
+            {([['Pricing','pricing']] as [string,string][]).map(([l,id])=>(
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
             <a href="/blog" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>Blog</a>
@@ -1289,7 +1301,7 @@ export default function MarketingPage() {
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
           <div data-reveal style={{ marginBottom:72 }}>
             <span style={{ display:'inline-block', background:'rgba(124,1,255,0.09)', color:P, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Case studies</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>See what <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">we've done.</em></h2>
+            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>See what <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">we&apos;ve done.</em></h2>
           </div>
           <CasesCarousel />
           <div style={{ textAlign:'center', marginTop:28 }}>
@@ -1335,7 +1347,7 @@ export default function MarketingPage() {
             ))}
           </div>
           <div style={{ textAlign:'center', marginTop:32 }}>
-            <p style={{ fontSize:14, color:MU }}>Retainers start at £2,000 per month (ex. VAT). Every retainer is tailored to your brand.</p>
+            <p style={{ fontSize:14, color:MU }}>Retainers are from £2,000 a month (ex VAT). Every retainer is tailored to your brand.</p>
           </div>
         </div>
       </section>
@@ -1447,7 +1459,7 @@ export default function MarketingPage() {
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
           <div data-reveal style={{ textAlign:'center', marginBottom:72 }}>
             <span style={{ display:'inline-block', background:'rgba(232,32,164,0.1)', color:MAG, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Testimonials</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Don't take <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">our word</em> for it.</h2>
+            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Don&apos;t take <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">our word</em> for it.</h2>
           </div>
           <div style={{ position:'relative' }}>
             <button aria-label="Previous testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(-1)} style={{ ...tNav, left:-16 }}>&lsaquo;</button>
@@ -1470,7 +1482,7 @@ export default function MarketingPage() {
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-7px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 24px 64px rgba(33,0,93,0.1)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; (e.currentTarget as HTMLElement).style.boxShadow='none'; }}>
                 <div style={{ position:'absolute', top:0, left:0, right:0, height:4, background:t.g }} />
-                <div style={{ ...DISP, fontSize:52, lineHeight:1, marginBottom:16, marginTop:8, background:t.g, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:800 }}>"</div>
+                <div style={{ ...DISP, fontSize:52, lineHeight:1, marginBottom:16, marginTop:8, background:t.g, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:800 }}>&quot;</div>
                 <p style={{ fontSize:14, color:PD, lineHeight:1.9, marginBottom:24, flex:1, fontStyle:'italic', fontWeight:400 }}>{t.quote}</p>
                 <div style={{ borderTop:`1.5px solid ${BR}`, paddingTop:20, display:'flex', alignItems:'center', gap:12 }}>
                   {t.logoSrc ? (
