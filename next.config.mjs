@@ -30,6 +30,8 @@ const LEGACY_REDIRECTS = [
   ['/blog/tiktok-algorithm-2026', '/blog/shares-beat-views'],
   ['/blog/ugc-vs-brand-content-tiktok', '/case-studies/plum'],
   ['/case-habito.png', '/case-studies/habito.jpg'],
+  ['/case-habito.jpg', '/case-studies/habito.jpg'],
+  ['/case-talab.png', '/case-studies/talab.webp'],
   ['/privacy-policy', '/privacy'],
   // Free audit retired Oct 2026: it drew leads outside our budget and sector.
   ['/audit', '/#contact'],
