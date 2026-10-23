@@ -70,7 +70,7 @@ function JsonLd({ post }: { post: Post }) {
     description: post.description,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt ?? post.publishedAt,
-    author: { '@type': 'Person', name: author.name },
+    author: { '@type': 'Person', name: author.name, sameAs: author.sameAs },
     publisher: { '@type': 'Organization', name: 'The Social Vision', logo: { '@type': 'ImageObject', url: `${SITE_URL}/tsv-logo.svg` } },
     url: `${SITE_URL}/blog/${post.slug}`,
     image: `${SITE_URL}/blog/${post.slug}/opengraph-image`,

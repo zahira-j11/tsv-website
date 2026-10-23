@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
-import { SITE_URL } from '@/lib/blog';
+import { SITE_URL, AUTHORS } from '@/lib/blog';
 import Trackers from './Trackers';
 import CookieBanner from './CookieBanner';
 import SiteAnalytics from './SiteAnalytics';
@@ -58,7 +58,7 @@ const ORGANIZATION = {
     'London-based short-form content agency. We plan, cast, film, edit and post TikTok, Instagram Reels and YouTube Shorts content for apps and consumer brands, from organic content to paid ad creative.',
   slogan: 'Short-form content for brands that want to grow.',
   foundingDate: '2024-07-17',
-  founder: { '@type': 'Person', name: 'Zahira Jaigirdar', jobTitle: 'Founder & Creative Director' },
+  founder: { '@type': 'Person', name: 'Zahira Jaigirdar', jobTitle: 'Founder & Creative Director', sameAs: AUTHORS.zahira.sameAs },
   address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
   areaServed: [
     { '@type': 'City', name: 'London' },

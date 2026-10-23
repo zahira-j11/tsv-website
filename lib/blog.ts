@@ -24,6 +24,8 @@ export type Author = {
   role: string;
   bio: string;
   avatar: string;
+  /** Profiles that identify the author to search engines (schema.org sameAs). */
+  sameAs?: string[];
 };
 
 export const AUTHORS: Record<string, Author> = {
@@ -38,6 +40,7 @@ export const AUTHORS: Record<string, Author> = {
     role: 'Founder & Creative Director',
     bio: 'Zahira founded The Social Vision to help brands build real audiences through short-form content. She has overseen campaigns generating over 200M views across TikTok, Instagram Reels, and YouTube Shorts.',
     avatar: '/authors/zahira.jpg',
+    sameAs: ['https://www.linkedin.com/in/zahirajaigirdar/'],
   },
   elisa: {
     name: 'Elisa Brookes',

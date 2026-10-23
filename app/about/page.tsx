@@ -58,6 +58,7 @@ const SCHEMA = [
     image: `${SITE_URL}${AUTHORS.zahira.avatar}`,
     worksFor: { '@id': `${SITE_URL}/#organization` },
     workLocation: { '@type': 'Place', name: 'London, United Kingdom' },
+    sameAs: AUTHORS.zahira.sameAs,
   },
 ];
 
