@@ -1,7 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
 import AuditApplication from '@/models/AuditApplication';
-import { ADMIN_COOKIE as COOKIE, ADMIN_SESSION_MS as SESSION_MS, signSession as sign, sessionValid, safeEqual as matches } from '@/lib/adminSession';
+import {
+  ADMIN_COOKIE as COOKIE,
+  ADMIN_SESSION_MS as SESSION_MS,
+  adminAuthMisconfigured,
+  adminSessionSecret,
+  safeEqual as matches,
+  sessionValid,
+  signSession as sign,
+} from '@/lib/adminSession';
+import {
+  clearLoginFailures,
+  clientIp,
+  lockoutRetryAfterSeconds,
+  loginLocked,
+  recordLoginFailure,
+} from '@/lib/adminLoginLimit';
 
 /**
  * Reads back audit applications — mainly the declined ones, which never reach
@@ -11,9 +26,9 @@ import { ADMIN_COOKIE as COOKIE, ADMIN_SESSION_MS as SESSION_MS, signSession as 
  *   GET                → returns rows if the cookie is valid, otherwise 401
  *   DELETE { id }      → removes one row, for test entries and spam
  *
- * The password is only ever sent in a POST body, never a query string, and the
- * cookie holds an expiry signed with AUDIT_WEBHOOK_SECRET rather than the
- * password itself.
+ * The password is only ever sent in a POST body, never a query string. The
+ * cookie holds an expiry signed with ADMIN_SESSION_SECRET. Five wrong
+ * passwords from one IP in 15 minutes lock that IP out; the sixth returns 429.
  */
 
 export const dynamic = 'force-dynamic';
@@ -43,7 +58,8 @@ async function rows() {
 }
 
 function configError() {
-  if (!process.env.ADMIN_PASSWORD || !process.env.AUDIT_WEBHOOK_SECRET) {
+  if (adminAuthMisconfigured()) {
+    console.error('[audit-admin] ADMIN_PASSWORD and a distinct ADMIN_SESSION_SECRET are required');
     return NextResponse.json({ error: 'Admin access is not configured.' }, { status: 503 });
   }
   if (!process.env.MONGODB_URI) {
@@ -52,10 +68,18 @@ function configError() {
   return null;
 }
 
+function tooManyAttempts(ip: string) {
+  console.warn(`[audit-admin] sign-in locked ip=${ip}`);
+  return NextResponse.json(
+    { error: 'Too many attempts. Try again in a few minutes.' },
+    { status: 429, headers: { 'Retry-After': String(lockoutRetryAfterSeconds(ip)) } },
+  );
+}
+
 export async function GET(req: NextRequest) {
   const bad = configError();
   if (bad) return bad;
-  if (!sessionValid(req.cookies.get(COOKIE)?.value, process.env.AUDIT_WEBHOOK_SECRET!)) {
+  if (!sessionValid(req.cookies.get(COOKIE)?.value, adminSessionSecret()!)) {
     return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
   }
   try {
@@ -70,23 +94,30 @@ export async function POST(req: NextRequest) {
   const bad = configError();
   if (bad) return bad;
 
+  const ip = clientIp(req.headers);
+  if (loginLocked(ip)) return tooManyAttempts(ip);
+
   let password = '';
   try {
     const body = (await req.json()) as { password?: string };
     password = String(body?.password ?? '');
   } catch { /* no body */ }
 
-  if (!password || !matches(password, process.env.ADMIN_PASSWORD!)) {
-    // Same shape and timing-safe compare either way, so this says nothing
-    // about whether the password was close.
+  const expected = process.env.ADMIN_PASSWORD ?? '';
+  const same = matches(password, expected);
+  if (!password || !same) {
+    const { failures } = recordLoginFailure(ip);
+    console.warn(`[audit-admin] failed sign-in ip=${ip} failures=${failures}`);
     return NextResponse.json({ error: 'Incorrect password' }, { status: 401 });
   }
+
+  clearLoginFailures(ip);
 
   try {
     const data = await rows();
     const exp = Date.now() + SESSION_MS;
     const res = NextResponse.json({ applications: data });
-    res.cookies.set(COOKIE, sign(exp, process.env.AUDIT_WEBHOOK_SECRET!), {
+    res.cookies.set(COOKIE, sign(exp, adminSessionSecret()!), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
@@ -103,7 +134,7 @@ export async function POST(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   const bad = configError();
   if (bad) return bad;
-  if (!sessionValid(req.cookies.get(COOKIE)?.value, process.env.AUDIT_WEBHOOK_SECRET!)) {
+  if (!sessionValid(req.cookies.get(COOKIE)?.value, adminSessionSecret()!)) {
     return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
   }
 

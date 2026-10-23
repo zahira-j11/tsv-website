@@ -1,0 +1,4 @@
+Contact: mailto:zahira@thesocialvision.co.uk
+Expires: 2027-10-23T23:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.thesocialvision.co.uk/.well-known/security.txt
