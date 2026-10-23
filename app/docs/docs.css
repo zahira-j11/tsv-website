@@ -5,6 +5,12 @@
   font-family: var(--font-sans);
 }
 
+/* The site nav is position:fixed. Without this, a table-of-contents
+   link scrolls the heading underneath that bar. */
+html:has(.docs-root) {
+  scroll-padding-top: 88px;
+}
+
 .docs-frame {
   display: grid;
   grid-template-columns: 232px minmax(0, 1fr) 196px;
@@ -108,6 +114,12 @@
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1.08;
+}
+
+.docs-article h2,
+.docs-article h3,
+.docs-faq article {
+  scroll-margin-top: 88px;
 }
 
 .docs-article h2 {
@@ -303,10 +315,12 @@
   cursor: pointer;
 }
 
-.docs-download {
+.docs-download,
+.docs-article a.docs-download {
   background: #fff;
   color: #21005d;
   border: 1.5px solid #e4dcff;
+  text-decoration: none;
 }
 
 .docs-template pre {
