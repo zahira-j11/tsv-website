@@ -1578,7 +1578,7 @@ export default function MarketingPage() {
             ))}
           </div>
           <div style={{ paddingTop:22, fontSize:12, color:'rgba(255,253,237,0.45)' }}>
-            © {new Date().getFullYear()} The Social Vision Ltd · Company no. 15844979 · London-based short-form content agency ·{' '}
+            © {new Date().getFullYear()} The Social Vision Ltd · London-based short-form content agency ·{' '}
             <button onClick={openCookieSettings} style={{ background:'none', border:'none', padding:0, font:'inherit', color:'inherit', textDecoration:'underline', cursor:'pointer' }}>Cookie settings</button>
           </div>
         </div>
