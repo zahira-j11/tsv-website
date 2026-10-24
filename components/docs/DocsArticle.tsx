@@ -15,7 +15,6 @@ import {
 } from '@/lib/docs';
 import type { Block, DocPage } from '@/lib/docs/types';
 import { BRIEF_TEMPLATE } from '@/lib/docs/template';
-import CopyTemplate from './CopyTemplate';
 import { RichText } from './RichText';
 
 function plain(text: string): string {
@@ -169,10 +168,9 @@ function BlockView({ block }: { block: Block }) {
     case 'template':
       return (
         <div className="docs-template">
-          <div className="docs-template-actions">
-            <CopyTemplate text={BRIEF_TEMPLATE} />
-            <a className="docs-download" href="/docs/brief-template">Download template</a>
-          </div>
+          <p className="docs-template-actions">
+            <TrackedLink href={BOOK_CALL_HREF} location="docs_brief_template">Ask us for the brief template and we&rsquo;ll send it over.</TrackedLink>
+          </p>
           <pre>{BRIEF_TEMPLATE}</pre>
         </div>
       );

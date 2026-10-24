@@ -34,11 +34,11 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'How soon can we start, and when is the first content live?',
-            a: 'First content goes live within 14 to 21 days of signing. After filming, videos start appearing on the calendar about three to five days later.',
+            a: 'First content goes live within 14 to 21 days of signing.',
           },
           {
             q: 'How many videos do we get, and how often do you post?',
-            a: 'Organic retainers include a minimum of 16 videos a month. The paid minimum is agreed per project. Organic posts go on the days you agree, and two posts on the same day are fine if they are not stacked on top of each other.',
+            a: 'Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. Organic posts go on the days you agree, and two posts on the same day are fine if they are not stacked on top of each other.',
           },
           {
             q: 'Is there a commitment, or can we trial it first?',
@@ -50,11 +50,11 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Which platforms do you cover?',
-            a: 'Instagram, TikTok and YouTube Shorts as standard, and Facebook Reels for some clients. Paid creative is for Meta, TikTok and YouTube. Pinterest, LinkedIn and Reddit are not part of the standard offer.',
+            a: 'TikTok, Instagram and YouTube.',
           },
           {
             q: 'Can you reach the US, other countries, or work in other languages?',
-            a: 'Yes for a US audience: US accents from the network, and dollars rather than pounds in the script. Other languages are not a published offer.',
+            a: 'We work in English only. For a US audience we can cast US accents, and the script uses dollars rather than pounds.',
           },
           {
             q: 'Do you have examples or case studies?',
@@ -70,7 +70,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Do you write the scripts?',
-            a: 'Yes, end to end. You approve the copy before we brief anyone.',
+            a: 'Yes, end to end. Scripts are the default. Talking points are used only if the brief says so. You approve the copy before we brief anyone.',
           },
           {
             q: 'Can our own staff or founder be on camera?',
@@ -78,7 +78,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Can you speed up the three-month testing period?',
-            a: 'It can happen sooner. We do not promise eight weeks. Twelve weeks is the period we will stand behind.',
+            a: 'It can happen sooner. We do not promise eight weeks.',
           },
           {
             q: 'Can you work alongside our in-house team or ads agency?',
@@ -86,7 +86,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Can you work with a regulated brand?',
-            a: 'Yes. Send guardrails, banned phrases and disclaimer lines at onboarding. A comment on the cut can ask for a disclaimer to change.',
+            a: 'Yes. Send guardrails, banned phrases and disclaimer lines at onboarding. Nothing goes live until compliance signs off. A comment on the cut can ask for a disclaimer to change.',
           },
           {
             q: 'Do you do B2B?',
@@ -98,23 +98,23 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Do you only edit if we send footage?',
-            a: 'Editing client footage as a standalone retainer is not described here. On a normal retainer, creators send raw footage and we edit in-house.',
+            a: 'No. We don\u2019t offer edit-only work. A retainer includes filming and editing.',
           },
           {
             q: 'Do you need us to send the product?',
-            a: 'Only if the creator needs the real product in shot. Some clients send the product and some send footage or stills. Shipping logistics are agreed per client.',
+            a: 'When the creator needs the real product in shot, you ship it to them at your cost, and the creator keeps it. Some films can be made from footage or stills instead.',
           },
           {
             q: 'Can we add extra films in a busy month, or change the mix?',
-            a: 'The mix can be talked through, and a shoot needs notice. Add-on prices are not published.',
+            a: 'Changing the mix, or other extra work, is quoted per project. High-production and street-interview shoots need 1 week\u2019s notice.',
           },
           {
             q: 'What usage rights are included?',
-            a: 'Perpetual usage rights. They come with the content we make. See [usage rights](/docs/ugc-usage-rights).',
+            a: 'Perpetual usage rights come with the content we make. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation. See [usage rights](/docs/ugc-usage-rights).',
           },
           {
             q: 'How do street interviews get consent?',
-            a: 'People who appear need to agree before a film is used. The exact steps are not published. See [consent](/docs/consent).',
+            a: 'Yes. Consent is handled depending on the situation. See [consent](/docs/consent).',
           },
           {
             q: 'Should we put our logo on the videos?',
@@ -126,7 +126,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'How do we plan seasonal moments while we are still testing?',
-            a: 'Send the themes and we will build them into the calendar. Keep space in your own calendar for those slots, and give notice when the month needs a shoot.',
+            a: 'Send the themes and we will build them into the calendar. Keep space in your own calendar for those slots. High-production and street-interview shoots need 1 week\u2019s notice.',
           },
           {
             q: 'How do you keep it on brand rather than generic?',
@@ -137,18 +137,6 @@ export const FAQ: DocPage[] = [
             a: 'Short films build brand awareness faster. Long-form takes longer to show a return.',
           },
         ],
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether edit-only work is still offered. The answer above does not describe it as a current service.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the street-interview consent steps. The answer above says they are not published.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the paid minimum number of videos a month. The answer above states 16 for organic, and says the paid minimum is agreed per project.',
       },
     ],
   },

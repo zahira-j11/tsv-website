@@ -4,9 +4,9 @@ import TrackedLink from '../case-studies/TrackedLink';
 import { BOOK_CALL_HREF, TESTIMONIALS } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
 
-const TITLE = 'UGC Agency UK | London UGC Creators for TikTok and Meta Ads';
+const TITLE = 'UGC Agency UK | London UGC Creators for TikTok, Instagram and YouTube';
 const DESCRIPTION =
-  'The Social Vision is a UGC agency in the UK, based in London. We brief, cast and edit creator video for TikTok, Meta and YouTube. Retainers from £2,000 a month (ex VAT).';
+  'The Social Vision is a UGC agency in the UK, based in London. We brief, cast and edit creator video for TikTok, Instagram and YouTube. Retainers from £2,000 a month (ex VAT).';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -44,7 +44,7 @@ const FAQS = [
     a: 'First content goes live within 14 to 21 days of signing.',
   },
   {
-    q: 'Do you run the TikTok or Meta ads?',
+    q: 'Do you run the ads?',
     a: 'No. We make the creative. Your team or your media agency runs the campaigns, and ad spend is separate.',
   },
   {
@@ -60,7 +60,7 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'UGC Agency UK',
-    serviceType: 'UGC and creator video for TikTok, Meta and YouTube',
+    serviceType: 'UGC and creator video for TikTok, Instagram and YouTube',
     description: DESCRIPTION,
     url: `${SITE_URL}/ugc-agency`,
     provider: { '@id': `${SITE_URL}/#organization` },
@@ -85,7 +85,7 @@ const schema = [
 ];
 
 const LINKS = [
-  ['What UGC is, and why it is not influencer marketing', '/docs/formats/ugc'],
+  ['What is UGC?', '/docs/formats/ugc'],
   ['How a retainer runs', '/docs/how-we-work'],
   ['How to brief UGC creators', '/docs/briefing-ugc-creators'],
   ['How much it costs', '/docs/reference/pricing'],
@@ -114,7 +114,7 @@ export default function UgcAgencyPage() {
               UGC Agency UK, <span className="mkt-gradient-text">based in London</span>
             </h1>
             <p style={{ ...body, fontSize: 18 }}>
-              The Social Vision is a UGC agency in the UK, based in London. We plan the concepts, cast real creators from a network of 300+, and edit the films in-house for TikTok, Meta and YouTube. You approve the concepts and the casting, then you approve the final video. We do not run your ad spend.
+              The Social Vision is a UGC agency in the UK, based in London. We plan the concepts, cast real creators from a network of 300+, and edit the films in-house for TikTok, Instagram and YouTube. You approve the concepts and the casting, then you approve the final video. We do not run your ad spend.
             </p>
             <p style={body}>
               UGC here means lower-fi creator video, the kind that feels made by a person rather than a brand. We make UGC and short-form content with our creators. We don&rsquo;t run influencer marketing or influencer campaigns. The longer explanation is on <a href="/docs/formats/ugc">what UGC is</a>.
@@ -126,7 +126,7 @@ export default function UgcAgencyPage() {
             <div className="ugc-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               {[
                 ['Remote creator UGC', 'Creators in the network film from their own space, to a brief we write after you approve the copy. They send raw footage. We edit.'],
-                ['UGC-style organic', 'The same lower-fi feeling, posted on your brand channels: Instagram, TikTok and YouTube Shorts, and Facebook Reels for some clients.'],
+                ['UGC creators on your channels', 'A recurring face on your own brand channels: TikTok, Instagram and YouTube.'],
                 ['Hi-fi and scripted paid ads', 'Higher-production films we shoot ourselves, still built with two hooks so your team has something to test.'],
                 ['Street interviews', 'A presenter, questions we write, and a location chosen for the people you want to hear from. The service page is separate.'],
               ].map(([title, text]) => (
@@ -160,7 +160,7 @@ export default function UgcAgencyPage() {
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>How pricing works</h2>
             <p style={body}>
-              From £2,000 a month (ex VAT). The retainer is one monthly fee, scoped to the goal and the formats, on a 3-month initial term. After that it rolls monthly, with 30 days’ notice. Strategy, creators, editing, revisions, organic posting and reporting are included. Ad spend is not. Revisions are included. A per-video price is not published.
+              From £2,000 a month (ex VAT). The retainer is one monthly fee, scoped to the goal and the formats, on a 3-month initial term. After that it rolls monthly, with 30 days’ notice. Strategy, creators, editing, revisions, organic posting and reporting are included. Ad spend is not. Revisions are included, and the number of rounds is agreed in each brief. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. The content includes perpetual usage rights. Paid use is not included. A per-video price is not published.
             </p>
             <p style={body}>
               The breakdown is on <a href="/docs/reference/pricing">how much UGC costs</a>. The month itself is on <a href="/docs/how-we-work">how a retainer runs</a>.

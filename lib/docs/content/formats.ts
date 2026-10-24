@@ -5,8 +5,8 @@ export const FORMATS: DocPage[] = [
     slug: 'formats/ugc',
     section: 'formats',
     navLabel: 'UGC-style and remote UGC',
-    title: 'What is UGC, and how is it different from influencer marketing?',
-    seoTitle: 'What is UGC? UGC vs influencer marketing | The Social Vision',
+    title: 'What is UGC?',
+    seoTitle: 'What is UGC? | The Social Vision',
     description:
       'UGC here means lower-fi creator video for your own channels or ads. We make UGC and short-form content. We don\u2019t run influencer marketing or influencer campaigns.',
     schema: 'Article',
@@ -127,7 +127,7 @@ export const FORMATS: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'On the site this is hi-fi ads and paid social productions, for TikTok, Meta and YouTube, including horizontal cuts where the placement needs them. A square version is available when you need one. The single paid film should still look and feel like an organic post, because a film that looks like a traditional advert is easy to skip. See [paid social creative](/paid-social-creative).',
+        text: 'On the site this is hi-fi ads and paid social productions, for TikTok, Instagram and YouTube. A square version is available when you need one. The single paid film should still look and feel like an organic post, because a film that looks like a traditional advert is easy to skip. See [paid social creative](/paid-social-creative).',
       },
       {
         type: 'faq',
@@ -143,17 +143,17 @@ export const FORMATS: DocPage[] = [
   {
     slug: 'formats/other',
     section: 'formats',
-    navLabel: 'Ambassador, trends, explainers',
+    navLabel: 'UGC on your channels, trends, explainers',
     title: 'What other short-form formats do you make?',
-    seoTitle: 'Ambassador, trend-led and explainer videos | The Social Vision',
+    seoTitle: 'UGC creators on your channels, trend-led and explainer videos | The Social Vision',
     description:
-      'Besides street interviews and UGC, the site lists a recurring face on your own channels, trend-led films, scripted interactions and educational explainers. These are short-form films, not influencer campaigns.',
+      'Besides street interviews and UGC, the formats are UGC creators on your channels, trend-led films, scripted interactions and educational explainers.',
     schema: 'Article',
     related: { href: '/blog/70-20-10-content-rule', label: 'The 70/20/10 rule' },
     blocks: [
       {
         type: 'p',
-        text: 'Besides street interviews and UGC-style video, the formats on the site are ambassador content, trend-led content, scripted interactions and educational explainers. Ambassador content means a recurring person on your own channels, so the audience can recognise them. It is not an influencer campaign, and they are not posting to their own audience. Trend-led films follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
+        text: 'Besides street interviews and UGC-style video, the formats on the site are UGC creators on your channels, trend-led content, scripted interactions and educational explainers. UGC creators on your channels means a recurring person on your own channels, so the audience can recognise them. Trend-led films follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
       },
       {
         type: 'p',
@@ -161,7 +161,7 @@ export const FORMATS: DocPage[] = [
       },
       {
         type: 'check',
-        text: '[CHECK] Confirm whether ambassador content, trend-led films and explainers should stay on this one page or be split into their own pages. They are together here.',
+        text: '[CHECK] Confirm whether UGC creators on your channels, trend-led films and explainers should stay on this one page or be split into their own pages. They are together here.',
       },
       {
         type: 'faq',

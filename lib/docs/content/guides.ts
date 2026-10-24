@@ -18,7 +18,7 @@ export const GUIDES: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'The template further down has the 14 fields we use as a worksheet. Copy it or [download it](/docs/brief-template). There is no form. Where a field is not a settled house rule, the template says so.',
+        text: 'The template further down has the 14 fields we use as a worksheet. Where a field is not a settled house rule, the template says so.',
       },
       { type: 'h2', id: 'order', text: 'The order of work' },
       {
@@ -49,11 +49,7 @@ export const GUIDES: DocPage[] = [
       { type: 'h2', id: 'two-kinds', text: 'In person and remote' },
       {
         type: 'p',
-        text: 'There are two brief types: in person, and remote. Street interviews are questions we write, and we pick the best answers afterwards. Trend-led UGC goes out as a trending brief. A fully scripted film carries the dialogue and the hooks in the brief. There is no single published rule for when that dialogue is word for word and when it is talking points.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm when creators get a word-for-word script and when they get talking points. This page describes scripted dialogue, street-interview questions and trending briefs, and does not state one rule for all of them.',
+        text: 'There are two brief types: in person, and remote. Street interviews are questions we write, and we pick the best answers afterwards. Trend-led UGC goes out as a trending brief. Scripts are the default. Talking points are used only if the brief says so.',
       },
       { type: 'h2', id: 'hooks', text: 'Hooks' },
       {
@@ -68,24 +64,16 @@ export const GUIDES: DocPage[] = [
       { type: 'h2', id: 'rights-shipping', text: 'Usage, shipping, revisions' },
       {
         type: 'p',
-        text: 'The content we make includes perpetual usage rights. The detail is on [usage rights](/docs/ugc-usage-rights). Shipping is agreed per product, on [shipping products to creators](/docs/shipping-products-to-creators). Revisions are included, and a reshoot caused by a client script change is extra work, with no price published. That sits on [approvals and revisions](/docs/approvals-and-revisions).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether to publish a default number of takes. This page does not state one.',
+        text: 'The content we make includes perpetual usage rights. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation. The detail is on [usage rights](/docs/ugc-usage-rights). When a creator needs the product, you ship it at your cost and the creator keeps it, on [shipping products to creators](/docs/shipping-products-to-creators). Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. That sits on [approvals and revisions](/docs/approvals-and-revisions).',
       },
       { type: 'h2', id: 'template', text: 'Brief template' },
       { type: 'template' },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether this brief template stays an open download or should be gated. It is open on this page, with no form.',
-      },
       {
         type: 'faq',
         items: [
           {
             q: 'Do you write the scripts?',
-            a: 'Yes. We write them end to end. You approve the copy, and then we write the creator brief.',
+            a: 'Yes. We write them end to end, and scripts are the default. Talking points are used only if the brief says so. You approve the copy, and then we write the creator brief.',
           },
           {
             q: 'What should a UGC brief include?',
@@ -151,13 +139,13 @@ export const GUIDES: DocPage[] = [
     title: 'Should UGC creators follow a script?',
     seoTitle: 'Should UGC creators follow a script? | The Social Vision',
     description:
-      'We write the words. Scripted films carry dialogue and hooks. Street interviews carry questions. There is no single rule for word-for-word versus talking points.',
+      'Scripts are the default. Talking points are used only if the brief says so. You approve the copy before a creator is briefed.',
     schema: 'Article',
     related: { href: '/docs/briefing-ugc-creators', label: 'How to brief UGC creators' },
     blocks: [
       {
         type: 'p',
-        text: 'We write the words, and you approve them before a creator is briefed. A scripted film carries the dialogue and the hooks in the brief. A street interview carries the questions, and we choose the best answers afterwards. Trend-led UGC goes out as a trending brief. There is no published rule that says which of those must be word for word and which can be talking points.',
+        text: 'We write the words, and you approve them before a creator is briefed. Scripts are the default. Talking points are used only if the brief says so. A scripted film carries the dialogue and the hooks in the brief. A street interview carries the questions, and we choose the best answers afterwards. Trend-led UGC goes out as a trending brief.',
       },
       { type: 'h2', id: 'what-is-settled', text: 'What is settled' },
       {
@@ -170,10 +158,6 @@ export const GUIDES: DocPage[] = [
         ],
       },
       {
-        type: 'check',
-        text: '[CHECK] Confirm the rule for word-for-word scripts versus talking points. This page does not state one.',
-      },
-      {
         type: 'p',
         text: 'Regulated lines still need your guardrails in the brief. That is on [regulated brands](/docs/regulated-brands).',
       },
@@ -182,7 +166,7 @@ export const GUIDES: DocPage[] = [
         items: [
           {
             q: 'Should UGC creators follow a script?',
-            a: 'We write the copy and you approve it. Scripted work includes the dialogue and the hooks. Street interviews use questions we write. A single rule for word-for-word scripts versus talking points is not published.',
+            a: 'Yes. Scripts are the default. Talking points are used only if the brief says so. We write the copy and you approve it before anyone is briefed.',
           },
         ],
       },
@@ -214,15 +198,11 @@ export const GUIDES: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'The format page is [street interviews](/docs/formats/street-interviews), and the service page is [street interviews in London](/street-interviews). A shoot of this kind needs notice, which is noted on [how a retainer runs](/docs/how-we-work). Uni Compare’s first 8 weeks are the [public write-up](/case-studies/uni-compare).',
+        text: 'The format page is [street interviews](/docs/formats/street-interviews), and the service page is [street interviews in London](/street-interviews). A shoot of this kind needs 1 week\u2019s notice, which is noted on [how a retainer runs](/docs/how-we-work). Consent is handled depending on the situation, on [consent](/docs/consent). Uni Compare\u2019s first 8 weeks are the [public write-up](/case-studies/uni-compare).',
       },
       {
         type: 'check',
         text: '[CHECK] Confirm whether the docs should repeat the shoot length and the number of people spoken to. Those figures are not stated on this page.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the public consent steps for a street interview. This page does not describe them.',
       },
       {
         type: 'faq',
@@ -248,7 +228,7 @@ export const GUIDES: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'The first three months are for testing. We can say that with confidence over 12 weeks. We would not promise it in eight. Each paid asset is made with two hooks, so one idea is already more than one test. A format needs to be posted at least six to 12 times before you decide it does not work.',
+        text: 'The first three months are for testing. We would not promise it in eight. Each paid asset is made with two hooks, so one idea is already more than one test. A format needs to be posted at least six to 12 times before you decide it does not work.',
       },
       { type: 'h2', id: 'what-changes', text: 'What we change' },
       {
@@ -261,19 +241,15 @@ export const GUIDES: DocPage[] = [
         text: 'We do not run the ads. Some clients put a small amount of their own spend, in the region of £5 to £15, behind a TikTok that is already doing well, because the cost to reach someone can be low on a film people are already watching. If you do that, the monthly analytics call can include the spend, the cost per result, and which film did the work. Plum’s pipeline is the [case study](/case-studies/plum): hi-fi ads, UGC-style content and scripted interactions, and three times the creative output.',
       },
       {
-        type: 'check',
-        text: '[CHECK] Confirm whether to publish a recommended number of videos to test in a month. This page says two hooks per asset, and six to 12 posts of a format before you judge it, and does not state a monthly video count.',
-      },
-      {
         type: 'faq',
         items: [
           {
             q: 'Can you speed up the three-month testing period?',
-            a: 'It can happen sooner, and we do not promise eight weeks. Twelve weeks is the period we will stand behind.',
+            a: 'It can happen sooner, and we do not promise eight weeks.',
           },
           {
             q: 'How many UGC videos should we test?',
-            a: 'We do not publish a monthly test quota. Each paid asset has two hooks, and a format should run at least six to 12 times before you drop it.',
+            a: 'Each paid asset has two hooks, and a format should run at least six to 12 times before you drop it.',
           },
         ],
       },
@@ -286,13 +262,13 @@ export const GUIDES: DocPage[] = [
     title: 'Do you need us to send the product?',
     seoTitle: 'How to ship products to UGC creators | The Social Vision',
     description:
-      'Some clients send the product. Some send footage or stills of it. Which one is realistic depends on the product, and the shipping logistics are agreed per client.',
+      'When a creator needs the product in shot, you ship it to them at your cost, and the creator keeps it. Some films can be made from footage or stills instead.',
     schema: 'Article',
     related: { href: '/docs/briefing-ugc-creators', label: 'How to brief UGC creators' },
     blocks: [
       {
         type: 'p',
-        text: 'Sometimes. Some clients send the product itself, and some send footage or stills of it, whichever is easier and realistic. A product a creator cannot sensibly use on camera is a reason to send the assets instead. What is feasible is agreed for that product, not assumed from a standard parcel rule.',
+        text: 'When a creator needs the product in shot, you ship it to them, at your cost, and the creator keeps the product. Some films can be made from footage or stills instead, when that is easier for the product.',
       },
       { type: 'h2', id: 'brief', text: 'What still belongs in the brief' },
       {
@@ -304,15 +280,11 @@ export const GUIDES: DocPage[] = [
         ],
       },
       {
-        type: 'check',
-        text: '[CHECK] Confirm who pays for shipping, whether the parcel goes to us or straight to the creator, the lead time, whether the creator keeps the product, and how returns work. This page does not state that process.',
-      },
-      {
         type: 'faq',
         items: [
           {
             q: 'Do you need us to send the product?',
-            a: 'Only when the creator needs the real product in shot. Some clients send the product and some send footage or stills. Shipping logistics are agreed per client and are not published as a standard process.',
+            a: 'When the creator needs the real product in shot, you ship it to them at your cost, and the creator keeps it. Some films can be made from footage or stills instead.',
           },
         ],
       },

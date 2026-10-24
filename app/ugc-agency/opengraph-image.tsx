@@ -7,7 +7,7 @@ export const contentType = OG_CONTENT_TYPE;
 export default function OgImage() {
   return renderOgImage({
     headline: ['UGC Agency UK,', 'based in London.'],
-    kicker: 'TikTok, Meta and YouTube',
+    kicker: 'TikTok, Instagram and YouTube',
     path: '/ugc-agency',
   });
 }

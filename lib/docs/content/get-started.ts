@@ -23,7 +23,7 @@ export const GET_STARTED: DocPage[] = [
       { type: 'h2', id: 'what-we-make', text: 'What we make' },
       {
         type: 'p',
-        text: 'On the site, the organic formats are street interviews, ambassador content, trend-led content, scripted interactions, UGC-style creatives and educational explainers. Ambassador content means a recurring face on your own channels, not a creator posting to their own audience. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Meta and YouTube. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns. The names on the latest sales conversations are not all the same as the names on the site.',
+        text: 'On the site, the organic formats are street interviews, UGC creators on your channels, trend-led content, scripted interactions, UGC-style creatives and educational explainers. UGC creators on your channels means a recurring face on your own channels. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Instagram and YouTube. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns. The names on the latest sales conversations are not all the same as the names on the site.',
       },
       {
         type: 'check',
@@ -50,13 +50,13 @@ export const GET_STARTED: DocPage[] = [
     title: 'How long until first content is live?',
     seoTitle: 'How long until first content is live? | The Social Vision',
     description:
-      'First content goes live within 14–21 days of signing. After a shoot, videos start appearing on the calendar about three to five days later.',
+      'First content goes live within 14–21 days of signing.',
     schema: 'HowTo',
     related: { href: '/case-studies/habito', label: 'Habito case study' },
     blocks: [
       {
         type: 'p',
-        text: 'First content goes live within 14–21 days of signing. Week 1 is strategy and creator matching, week 2 is production, and week 3 is the first batch live. After filming, videos start to appear on the calendar about three to five days later, on a rolling basis, and we move into the edit on that same sort of timing.',
+        text: 'First content goes live within 14–21 days of signing. Week 1 is strategy and creator matching, week 2 is production, and week 3 is the first batch live.',
       },
       {
         type: 'steps',
@@ -69,10 +69,6 @@ export const GET_STARTED: DocPage[] = [
             title: 'Week 1 to week 3',
             text: 'Strategy and creator matching, then production, then the first batch live, inside 14–21 days of signing.',
           },
-          {
-            title: 'After each shoot',
-            text: 'About three to five days after filming, the edits are underway and videos start landing on the calendar for you to approve.',
-          },
         ],
       },
       {
@@ -81,7 +77,7 @@ export const GET_STARTED: DocPage[] = [
       },
       {
         type: 'check',
-        text: '[CHECK] Confirm the turnaround for later paid batches, from pitch approval to delivery. This page only states 14–21 days from signing for the first content, and about three to five days after filming for videos to reach the calendar.',
+        text: '[CHECK] Confirm the turnaround for later paid batches, from pitch approval to delivery. This page states 14–21 days from signing for the first content, and does not state a turnaround for later paid batches.',
       },
       {
         type: 'faq',
@@ -89,10 +85,6 @@ export const GET_STARTED: DocPage[] = [
           {
             q: 'How soon can we start, and when is the first content live?',
             a: 'First content goes live within 14 to 21 days of signing. Week 1 is strategy and creator matching, week 2 is production, and week 3 is the first batch live.',
-          },
-          {
-            q: 'How long after a shoot do we see the videos?',
-            a: 'About three to five days after filming, videos start appearing on the calendar on a rolling basis.',
           },
         ],
       },
@@ -128,10 +120,6 @@ export const GET_STARTED: DocPage[] = [
       {
         type: 'p',
         text: 'If the category is regulated, send the guardrails at this point: banned phrases, statements you cannot make, and the disclaimer lines. That is covered on [regulated brands](/docs/regulated-brands). Product, if a creator needs it in shot, is covered on [shipping](/docs/shipping-products-to-creators).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm how client logins are stored and who can see them. This page says we ask for analytics access at onboarding, and does not describe a security policy.',
       },
       {
         type: 'faq',

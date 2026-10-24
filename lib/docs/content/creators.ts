@@ -29,11 +29,7 @@ export const CREATORS: DocPage[] = [
       { type: 'h2', id: 'your-team', text: 'Your own team, or another country' },
       {
         type: 'p',
-        text: 'If your staff or a founder want to be on camera, we can film with them. The network is there when they do not. For a US audience we have US accents in the network, and the script uses dollars rather than pounds. Other languages are not a published offer.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether we produce in languages other than English. This page does not say that we do.',
+        text: 'If your staff or a founder want to be on camera, we can film with them. The network is there when they do not. We work in English only. For a US audience we have US accents in the network, and the script uses dollars rather than pounds.',
       },
       {
         type: 'faq',
@@ -57,20 +53,20 @@ export const CREATORS: DocPage[] = [
     title: 'Who owns UGC, and what usage do you get?',
     seoTitle: 'UGC usage rights | The Social Vision',
     description:
-      'The content we make includes perpetual usage rights.',
+      'The content we make includes perpetual usage rights. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
     schema: 'Article',
     related: { href: '/docs/reference/pricing', label: 'Pricing and what’s included' },
     blocks: [
       {
         type: 'p',
-        text: 'The content we make includes perpetual usage rights. That comes with the work. Pricing of the retainer is on [pricing](/docs/reference/pricing).',
+        text: 'The content we make includes perpetual usage rights. That comes with the work. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation. Pricing of the retainer is on [pricing](/docs/reference/pricing).',
       },
       {
         type: 'faq',
         items: [
           {
             q: 'What usage rights are included?',
-            a: 'Perpetual usage rights. They come with the content we make.',
+            a: 'Perpetual usage rights come with the content we make. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
           },
         ],
       },
@@ -83,32 +79,20 @@ export const CREATORS: DocPage[] = [
     title: 'How do street interviews get consent?',
     seoTitle: 'Street interview consent | The Social Vision',
     description:
-      'People who appear need to agree before a film is used. The exact consent steps are not published on this page.',
+      'People who appear need to agree before a film is used. Consent is handled depending on the situation.',
     schema: 'Article',
     related: { href: '/street-interviews', label: 'Street interviews' },
     blocks: [
       {
         type: 'p',
-        text: 'Anyone who appears in a street interview needs to agree to the film being used. The steps for that agreement are not published here. We are not describing a script, a form, or the order of filming and asking, because that process is not settled for the docs.',
-      },
-      {
-        type: 'p',
-        text: 'Creator releases, for the people we cast, are also not set out here. How a shoot is planned, apart from consent, is on [how to plan a street interview](/docs/street-interview-planning).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the consent process that can be published for street interviews, and whether creators sign a written release. This page does not describe either process.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm what to say about scripted street-style ads and whether they are presented as real vox pops. This page does not take a position.',
+        text: 'Anyone who appears in a street interview needs to agree to the film being used. Consent is handled depending on the situation. How a shoot is planned is on [how to plan a street interview](/docs/street-interview-planning).',
       },
       {
         type: 'faq',
         items: [
           {
             q: 'Do people need to consent to be in a street interview?',
-            a: 'Yes. Their agreement is required before a film is used. The exact steps are not published on this page.',
+            a: 'Yes. Consent is handled depending on the situation.',
           },
         ],
       },
@@ -121,28 +105,24 @@ export const CREATORS: DocPage[] = [
     title: 'What are Spark Ads and partnership ads?',
     seoTitle: 'TikTok Spark Ads and Meta partnership ads | The Social Vision',
     description:
-      'A Spark Ad or partnership ad can run a film we made as an ad, with the creator’s name still on it. The film is for the client’s ads, not an influencer campaign. Our booking rules are not published.',
+      'Spark Ads, whitelisting and partnership ads are paid use. They are not included in the usage rights. They need a separate written agreement and creator authorisation.',
     schema: 'Article',
     related: { href: '/docs/ugc-usage-rights', label: 'Usage rights' },
     blocks: [
       {
         type: 'p',
-        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a film as an ad while the creator’s name stays on it. They need the creator’s permission through the platform. The film is one we made with our creators, for the client’s own ads. That is not an influencer campaign, and we don’t run those. They are not the same as posting the file on your own brand channel, and they are not something you set up by sharing a password.',
+        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a film as an ad while the creator\u2019s name stays on it. Whitelisting is the same kind of paid use. Paid use is not included in the perpetual usage rights. It needs a separate written agreement and creator authorisation. The film is one we made with our creators. It is not an influencer campaign, and we don\u2019t run those. It is not the same as posting the file on your own brand channel, and it is not something you set up by sharing a password.',
       },
       {
         type: 'p',
-        text: 'The content includes perpetual usage rights. Whether The Social Vision books Spark Ads or partnership ads, for how long, and on which platforms, is not published here. Organic posting that we do is on your brand channels, through our scheduler. That is a different job, described on [working with your team](/docs/working-with-your-team).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the public rule for Spark Ads, partnership ads and whitelisting: whether we book them, the platform, the duration, and that passwords are not shared. This page defines the ad types and does not state our booking rule.',
+        text: 'Organic posting that we do is on your brand channels, through our scheduler. That is a different job, described on [working with your team](/docs/working-with-your-team). Usage rights are on [usage rights](/docs/ugc-usage-rights).',
       },
       {
         type: 'faq',
         items: [
           {
             q: 'Do creators post on their own accounts?',
-            a: 'We make the films with our creators for your own channels and ads. Organic posting goes on your brand channels. We don’t run influencer campaigns, where a creator posts to their own audience. Whether a finished film is also run as a partnership ad is not published on this page.',
+            a: 'We make the films with our creators for your own channels. Organic posting goes on your brand channels. We don\u2019t run influencer campaigns. Paid use, including a partnership ad, needs a separate written agreement and creator authorisation.',
           },
         ],
       },
@@ -155,22 +135,18 @@ export const CREATORS: DocPage[] = [
     title: 'How do I join as a creator?',
     seoTitle: 'Become a UGC creator with The Social Vision',
     description:
-      'Creators apply at the TSV creator portal. Creators are paid on the 15th of the month. The invoice email is not published here.',
+      'Creators apply at the TSV creator portal. Creators are paid on the 15th of the month.',
     schema: 'Article',
     related: { href: 'https://www.tsvportal.co.uk/creator', label: 'Creator portal' },
     blocks: [
       {
         type: 'p',
-        text: 'Apply through the [creator portal](https://www.tsvportal.co.uk/creator). Creators are paid on the 15th of the month. The portal has its own privacy notice, separate from this website. We cast from the network for client work, and you would be briefed per job rather than employed on a salary.',
+        text: 'Apply through the [creator portal](https://www.tsvportal.co.uk/creator). Creators are paid on the 15th of the month. We cast from the network for client work.',
       },
       { type: 'h2', id: 'on-a-job', text: 'What a job looks like' },
       {
         type: 'p',
-        text: 'A brief names the location, the date and time, the objective, the hooks and the dialogue or questions. Remote jobs are raw footage from your own space, with a tidy background and the light on you. We edit. You are filming for a client’s channels or ads. We don’t ask you to post it as an influencer campaign on your own account.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the invoice email, whether any freelancers are paid on the last day of the month as well as the 15th, and whether fee bands can be published. This page says creators are paid on the 15th, and does not give an address or a rate.',
+        text: 'A brief names the location, the date and time, the objective, the hooks and the dialogue or questions. Remote jobs are raw footage from your own space, with a tidy background and the light on you. We edit. You are filming for a client\u2019s channels or ads.',
       },
       {
         type: 'faq',

@@ -2,53 +2,6 @@ import type { DocPage } from '../types';
 
 export const REFERENCE: DocPage[] = [
   {
-    slug: 'reference/specs',
-    section: 'reference',
-    navLabel: 'Deliverable specs',
-    title: 'What format should UGC videos be?',
-    seoTitle: 'UGC video specs for TikTok, Reels and Shorts | The Social Vision',
-    description:
-      'Organic films go to Instagram, TikTok and YouTube Shorts, and some clients also use Facebook Reels. Paid films can be vertical, square or horizontal. File specs are not published here.',
-    schema: 'Article',
-    related: { href: '/docs/formats/ugc', label: 'UGC-style and remote UGC' },
-    blocks: [
-      {
-        type: 'p',
-        text: 'For organic, we post on Instagram, TikTok and YouTube Shorts, and some clients also use Facebook Reels. Paid films are made for Meta, TikTok and YouTube, vertical or horizontal, with a square version when you need one. Creators send raw footage and we edit in-house. A resolution, codec or frame-rate spec is not published on this page.',
-      },
-      { type: 'h2', id: 'what-you-receive', text: 'What you actually receive' },
-      {
-        type: 'ul',
-        items: [
-          'Organic: the finished film, plus the caption and hashtags, in the scheduler for you to approve.',
-          'Paid: the finished film on Frame, where a comment can point at a moment in the cut, and the file can be downloaded.',
-          'Two hooks on a paid asset, so the opening is not a single take you are stuck with.',
-        ],
-      },
-      {
-        type: 'p',
-        text: 'Pinterest, LinkedIn and Reddit are not platforms we describe as part of the standard offer. If you need one of them, ask, and we will say whether it is in scope.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the technical spec to publish: resolution, codec, frame rate, aspect ratios, safe zones, burned-in captions versus a caption file, and whether raw footage or project files are handed over. This page does not state them.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether Pinterest, LinkedIn or Reddit are in scope. This page says the standard organic set is Instagram, TikTok and YouTube Shorts, plus Facebook Reels for some clients.',
-      },
-      {
-        type: 'faq',
-        items: [
-          {
-            q: 'Which platforms do you post on?',
-            a: 'Instagram, TikTok and YouTube Shorts as standard, and Facebook Reels for some clients. Paid creative is made for Meta, TikTok and YouTube.',
-          },
-        ],
-      },
-    ],
-  },
-  {
     slug: 'reference/pricing',
     section: 'reference',
     navLabel: 'Pricing',
@@ -71,45 +24,26 @@ export const REFERENCE: DocPage[] = [
           'The monthly strategy call and the monthly analytics call.',
           'Pre-production, creator sourcing and casting.',
           'Editing in-house, captions and hashtags.',
-          'Revisions are included.',
+          'Revisions are included. The number of rounds is agreed in each brief.',
           'Scheduling and organic posting, and monthly performance reporting.',
-          'The creator fees. You are not billed extra for the people on camera.',
-          'Perpetual usage rights on the content we make.',
+          'The creator fees. You are not billed extra for the people on camera. Creator costs being inside the fee is deliberate.',
+          'Perpetual usage rights on the content we make. Paid use is not included.',
         ],
-      },
-      {
-        type: 'p',
-        text: 'Creator costs being inside the fee is deliberate. A lot of retainers leave talent as a surprise invoice. Ours does not. There are pricing incentives for a longer commitment, such as six months. The amounts are not published.',
       },
       { type: 'h2', id: 'not-included', text: 'What is not included' },
       {
         type: 'ul',
         items: [
           'Ad spend. Your team or your media agency runs the campaigns.',
-          'A reshoot caused by a client script change. That is extra work, and no price is published.',
+          'Paid use. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
+          'Edit-only work. We don\u2019t offer editing without filming.',
           'Influencer marketing and influencer campaigns. We don\u2019t run them.',
         ],
       },
       { type: 'h2', id: 'volume', text: 'How many videos' },
       {
         type: 'p',
-        text: 'Organic retainers include a minimum of 16 videos a month. The paid minimum is agreed per project. Less volume is not something we recommend as a way to try it, because a format needs enough posts to learn anything. The testing period is the 3-month term, not a cheaper first month.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the paid minimum number of videos a month. Organic is 16. The paid minimum is agreed per project, and a paid number is not published here.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the amounts of any longer-commitment incentive. This page says incentives exist for a longer term, and does not state a figure.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether edit-only work is still offered. This page does not describe an edit-only retainer.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm add-on prices for changing the mix in a busy month. This page does not publish any add-on fee. Give notice when a month needs a shoot.',
+        text: 'Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. Less volume is not something we recommend as a way to try it, because a format needs enough posts to learn anything. The testing period is the 3-month term, not a cheaper first month. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Changing the mix, or other extra work, is quoted per project. High-production and street-interview shoots need 1 week\u2019s notice.',
       },
       {
         type: 'p',
@@ -137,20 +71,20 @@ export const REFERENCE: DocPage[] = [
     title: 'Are reshoots included?',
     seoTitle: 'Are UGC reshoots included? | The Social Vision',
     description:
-      'Revisions are included. If our footage is not good enough, we book the reshoot. A reshoot caused by a client script change is extra work, and no price is published.',
+      'Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Extra work is quoted per project.',
     schema: 'Article',
     related: { href: '/docs/approvals-and-revisions', label: 'Approvals and revisions' },
     blocks: [
       {
         type: 'p',
-        text: 'Revisions are included. If the footage is not good enough to finish, we book a reshoot rather than send you a film we would not stand behind. A reshoot caused by a client script change is extra work. No price for that reshoot, and no price for add-ons, is published here. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns.',
+        text: 'Revisions are included. The number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Changing the mix, or other extra work, is quoted per project. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns.',
       },
       { type: 'h2', id: 'on-us', text: 'On us' },
       {
         type: 'ul',
         items: [
-          'Notes on a cut you have not approved yet. Revisions are included.',
-          'A reshoot when the footage itself cannot be saved.',
+          'Notes on a cut you have not approved yet. Revisions are included, and the number of rounds is agreed in each brief.',
+          'A reshoot at our own cost when our footage is not good enough.',
           'Reshaping a concept before it is filmed, if the idea is wrong.',
         ],
       },
@@ -158,24 +92,18 @@ export const REFERENCE: DocPage[] = [
       {
         type: 'ul',
         items: [
-          'A reshoot because the script or the creative direction changed after approval.',
+          'A reshoot after a client script change. That is quoted case by case.',
+          'Changing the mix, or other extra work. That is quoted per project.',
           'Ad spend.',
+          'Paid use. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
         ],
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the public wording for a reshoot we book because the footage failed, versus a reshoot after a client script change. This page says the first is on us and the second is extra work, and it does not give a price.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm add-on prices. This page says a busy month can need notice for a shoot, and does not publish a bolt-on fee.',
       },
       {
         type: 'faq',
         items: [
           {
             q: 'Are reshoots included?',
-            a: 'Revisions are included. A reshoot we book because the footage is not good enough is on us. A reshoot caused by a client script change is extra work, and no price is published.',
+            a: 'Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Extra work is quoted per project.',
           },
         ],
       },
@@ -209,9 +137,9 @@ export const REFERENCE: DocPage[] = [
           ['Hi-fi ad', 'A higher-production paid film we plan and shoot. See [hi-fi ads](/docs/formats/hi-fi-ads).'],
           ['Scripted interaction', 'A planned scene with dialogue you approve. See [scripted interactions](/docs/formats/scripted-interactions).'],
           ['Retainer', 'A monthly fee. From £2,000 a month (ex VAT). See [pricing](/docs/reference/pricing).'],
-          ['Revisions', 'Included. See [approvals](/docs/approvals-and-revisions).'],
-          ['Usage', 'Perpetual usage rights on the content we make. See [usage rights](/docs/ugc-usage-rights).'],
-          ['Spark Ad / partnership ad', 'A way to run a film we made as an ad, with the creator’s name still on it. It is for the client’s ads, not an influencer campaign. Our booking rules are not published. See [partnership ads](/docs/partnership-ads).'],
+          ['Revisions', 'Included. The number of rounds is agreed in each brief. See [approvals](/docs/approvals-and-revisions).'],
+          ['Usage', 'Perpetual usage rights on the content we make. Paid use is not included. See [usage rights](/docs/ugc-usage-rights).'],
+          ['Spark Ad / partnership ad', 'Paid use of a film we made, with the creator\u2019s name still on it. It is not included in the usage rights. It needs a separate written agreement and creator authorisation. See [partnership ads](/docs/partnership-ads).'],
           ['70/20/10', 'Mostly what is already working, some iteration, a little that is new. See the [blog post](/blog/70-20-10-content-rule).'],
         ],
       },

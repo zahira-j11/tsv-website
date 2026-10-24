@@ -1,11 +1,7 @@
-import { BRIEF_TEMPLATE } from '@/lib/docs/template';
+import { NextRequest, NextResponse } from 'next/server';
 
-export function GET() {
-  return new Response(`${BRIEF_TEMPLATE}\n`, {
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Content-Disposition': 'attachment; filename="tsv-ugc-brief-template.txt"',
-      'Cache-Control': 'public, max-age=3600',
-    },
-  });
+/** The brief file is not an open download. Until it is gated, this URL
+ *  sends people to the briefing page, where they can ask for the template. */
+export function GET(request: NextRequest) {
+  return NextResponse.redirect(new URL('/docs/briefing-ugc-creators', request.url), 308);
 }

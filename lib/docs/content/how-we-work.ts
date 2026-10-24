@@ -41,7 +41,7 @@ export const HOW_WE_WORK: DocPage[] = [
           },
           {
             title: 'Edit',
-            text: 'Editing is in-house. We move into the edit about three to five days after filming. Paid pieces are made with two hooks per asset. The website also offers a square version when you need one.',
+            text: 'Editing is in-house. Paid pieces are made with two hooks per asset. The website also offers a square version when you need one.',
           },
           {
             title: 'You approve the final video',
@@ -55,15 +55,7 @@ export const HOW_WE_WORK: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'The first month is calibration. If the voice or the tone is off, we adapt it. Some clients give very little input after the do-nots. Others work as a close partnership. Both are normal. Seasonal themes, such as a sale period, can be built into the calendar if you send them in time for the pitch. High-production and street interview shoots need notice.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm how much notice a high-production or street interview shoot needs. This page says those shoots need notice, and does not state a number of days.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether there is a backup creator if someone drops out the day before a shoot. This page does not describe one.',
+        text: 'The first month is calibration. If the voice or the tone is off, we adapt it. Some clients give very little input after the do-nots. Others work as a close partnership. Both are normal. Seasonal themes, such as a sale period, can be built into the calendar if you send them in time for the pitch. High-production and street interview shoots need 1 week\u2019s notice.',
       },
       {
         type: 'p',
@@ -91,13 +83,13 @@ export const HOW_WE_WORK: DocPage[] = [
     title: 'How do revisions work?',
     seoTitle: 'Are revisions included with a UGC agency? | The Social Vision',
     description:
-      'Revisions are included. You approve concepts and casting first, then the final video. A reshoot caused by a client script change is extra work.',
+      'Revisions are included. The number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case.',
     schema: 'Article',
     related: { href: '/docs/reference/extra-work', label: 'What counts as extra work' },
     blocks: [
       {
         type: 'p',
-        text: 'Revisions are included, so nothing goes live until you are happy with the cut. You approve twice: the concepts, scripts and casting, then the final video. A reshoot that we book because the footage is not good enough is on us. A reshoot caused by a client script change is extra work. We do not publish a price for that.',
+        text: 'Revisions are included, so nothing goes live until you are happy with the cut. The number of rounds is agreed in each brief. You approve twice: the concepts, scripts and casting, then the final video. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case.',
       },
       { type: 'h2', id: 'where', text: 'Where you leave notes' },
       {
@@ -110,22 +102,14 @@ export const HOW_WE_WORK: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'We will push an idea. If it goes too far, you pull it back. That is easier at the concept stage than after a shoot. Changing the script after approval is the case that becomes extra work, which is also on [what counts as extra work](/docs/reference/extra-work).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm how many revision rounds are included before a change is treated as new work. This page says revisions are included, and it does not state a number.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the price of a reshoot caused by a client script change, and how a script change is defined after approval. This page says that reshoot is extra work, and does not give a price.',
+        text: 'We will push an idea. If it goes too far, you pull it back. That is easier at the concept stage than after a shoot. A reshoot after a client script change is quoted case by case, which is also on [what counts as extra work](/docs/reference/extra-work).',
       },
       {
         type: 'faq',
         items: [
           {
             q: 'What happens if we do not like a video?',
-            a: 'Revisions are included. You leave notes on the final video before it goes live, or we reshape the concept before it is filmed. A reshoot caused by a client script change is extra work, and no price for that is published.',
+            a: 'Revisions are included. The number of rounds is agreed in each brief. You leave notes on the final video before it goes live, or we reshape the concept before it is filmed. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case.',
           },
         ],
       },
@@ -138,13 +122,13 @@ export const HOW_WE_WORK: DocPage[] = [
     title: 'Can a regulated brand use UGC and street interviews?',
     seoTitle: 'UGC and street interviews for regulated brands | The Social Vision',
     description:
-      'Yes, if you send the guardrails at onboarding: banned phrases, statements you cannot make, and the disclaimer lines.',
+      'Yes. Send the guardrails at onboarding. Nothing goes live until compliance signs off.',
     schema: 'Article',
     related: { href: '/case-studies/habito', label: 'Habito case study' },
     blocks: [
       {
         type: 'p',
-        text: 'Yes. Send the guardrails at onboarding: any phrase you cannot use, any statement you cannot make, and the disclaimer lines. On a paid cut, a comment can ask for a disclaimer to be longer or for a line to come out. Habito, a mortgage broker, is the public organic example: 25 million organic views in 8 months, with zero ad spend.',
+        text: 'Yes. Send the guardrails at onboarding: any phrase you cannot use, any statement you cannot make, and the disclaimer lines. Nothing goes live until compliance signs off. On a paid cut, a comment can ask for a disclaimer to be longer or for a line to come out. Habito, a mortgage broker, is the public organic example: 25 million organic views in 8 months, with zero ad spend.',
       },
       { type: 'h2', id: 'what-to-send', text: 'What to send before we write' },
       {
@@ -160,15 +144,11 @@ export const HOW_WE_WORK: DocPage[] = [
         text: 'Street interviews are one way to stay inside those lines, because the film is people answering a question rather than the brand reading a claim. Habito’s street interviews are written up as a [case study](/case-studies/habito). Plum is the paid example: hi-fi ads, UGC-style content and scripted interactions, on the [Plum case study](/case-studies/plum). Finance work is also on [fintech](/industries/fintech).',
       },
       {
-        type: 'check',
-        text: '[CHECK] Confirm whether to publish that nothing goes live until a compliance team signs off. This page says send guardrails, banned phrases and disclaimers at onboarding, and that a disclaimer change can be requested on the cut.',
-      },
-      {
         type: 'faq',
         items: [
           {
             q: 'Can you work with a regulated brand?',
-            a: 'Yes. Send guardrails, banned phrases and disclaimer lines at onboarding. Comments on the cut can ask for a disclaimer to change.',
+            a: 'Yes. Send guardrails, banned phrases and disclaimer lines at onboarding. Nothing goes live until compliance signs off. Comments on the cut can ask for a disclaimer to change.',
           },
         ],
       },

@@ -1,6 +1,6 @@
 /**
  * 14-field brief worksheet. Guidance is limited to what the sales-call fact
- * base supports. Open items stay marked [CHECK] inside the file Zahira downloads.
+ * base supports. Open items stay marked [CHECK] in the worksheet.
  */
 export const BRIEF_TEMPLATE = `The Social Vision: UGC creator brief
 
@@ -22,7 +22,6 @@ The one job this video has to do.
 
 6. Shooting guidelines
 Remote: a tidy background, and light facing the creator. Note any on-screen text the edit will add.
-[CHECK] Resolution, frame rate, codec and aspect-ratio rules are not published here.
 
 7. Do-nots
 Phrases, claims or brands to avoid. These come from the client's guidelines.
@@ -43,10 +42,10 @@ Reference videos, with a note on what to follow. The performance and the edit sh
 12. Script table
 Two columns: what is said, and what we see.
 Put at least two hooks in their own section, separate from the body, then the dialogue or the street-interview questions.
-[CHECK] There is no published rule for word-for-word scripts versus talking points.
+Scripts are the default. Use talking points only if this brief says so.
 
 13. Usage
-The content includes perpetual usage rights.
+The content includes perpetual usage rights. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.
 
 14. Invoices
 Creators are paid on the 15th of the month. Send the invoice to accounts@thesocialvision.co.uk.
