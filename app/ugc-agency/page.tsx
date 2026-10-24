@@ -107,7 +107,7 @@ export default function UgcAgencyPage() {
           .ugc-body a:hover { text-decoration: underline; }
           @media (max-width: 700px) { .ugc-grid { grid-template-columns: minmax(0,1fr) !important; } }
         `}</style>
-        <SiteNav active="ugc" />
+        <SiteNav />
         <main className="ugc-body" style={{ padding: '120px 20px 80px', maxWidth: 860, margin: '0 auto' }}>
           <header style={{ marginBottom: 48 }}>
             <h1 style={{ ...DISP, fontSize: 'clamp(34px,5vw,56px)', fontWeight: 800, letterSpacing: '-.05em', lineHeight: 1.05, margin: '0 0 22px' }}>

@@ -207,7 +207,7 @@ export default function DocsArticle({ doc }: { doc: DocPage }) {
   return (
     <div className="docs-root">
       <JsonLd doc={doc} />
-      <SiteNav />
+      <SiteNav active="docs" />
       <div className="docs-frame">
         <Sidebar current={doc.slug} />
         <main className="docs-main">

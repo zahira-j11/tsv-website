@@ -992,14 +992,14 @@ export default function MarketingPage() {
               <button key={id} onClick={()=>go(id)} style={{ background:'none', border:'none', color:MU, fontSize:13, fontWeight:600, cursor:'pointer', padding:0, transition:'color 150ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>{l}</button>
             ))}
-            <a href="/ugc-agency" style={{ color:MU, fontSize:13, fontWeight:600, textDecoration:'none', transition:'color 150ms' }}
-              onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>UGC</a>
             {([['Pricing','pricing'],['Testimonials','testimonials']] as [string,string][]).map(([l,id])=>(
               <button key={id} onClick={()=>go(id)} style={{ background:'none', border:'none', color:MU, fontSize:13, fontWeight:600, cursor:'pointer', padding:0, transition:'color 150ms', fontFamily:'inherit' }}
                 onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>{l}</button>
             ))}
             <a href="/blog" style={{ color:MU, fontSize:13, fontWeight:600, textDecoration:'none', transition:'color 150ms' }}
               onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>Blog</a>
+            <a href="/docs" style={{ color:MU, fontSize:13, fontWeight:600, textDecoration:'none', transition:'color 150ms' }}
+              onMouseEnter={e=>(e.currentTarget.style.color=PD)} onMouseLeave={e=>(e.currentTarget.style.color=MU)}>Docs</a>
           </div>
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
@@ -1020,11 +1020,11 @@ export default function MarketingPage() {
             {([['How it works','how-it-works'],['Services','services'],['Case Studies','cases']] as [string,string][]).map(([l,id])=>(
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
-            <a href="/ugc-agency" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>UGC</a>
             {([['Pricing','pricing']] as [string,string][]).map(([l,id])=>(
               <button key={id} onClick={()=>go(id)} style={{ display:'block', width:'100%', textAlign:'left', background:'none', border:'none', color:MU, fontSize:15, fontWeight:600, cursor:'pointer', padding:'12px 0', borderBottom:`1px solid ${BR}`, fontFamily:'inherit' }}>{l}</button>
             ))}
             <a href="/blog" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>Blog</a>
+            <a href="/docs" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>Docs</a>
             <a href="https://www.tsvportal.co.uk/creator" target="_blank" rel="noopener noreferrer" onClick={()=>setMenu(false)} style={{ display:'block', color:MU, fontSize:15, fontWeight:600, textDecoration:'none', padding:'12px 0', borderBottom:`1px solid ${BR}` }}>For Creators</a>
             <a href={BOOK_CALL_HREF} onClick={e=>{ e.preventDefault(); bookCall('nav_book_mobile'); }} style={{ display:'block', background:PD, color:'#fff', textAlign:'center', fontWeight:700, fontSize:14, padding:14, borderRadius:100, textDecoration:'none', marginTop:16 }}>Book a call</a>
           </div>
