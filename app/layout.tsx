@@ -64,7 +64,6 @@ const ORGANIZATION = {
     { '@type': 'City', name: 'London' },
     { '@type': 'Country', name: 'United Kingdom' },
   ],
-  identifier: { '@type': 'PropertyValue', propertyID: 'UK Companies House number', value: '15844979' },
   knowsAbout: [
     'Short-form video content',
     'TikTok marketing',
@@ -78,7 +77,6 @@ const ORGANIZATION = {
     'https://www.linkedin.com/company/104219836/',
     'https://www.instagram.com/thesocialvisionuk/',
     'https://www.tiktok.com/@thesocialvisionuk',
-    'https://find-and-update.company-information.service.gov.uk/company/15844979',
   ],
 };
 

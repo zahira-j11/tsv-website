@@ -43,7 +43,7 @@ export default function PrivacyPage() {
 
         <h2 style={h2}>Who we are</h2>
         <p style={p}>
-          The Social Vision Ltd (&ldquo;The Social Vision&rdquo;, &ldquo;we&rdquo;) is a London-based short-form content agency, registered in England and Wales, company number 15844979.
+          The Social Vision Ltd (&ldquo;The Social Vision&rdquo;, &ldquo;we&rdquo;) is a London-based short-form content agency, registered in England and Wales.
           Registered office: 184 Winchester House, Bond Way, Bracknell, RG12 1LE. We are the controller of the personal information described here.
           For anything about your data, email <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: P }}>{CONTACT_EMAIL}</a>.
         </p>

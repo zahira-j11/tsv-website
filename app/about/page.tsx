@@ -159,9 +159,7 @@ export default function AboutPage() {
           <section style={{ marginBottom: 56 }}>
             <p style={label}>Company details</p>
             <p style={{ ...body, margin: 0 }}>
-              The Social Vision Ltd · Registered in England and Wales, company no.{' '}
-              <a href="https://find-and-update.company-information.service.gov.uk/company/15844979" style={{ color: P, fontWeight: 600 }}>15844979</a>{' '}
-              · Founded 2024 · Based in London, working with brands across the UK.
+              The Social Vision Ltd · Registered in England and Wales · Founded 2024 · Based in London, working with brands across the UK.
             </p>
           </section>
 
