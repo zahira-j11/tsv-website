@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: 'Are you a UGC agency in London?',
-    a: 'Yes. The Social Vision is based in London and works with brands across the UK. We work in English only.',
+    a: 'Yes. The Social Vision is based in London and works with brands across the UK.',
   },
   {
     q: 'How long until the first videos are live?',
@@ -114,7 +114,7 @@ export default function UgcAgencyPage() {
               UGC Agency UK, <span className="mkt-gradient-text">based in London</span>
             </h1>
             <p style={{ ...body, fontSize: 18 }}>
-              The Social Vision is a UGC agency in the UK, based in London. We plan the concepts, cast real creators from a network of 300+, and edit the films in-house for TikTok, Instagram and YouTube. You approve the concepts and the casting, then you approve the final video. We do not run your ad spend.
+              The Social Vision is a UGC agency in the UK, based in London. We plan the concepts, cast real creators from a network of 300+, and edit the videos in-house for TikTok, Instagram and YouTube. You approve the concepts and the casting, then you approve the final video. We do not run your ad spend.
             </p>
             <p style={body}>
               UGC here means lower-fi creator video, the kind that feels made by a person rather than a brand. We make UGC and short-form content with our creators. We don&rsquo;t run influencer marketing or influencer campaigns. The longer explanation is on <a href="/docs/formats/ugc">what UGC is</a>.
@@ -127,7 +127,7 @@ export default function UgcAgencyPage() {
               {[
                 ['Remote creator UGC', 'Creators in the network film from their own space, to a brief we write after you approve the copy. They send raw footage. We edit.'],
                 ['UGC creators on your channels', 'A recurring face on your own brand channels: TikTok, Instagram and YouTube.'],
-                ['Hi-fi and scripted paid ads', 'Higher-production films we shoot ourselves, still built with two hooks so your team has something to test.'],
+                ['Hi-fi and scripted paid ads', 'Higher-production videos we shoot ourselves, still built with two hooks so your team has something to test.'],
                 ['Street interviews', 'A presenter, questions we write, and a location chosen for the people you want to hear from. The service page is separate.'],
               ].map(([title, text]) => (
                 <div key={title} style={{ background: WH, border: `1.5px solid ${BR}`, borderRadius: 18, padding: '20px 20px 16px' }}>

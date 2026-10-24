@@ -54,12 +54,12 @@ export const GUIDES: DocPage[] = [
       { type: 'h2', id: 'hooks', text: 'Hooks' },
       {
         type: 'p',
-        text: 'The hook is the part that has to work. On a paid film the shape is hook, problem, bias, then the call to action, and the opening has to earn the stop in about two and a half seconds. On organic, the shape is hook, the meat of the video, micro-pacing, then the call to action. A podcast-style film or a street interview usually wants a softer call to action than a hard offer. Write the hooks out in full on [hooks](/docs/ugc-hooks).',
+        text: 'The hook is the part that has to work. On a paid video the shape is hook, problem, bias, then the call to action, and the opening has to earn the stop in about two and a half seconds. On organic, the shape is hook, the meat of the video, micro-pacing, then the call to action. A podcast-style video or a street interview usually wants a softer call to action than a hard offer. Write the hooks out in full on [hooks](/docs/ugc-hooks).',
       },
       { type: 'h2', id: 'on-brand', text: 'Keeping it on brand' },
       {
         type: 'p',
-        text: 'Brand integrations are planned into the strategy, not stuck on at the end. If a film could be a television advert that happens to be on a phone, it usually will not work. For a lo-fi sketch, we would not recommend a logo sitting on the picture. Performance has been better without a logo overlay. Whether a logo belongs depends on the format.',
+        text: 'Brand integrations are planned into the strategy, not stuck on at the end. If a video could be a television advert that happens to be on a phone, it usually will not work. For a lo-fi sketch, we would not recommend a logo sitting on the picture. Performance has been better without a logo overlay. Whether a logo belongs depends on the format.',
       },
       { type: 'h2', id: 'rights-shipping', text: 'Usage, shipping, revisions' },
       {
@@ -75,7 +75,7 @@ export const GUIDES: DocPage[] = [
           },
           {
             q: 'What should a UGC brief include?',
-            a: 'The location, date and time, who is on camera, the objective, at least two hooks in their own section, the dialogue or questions, and the reference videos to follow. Creators send raw footage and we edit.',
+            a: 'The location, date and time, who is on camera, the objective, at least two hooks in their own section, the dialogue or questions, and the reference videos to follow.',
           },
         ],
       },
@@ -94,7 +94,7 @@ export const GUIDES: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Two. We typically write two hooks per asset, and we pitch them with the concept, the direction and the reference. The hook is the most important part of the film. On a paid ad it has to earn the stop in about two and a half seconds.',
+        text: 'Two. We typically write two hooks per asset, and we pitch them with the concept, the direction and the reference. The hook is the most important part of the video. On a paid ad it has to earn the stop in about two and a half seconds.',
       },
       { type: 'h2', id: 'shape', text: 'What a hook sits inside' },
       {
@@ -143,7 +143,7 @@ export const GUIDES: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We write the words, and you approve them before a creator is briefed. Scripts are the default. Talking points are used only if the brief says so. A scripted film carries the dialogue and the hooks in the brief. A street interview carries the questions, and we choose the best answers afterwards. Trend-led UGC goes out as a trending brief.',
+        text: 'We write the words, and you approve them before a creator is briefed. Scripts are the default. Talking points are used only if the brief says so. A scripted video carries the dialogue and the hooks in the brief. A street interview carries the questions, and we choose the best answers afterwards. Trend-led UGC goes out as a trending brief.',
       },
       { type: 'h2', id: 'what-is-settled', text: 'What is settled' },
       {
@@ -182,7 +182,7 @@ export const GUIDES: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We write the questions, you approve them with the rest of the concepts, and we cast a presenter you can approve before the shoot. The location is chosen for who you want to hear from: students near a university, office workers in the city, pet owners at a dog park. We speak to more people than the film will use, transcribe the answers, and hand-pick the best one for each question.',
+        text: 'We write the questions, you approve them with the rest of the concepts, and we cast a presenter you can approve before the shoot. The location is chosen for who you want to hear from: students near a university, office workers in the city, pet owners at a dog park. We speak to more people than the video will use, transcribe the answers, and hand-pick the best one for each question.',
       },
       {
         type: 'steps',
@@ -231,7 +231,7 @@ export const GUIDES: DocPage[] = [
       { type: 'h2', id: 'who-runs-it', text: 'Who runs the spend' },
       {
         type: 'p',
-        text: 'We do not run the ads. Some clients put a small amount of their own spend, in the region of £5 to £15, behind a TikTok that is already doing well, because the cost to reach someone can be low on a film people are already watching. If you do that, the monthly analytics call can include the spend, the cost per result, and which film did the work. Plum’s pipeline is the [case study](/case-studies/plum): hi-fi ads, UGC-style content and scripted interactions, and three times the creative output.',
+        text: 'We do not run the ads. Some clients put a small amount of their own spend, in the region of £5 to £15, behind a TikTok that is already doing well, because the cost to reach someone can be low on a video people are already watching. If you do that, the monthly analytics call can include the spend, the cost per result, and which video did the work. Plum’s pipeline is the [case study](/case-studies/plum): hi-fi ads, UGC-style content and scripted interactions, and three times the creative output.',
       },
       {
         type: 'faq',
@@ -255,13 +255,13 @@ export const GUIDES: DocPage[] = [
     title: 'Do you need us to send the product?',
     seoTitle: 'How to ship products to UGC creators | The Social Vision',
     description:
-      'When a creator needs the product in shot, you ship it to them at your cost, and the creator keeps it. Some films can be made from footage or stills instead.',
+      'When a creator needs the product in shot, you ship it to them at your cost, and the creator keeps it. Some videos can be made from footage or stills instead.',
     schema: 'Article',
     related: { href: '/docs/briefing-ugc-creators', label: 'How to brief UGC creators' },
     blocks: [
       {
         type: 'p',
-        text: 'When a creator needs the product in shot, you ship it to them, at your cost, and the creator keeps the product. Some films can be made from footage or stills instead, when that is easier for the product.',
+        text: 'When a creator needs the product in shot, you ship it to them, at your cost, and the creator keeps the product. Some videos can be made from footage or stills instead, when that is easier for the product.',
       },
       { type: 'h2', id: 'brief', text: 'What still belongs in the brief' },
       {
@@ -277,7 +277,7 @@ export const GUIDES: DocPage[] = [
         items: [
           {
             q: 'Do you need us to send the product?',
-            a: 'When the creator needs the real product in shot, you ship it to them at your cost, and the creator keeps it. Some films can be made from footage or stills instead.',
+            a: 'When the creator needs the real product in shot, you ship it to them at your cost, and the creator keeps it. Some videos can be made from footage or stills instead.',
           },
         ],
       },

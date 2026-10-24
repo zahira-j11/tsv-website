@@ -14,7 +14,7 @@ export const GET_STARTED: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A short-form content agency plans, casts, films, edits and posts videos for TikTok, Instagram Reels and YouTube Shorts. The Social Vision is that agency, based in London, for apps and consumer brands. We make organic content and paid ad creative. We are a small, founder-led company (The Social Vision Ltd, company no. 15844979), not a large network.',
+        text: 'A short-form content agency plans, casts, films, edits and posts videos for TikTok, Instagram Reels and YouTube Shorts. The Social Vision is that agency, based in London, for apps and consumer brands. We make organic content and paid ad creative. We are a small, founder-led company.',
       },
       {
         type: 'p',

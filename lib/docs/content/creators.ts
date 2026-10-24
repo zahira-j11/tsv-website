@@ -26,10 +26,15 @@ export const CREATORS: DocPage[] = [
         type: 'p',
         text: 'Clients review creators on a platform we have launched: you can see who is proposed for screen, review them, and leave notes. Your casting platform link is shared with you directly once you\u2019re a client. There isn\u2019t a public link. Creators who want to join the network apply separately, at the [creator portal](https://www.tsvportal.co.uk/creator).',
       },
-      { type: 'h2', id: 'your-team', text: 'Your own team, or another country' },
+      { type: 'h2', id: 'your-team', text: 'Your own team' },
       {
         type: 'p',
-        text: 'If your staff or a founder want to be on camera, we can film with them. The network is there when they do not. We work in English only.',
+        text: 'If your staff or a founder want to be on camera, we can film with them. The network is there when they do not.',
+      },
+      { type: 'h2', id: 'languages', text: 'Languages' },
+      {
+        type: 'p',
+        text: 'We work in English only.',
       },
       {
         type: 'faq',
@@ -50,7 +55,7 @@ export const CREATORS: DocPage[] = [
     slug: 'ugc-usage-rights',
     section: 'creators',
     navLabel: 'Usage rights',
-    title: 'Who owns UGC, and what usage do you get?',
+    title: 'What usage rights do you get?',
     seoTitle: 'UGC usage rights | The Social Vision',
     description:
       'The content we make includes perpetual usage rights. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
@@ -79,13 +84,13 @@ export const CREATORS: DocPage[] = [
     title: 'How do street interviews get consent?',
     seoTitle: 'Street interview consent | The Social Vision',
     description:
-      'People who appear need to agree before a film is used. Consent is handled depending on the situation.',
+      'People who appear need to agree before a video is used. Consent is handled depending on the situation.',
     schema: 'Article',
     related: { href: '/street-interviews', label: 'Street interviews' },
     blocks: [
       {
         type: 'p',
-        text: 'Anyone who appears in a street interview needs to agree to the film being used. Consent is handled depending on the situation. How a shoot is planned is on [how to plan a street interview](/docs/street-interview-planning).',
+        text: 'Anyone who appears in a street interview needs to agree to the video being used. Consent is handled depending on the situation. How a shoot is planned is on [how to plan a street interview](/docs/street-interview-planning).',
       },
       {
         type: 'faq',
@@ -111,7 +116,7 @@ export const CREATORS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a film as an ad while the creator\u2019s name stays on it. Whitelisting is the same kind of paid use. Paid use is not included in the perpetual usage rights. It needs a separate written agreement and creator authorisation. The film is one we made with our creators. It is not the same as posting the file on your own brand channel, and it is not something you set up by sharing a password.',
+        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a video as an ad while the creator\u2019s name stays on it. Whitelisting is the same kind of paid use. Paid use is not included in the perpetual usage rights. It needs a separate written agreement and creator authorisation. The video is one we made with our creators. It is not the same as posting the file on your own brand channel, and it is not something you set up by sharing a password.',
       },
       {
         type: 'p',
@@ -122,7 +127,7 @@ export const CREATORS: DocPage[] = [
         items: [
           {
             q: 'Do creators post on their own accounts?',
-            a: 'We make the films with our creators for your own channels. Organic posting goes on your brand channels. Paid use, including a partnership ad, needs a separate written agreement and creator authorisation.',
+            a: 'No. We make the videos with our creators for your own channels. Organic posting goes on your brand channels.',
           },
         ],
       },
@@ -135,13 +140,18 @@ export const CREATORS: DocPage[] = [
     title: 'How do I join as a creator?',
     seoTitle: 'Become a UGC creator with The Social Vision',
     description:
-      'Creators apply at the TSV creator portal. Creators are paid on the 15th of the month.',
+      'Apply through the creator application form at tsvportal.co.uk/creator. Tell us about yourself and add your content, and we\u2019ll be in touch if a brief suits you.',
     schema: 'Article',
     related: { href: 'https://www.tsvportal.co.uk/creator', label: 'Creator portal' },
     blocks: [
       {
         type: 'p',
-        text: 'Apply through the [creator portal](https://www.tsvportal.co.uk/creator). Creators are paid on the 15th of the month. We cast from the network for client work.',
+        text: 'Apply through the creator application form at the [creator portal](https://www.tsvportal.co.uk/creator). Tell us about yourself and add your content, and we\u2019ll be in touch if a brief suits you.',
+      },
+      { type: 'h2', id: 'paid', text: 'When are creators paid?' },
+      {
+        type: 'p',
+        text: 'Creators are paid on the 15th of the month.',
       },
       { type: 'h2', id: 'on-a-job', text: 'What a job looks like' },
       {
@@ -153,7 +163,11 @@ export const CREATORS: DocPage[] = [
         items: [
           {
             q: 'How do I become a UGC creator with The Social Vision?',
-            a: 'Apply at tsvportal.co.uk/creator. Creators are paid on the 15th of the month.',
+            a: 'Apply through the creator application form at tsvportal.co.uk/creator. Tell us about yourself and add your content, and we\u2019ll be in touch if a brief suits you.',
+          },
+          {
+            q: 'When are creators paid?',
+            a: 'Creators are paid on the 15th of the month.',
           },
         ],
       },

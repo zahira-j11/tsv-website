@@ -141,7 +141,7 @@ export const HOW_WE_WORK: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'Street interviews are one way to stay inside those lines, because the film is people answering a question rather than the brand reading a claim. Habito’s street interviews are written up as a [case study](/case-studies/habito). Plum is the paid example: hi-fi ads, UGC-style content and scripted interactions, on the [Plum case study](/case-studies/plum). Finance work is also on [fintech](/industries/fintech).',
+        text: 'Street interviews are one way to stay inside those lines, because the video is people answering a question rather than the brand reading a claim. Habito’s street interviews are written up as a [case study](/case-studies/habito). Plum is the paid example: hi-fi ads, UGC-style content and scripted interactions, on the [Plum case study](/case-studies/plum). Finance work is also on [fintech](/industries/fintech).',
       },
       {
         type: 'faq',
@@ -167,7 +167,7 @@ export const HOW_WE_WORK: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Yes. We work alongside in-house teams and alongside a media agency. We post organic content on your brand channels through a scheduler, and your own posts can sit in the same calendar. The films are made by our creators for your channels and your ads. We do not run the ads. Ad spend is separate, and your performance team or media agency buys the media.',
+        text: 'Yes. We work alongside in-house teams and alongside a media agency. We post organic content on your brand channels through a scheduler, and your own posts can sit in the same calendar. The videos are made by our creators for your channels and your ads. We do not run the ads. Ad spend is separate, and your performance team or media agency buys the media.',
       },
       { type: 'h2', id: 'calendar', text: 'One calendar, two kinds of posts' },
       {
@@ -177,7 +177,7 @@ export const HOW_WE_WORK: DocPage[] = [
       { type: 'h2', id: 'paid', text: 'Paid is a hand-over' },
       {
         type: 'p',
-        text: 'You approve the paid film, then your team runs the spend against it. While that is happening, we are already in production on the next batch. That is why paid creative sits a step behind the media plan. The service page is [paid social creative](/paid-social-creative).',
+        text: 'You approve the paid video, then your team runs the spend against it. While that is happening, we are already in production on the next batch. That is why paid creative sits a step behind the media plan. The service page is [paid social creative](/paid-social-creative).',
       },
       { type: 'h2', id: 'on-camera', text: 'Your own people on camera' },
       {

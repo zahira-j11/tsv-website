@@ -43,7 +43,7 @@ export const REFERENCE: DocPage[] = [
       { type: 'h2', id: 'volume', text: 'How many videos' },
       {
         type: 'p',
-        text: 'Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. Less volume is not something we recommend as a way to try it, because a format needs enough posts to learn anything. The testing period is the 3-month term, not a cheaper first month. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Changing the mix, or other extra work, is quoted per project. High-production and street-interview shoots need 1 week\u2019s notice.',
+        text: 'Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. Less volume is not something we recommend as a way to try it, because a format needs enough posts to learn anything. The testing period is the 3-month term, not a cheaper first month.',
       },
       {
         type: 'p',
@@ -54,7 +54,7 @@ export const REFERENCE: DocPage[] = [
         items: [
           {
             q: 'How much does it cost, and what is the minimum?',
-            a: 'From £2,000 a month (ex VAT), as a monthly retainer. The initial term is 3 months, then rolling with 30 days’ notice. A per-video rate is not published.',
+            a: 'From £2,000 a month (ex VAT), as a monthly retainer. The initial term is 3 months, then rolling with 30 days’ notice. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. A per-video rate is not published.',
           },
           {
             q: 'Is there a commitment, or can we trial it first?',
@@ -71,13 +71,13 @@ export const REFERENCE: DocPage[] = [
     title: 'Are reshoots included?',
     seoTitle: 'Are UGC reshoots included? | The Social Vision',
     description:
-      'Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Extra work is quoted per project.',
+      'If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Revisions are included, and the number of rounds is agreed in each brief. Extra work is quoted per project.',
     schema: 'Article',
     related: { href: '/docs/approvals-and-revisions', label: 'Approvals and revisions' },
     blocks: [
       {
         type: 'p',
-        text: 'Revisions are included. The number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Changing the mix, or other extra work, is quoted per project.',
+        text: 'If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Revisions are included, and the number of rounds is agreed in each brief. Changing the mix, or other extra work, is quoted per project.',
       },
       { type: 'h2', id: 'on-us', text: 'On us' },
       {
@@ -103,7 +103,7 @@ export const REFERENCE: DocPage[] = [
         items: [
           {
             q: 'Are reshoots included?',
-            a: 'Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Extra work is quoted per project.',
+            a: 'If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case.',
           },
         ],
       },
@@ -129,17 +129,17 @@ export const REFERENCE: DocPage[] = [
         headers: ['Word', 'What we mean'],
         rows: [
           ['UGC', 'Lower-fi creator video that feels like a person, not a brand advert. See [UGC](/docs/formats/ugc).'],
-          ['Influencer content', 'A creator posting about a brand to their own audience. We don\u2019t do that. UGC is a film our creators make for the client\u2019s own channels or ads. See [UGC](/docs/formats/ugc).'],
+          ['Influencer content', 'A creator posting about a brand to their own audience. We don\u2019t do that. UGC is a video our creators make for the client\u2019s own channels or ads. See [UGC](/docs/formats/ugc).'],
           ['Remote creator UGC', 'A creator films from their own space. We brief and we edit. See [UGC](/docs/formats/ugc).'],
           ['Hook', 'The opening that decides if someone stops. We write two per paid asset. See [hooks](/docs/ugc-hooks).'],
           ['B-roll', 'Extra footage of the product, hands or place, cut around the main shot. A required clip count is not published.'],
           ['Vox pop', 'Another name for a [street interview](/docs/formats/street-interviews).'],
-          ['Hi-fi ad', 'A higher-production paid film we plan and shoot. See [hi-fi ads](/docs/formats/hi-fi-ads).'],
+          ['Hi-fi ad', 'A higher-production paid video we plan and shoot. See [hi-fi ads](/docs/formats/hi-fi-ads).'],
           ['Scripted interaction', 'A planned scene with dialogue you approve. See [scripted interactions](/docs/formats/scripted-interactions).'],
           ['Retainer', 'A monthly fee. From £2,000 a month (ex VAT). See [pricing](/docs/reference/pricing).'],
           ['Revisions', 'Included. The number of rounds is agreed in each brief. See [approvals](/docs/approvals-and-revisions).'],
           ['Usage', 'Perpetual usage rights on the content we make. Paid use is not included. See [usage rights](/docs/ugc-usage-rights).'],
-          ['Spark Ad / partnership ad', 'Paid use of a film we made, with the creator\u2019s name still on it. It is not included in the usage rights. It needs a separate written agreement and creator authorisation. See [partnership ads](/docs/partnership-ads).'],
+          ['Spark Ad / partnership ad', 'Paid use of a video we made with our creators, with the creator\u2019s name still on it. It is not included in the usage rights. It needs a separate written agreement and creator authorisation. See [partnership ads](/docs/partnership-ads).'],
           ['70/20/10', 'Mostly what is already working, some iteration, a little that is new. See the [blog post](/blog/70-20-10-content-rule).'],
         ],
       },
