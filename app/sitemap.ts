@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts, SITE_URL } from '@/lib/blog';
 import { CASES } from '@/lib/caseStudies';
+import { DOCS, docPath } from '@/lib/docs';
 import { INDUSTRIES, industryPath } from '@/lib/industries';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -43,6 +44,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.2,
     },
+    {
+      url: `${SITE_URL}/ugc-agency`,
+      lastModified: new Date('2026-10-23'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    ...DOCS.map(doc => ({
+      url: `${SITE_URL}${docPath(doc)}`,
+      lastModified: new Date('2026-10-23'),
+      changeFrequency: 'monthly' as const,
+      priority: doc.slug === '' || doc.slug === 'briefing-ugc-creators' || doc.slug === 'reference/pricing' || doc.slug === 'faq' ? 0.8 : 0.6,
+    })),
     {
       url: `${SITE_URL}/blog`,
       lastModified: new Date(),

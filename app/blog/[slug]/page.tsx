@@ -224,7 +224,7 @@ export default async function PostPage({ params }: Props) {
 
                 {/* CTA */}
                 <div style={{ padding: 24, background: WH, border: `1px solid ${BR}`, borderRadius: 20, boxShadow: '0 4px 20px rgba(124,1,255,0.07)' }}>
-                  <p style={{ fontSize: 15, fontWeight: 700, color: PD, marginBottom: 8 }}>Want to know what we'd build for your brand?</p>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: PD, marginBottom: 8 }}>Want to know what we&apos;d build for your brand?</p>
                   <p style={{ fontSize: 13, color: MU, lineHeight: 1.6, marginBottom: 16 }}>
                     Book a call.
                   </p>

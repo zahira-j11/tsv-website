@@ -35,6 +35,9 @@ const LEGACY_REDIRECTS = [
   ['/privacy-policy', '/privacy'],
   // Free audit retired Oct 2026: it drew leads outside our budget and sector.
   ['/audit', '/#contact'],
+  ['/ugc', '/ugc-agency'],
+  ['/docs/reference/specs', '/docs/reference/pricing'],
+  ['/docs/brief-template', '/docs/briefing-ugc-creators'],
 ];
 
 /** @type {import('next').NextConfig} */
