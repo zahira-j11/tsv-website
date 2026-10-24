@@ -155,7 +155,7 @@ export const INDUSTRIES: Industry[] = [
       { q: 'Can short-form content drive app downloads?', a: 'Yes. TALAB grew from launch to 6,000 users with organic short-form content driving most of that growth, and Uni Compare saw a significant rise in app downloads.' },
       { q: 'Should we focus on organic or paid creative?', a: 'They work best together: organic builds an audience and shows which messages land, and paid scales the winners. We can do either or both.' },
       { q: 'How many ad variations do you produce?', a: 'Every paid piece comes with at least two hook variations, so your team can test from day one.' },
-      { q: 'Do we need to be on camera?', a: 'No. We cast creators and presenters from our network of 250+ vetted UK creators.' },
+      { q: 'Do we need to be on camera?', a: 'No. We cast creators and presenters from our network of 300+ vetted UK creators.' },
     ],
     closing: 'Your app deserves more than 300 views.',
   },
@@ -223,7 +223,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     processHeading: 'A creative pipeline, not a one-off project',
     processBody:
-      'We brief from your performance data and brand guidelines, cast from our network of 250+ vetted UK creators, and deliver ads on a rolling basis through the month, ready for TikTok, Meta and YouTube. You approve every concept before we shoot and every edit before it goes live. Your team never has to find, brief or chase a creator.',
+      'We brief from your performance data and brand guidelines, cast from our network of 300+ vetted UK creators, and deliver ads on a rolling basis through the month, ready for TikTok, Meta and YouTube. You approve every concept before we shoot and every edit before it goes live. Your team never has to find, brief or chase a creator.',
     resultsHeading: 'Results from paid creative',
     results: [
       { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We became its dedicated paid social creative partner, producing hi-fi ads, UGC-style content and scripted interactions so its performance team could test new formats and scale winning concepts. That meant three times the creative output, with no creator management on Plum's side." },

@@ -28,7 +28,7 @@ const TEAM = [AUTHORS.zahira, AUTHORS.elisa];
 
 const FACTS = [
   { val: '200M+', label: 'Organic views' },
-  { val: '250+',  label: 'Vetted UK creators' },
+  { val: '300+',  label: 'Vetted UK creators' },
   { val: '3,000+', label: 'Content pieces' },
   { val: '14–21 days', label: 'From signing to first content live' },
 ];
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-            <p style={{ ...body, marginTop: 20 }}>Behind the team is a vetted network of 250+ UK creators, briefed to your brand guidelines. You don&rsquo;t manage them. We do.</p>
+            <p style={{ ...body, marginTop: 20 }}>Behind the team is a vetted network of 300+ UK creators, briefed to your brand guidelines. You don&rsquo;t manage them. We do.</p>
           </section>
 
           <section style={{ marginBottom: 72 }}>
