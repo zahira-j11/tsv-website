@@ -22,7 +22,7 @@ export const FAQ: DocPage[] = [
         items: [
           {
             q: 'How much does it cost, and what is the minimum?',
-            a: 'From £2,000 a month (ex VAT). It is a monthly retainer. The initial term is 3 months, then rolling with 30 days’ notice. A per-video rate is not published. See [pricing](/docs/reference/pricing).',
+            a: 'From £2,000 a month (ex VAT). It is a monthly retainer. The initial term is 3 months, then rolling with 30 days’ notice. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. A per-video rate is not published. See [pricing](/docs/reference/pricing).',
           },
           {
             q: 'How does it actually work, and who does what?',
@@ -54,7 +54,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Can you reach the US, other countries, or work in other languages?',
-            a: 'We work in English only.',
+            a: 'We work in English only. We are based in London and work with brands across the UK.',
           },
           {
             q: 'Do you have examples or case studies?',
@@ -102,10 +102,10 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Do you need us to send the product?',
-            a: 'When the creator needs the real product in shot, you ship it to them at your cost, and the creator keeps it. Some films can be made from footage or stills instead.',
+            a: 'When the creator needs the real product in shot, you ship it to them at your cost, and the creator keeps it. Some videos can be made from footage or stills instead.',
           },
           {
-            q: 'Can we add extra films in a busy month, or change the mix?',
+            q: 'Can we add extra videos in a busy month, or change the mix?',
             a: 'Changing the mix, or other extra work, is quoted per project. High-production and street-interview shoots need 1 week\u2019s notice.',
           },
           {
@@ -114,7 +114,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'How do street interviews get consent?',
-            a: 'Yes. Consent is handled depending on the situation. See [consent](/docs/consent).',
+            a: 'Consent is handled depending on the situation. See [consent](/docs/consent).',
           },
           {
             q: 'Should we put our logo on the videos?',
@@ -134,7 +134,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Does long-form work?',
-            a: 'Short films build brand awareness faster. Long-form takes longer to show a return.',
+            a: 'Short videos build brand awareness faster. Long-form takes longer to show a return.',
           },
         ],
       },

@@ -27,13 +27,12 @@ const DESKTOP_LINKS: [string, string, string?][] = [
   ['Pricing', '/#pricing'],
   ['Testimonials', '/#testimonials'],
   ['Blog', '/blog', 'blog'],
-  ['Docs', '/docs', 'docs'],
 ];
 const MOBILE_LINKS = DESKTOP_LINKS.filter(([l]) => l !== 'Testimonials');
 
 const CREATOR_PORTAL = 'https://www.tsvportal.co.uk/creator';
 
-export default function SiteNav({ active }: { active?: 'blog' | 'cases' | 'docs' }) {
+export default function SiteNav({ active }: { active?: 'blog' | 'cases' }) {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
