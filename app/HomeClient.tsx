@@ -35,6 +35,7 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'About us', href:'/about' },
     { label:'How it works', section:'how-it-works' },
     { label:'Case Studies', href:'/case-studies' },
+    { label:'Docs', href:'/docs' },
     { label:'Testimonials', section:'testimonials' },
     { label:'Blog', href:'/blog' },
   ]},
@@ -45,6 +46,7 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
     { label:'Education brands', href:'/industries/education' },
     { label:'Consumer apps', href:'/industries/apps' },
     { label:'Street interviews', href:'/street-interviews' },
+    { label:'UGC agency', href:'/ugc-agency' },
     { label:'Pricing', section:'pricing' },
   ]},
   { title:'Work with us', links:[
@@ -87,7 +89,7 @@ function Orbs({ orbs }: { orbs: { size:number; color:string; opacity:number; cls
 // ─── Phone mockup data ─────────────────────────────────────
 const PHONES = [
   { bg:'linear-gradient(165deg,#1a0535 0%,#5a1a9a 55%,#0d0520 100%)', tag:'Street Interview', handle:'@thesocialvision', caption:'POV: We asked Londoners about money 🎤', likes:'4.2M', comments:'89K' },
-  { bg:'linear-gradient(165deg,#06051a 0%,#1e2080 55%,#0a0840 100%)', tag:'Ambassador',       handle:'@habito',          caption:'This changed my mortgage search forever 🏠', likes:'2.1M', comments:'34K' },
+  { bg:'linear-gradient(165deg,#06051a 0%,#1e2080 55%,#0a0840 100%)', tag:'UGC creators',    handle:'@habito',          caption:'This changed my mortgage search forever 🏠', likes:'2.1M', comments:'34K' },
   { bg:'linear-gradient(165deg,#15052a 0%,#5a1888 55%,#0d0520 100%)', tag:'Trend-Led',        handle:'@plum_app',        caption:'The savings trick nobody tells you 💸', likes:'8.7M', comments:'156K' },
   { bg:'linear-gradient(165deg,#0e1525 0%,#1e3a70 55%,#060d25 100%)', tag:'UGC',              handle:'@prepkitchen',     caption:'Honest 30-day review 👀', likes:'1.8M', comments:'28K' },
   { bg:'linear-gradient(165deg,#1a0a28 0%,#6a1a98 55%,#100518 100%)', tag:'Hi-Fi Ad',         handle:'@asos_uk',         caption:'Summer drop. Just landed ✨', likes:'3.2M', comments:'67K' },
@@ -175,7 +177,7 @@ const CLIENT_LOGOS = [
   { file:'19', name:'Hey Savi' },
 ];
 
-const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','Ambassador Content','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','250+ Creators','200M+ Views'];
+const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','UGC creators on your channels','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','250+ Creators','200M+ Views'];
 
 // Default hall-of-fame cards shown when backend has no data yet
 const HOF_DEFAULTS = [
@@ -201,7 +203,7 @@ const SERVICES = [
     bestFor:'Consumer brands, fintech and lifestyle companies that want to build awareness at scale without relying on paid ads.',
   },
   {
-    key:'ambassador', tag:'Ambassador Content', icon:'🤝',
+    key:'ambassador', tag:'UGC creators on your channels', icon:'🤝',
     bg:'linear-gradient(165deg,#54153F,#E820A4 55%,#300825)', accent:MAG,
     thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047871/tsv-website/ambassador-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047876/tsv-website/ambassador-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047886/tsv-website/ambassador-3.mp4'],
     desc:'A recurring creator representing your brand, building familiarity and trust with your audience.',
@@ -1289,7 +1291,7 @@ export default function MarketingPage() {
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
           <div data-reveal style={{ marginBottom:72 }}>
             <span style={{ display:'inline-block', background:'rgba(124,1,255,0.09)', color:P, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Case studies</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>See what <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">we've done.</em></h2>
+            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>See what <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">we&apos;ve done.</em></h2>
           </div>
           <CasesCarousel />
           <div style={{ textAlign:'center', marginTop:28 }}>
@@ -1335,7 +1337,7 @@ export default function MarketingPage() {
             ))}
           </div>
           <div style={{ textAlign:'center', marginTop:32 }}>
-            <p style={{ fontSize:14, color:MU }}>Retainers start at £2,000 per month (ex. VAT). Every retainer is tailored to your brand.</p>
+            <p style={{ fontSize:14, color:MU }}>Retainers are from £2,000 a month (ex VAT). Every retainer is tailored to your brand.</p>
           </div>
         </div>
       </section>
@@ -1447,7 +1449,7 @@ export default function MarketingPage() {
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
           <div data-reveal style={{ textAlign:'center', marginBottom:72 }}>
             <span style={{ display:'inline-block', background:'rgba(232,32,164,0.1)', color:MAG, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Testimonials</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Don't take <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">our word</em> for it.</h2>
+            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Don&apos;t take <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">our word</em> for it.</h2>
           </div>
           <div style={{ position:'relative' }}>
             <button aria-label="Previous testimonials" className="mkt-carousel-nav" onClick={()=>scrollTestimonials(-1)} style={{ ...tNav, left:-16 }}>&lsaquo;</button>
@@ -1470,7 +1472,7 @@ export default function MarketingPage() {
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-7px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 24px 64px rgba(33,0,93,0.1)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; (e.currentTarget as HTMLElement).style.boxShadow='none'; }}>
                 <div style={{ position:'absolute', top:0, left:0, right:0, height:4, background:t.g }} />
-                <div style={{ ...DISP, fontSize:52, lineHeight:1, marginBottom:16, marginTop:8, background:t.g, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:800 }}>"</div>
+                <div style={{ ...DISP, fontSize:52, lineHeight:1, marginBottom:16, marginTop:8, background:t.g, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:800 }}>&quot;</div>
                 <p style={{ fontSize:14, color:PD, lineHeight:1.9, marginBottom:24, flex:1, fontStyle:'italic', fontWeight:400 }}>{t.quote}</p>
                 <div style={{ borderTop:`1.5px solid ${BR}`, paddingTop:20, display:'flex', alignItems:'center', gap:12 }}>
                   {t.logoSrc ? (

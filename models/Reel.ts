@@ -13,7 +13,7 @@ export interface IReel extends Document {
   clientLogoColor?: string; // hex colour for client logo circle
   viewCount?: string;       // '1M+', '1.5M+', '200K+'
   // Service fields
-  serviceKey?: string;      // 'street-interviews' | 'ambassador' | 'trend-led' | 'scripted' | 'hi-fi-ads' | 'ugc'
+  serviceKey?: string;      // 'street-interviews' | 'ugc-on-your-channels' | 'trend-led' | 'scripted' | 'hi-fi-ads' | 'ugc'
   // Shared
   order: number;
   active: boolean;
