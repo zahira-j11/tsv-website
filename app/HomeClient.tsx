@@ -177,7 +177,7 @@ const CLIENT_LOGOS = [
   { file:'19', name:'Hey Savi' },
 ];
 
-const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','UGC creators on your channels','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','250+ Creators','200M+ Views'];
+const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','UGC creators on your channels','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','300+ Creators','200M+ Views'];
 
 // Default hall-of-fame cards shown when backend has no data yet
 const HOF_DEFAULTS = [
@@ -273,7 +273,7 @@ const HOW_WE_HELP = [
 
 const STEPS = [
   { n:'01', icon:'🎯', title:'Develop high-performing social concepts',  body:'We research, strategise, and create content frameworks designed for virality.',                    accent:P,         light:'rgba(124,1,255,0.07)'  },
-  { n:'02', icon:'🤝', title:'Activate creators from our network',        body:'We match the right creator to your brand from our vetted network of 250+ creators.',             accent:MAG,       light:'rgba(232,32,164,0.06)' },
+  { n:'02', icon:'🤝', title:'Activate creators from our network',        body:'We match the right creator to your brand from our vetted network of 300+ creators.',             accent:MAG,       light:'rgba(232,32,164,0.06)' },
   { n:'03', icon:'🎬', title:'Produce content brands can scale',          body:'Consistent, high-quality content delivered on time, every time.',                                 accent:'#027A3A', light:'rgba(8,246,131,0.09)'  },
 ];
 
@@ -316,7 +316,7 @@ const FAQS = [
   { q:'What results have you got?',                        a:"Habito reached 25M organic views in 8 months with zero ad spend. Uni Compare passed 1M views in its first 8 weeks. TALAB went from launch, with no audience, to 6,000 users. Each one is written up on our case studies page." },
   { q:'How is pricing structured?',                        a:"A monthly retainer, scoped to your goals, the formats you need and how much content you want each month, on a 3-month initial term. Strategy, creators, production, revisions and reporting are all included." },
   { q:'How quickly can we get started?',                   a:"First content goes live within 14–21 days of signing. Week 1 is strategy and creator matching. Week 2 is production. Week 3 is your first batch live." },
-  { q:'How does the creator network work?',                a:"We manage a vetted network of 250+ UK creators across a wide range of niches, styles, and platforms, all briefed to your brand guidelines. You don't manage them. We do." },
+  { q:'How does the creator network work?',                a:"We manage a vetted network of 300+ UK creators across a wide range of niches, styles, and platforms, all briefed to your brand guidelines. You don't manage them. We do." },
 ];
 
 const FAQ_SCHEMA = {
@@ -1105,7 +1105,7 @@ export default function MarketingPage() {
             {([
               { n:200,  suffix:'M+', label:'Organic views',  c:YEL  },
               { n:15,   suffix:'M+', label:'Likes',          c:MAG  },
-              { n:250,  suffix:'+',  label:'Creators',       c:GRN  },
+              { n:300,  suffix:'+',  label:'Creators',       c:GRN  },
               { n:3000, suffix:'+',  label:'Content pieces', c:WH },
             ] as {n:number;suffix:string;label:string;c:string;fmt?:(v:number)=>string}[]).map((s,i)=>(
               <div key={i} style={{ textAlign:'center' }}>
@@ -1244,7 +1244,7 @@ export default function MarketingPage() {
           <div data-reveal style={{ marginBottom:72 }}>
             <span style={{ display:'inline-block', background:'rgba(8,246,131,0.22)', color:GRN, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>How it works</span>
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:WH, lineHeight:1.05 }}>Never <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">agonise</em> over who’s going to be <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">on camera</em> again</h2>
-            <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, marginTop:18, maxWidth:640 }}>We activate our 250+ creator network and put the right people in front of the camera for you.</p>
+            <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, marginTop:18, maxWidth:640 }}>We activate our 300+ creator network and put the right people in front of the camera for you.</p>
           </div>
           <div className="mkt-process-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'start' }}>
             {/* Steps */}
