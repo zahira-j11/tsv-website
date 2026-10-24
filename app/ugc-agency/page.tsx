@@ -47,6 +47,10 @@ const FAQS = [
     q: 'Do you run the TikTok or Meta ads?',
     a: 'No. We make the creative. Your team or your media agency runs the campaigns, and ad spend is separate.',
   },
+  {
+    q: 'Do you do influencer marketing?',
+    a: 'No. We make UGC and short-form content, not influencer campaigns.',
+  },
 ];
 
 const prep = TESTIMONIALS.find(t => t.client === 'Prep Kitchen');
@@ -81,7 +85,7 @@ const schema = [
 ];
 
 const LINKS = [
-  ['What UGC is, and how it differs from influencer marketing', '/docs/formats/ugc'],
+  ['What UGC is, and why it is not influencer marketing', '/docs/formats/ugc'],
   ['How a retainer runs', '/docs/how-we-work'],
   ['How to brief UGC creators', '/docs/briefing-ugc-creators'],
   ['How much it costs', '/docs/reference/pricing'],
@@ -113,7 +117,7 @@ export default function UgcAgencyPage() {
               The Social Vision is a UGC agency in the UK, based in London. We plan the concepts, cast real creators from a network of 250+, and edit the films in-house for TikTok, Meta and YouTube. You approve the concepts and the casting, then you approve the final video. We do not run your ad spend.
             </p>
             <p style={body}>
-              UGC here means lower-fi creator video, the kind that feels made by a person rather than a brand. Influencer campaigns are a different scope, priced separately, and no fee for that scope is published. The longer explanation is on <a href="/docs/formats/ugc">what UGC is</a>.
+              UGC here means lower-fi creator video, the kind that feels made by a person rather than a brand. We make UGC and short-form content with our creators. We don&rsquo;t run influencer marketing or influencer campaigns. The longer explanation is on <a href="/docs/formats/ugc">what UGC is</a>.
             </p>
           </header>
 

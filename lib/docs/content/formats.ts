@@ -8,18 +8,18 @@ export const FORMATS: DocPage[] = [
     title: 'What is UGC, and how is it different from influencer marketing?',
     seoTitle: 'What is UGC? UGC vs influencer marketing | The Social Vision',
     description:
-      'UGC here means lower-fi creator video that feels made at home. Influencer campaigns are a different scope, priced separately. We edit in-house.',
+      'UGC here means lower-fi creator video for your own channels or ads. We make UGC and short-form content. We don\u2019t run influencer marketing or influencer campaigns.',
     schema: 'Article',
     related: { href: '/ugc-agency', label: 'UGC agency UK' },
     blocks: [
       {
         type: 'p',
-        text: 'UGC, user-generated content, is the name we use for lower-fi video that is not polished like an advert. Remote creator UGC is the paid version: we write the strategy and the briefs, creators in our network film, we edit in-house, and you approve the cut. It is not the same job as an influencer campaign, which is scoped and priced separately from the organic retainer.',
+        text: 'UGC, user-generated content, is the name we use for lower-fi video that is not polished like an advert. Remote creator UGC is the paid version: we write the strategy and the briefs, creators in our network film, we edit in-house, and you approve the cut. The film is for your channels or your ads.',
       },
       { type: 'h2', id: 'vs-influencer', text: 'UGC and influencer marketing' },
       {
         type: 'p',
-        text: 'With remote creator UGC you are buying the film and the edit, made by a real person from the network, for your channels or your ads. An influencer campaign is a different piece of work, with its own scope. We do not publish a price for that separate scope. The people on camera are real. We do not use AI presenters.',
+        text: 'We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns. With UGC you are buying the film and the edit, made by a real person from the network, for your own channels or your ads. An influencer campaign would mean a creator posting to their own audience. That is not what we do. The people on camera are real. We do not use AI presenters.',
       },
       { type: 'h2', id: 'how-it-is-made', text: 'How a remote UGC film is made' },
       {
@@ -36,10 +36,6 @@ export const FORMATS: DocPage[] = [
         text: 'Creator-led organic is the cousin of this on the organic side: it should feel like someone made it at home. The site still lists that work as UGC-style creatives. Plum’s paid mix, including UGC-style films, is the [case study](/case-studies/plum). The buyer overview is [UGC agency UK](/ugc-agency).',
       },
       {
-        type: 'check',
-        text: '[CHECK] Confirm whether influencer campaigns are still offered, and that no price is published for them. This page says they are scoped separately, and does not give a fee.',
-      },
-      {
         type: 'faq',
         items: [
           {
@@ -47,8 +43,8 @@ export const FORMATS: DocPage[] = [
             a: 'A UGC agency makes creator video that feels like a person rather than a brand advert. The Social Vision writes the briefs, casts from a UK network, and edits in-house.',
           },
           {
-            q: 'Do you run influencer campaigns?',
-            a: 'Influencer campaigns are a different scope from organic content and remote creator UGC, and they are priced separately. No fee for that scope is published here.',
+            q: 'Do you do influencer marketing?',
+            a: 'No. We make UGC and short-form content, not influencer campaigns.',
           },
         ],
       },
@@ -67,7 +63,7 @@ export const FORMATS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A street interview is a presenter asking people a question, cut into a short film. We write the questions and the strategy, the presenters come from our network, and you can approve who is on camera. We talk to more people than the edit needs, then hand-pick the answers. It is one of the three organic types we make, next to ambassador-style films and creator-led video.',
+        text: 'A street interview is a presenter asking people a question, cut into a short film. We write the questions and the strategy, the presenters come from our network, and you can approve who is on camera. We talk to more people than the edit needs, then hand-pick the answers. It is one of the organic types we make, next to a recurring face on your own channels and creator-led video. These are films for your channels, not influencer campaigns.',
       },
       {
         type: 'p',
@@ -151,13 +147,13 @@ export const FORMATS: DocPage[] = [
     title: 'What other short-form formats do you make?',
     seoTitle: 'Ambassador, trend-led and explainer videos | The Social Vision',
     description:
-      'Besides street interviews and UGC, the site lists ambassador content, trend-led films, scripted interactions and educational explainers.',
+      'Besides street interviews and UGC, the site lists a recurring face on your own channels, trend-led films, scripted interactions and educational explainers. These are short-form films, not influencer campaigns.',
     schema: 'Article',
     related: { href: '/blog/70-20-10-content-rule', label: 'The 70/20/10 rule' },
     blocks: [
       {
         type: 'p',
-        text: 'Besides street interviews and UGC-style video, the formats on the site are ambassador content, trend-led content, scripted interactions and educational explainers. Ambassador content is a recurring person the audience can recognise. Trend-led films follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
+        text: 'Besides street interviews and UGC-style video, the formats on the site are ambassador content, trend-led content, scripted interactions and educational explainers. Ambassador content means a recurring person on your own channels, so the audience can recognise them. It is not an influencer campaign, and they are not posting to their own audience. Trend-led films follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
       },
       {
         type: 'p',

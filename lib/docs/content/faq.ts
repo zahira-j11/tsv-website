@@ -93,8 +93,8 @@ export const FAQ: DocPage[] = [
             a: 'A current yes or no is not published. The work on the site is for consumer apps and consumer brands.',
           },
           {
-            q: 'Do you run influencer campaigns?',
-            a: 'They are a different scope from organic content and remote creator UGC, and they are priced separately. No fee is published.',
+            q: 'Do you do influencer marketing?',
+            a: 'No. We make UGC and short-form content, not influencer campaigns.',
           },
           {
             q: 'Do you only edit if we send footage?',

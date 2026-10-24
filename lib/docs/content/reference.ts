@@ -86,7 +86,7 @@ export const REFERENCE: DocPage[] = [
         items: [
           'Ad spend. Your team or your media agency runs the campaigns.',
           'A reshoot caused by a client script change. That is extra work, and no price is published.',
-          'Influencer campaigns, which are scoped separately, with no fee published here.',
+          'Influencer marketing and influencer campaigns. We don\u2019t run them.',
         ],
       },
       { type: 'h2', id: 'volume', text: 'How many videos' },
@@ -142,7 +142,7 @@ export const REFERENCE: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Revisions are included. If the footage is not good enough to finish, we book a reshoot rather than send you a film we would not stand behind. A reshoot caused by a client script change is extra work. No price for that reshoot, and no price for add-ons, is published here.',
+        text: 'Revisions are included. If the footage is not good enough to finish, we book a reshoot rather than send you a film we would not stand behind. A reshoot caused by a client script change is extra work. No price for that reshoot, and no price for add-ons, is published here. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns.',
       },
       { type: 'h2', id: 'on-us', text: 'On us' },
       {
@@ -158,7 +158,6 @@ export const REFERENCE: DocPage[] = [
         type: 'ul',
         items: [
           'A reshoot because the script or the creative direction changed after approval.',
-          'Influencer campaigns, scoped separately.',
           'Ad spend.',
         ],
       },
@@ -201,6 +200,7 @@ export const REFERENCE: DocPage[] = [
         headers: ['Word', 'What we mean'],
         rows: [
           ['UGC', 'Lower-fi creator video that feels like a person, not a brand advert. See [UGC](/docs/formats/ugc).'],
+          ['Influencer content', 'A creator posting about a brand to their own audience. We don\u2019t do that. UGC is a film our creators make for the client\u2019s own channels or ads. See [UGC](/docs/formats/ugc).'],
           ['Remote creator UGC', 'A creator films from their own space. We brief and we edit. See [UGC](/docs/formats/ugc).'],
           ['Hook', 'The opening that decides if someone stops. We write two per paid asset. See [hooks](/docs/ugc-hooks).'],
           ['B-roll', 'Extra footage of the product, hands or place, cut around the main shot. A required clip count is not published.'],
@@ -210,7 +210,7 @@ export const REFERENCE: DocPage[] = [
           ['Retainer', 'A monthly fee. From £2,000 a month (ex VAT). See [pricing](/docs/reference/pricing).'],
           ['Revisions', 'Included. See [approvals](/docs/approvals-and-revisions).'],
           ['Usage', 'Agreed in the retainer. The licence terms are not published. See [usage rights](/docs/ugc-usage-rights).'],
-          ['Spark Ad / partnership ad', 'An ad that keeps the creator’s name on it. Our booking rules are not published. See [partnership ads](/docs/partnership-ads).'],
+          ['Spark Ad / partnership ad', 'A way to run a film we made as an ad, with the creator’s name still on it. It is for the client’s ads, not an influencer campaign. Our booking rules are not published. See [partnership ads](/docs/partnership-ads).'],
           ['70/20/10', 'Mostly what is already working, some iteration, a little that is new. See the [blog post](/blog/70-20-10-content-rule).'],
         ],
       },

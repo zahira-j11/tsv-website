@@ -133,13 +133,13 @@ export const CREATORS: DocPage[] = [
     title: 'What are Spark Ads and partnership ads?',
     seoTitle: 'TikTok Spark Ads and Meta partnership ads | The Social Vision',
     description:
-      'Spark Ads and partnership ads run from a creator’s account with their permission. Our rules for booking them are not published on this page.',
+      'A Spark Ad or partnership ad can run a film we made as an ad, with the creator’s name still on it. The film is for the client’s ads, not an influencer campaign. Our booking rules are not published.',
     schema: 'Article',
     related: { href: '/docs/ugc-usage-rights', label: 'Usage rights' },
     blocks: [
       {
         type: 'p',
-        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a film as an ad while the creator’s name stays on it. They need the creator’s permission through the platform. They are not the same as posting the file on your own brand channel, and they are not something you set up by sharing a password.',
+        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a film as an ad while the creator’s name stays on it. They need the creator’s permission through the platform. The film is one we made with our creators, for the client’s own ads. That is not an influencer campaign, and we don’t run those. They are not the same as posting the file on your own brand channel, and they are not something you set up by sharing a password.',
       },
       {
         type: 'p',
@@ -154,7 +154,7 @@ export const CREATORS: DocPage[] = [
         items: [
           {
             q: 'Do creators post on their own accounts?',
-            a: 'Organic posting from The Social Vision goes on your brand channels. Posting from a creator’s own account, or running that post as a partnership ad, is not described as part of the retainer on this page.',
+            a: 'We make the films with our creators for your own channels and ads. Organic posting goes on your brand channels. We don’t run influencer campaigns, where a creator posts to their own audience. Whether a finished film is also run as a partnership ad is not published on this page.',
           },
         ],
       },
@@ -178,7 +178,7 @@ export const CREATORS: DocPage[] = [
       { type: 'h2', id: 'on-a-job', text: 'What a job looks like' },
       {
         type: 'p',
-        text: 'A brief names the location, the date and time, the objective, the hooks and the dialogue or questions. Remote jobs are raw footage from your own space, with a tidy background and the light on you. We edit.',
+        text: 'A brief names the location, the date and time, the objective, the hooks and the dialogue or questions. Remote jobs are raw footage from your own space, with a tidy background and the light on you. We edit. You are filming for a client’s channels or ads. We don’t ask you to post it as an influencer campaign on your own account.',
       },
       {
         type: 'check',

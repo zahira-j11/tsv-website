@@ -23,7 +23,7 @@ export const GET_STARTED: DocPage[] = [
       { type: 'h2', id: 'what-we-make', text: 'What we make' },
       {
         type: 'p',
-        text: 'On the site, the organic formats are street interviews, ambassador content, trend-led content, scripted interactions, UGC-style creatives and educational explainers. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Meta and YouTube. The names on the latest sales conversations are not all the same as the names on the site.',
+        text: 'On the site, the organic formats are street interviews, ambassador content, trend-led content, scripted interactions, UGC-style creatives and educational explainers. Ambassador content means a recurring face on your own channels, not a creator posting to their own audience. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Meta and YouTube. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns. The names on the latest sales conversations are not all the same as the names on the site.',
       },
       {
         type: 'check',
@@ -111,7 +111,7 @@ export const GET_STARTED: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Each month we need two things from you: approval of the strategy and concepts, and approval of the final videos. You do not have to arrive with a finished creative direction. The most useful brief is what you would not want the content to look like.',
+        text: 'Each month we need two things from you: approval of the strategy and concepts, and approval of the final videos. You do not have to arrive with a finished creative direction. The most useful brief is what you would not want the content to look like. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns.',
       },
       { type: 'h2', id: 'onboarding', text: 'What we ask for at onboarding' },
       {
