@@ -14,7 +14,7 @@ export const HOW_WE_WORK: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We do the work end to end. You approve twice: first the concepts, the scripts and the casting, then the final video. Every client has a dedicated account manager. There are two calls a month, one to pitch the content and one to go through the numbers. Retainers are from £2,000 a month (ex VAT), on a 3-month initial term. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns.',
+        text: 'We do the work end to end. You approve twice: first the concepts, the scripts and the casting, then the final video. Every client has a dedicated account manager. There are two calls a month, one to pitch the content and one to go through the numbers. Retainers are from £2,000 a month (ex VAT), on a 3-month initial term.',
       },
       {
         type: 'steps',
@@ -167,7 +167,7 @@ export const HOW_WE_WORK: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Yes. We work alongside in-house teams and alongside a media agency. We post organic content on your brand channels through a scheduler, and your own posts can sit in the same calendar. The films are made by our creators for your channels and your ads, not as an influencer campaign. We do not run the ads. Ad spend is separate, and your performance team or media agency buys the media.',
+        text: 'Yes. We work alongside in-house teams and alongside a media agency. We post organic content on your brand channels through a scheduler, and your own posts can sit in the same calendar. The films are made by our creators for your channels and your ads. We do not run the ads. Ad spend is separate, and your performance team or media agency buys the media.',
       },
       { type: 'h2', id: 'calendar', text: 'One calendar, two kinds of posts' },
       {

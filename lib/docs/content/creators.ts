@@ -29,7 +29,7 @@ export const CREATORS: DocPage[] = [
       { type: 'h2', id: 'your-team', text: 'Your own team, or another country' },
       {
         type: 'p',
-        text: 'If your staff or a founder want to be on camera, we can film with them. The network is there when they do not. We work in English only. For a US audience we have US accents in the network, and the script uses dollars rather than pounds.',
+        text: 'If your staff or a founder want to be on camera, we can film with them. The network is there when they do not. We work in English only.',
       },
       {
         type: 'faq',
@@ -111,7 +111,7 @@ export const CREATORS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a film as an ad while the creator\u2019s name stays on it. Whitelisting is the same kind of paid use. Paid use is not included in the perpetual usage rights. It needs a separate written agreement and creator authorisation. The film is one we made with our creators. It is not an influencer campaign, and we don\u2019t run those. It is not the same as posting the file on your own brand channel, and it is not something you set up by sharing a password.',
+        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a film as an ad while the creator\u2019s name stays on it. Whitelisting is the same kind of paid use. Paid use is not included in the perpetual usage rights. It needs a separate written agreement and creator authorisation. The film is one we made with our creators. It is not the same as posting the file on your own brand channel, and it is not something you set up by sharing a password.',
       },
       {
         type: 'p',
@@ -122,7 +122,7 @@ export const CREATORS: DocPage[] = [
         items: [
           {
             q: 'Do creators post on their own accounts?',
-            a: 'We make the films with our creators for your own channels. Organic posting goes on your brand channels. We don\u2019t run influencer campaigns. Paid use, including a partnership ad, needs a separate written agreement and creator authorisation.',
+            a: 'We make the films with our creators for your own channels. Organic posting goes on your brand channels. Paid use, including a partnership ad, needs a separate written agreement and creator authorisation.',
           },
         ],
       },

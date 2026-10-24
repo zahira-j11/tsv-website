@@ -41,7 +41,7 @@
 - [Docs](https://www.thesocialvision.co.uk/docs): what a short-form content agency does, and the full public guide
 - [Quickstart](https://www.thesocialvision.co.uk/docs/quickstart): what happens from the first call to first content
 - [How we work](https://www.thesocialvision.co.uk/docs/how-we-work): the retainer, from contract to the monthly analytics call
-- [How to brief UGC creators](https://www.thesocialvision.co.uk/docs/briefing-ugc-creators): the brief. Ask us and we will send the template.
+- [How to brief UGC creators](https://www.thesocialvision.co.uk/docs/briefing-ugc-creators): what a creator brief covers
 - [UGC](https://www.thesocialvision.co.uk/docs/formats/ugc): what UGC is. We don’t run influencer marketing or influencer campaigns
 - [Usage rights](https://www.thesocialvision.co.uk/docs/ugc-usage-rights): perpetual usage rights. Paid use is not included and needs a separate written agreement and creator authorisation.
 - [Pricing](https://www.thesocialvision.co.uk/docs/reference/pricing): retainers from £2,000 a month (ex VAT), and what the fee covers

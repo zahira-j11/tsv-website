@@ -1,6 +1,6 @@
 /**
- * Public docs content model. Pages are data so titles, schema, prev/next
- * and the [CHECK] list stay in one place.
+ * Public docs content model. Pages are data so titles, schema and prev/next
+ * stay in one place.
  */
 
 export type SectionId = 'start' | 'how' | 'guides' | 'formats' | 'creators' | 'reference' | 'faq';
@@ -18,7 +18,6 @@ export type Block =
   | { type: 'check'; text: string }
   | { type: 'note'; text: string }
   | { type: 'faq'; items: Faq[] }
-  | { type: 'template' }
   | { type: 'directory' };
 
 export type DocPage = {

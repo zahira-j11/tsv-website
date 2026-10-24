@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: 'Are you a UGC agency in London?',
-    a: 'Yes. The Social Vision is based in London and works with brands across the UK. For a US audience we can cast US accents.',
+    a: 'Yes. The Social Vision is based in London and works with brands across the UK. We work in English only.',
   },
   {
     q: 'How long until the first videos are live?',

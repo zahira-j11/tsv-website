@@ -18,7 +18,7 @@ export const GUIDES: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'The template further down has the 14 fields we use as a worksheet. Where a field is not a settled house rule, the template says so.',
+        text: 'A brief names the location, the date and time, who is on camera, the objective, the hooks, the dialogue or the questions, and the reference videos to follow.',
       },
       { type: 'h2', id: 'order', text: 'The order of work' },
       {
@@ -66,8 +66,6 @@ export const GUIDES: DocPage[] = [
         type: 'p',
         text: 'The content we make includes perpetual usage rights. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation. The detail is on [usage rights](/docs/ugc-usage-rights). When a creator needs the product, you ship it at your cost and the creator keeps it, on [shipping products to creators](/docs/shipping-products-to-creators). Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. That sits on [approvals and revisions](/docs/approvals-and-revisions).',
       },
-      { type: 'h2', id: 'template', text: 'Brief template' },
-      { type: 'template' },
       {
         type: 'faq',
         items: [
@@ -154,7 +152,6 @@ export const GUIDES: DocPage[] = [
           'You see the copy before we write the creator brief.',
           'Hooks are written out, not left as “say something punchy”.',
           'Reference videos are there to be followed closely.',
-          'For a US audience, the script says dollars, not pounds, and we can cast US accents.',
         ],
       },
       {
@@ -199,10 +196,6 @@ export const GUIDES: DocPage[] = [
       {
         type: 'p',
         text: 'The format page is [street interviews](/docs/formats/street-interviews), and the service page is [street interviews in London](/street-interviews). A shoot of this kind needs 1 week\u2019s notice, which is noted on [how a retainer runs](/docs/how-we-work). Consent is handled depending on the situation, on [consent](/docs/consent). Uni Compare\u2019s first 8 weeks are the [public write-up](/case-studies/uni-compare).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether the docs should repeat the shoot length and the number of people spoken to. Those figures are not stated on this page.',
       },
       {
         type: 'faq',

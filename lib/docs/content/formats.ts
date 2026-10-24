@@ -63,7 +63,7 @@ export const FORMATS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A street interview is a presenter asking people a question, cut into a short film. We write the questions and the strategy, the presenters come from our network, and you can approve who is on camera. We talk to more people than the edit needs, then hand-pick the answers. It is one of the organic types we make, next to a recurring face on your own channels and creator-led video. These are films for your channels, not influencer campaigns.',
+        text: 'A street interview is a presenter asking people a question, cut into a short film. We write the questions and the strategy, the presenters come from our network, and you can approve who is on camera. We talk to more people than the edit needs, then hand-pick the answers. It is one of the organic types we make, next to UGC creators on your channels and creator-led video.',
       },
       {
         type: 'p',
@@ -158,10 +158,6 @@ export const FORMATS: DocPage[] = [
       {
         type: 'p',
         text: 'We can rebuild most formats you see in a feed, either as an organic film or as an ad. Organic work tends to stay with a format once it is working, which is the point of the [70/20/10 rule](/blog/70-20-10-content-rule). Paid work does the opposite on purpose: more than one format in the same month, so there is something new to test. Long-form is slower for brand awareness. Short films are what we make.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether UGC creators on your channels, trend-led films and explainers should stay on this one page or be split into their own pages. They are together here.',
       },
       {
         type: 'faq',

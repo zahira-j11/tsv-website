@@ -54,7 +54,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Can you reach the US, other countries, or work in other languages?',
-            a: 'We work in English only. For a US audience we can cast US accents, and the script uses dollars rather than pounds.',
+            a: 'We work in English only.',
           },
           {
             q: 'Do you have examples or case studies?',

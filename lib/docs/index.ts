@@ -1,4 +1,3 @@
-import { BRIEF_TEMPLATE } from './template';
 import { CREATORS } from './content/creators';
 import { FAQ } from './content/faq';
 import { FORMATS } from './content/formats';
@@ -94,10 +93,6 @@ export function allChecks(): CheckItem[] {
     for (const block of doc.blocks) {
       if (block.type === 'check') items.push({ path: docPath(doc), text: block.text });
     }
-  }
-  for (const line of BRIEF_TEMPLATE.split('\n')) {
-    const text = line.trim();
-    if (text.startsWith('[CHECK]')) items.push({ path: '/docs/briefing-ugc-creators', text });
   }
   return items;
 }

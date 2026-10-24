@@ -77,7 +77,7 @@ export const REFERENCE: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Revisions are included. The number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Changing the mix, or other extra work, is quoted per project. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns.',
+        text: 'Revisions are included. The number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Changing the mix, or other extra work, is quoted per project.',
       },
       { type: 'h2', id: 'on-us', text: 'On us' },
       {

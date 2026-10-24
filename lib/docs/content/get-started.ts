@@ -23,11 +23,7 @@ export const GET_STARTED: DocPage[] = [
       { type: 'h2', id: 'what-we-make', text: 'What we make' },
       {
         type: 'p',
-        text: 'On the site, the organic formats are street interviews, UGC creators on your channels, trend-led content, scripted interactions, UGC-style creatives and educational explainers. UGC creators on your channels means a recurring face on your own channels. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Instagram and YouTube. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns. The names on the latest sales conversations are not all the same as the names on the site.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm whether the docs should also use the newer names from sales calls (managed concept organic, creator-led organic, organic social production) or only the format names on the current site. This page uses the site names.',
+        text: 'On the site, the organic formats are street interviews, UGC creators on your channels, trend-led content, scripted interactions, UGC-style creatives and educational explainers. UGC creators on your channels means a recurring face on your own channels. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Instagram and YouTube.',
       },
       { type: 'h2', id: 'where-to-go', text: 'Where to go next' },
       {
@@ -35,7 +31,7 @@ export const GET_STARTED: DocPage[] = [
         items: [
           '[How long until first content is live?](/docs/quickstart) 14–21 days from signing.',
           '[How much does UGC cost in the UK?](/docs/reference/pricing) From £2,000 a month (ex VAT).',
-          '[How to brief UGC creators](/docs/briefing-ugc-creators), with a 14-field template.',
+          '[How to brief UGC creators](/docs/briefing-ugc-creators).',
           '[UGC agency UK](/ugc-agency), the overview for buyers comparing agencies.',
           '[Questions we get asked](/docs/faq), in the order prospects actually ask them.',
         ],
@@ -76,10 +72,6 @@ export const GET_STARTED: DocPage[] = [
         text: 'The month itself is two approvals from you, not a daily chase. That is set out on [how a retainer runs](/docs/how-we-work). The first month is also when we learn your tone and adapt the copy.',
       },
       {
-        type: 'check',
-        text: '[CHECK] Confirm the turnaround for later paid batches, from pitch approval to delivery. This page states 14–21 days from signing for the first content, and does not state a turnaround for later paid batches.',
-      },
-      {
         type: 'faq',
         items: [
           {
@@ -103,7 +95,7 @@ export const GET_STARTED: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Each month we need two things from you: approval of the strategy and concepts, and approval of the final videos. You do not have to arrive with a finished creative direction. The most useful brief is what you would not want the content to look like. We make UGC and short-form content with our creators. We don\u2019t run influencer marketing or influencer campaigns.',
+        text: 'Each month we need two things from you: approval of the strategy and concepts, and approval of the final videos. You do not have to arrive with a finished creative direction. The most useful brief is what you would not want the content to look like.',
       },
       { type: 'h2', id: 'onboarding', text: 'What we ask for at onboarding' },
       {

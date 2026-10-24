@@ -39,7 +39,7 @@ const HOW = [
   { n: '03', title: 'Posting and reporting', body: 'Your first batch is live in week 3. We report on performance and use what works to shape the next month.' },
 ];
 
-const FORMATS = ['Street interviews', 'Ambassador content', 'Trend-led content', 'Scripted interactions', 'Hi-fi paid ads', 'UGC-style creatives', 'Educational explainers'];
+const FORMATS = ['Street interviews', 'UGC creators on your channels', 'Trend-led content', 'Scripted interactions', 'Hi-fi paid ads', 'UGC-style creatives', 'Educational explainers'];
 
 const SCHEMA = [
   {

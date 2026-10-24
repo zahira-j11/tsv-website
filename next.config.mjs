@@ -37,6 +37,7 @@ const LEGACY_REDIRECTS = [
   ['/audit', '/#contact'],
   ['/ugc', '/ugc-agency'],
   ['/docs/reference/specs', '/docs/reference/pricing'],
+  ['/docs/brief-template', '/docs/briefing-ugc-creators'],
 ];
 
 /** @type {import('next').NextConfig} */

@@ -89,7 +89,7 @@ function Orbs({ orbs }: { orbs: { size:number; color:string; opacity:number; cls
 // ─── Phone mockup data ─────────────────────────────────────
 const PHONES = [
   { bg:'linear-gradient(165deg,#1a0535 0%,#5a1a9a 55%,#0d0520 100%)', tag:'Street Interview', handle:'@thesocialvision', caption:'POV: We asked Londoners about money 🎤', likes:'4.2M', comments:'89K' },
-  { bg:'linear-gradient(165deg,#06051a 0%,#1e2080 55%,#0a0840 100%)', tag:'Ambassador',       handle:'@habito',          caption:'This changed my mortgage search forever 🏠', likes:'2.1M', comments:'34K' },
+  { bg:'linear-gradient(165deg,#06051a 0%,#1e2080 55%,#0a0840 100%)', tag:'UGC creators',    handle:'@habito',          caption:'This changed my mortgage search forever 🏠', likes:'2.1M', comments:'34K' },
   { bg:'linear-gradient(165deg,#15052a 0%,#5a1888 55%,#0d0520 100%)', tag:'Trend-Led',        handle:'@plum_app',        caption:'The savings trick nobody tells you 💸', likes:'8.7M', comments:'156K' },
   { bg:'linear-gradient(165deg,#0e1525 0%,#1e3a70 55%,#060d25 100%)', tag:'UGC',              handle:'@prepkitchen',     caption:'Honest 30-day review 👀', likes:'1.8M', comments:'28K' },
   { bg:'linear-gradient(165deg,#1a0a28 0%,#6a1a98 55%,#100518 100%)', tag:'Hi-Fi Ad',         handle:'@asos_uk',         caption:'Summer drop. Just landed ✨', likes:'3.2M', comments:'67K' },
@@ -177,7 +177,7 @@ const CLIENT_LOGOS = [
   { file:'19', name:'Hey Savi' },
 ];
 
-const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','Ambassador Content','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','250+ Creators','200M+ Views'];
+const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','UGC creators on your channels','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','250+ Creators','200M+ Views'];
 
 // Default hall-of-fame cards shown when backend has no data yet
 const HOF_DEFAULTS = [
@@ -203,7 +203,7 @@ const SERVICES = [
     bestFor:'Consumer brands, fintech and lifestyle companies that want to build awareness at scale without relying on paid ads.',
   },
   {
-    key:'ambassador', tag:'Ambassador Content', icon:'🤝',
+    key:'ambassador', tag:'UGC creators on your channels', icon:'🤝',
     bg:'linear-gradient(165deg,#54153F,#E820A4 55%,#300825)', accent:MAG,
     thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047871/tsv-website/ambassador-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047876/tsv-website/ambassador-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047886/tsv-website/ambassador-3.mp4'],
     desc:'A recurring creator representing your brand, building familiarity and trust with your audience.',
