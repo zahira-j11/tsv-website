@@ -33,7 +33,7 @@ export const HOW_WE_WORK: DocPage[] = [
           },
           {
             title: 'You approve concepts, scripts and casting',
-            text: 'Once the copy is confirmed, we write the creator brief and go into production. At the same time you approve or decline the creator options, so you know who will be on screen. That review happens on a platform we have launched for clients.',
+            text: 'Once the copy is confirmed, we write the creator brief and go into production. At the same time you approve or decline the creator options, so you know who will be on screen. That review happens on a platform we have launched for clients. Your casting platform link is shared with you directly once you\u2019re a client. There isn\u2019t a public link.',
           },
           {
             title: 'Production',
@@ -56,10 +56,6 @@ export const HOW_WE_WORK: DocPage[] = [
       {
         type: 'p',
         text: 'The first month is calibration. If the voice or the tone is off, we adapt it. Some clients give very little input after the do-nots. Others work as a close partnership. Both are normal. Seasonal themes, such as a sale period, can be built into the calendar if you send them in time for the pitch. High-production and street interview shoots need notice.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the public web address of the client casting platform. This page says clients approve creators on a platform we have launched, and does not link a URL.',
       },
       {
         type: 'check',

@@ -46,9 +46,8 @@ Put at least two hooks in their own section, separate from the body, then the di
 [CHECK] There is no published rule for word-for-word scripts versus talking points.
 
 13. Usage
-[CHECK] Usage terms are not printed on this template.
+The content includes perpetual usage rights.
 
 14. Invoices
-Creators are paid on the 15th of the month.
-[CHECK] The invoice email address is not on this template.
+Creators are paid on the 15th of the month. Send the invoice to accounts@thesocialvision.co.uk.
 `.trim();

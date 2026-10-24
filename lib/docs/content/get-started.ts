@@ -18,7 +18,7 @@ export const GET_STARTED: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'Zahira Jaigirdar is the founder and creative director. Creators come from a network of 250+ people across the UK, and they are real people, not AI. You approve the work twice: the concepts and the casting, then the final video. A full account of the month is on [how a retainer runs](/docs/how-we-work).',
+        text: 'Zahira Jaigirdar is the founder and creative director. Creators come from a network of 300+ people across the UK, and they are real people, not AI. You approve the work twice: the concepts and the casting, then the final video. A full account of the month is on [how a retainer runs](/docs/how-we-work).',
       },
       { type: 'h2', id: 'what-we-make', text: 'What we make' },
       {

@@ -74,6 +74,7 @@ export const REFERENCE: DocPage[] = [
           'Revisions are included.',
           'Scheduling and organic posting, and monthly performance reporting.',
           'The creator fees. You are not billed extra for the people on camera.',
+          'Perpetual usage rights on the content we make.',
         ],
       },
       {
@@ -92,11 +93,11 @@ export const REFERENCE: DocPage[] = [
       { type: 'h2', id: 'volume', text: 'How many videos' },
       {
         type: 'p',
-        text: 'The number of films in a month is part of how the retainer is scoped. We are not publishing a minimum count on this page. Less volume is not something we recommend as a way to “try it”, because a format needs enough posts to learn anything. The testing period is the 3-month term, not a cheaper first month.',
+        text: 'Organic retainers include a minimum of 16 videos a month. The paid minimum is agreed per project. Less volume is not something we recommend as a way to try it, because a format needs enough posts to learn anything. The testing period is the 3-month term, not a cheaper first month.',
       },
       {
         type: 'check',
-        text: '[CHECK] Confirm whether to publish how many videos a month are included, for organic and for paid. This page does not state a number.',
+        text: '[CHECK] Confirm the paid minimum number of videos a month. Organic is 16. The paid minimum is agreed per project, and a paid number is not published here.',
       },
       {
         type: 'check',
@@ -209,7 +210,7 @@ export const REFERENCE: DocPage[] = [
           ['Scripted interaction', 'A planned scene with dialogue you approve. See [scripted interactions](/docs/formats/scripted-interactions).'],
           ['Retainer', 'A monthly fee. From £2,000 a month (ex VAT). See [pricing](/docs/reference/pricing).'],
           ['Revisions', 'Included. See [approvals](/docs/approvals-and-revisions).'],
-          ['Usage', 'Agreed in the retainer. The licence terms are not published. See [usage rights](/docs/ugc-usage-rights).'],
+          ['Usage', 'Perpetual usage rights on the content we make. See [usage rights](/docs/ugc-usage-rights).'],
           ['Spark Ad / partnership ad', 'A way to run a film we made as an ad, with the creator’s name still on it. It is for the client’s ads, not an influencer campaign. Our booking rules are not published. See [partnership ads](/docs/partnership-ads).'],
           ['70/20/10', 'Mostly what is already working, some iteration, a little that is new. See the [blog post](/blog/70-20-10-content-rule).'],
         ],

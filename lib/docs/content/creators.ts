@@ -8,13 +8,13 @@ export const CREATORS: DocPage[] = [
     title: 'How do you find and cast UGC creators?',
     seoTitle: 'How we cast UGC creators in the UK | The Social Vision',
     description:
-      'We cast from a network of 250+ real people across the UK. You approve who is on screen, from a surplus of options, before we film.',
+      'We cast from a network of 300+ real people across the UK. You approve who is on screen, from a surplus of options, before we film.',
     schema: 'Article',
     related: { href: '/case-studies/talab', label: 'TALAB case study' },
     blocks: [
       {
         type: 'p',
-        text: 'We cast from a network of 250+ creators across the UK. They are real people, not AI, across ages, accents and backgrounds. You approve who is on screen before we film. We put forward more options than you need, including profiles and a self-tape, so the choice is yours rather than a single name.',
+        text: 'We cast from a network of 300+ creators across the UK. They are real people, not AI, across ages, accents and backgrounds. You approve who is on screen before we film. We put forward more options than you need, including profiles and a self-tape, so the choice is yours rather than a single name.',
       },
       { type: 'h2', id: 'roster', text: 'A roster, not a one-off search' },
       {
@@ -24,11 +24,7 @@ export const CREATORS: DocPage[] = [
       { type: 'h2', id: 'platform', text: 'Where you review them' },
       {
         type: 'p',
-        text: 'Clients review creators on a platform we have launched: you can see who is proposed for screen, review them, and leave notes. Creators who want to join the network apply separately, at the [creator portal](https://www.tsvportal.co.uk/creator).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the public web address of the client casting platform. This page describes it, and does not link a URL. The creator application link above is the public signup, not the client review tool.',
+        text: 'Clients review creators on a platform we have launched: you can see who is proposed for screen, review them, and leave notes. Your casting platform link is shared with you directly once you\u2019re a client. There isn\u2019t a public link. Creators who want to join the network apply separately, at the [creator portal](https://www.tsvportal.co.uk/creator).',
       },
       { type: 'h2', id: 'your-team', text: 'Your own team, or another country' },
       {
@@ -61,28 +57,20 @@ export const CREATORS: DocPage[] = [
     title: 'Who owns UGC, and what usage do you get?',
     seoTitle: 'UGC usage rights | The Social Vision',
     description:
-      'Usage is part of the retainer conversation. The licence term, territory, and rules for whitelisting or partnership ads are not published on this page.',
+      'The content we make includes perpetual usage rights.',
     schema: 'Article',
     related: { href: '/docs/reference/pricing', label: 'Pricing and what’s included' },
     blocks: [
       {
         type: 'p',
-        text: 'Usage is agreed as part of working together, and this page does not publish the licence. It does not state a term, a territory, whether paid media is included, what happens when a retainer ends, or the rules for whitelisting, Spark Ads or partnership ads.',
-      },
-      {
-        type: 'p',
-        text: 'If you need a film for a channel outside organic social, ask before you book it. We would rather leave the term unstated than print one that has not been signed off. Pricing of the retainer itself is on [pricing](/docs/reference/pricing).',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm what usage terms can be published: licence length, territory, whether social usage includes paid channels, whitelisting or Spark and partnership ads, use outside social, and what happens to usage after a client leaves. None of that is stated on this page.',
+        text: 'The content we make includes perpetual usage rights. That comes with the work. Pricing of the retainer is on [pricing](/docs/reference/pricing).',
       },
       {
         type: 'faq',
         items: [
           {
-            q: 'Who owns the content and can we run it as ads?',
-            a: 'Usage is agreed in the retainer. This page does not publish the licence term, and it does not confirm paid usage, whitelisting, or use outside social.',
+            q: 'What usage rights are included?',
+            a: 'Perpetual usage rights. They come with the content we make.',
           },
         ],
       },
@@ -143,7 +131,7 @@ export const CREATORS: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'Whether The Social Vision books them, for how long, and on which platforms, is not published here. Organic posting that we do is on your brand channels, through our scheduler. That is a different job, described on [working with your team](/docs/working-with-your-team).',
+        text: 'The content includes perpetual usage rights. Whether The Social Vision books Spark Ads or partnership ads, for how long, and on which platforms, is not published here. Organic posting that we do is on your brand channels, through our scheduler. That is a different job, described on [working with your team](/docs/working-with-your-team).',
       },
       {
         type: 'check',

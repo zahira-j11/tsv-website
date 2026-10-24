@@ -68,7 +68,7 @@ export const GUIDES: DocPage[] = [
       { type: 'h2', id: 'rights-shipping', text: 'Usage, shipping, revisions' },
       {
         type: 'p',
-        text: 'Usage terms are not set out on this page. Shipping is agreed per product, on [shipping products to creators](/docs/shipping-products-to-creators). Revisions are included, and a reshoot caused by a client script change is extra work, with no price published. That sits on [approvals and revisions](/docs/approvals-and-revisions).',
+        text: 'The content we make includes perpetual usage rights. The detail is on [usage rights](/docs/ugc-usage-rights). Shipping is agreed per product, on [shipping products to creators](/docs/shipping-products-to-creators). Revisions are included, and a reshoot caused by a client script change is extra work, with no price published. That sits on [approvals and revisions](/docs/approvals-and-revisions).',
       },
       {
         type: 'check',
@@ -79,10 +79,6 @@ export const GUIDES: DocPage[] = [
       {
         type: 'check',
         text: '[CHECK] Confirm whether this brief template stays an open download or should be gated. It is open on this page, with no form.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm the invoice email to print on the template. The template says creators are paid on the 15th of the month, and does not give an address.',
       },
       {
         type: 'faq',

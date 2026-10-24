@@ -29,7 +29,7 @@ const body: React.CSSProperties = { fontSize: 16.5, lineHeight: 1.8, color: MU, 
 const FAQS = [
   {
     q: 'What is a UGC agency?',
-    a: 'A UGC agency makes creator video that feels like a person rather than a brand advert. The Social Vision writes the briefs, casts from a UK network of 250+ real people, and edits in-house.',
+    a: 'A UGC agency makes creator video that feels like a person rather than a brand advert. The Social Vision writes the briefs, casts from a UK network of 300+ real people, and edits in-house.',
   },
   {
     q: 'How much does a UGC agency cost in the UK?',
@@ -114,7 +114,7 @@ export default function UgcAgencyPage() {
               UGC Agency UK, <span className="mkt-gradient-text">based in London</span>
             </h1>
             <p style={{ ...body, fontSize: 18 }}>
-              The Social Vision is a UGC agency in the UK, based in London. We plan the concepts, cast real creators from a network of 250+, and edit the films in-house for TikTok, Meta and YouTube. You approve the concepts and the casting, then you approve the final video. We do not run your ad spend.
+              The Social Vision is a UGC agency in the UK, based in London. We plan the concepts, cast real creators from a network of 300+, and edit the films in-house for TikTok, Meta and YouTube. You approve the concepts and the casting, then you approve the final video. We do not run your ad spend.
             </p>
             <p style={body}>
               UGC here means lower-fi creator video, the kind that feels made by a person rather than a brand. We make UGC and short-form content with our creators. We don&rsquo;t run influencer marketing or influencer campaigns. The longer explanation is on <a href="/docs/formats/ugc">what UGC is</a>.

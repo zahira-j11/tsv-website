@@ -38,7 +38,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'How many videos do we get, and how often do you post?',
-            a: 'The number of films is scoped with the retainer. A minimum count is not published on this site. Organic posts go on the days you agree, and two posts on the same day are fine if they are not stacked on top of each other.',
+            a: 'Organic retainers include a minimum of 16 videos a month. The paid minimum is agreed per project. Organic posts go on the days you agree, and two posts on the same day are fine if they are not stacked on top of each other.',
           },
           {
             q: 'Is there a commitment, or can we trial it first?',
@@ -66,7 +66,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Are they real people or AI?',
-            a: 'Real people, from a network of 250+ creators.',
+            a: 'Real people, from a network of 300+ creators.',
           },
           {
             q: 'Do you write the scripts?',
@@ -90,7 +90,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Do you do B2B?',
-            a: 'A current yes or no is not published. The work on the site is for consumer apps and consumer brands.',
+            a: 'No. We work with consumer brands. We don\u2019t do B2B.',
           },
           {
             q: 'Do you do influencer marketing?',
@@ -109,8 +109,8 @@ export const FAQ: DocPage[] = [
             a: 'The mix can be talked through, and a shoot needs notice. Add-on prices are not published.',
           },
           {
-            q: 'Does our usage include paid channels?',
-            a: 'Usage terms are not published on this site, including whether paid media is included. See [usage rights](/docs/ugc-usage-rights).',
+            q: 'What usage rights are included?',
+            a: 'Perpetual usage rights. They come with the content we make. See [usage rights](/docs/ugc-usage-rights).',
           },
           {
             q: 'How do street interviews get consent?',
@@ -140,15 +140,7 @@ export const FAQ: DocPage[] = [
       },
       {
         type: 'check',
-        text: '[CHECK] Confirm a public yes or no on B2B. The answer above says a current position is not published.',
-      },
-      {
-        type: 'check',
         text: '[CHECK] Confirm whether edit-only work is still offered. The answer above does not describe it as a current service.',
-      },
-      {
-        type: 'check',
-        text: '[CHECK] Confirm usage terms, including paid channels. The answer above says they are not published.',
       },
       {
         type: 'check',
@@ -156,7 +148,7 @@ export const FAQ: DocPage[] = [
       },
       {
         type: 'check',
-        text: '[CHECK] Confirm whether a minimum number of videos per month should be published. The answer above does not state one.',
+        text: '[CHECK] Confirm the paid minimum number of videos a month. The answer above states 16 for organic, and says the paid minimum is agreed per project.',
       },
     ],
   },
