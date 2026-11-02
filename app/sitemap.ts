@@ -1,16 +1,22 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts, SITE_URL } from '@/lib/blog';
-import { CASES } from '@/lib/caseStudies';
-import { DOCS, docPath } from '@/lib/docs';
+import { CASES, CASES_PUBLISHED } from '@/lib/caseStudies';
+import { DOCS, DOCS_UPDATED, docPath } from '@/lib/docs';
 import { INDUSTRIES, industryPath } from '@/lib/industries';
+
+// Real change dates, not the build date: a lastmod that changes on every
+// deploy teaches Google to ignore it. Bump these when the page's content changes.
+const HOME_UPDATED = '2026-10-24';
+const UGC_AGENCY_UPDATED = '2026-11-02';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
+  const latestPost = posts.map(p => p.updatedAt ?? p.publishedAt).sort().at(-1);
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
-      lastModified: new Date(),
+      lastModified: new Date(HOME_UPDATED),
       changeFrequency: 'weekly',
       priority: 1,
     },
@@ -22,13 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/case-studies`,
-      lastModified: new Date('2026-10-07'),
+      lastModified: new Date(CASES_PUBLISHED),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     ...CASES.map(c => ({
       url: `${SITE_URL}/case-studies/${c.slug}`,
-      lastModified: new Date('2026-10-07'),
+      lastModified: new Date(CASES_PUBLISHED),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
@@ -46,20 +52,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/ugc-agency`,
-      lastModified: new Date('2026-10-23'),
+      lastModified: new Date(UGC_AGENCY_UPDATED),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     ...DOCS.map(doc => ({
       url: `${SITE_URL}${docPath(doc)}`,
-      lastModified: new Date('2026-10-23'),
+      lastModified: new Date(DOCS_UPDATED),
       changeFrequency: 'monthly' as const,
       priority: doc.slug === '' || doc.slug === 'briefing-ugc-creators' || doc.slug === 'reference/pricing' || doc.slug === 'faq' ? 0.8 : 0.6,
     })),
     {
       url: `${SITE_URL}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
+      lastModified: latestPost ? new Date(latestPost) : undefined,
+      changeFrequency: 'weekly',
       priority: 0.9,
     },
   ];

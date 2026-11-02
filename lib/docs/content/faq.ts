@@ -94,7 +94,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'Do you do influencer marketing?',
-            a: 'No. We make UGC and short-form content, not influencer campaigns.',
+            a: 'No. We make [UGC](/ugc-agency) and short-form content, not influencer campaigns.',
           },
           {
             q: 'Do you only edit if we send footage?',

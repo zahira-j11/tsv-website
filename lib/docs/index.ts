@@ -7,6 +7,10 @@ import { HOW_WE_WORK } from './content/how-we-work';
 import { REFERENCE } from './content/reference';
 import type { Block, DocPage, DocSection, Faq, SectionId } from './types';
 
+/** When the docs went live and last changed (schema dates and sitemap). Bump DOCS_UPDATED on content changes. */
+export const DOCS_PUBLISHED = '2026-10-23';
+export const DOCS_UPDATED = '2026-11-02';
+
 export const SECTIONS: DocSection[] = [
   { id: 'start', label: 'Get started' },
   { id: 'how', label: 'How we work' },

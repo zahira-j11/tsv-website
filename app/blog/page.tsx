@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteNav from '../SiteNav';
+import SiteFooter from '../SiteFooter';
 import { getAllPosts, CATEGORIES, AUTHORS, type Category, type Post } from '@/lib/blog';
 
 export const metadata: Metadata = {
@@ -164,15 +165,7 @@ export default function BlogIndex() {
         </section>
       )}
 
-      {/* Footer strip */}
-      <footer style={{ borderTop: `1px solid ${BR}`, padding: '24px', maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontSize: 12, color: SU }}>© {new Date().getFullYear()} The Social Vision</span>
-        <div style={{ display: 'flex', gap: 20 }}>
-          <Link href="/privacy" style={{ fontSize: 12, color: SU, textDecoration: 'none' }}>Privacy</Link>
-          <Link href="/feed.xml" style={{ fontSize: 12, color: SU, textDecoration: 'none' }}>RSS</Link>
-          <Link href="/sitemap.xml" style={{ fontSize: 12, color: SU, textDecoration: 'none' }}>Sitemap</Link>
-        </div>
-      </footer>
+      <SiteFooter />
       </div>
     </div>
   );

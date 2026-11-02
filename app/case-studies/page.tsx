@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import SiteNav from '../SiteNav';
+import SiteFooter from '../SiteFooter';
 import TrackedLink from './TrackedLink';
 import { CASES, BOOK_CALL_HREF } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
@@ -58,7 +59,7 @@ export default function CaseStudiesPage() {
             {CASES.map(c => (
               <a key={c.slug} href={`/case-studies/${c.slug}`} className="cs-card" style={{ display: 'flex', flexDirection: 'column', background: WH, borderRadius: 24, overflow: 'hidden', textDecoration: 'none', color: PD, boxShadow: '0 4px 24px rgba(33,0,93,0.07)', transition: 'transform 220ms ease, box-shadow 220ms ease' }}>
                 <div style={{ position: 'relative', height: 240, background: c.g }}>
-                  <Image src={c.thumb} alt="" fill sizes="(max-width: 760px) 100vw, 540px" style={{ objectFit: 'cover' }} />
+                  <Image src={c.thumb} alt={`${c.client} case study`} fill sizes="(max-width: 760px) 100vw, 540px" style={{ objectFit: 'cover' }} />
                   <span style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.95)', color: P, fontSize: 12, fontWeight: 700, padding: '5px 14px', borderRadius: 20 }}>{c.client}</span>
                 </div>
                 <div style={{ padding: '22px 26px 26px' }}>
@@ -77,6 +78,7 @@ export default function CaseStudiesPage() {
           </section>
         </main>
       </div>
+      <SiteFooter />
     </>
   );
 }

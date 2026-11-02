@@ -14,7 +14,7 @@ export const GET_STARTED: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A short-form content agency plans, casts, films, edits and posts videos for TikTok, Instagram Reels and YouTube Shorts. The Social Vision is that agency, based in London, for apps and consumer brands. We make organic content and paid ad creative. We are a small, founder-led company.',
+        text: 'A short-form content agency plans, casts, films, edits and posts videos for TikTok, Instagram Reels and YouTube Shorts. [The Social Vision](/about) is that agency, based in London, for [apps](/industries/apps) and consumer brands. We make organic content and paid ad creative. We are a small, founder-led company.',
       },
       {
         type: 'p',
@@ -23,7 +23,7 @@ export const GET_STARTED: DocPage[] = [
       { type: 'h2', id: 'what-we-make', text: 'What we make' },
       {
         type: 'p',
-        text: 'On the site, the organic formats are street interviews, UGC creators on your channels, trend-led content, scripted interactions, UGC-style creatives and educational explainers. UGC creators on your channels means a recurring face on your own channels. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Instagram and YouTube.',
+        text: 'On the site, the organic formats are [street interviews](/street-interviews), UGC creators on your channels, trend-led content, scripted interactions, UGC-style creatives and educational explainers. UGC creators on your channels means a recurring face on your own channels. Paid work is remote creator UGC and higher-production ads (hi-fi ads and paid social productions) for TikTok, Instagram and YouTube.',
       },
       { type: 'h2', id: 'where-to-go', text: 'Where to go next' },
       {
@@ -33,6 +33,7 @@ export const GET_STARTED: DocPage[] = [
           '[What does a content retainer include?](/docs/reference/pricing) Strategy, creators, editing, posting and reporting in one monthly fee.',
           '[How to brief UGC creators](/docs/briefing-ugc-creators).',
           '[UGC agency UK](/ugc-agency), the overview for buyers comparing agencies.',
+          '[How to choose a short-form content agency](/blog/how-to-choose-a-short-form-content-agency).',
           '[Questions we get asked](/docs/faq), in the order prospects actually ask them.',
         ],
       },

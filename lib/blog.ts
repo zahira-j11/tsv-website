@@ -152,3 +152,9 @@ export function extractQuickAnswers(content: string): { q: string; a: string }[]
 // The live site serves from www (the bare domain redirects there), so every
 // canonical, sitemap entry and schema URL must use it too.
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.thesocialvision.co.uk';
+
+// Schema ids, so every page points at the same company and founder records
+// instead of describing them afresh (the company record is in app/layout.tsx,
+// the founder's on /about).
+export const ORG_ID = `${SITE_URL}/#organization`;
+export const FOUNDER_ID = `${SITE_URL}/about#zahira`;

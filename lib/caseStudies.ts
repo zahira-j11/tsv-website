@@ -13,6 +13,9 @@ const MAG  = '#E820A4';
 const PMAG = '#FF7ED3';
 const WH   = '#FFFFFF';
 
+/** When the case-study pages went live (also their sitemap date). Bump when one is rewritten. */
+export const CASES_PUBLISHED = '2026-10-07';
+
 export const CASES = [
   {
     slug:'habito', title:'How Habito reached 25 million organic views with zero ad spend',
