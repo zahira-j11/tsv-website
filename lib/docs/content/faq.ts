@@ -7,7 +7,7 @@ export const FAQ: DocPage[] = [
     section: 'faq',
     navLabel: 'FAQ',
     title: 'Questions we get asked before a retainer',
-    seoTitle: 'UGC agency FAQ | The Social Vision',
+    seoTitle: 'Short-Form Content Agency FAQ | The Social Vision',
     description:
       'Answers to the questions prospects ask most: price, how the month works, timing, platforms, casting, scripts, and what is not included.',
     schema: 'Article',
