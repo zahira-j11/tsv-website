@@ -110,7 +110,7 @@ export const FAQ: DocPage[] = [
           },
           {
             q: 'What usage rights are included?',
-            a: 'Perpetual usage rights come with the content we make. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation. See [usage rights](/docs/ugc-usage-rights).',
+            a: 'The content we make comes with perpetual usage rights, including paid use from your own brand account, so you can put ad spend behind any of it. Spark Ads, whitelisting and partnership ads run under the creator’s name, so they need a separate written agreement and creator authorisation. See [usage rights](/docs/ugc-usage-rights).',
           },
           {
             q: 'How do street interviews get consent?',

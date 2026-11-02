@@ -64,7 +64,7 @@ export const GUIDES: DocPage[] = [
       { type: 'h2', id: 'rights-shipping', text: 'Usage, shipping, revisions' },
       {
         type: 'p',
-        text: 'The content we make includes perpetual usage rights. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation. The detail is on [usage rights](/docs/ugc-usage-rights). When a creator needs the product, you ship it at your cost and the creator keeps it, on [shipping products to creators](/docs/shipping-products-to-creators). Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. That sits on [approvals and revisions](/docs/approvals-and-revisions).',
+        text: 'The content we make includes perpetual usage rights, including ads from your own brand account. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation. The detail is on [usage rights](/docs/ugc-usage-rights). When a creator needs the product, you ship it at your cost and the creator keeps it, on [shipping products to creators](/docs/shipping-products-to-creators). Revisions are included, and the number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. That sits on [approvals and revisions](/docs/approvals-and-revisions).',
       },
       {
         type: 'faq',
