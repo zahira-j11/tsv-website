@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { track, isHubSpotBooking } from '@/lib/analytics';
 import { openCookieSettings } from '@/lib/consent';
 import { CASES, TESTIMONIALS, BOOK_CALL_HREF } from '@/lib/caseStudies';
+import ServicesSection from './ServicesSection';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -206,7 +207,7 @@ const SERVICES = [
   {
     key:'organic-productions', group:'Organic', tag:'Organic Social Productions', icon:'🎬',
     bg:'linear-gradient(165deg,#022E00,#06A040 50%,#08F683)', accent:GRN,
-    thumbs:['/videos/organic-productions-1.mp4','/videos/organic-productions-2.mp4','/videos/organic-productions-3.mp4'],
+    thumbs:['/videos/organic-productions-3.mp4','/videos/organic-productions-1.mp4','/videos/organic-productions-2.mp4'],
     desc:'Game shows, podcasts, skits and social series, fully produced by our team.',
     modalDesc:'For concepts that need more than one person and a phone. We develop the strategy, concepts and scripts and cast the right actors and creators. We plan the studios, locations and props, then direct, film and edit every video. The finish can be lo-fi or polished, whichever suits the idea.',
     whenBest:'When you want a recurring format your audience comes back for, like a game show, podcast or series. Also when an idea needs several people, a location or props to land.',
@@ -424,207 +425,6 @@ function HofCard({ card, videoSrc, poster }: {
     </div>
   );
 }
-
-// ─── Service video thumbnail (3 per service card) ─────────
-function ServiceThumb({ src, poster }: { src?: string; poster?: string }) {
-  const [playing, setPlaying] = useState(false);
-  const vRef = useRef<HTMLVideoElement>(null);
-  const toggle = () => {
-    if (!vRef.current || !src) return;
-    if (playing) { vRef.current.pause(); setPlaying(false); }
-    else { vRef.current.play(); setPlaying(true); }
-  };
-  return (
-    <div onClick={toggle} style={{ flex:1, borderRadius:10, overflow:'hidden', background:'rgba(33,0,93,0.07)', aspectRatio:'9/16', position:'relative', cursor:src?'pointer':'default', minWidth:0 }}>
-      {src && (
-        <video ref={vRef} src={src} poster={poster} playsInline loop muted={false} preload={poster ? 'none' : 'metadata'}
-          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }} />
-      )}
-      <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', opacity: playing ? 0 : 1, transition:'opacity 200ms' }}>
-        <div style={{ width:28, height:28, borderRadius:'50%', background:'rgba(255,255,255,0.85)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-          <span style={{ fontSize:10, marginLeft:2 }}>▶</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Service gradient card ─────────────────────────────────
-function ServiceCard({ s, i, onOpen }: { s: typeof SERVICES[0]; i: number; onOpen: () => void }) {
-  const [hovered, setHovered] = useState(false);
-  const src = (s.thumbs as (string|null)[])[0];
-  const poster = src ? src.replace(/\.(mp4|mov|webm)(\?.*)?$/, '.jpg').replace('f_auto,', '').replace(',f_auto', '') : null;
-  return (
-    <div
-      data-reveal
-      data-reveal-delay={String(i * 0.07)}
-      onClick={onOpen}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        width: 252, flexShrink: 0, scrollSnapAlign: 'start',
-        borderRadius: 18, overflow: 'hidden', background: PD, cursor: 'pointer',
-        transform: hovered ? 'translateY(-6px)' : 'none',
-        transition: 'transform 280ms cubic-bezier(0.16,1,0.3,1), box-shadow 280ms ease',
-        boxShadow: hovered ? '0 26px 60px rgba(33,0,93,0.30)' : '0 6px 26px rgba(33,0,93,0.18)',
-      }}
-    >
-      <div style={{ aspectRatio: '4/5', overflow: 'hidden', position: 'relative', background: 'rgba(255,255,255,0.06)' }}>
-        {poster && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={poster} alt="" loading="lazy" style={{
-            width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-            transform: hovered ? 'scale(1.05)' : 'scale(1)',
-            transition: 'transform 500ms cubic-bezier(0.16,1,0.3,1)',
-          }} />
-        )}
-        <div style={{
-          position: 'absolute', top: 11, right: 11, width: 26, height: 26, borderRadius: '50%',
-          background: 'rgba(255,255,255,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 10, color: PD,
-          transform: hovered ? 'scale(1.12)' : 'scale(1)', transition: 'transform 250ms ease',
-        }}>▶</div>
-      </div>
-      <div style={{ height: 3, background: s.accent }} />
-      <div style={{ padding: '14px 16px 16px' }}>
-        <p style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,253,237,0.5)', margin: '0 0 5px' }}>{s.group}</p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-          <span style={{ fontSize: 14 }}>{s.icon}</span>
-          <span style={{ ...DISP, fontSize: 14, fontWeight: 800, color: WH, letterSpacing: '-.02em' }}>{s.tag}</span>
-        </div>
-        <p style={{
-          fontSize: 11.5, color: 'rgba(255,253,237,0.55)', lineHeight: 1.55, margin: '7px 0 0', minHeight: '4.65em',
-          display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden',
-        }}>{s.desc}</p>
-      </div>
-    </div>
-  );
-}
-
-
-// ─── Service detail modal ──────────────────────────────────
-function ServiceModal({ s, onClose }: { s: typeof SERVICES[0]; onClose: () => void }) {
-  return (
-    <Portal>
-    <div
-      onClick={onClose}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 2000,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: 'rgba(10,0,30,0.6)', backdropFilter: 'blur(6px)',
-        padding: '24px',
-      }}
-    >
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
-          background: '#fff', borderRadius: 24, padding: '48px 52px 52px',
-          maxWidth: 700, width: '100%', maxHeight: '88vh', overflowY: 'auto',
-          position: 'relative',
-          boxShadow: '0 40px 100px rgba(0,0,0,0.4)',
-          animation: 'mkt-hero-in 0.28s cubic-bezier(0.16,1,0.3,1) both',
-        }}
-      >
-        {/* Close */}
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute', top: 20, right: 20,
-            width: 36, height: 36, borderRadius: '50%',
-            background: 'rgba(33,0,93,0.07)', border: 'none', cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 16, color: PD, fontWeight: 600,
-          }}
-        >×</button>
-
-        {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
-          <span style={{ fontSize: 28 }}>{s.icon}</span>
-          <h2 style={{ ...DISP, fontSize: 26, fontWeight: 800, letterSpacing: '-.04em', color: PD, margin: 0 }}>{s.tag}</h2>
-        </div>
-
-        {/* Long description */}
-        <p style={{ fontSize: 16, color: 'rgba(33,0,93,0.65)', lineHeight: 1.75, marginBottom: 28 }}>{s.modalDesc}</p>
-
-        {/* Info boxes */}
-        {[
-          { label: 'WHEN IT WORKS BEST', body: s.whenBest },
-          { label: 'BEST SUITED FOR',    body: s.bestFor  },
-        ].map(({ label, body }) => (
-          <div key={label} style={{
-            background: 'rgba(33,0,93,0.04)', borderRadius: 14, padding: '20px 24px', marginBottom: 14,
-          }}>
-            <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', color: PD, margin: '0 0 8px', textTransform: 'uppercase' }}>{label}</p>
-            <p style={{ fontSize: 15, color: 'rgba(33,0,93,0.6)', lineHeight: 1.7, margin: 0 }}>{body}</p>
-          </div>
-        ))}
-
-        {/* Video examples */}
-        <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', color: PD, margin: '28px 0 16px', textTransform: 'uppercase' }}>Video examples</p>
-        <div style={{ display: 'flex', gap: 12 }}>
-          {(s.thumbs as (string|null)[]).map((src, idx) => (
-            <div key={idx} style={{
-              flex: 1, aspectRatio: '9/16', borderRadius: 12, overflow: 'hidden',
-              background: 'rgba(33,0,93,0.08)', position: 'relative',
-            }}>
-              {src ? (
-                <video src={src} controls playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-              ) : (
-                <div style={{
-                  width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: `linear-gradient(${150 + idx * 25}deg, ${s.accent}22, rgba(33,0,93,0.08))`,
-                }}>
-                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(33,0,93,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontSize: 12, marginLeft: 2, color: 'rgba(33,0,93,0.4)' }}>▶</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-    </Portal>
-  );
-}
-
-// ─── Services horizontal carousel ─────────────────────────
-function ServicesCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [openService, setOpenService] = useState<typeof SERVICES[0] | null>(null);
-  const scroll = (dir: 1 | -1) => trackRef.current?.scrollBy({ left: dir * (252 + 16) * 2, behavior: 'smooth' });
-  const nav: React.CSSProperties = {
-    position: 'absolute', top: '50%', transform: 'translateY(-50%)',
-    width: 38, height: 38, borderRadius: '50%', border: 'none', background: PD, color: '#fff',
-    fontSize: 16, cursor: 'pointer', zIndex: 3, boxShadow: '0 6px 20px rgba(33,0,93,0.28)',
-    display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'inherit',
-  };
-  return (
-    <div style={{ position: 'relative' }}>
-      <button aria-label="Previous" className="mkt-carousel-nav" onClick={() => scroll(-1)} style={{ ...nav, left: -16 }}>‹</button>
-      <button aria-label="Next" className="mkt-carousel-nav" onClick={() => scroll(1)} style={{ ...nav, right: -16 }}>›</button>
-      <div ref={trackRef} className="mkt-services-track" style={{
-        display: 'flex', gap: 16, overflowX: 'auto', padding: '6px 2px 14px',
-        // overflow-y must be pinned. Setting overflow-x to auto silently
-        // promotes overflow-y from visible to auto, and flex stretch plus the
-        // vertical padding leaves ~26px of phantom scroll height in here — so
-        // a wheel over the carousel was spent scrolling that instead of the
-        // page, and the page appeared to freeze under the cursor. Nothing
-        // visible lives in those pixels, so hiding them changes no layout.
-        overflowY: 'hidden', alignItems: 'flex-start',
-        // proximity rather than mandatory, so a mostly-vertical gesture is not
-        // held here waiting to settle on a snap point.
-        scrollSnapType: 'x proximity', overscrollBehaviorX: 'contain',
-      }}>
-        {SERVICES.map((s, i) => (
-          <ServiceCard key={s.key} s={s} i={i} onOpen={() => setOpenService(s)} />
-        ))}
-      </div>
-      {openService && <ServiceModal s={openService} onClose={() => setOpenService(null)} />}
-    </div>
-  );
-}
-
 
 // ─── Case stat icon ────────────────────────────────────────
 function StatIcon({ type }: { type: string }) {
@@ -1250,20 +1050,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ══ SERVICES ══════════════════════════════════════════ */}
-      <section id="services" style={{ padding:'110px 28px', background:BG, position:'relative', overflow:'hidden' }}>
-        <Orbs orbs={[
-          { size:400, color:MAG, opacity:0.16, cls:'mkt-orb-e', bottom:'5%',left:'-5%'  },
-          { size:320, color:YEL, opacity:0.46, cls:'mkt-orb-b', top:'38%',  left:'1%'   },
-          { size:280, color:P,   opacity:0.16, cls:'mkt-orb-c', top:'-10%', right:'-5%' },
-        ]} />
-        <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:1 }}>
-          <div data-reveal style={{ marginBottom:64 }}>
-            <span style={{ display:'inline-block', background:'rgba(232,32,164,0.1)', color:MAG, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Services</span>
-            <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>Content formats that <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">drive results.</em></h2>
-          </div>
-          <ServicesCarousel />
-        </div>
-      </section>
+      <ServicesSection services={SERVICES} onBook={()=>bookCall('services')} />
 
       {/* ══ CASE STUDIES ══════════════════════════════════════ */}
       <section id="cases" style={{ padding:'110px 28px', background:WH, borderTop:`2px solid ${BR}`, position:'relative', overflow:'hidden' }}>
