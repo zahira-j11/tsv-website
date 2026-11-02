@@ -14,7 +14,7 @@ export const GET_STARTED: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A short-form content agency plans, casts, films, edits and posts videos for TikTok, Instagram Reels and YouTube Shorts. [The Social Vision](/about) is that agency, based in London, for [apps](/industries/apps) and consumer brands. We make organic content and paid ad creative. We are a small, founder-led company.',
+        text: 'A short-form content agency plans, casts, films, edits and posts videos for TikTok, Instagram Reels and YouTube Shorts. [The Social Vision](/about) is that agency, based in London, for [apps](/industries/apps) and consumer brands. We make organic content and paid ad creative.',
       },
       {
         type: 'p',
