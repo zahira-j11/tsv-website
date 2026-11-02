@@ -58,20 +58,20 @@ export const CREATORS: DocPage[] = [
     title: 'What usage rights do you get?',
     seoTitle: 'UGC usage rights | The Social Vision',
     description:
-      'Perpetual usage rights, including ads from your brand account. Spark Ads, whitelisting and partnership ads need the creator’s written authorisation.',
+      'Perpetual usage rights, including ads from your brand account. Creator-handle Spark Ads, whitelisting and partnership ads need the creator’s written authorisation.',
     schema: 'Article',
     related: { href: '/docs/reference/pricing', label: 'What the retainer includes' },
     blocks: [
       {
         type: 'p',
-        text: 'The content we make includes perpetual usage rights. That comes with the work, and it covers paid use from your own brand account: you can put ad spend behind any of it. Spark Ads, whitelisting and partnership ads are different, because the ad runs under the creator’s name. Those need a separate written agreement and creator authorisation. What the fee covers is on [what’s included](/docs/reference/pricing).',
+        text: 'The content we make includes perpetual usage rights. That comes with the work, and it covers paid use from your own brand account: you can put ad spend behind any of it. Creator-handle Spark Ads, whitelisting and partnership ads are different, because the ad runs under the creator’s name. Those need a separate written agreement and creator authorisation. What the fee covers is on [what’s included](/docs/reference/pricing).',
       },
       {
         type: 'faq',
         items: [
           {
             q: 'What usage rights are included?',
-            a: 'The content we make comes with perpetual usage rights, including paid use from your own brand account, so you can put ad spend behind any of it. Spark Ads, whitelisting and partnership ads run under the creator’s name, so they need a separate written agreement and creator authorisation.',
+            a: 'The content we make comes with perpetual usage rights, including paid use from your own brand account, so you can put ad spend behind any of it. Creator-handle Spark Ads, whitelisting and partnership ads run under the creator’s name, so they need a separate written agreement and creator authorisation.',
           },
         ],
       },
@@ -110,13 +110,13 @@ export const CREATORS: DocPage[] = [
     title: 'What are Spark Ads and partnership ads?',
     seoTitle: 'TikTok Spark Ads and Meta partnership ads | The Social Vision',
     description:
-      'Spark Ads, whitelisting and partnership ads run under the creator’s name. Ads from your own account are included; these need a separate written agreement and creator authorisation.',
+      'Creator-handle Spark Ads, whitelisting and partnership ads run under the creator’s name. Ads from your own account are included; these need a separate written agreement and creator authorisation.',
     schema: 'Article',
     related: { href: '/docs/ugc-usage-rights', label: 'Usage rights' },
     blocks: [
       {
         type: 'p',
-        text: 'A Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a video as an ad while the creator\u2019s name stays on it. Whitelisting works the same way. Because the creator’s name is on the ad, it needs a separate written agreement and creator authorisation. Running the same video as an ad from your own brand account doesn’t: that’s covered by the perpetual usage rights. The video is one we made with our creators. It is not the same as posting the file on your own brand channel, and it is not something you set up by sharing a password.',
+        text: 'A creator-handle Spark Ad, on TikTok, and a partnership ad, on Meta, are ways to run a video as an ad while the creator\u2019s name stays on it. Whitelisting works the same way. Because the creator’s name is on the ad, it needs a separate written agreement and creator authorisation. Running the same video as an ad from your own brand account doesn’t: that’s covered by the perpetual usage rights. The video is one we made with our creators. It is not the same as posting the file on your own brand channel, and it is not something you set up by sharing a password.',
       },
       {
         type: 'p',

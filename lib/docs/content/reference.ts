@@ -35,7 +35,7 @@ export const REFERENCE: DocPage[] = [
         type: 'ul',
         items: [
           'Ad spend. Your team or your media agency runs the campaigns.',
-          'Ads under the creator’s name. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
+          'Ads under the creator’s name. Creator-handle Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
           'Edit-only work. We don\u2019t offer editing without filming.',
           'Influencer marketing and influencer campaigns. We don\u2019t run them.',
         ],
@@ -95,7 +95,7 @@ export const REFERENCE: DocPage[] = [
           'A reshoot after a client script change. That is quoted case by case.',
           'Changing the mix, or other extra work. That is quoted per project.',
           'Ad spend.',
-          'Ads under the creator’s name. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
+          'Ads under the creator’s name. Creator-handle Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
         ],
       },
       {
@@ -139,7 +139,7 @@ export const REFERENCE: DocPage[] = [
           ['Retainer', 'A monthly fee, scoped to your goals, formats and content volume. See [what’s included](/docs/reference/pricing).'],
           ['Revisions', 'Included. The number of rounds is agreed in each brief. See [approvals](/docs/approvals-and-revisions).'],
           ['Usage', 'Perpetual usage rights on the content we make, including ads from your own brand account. See [usage rights](/docs/ugc-usage-rights).'],
-          ['Spark Ad / partnership ad', 'A paid ad that runs a video we made with our creators under the creator\u2019s name. It needs a separate written agreement and creator authorisation. See [partnership ads](/docs/partnership-ads).'],
+          ['Creator-handle Spark Ad / partnership ad', 'A paid ad that runs a video we made with our creators under the creator\u2019s name or handle. It needs a separate written agreement and creator authorisation. See [partnership ads](/docs/partnership-ads).'],
           ['70/20/10', 'Mostly what is already working, some iteration, a little that is new. See the [blog post](/blog/70-20-10-content-rule).'],
         ],
       },

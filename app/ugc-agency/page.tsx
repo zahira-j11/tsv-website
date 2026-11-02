@@ -161,7 +161,7 @@ export default function UgcAgencyPage() {
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>How pricing works</h2>
             <p style={body}>
-              The retainer is one monthly fee, scoped to the goal, the formats and the content volume, on a 3-month initial term. After that it rolls monthly, with 30 days’ notice. Strategy, creators, editing, revisions, organic posting and reporting are included. Ad spend is not. Revisions are included, and the number of rounds is agreed in each brief. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. The content includes perpetual usage rights, including ads from your own brand account. Spark Ads, whitelisting and partnership ads under the creator’s name need the creator’s authorisation. A per-video price is not published.
+              The retainer is one monthly fee, scoped to the goal, the formats and the content volume, on a 3-month initial term. After that it rolls monthly, with 30 days’ notice. Strategy, creators, editing, revisions, organic posting and reporting are included. Ad spend is not. Revisions are included, and the number of rounds is agreed in each brief. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. The content includes perpetual usage rights, including ads from your own brand account. Creator-handle Spark Ads, whitelisting and partnership ads under the creator’s name need the creator’s authorisation. A per-video price is not published.
             </p>
             <p style={body}>
               The breakdown is on <a href="/docs/reference/pricing">what the retainer includes</a>. The month itself is on <a href="/docs/how-we-work">how a retainer runs</a>.
