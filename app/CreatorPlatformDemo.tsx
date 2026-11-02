@@ -86,6 +86,9 @@ export default function CreatorPlatformDemo() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<View>(START);
   const [near, setNear] = useState(false);
+  // The server sends one copy of the track; the second, which only matters
+  // once the scroll wraps, is added after hydration to keep the HTML small.
+  const [doubled, setDoubled] = useState(false);
 
   useEffect(() => {
     const frame = frameRef.current, grid = gridRef.current, track = trackRef.current;
@@ -121,6 +124,7 @@ export default function CreatorPlatformDemo() {
       return () => nearObs.disconnect();
     }
 
+    setDoubled(true);
     let s = 0, v = 0, vTo = SPEED, t = 0, last = 0, raf = 0, next = 0, round = 0;
     let m = { cols:3, pitch:168, H:N / 3 * 168, viewH:500 };
     let placed: number[] = [];
@@ -226,6 +230,13 @@ export default function CreatorPlatformDemo() {
   return (
     <div ref={frameRef} className="cpd" role="img"
       aria-label="Mock-up of the TSV creator platform: scrolling through creator cards, filtering by audience and shortlisting a creator.">
+      {/* Card icons, defined once and reused by every card */}
+      <svg className="cpd-sprite" aria-hidden="true">
+        <symbol id="cpd-i-cam" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><rect x="2.5" y="6.5" width="13" height="11" rx="2.5" /><path d="M15.5 10.5l5-3v9l-5-3z" /></g></symbol>
+        <symbol id="cpd-i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff" /></symbol>
+        <symbol id="cpd-i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" /></symbol>
+        <symbol id="cpd-i-tick" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" /></symbol>
+      </svg>
       <div className="cpd-bar" aria-hidden="true">
         <span className="cpd-dots"><i /><i /><i /></span>
         <span className="cpd-search">
@@ -243,7 +254,7 @@ export default function CreatorPlatformDemo() {
 
       <div ref={gridRef} className="cpd-grid" aria-hidden="true">
         <div ref={trackRef} className={`cpd-track${view.back ? ' is-returning' : ''}`}>
-          {Array.from({ length:N * 2 }, (_, pos) => {
+          {Array.from({ length:doubled ? N * 2 : N }, (_, pos) => {
             const i = pos % N, c = CREATORS[i];
             const k = view.placed ? view.placed.indexOf(pos) : -1; // slot among the matches
             const slot = k >= 0 ? k : pos;
@@ -269,10 +280,10 @@ export default function CreatorPlatformDemo() {
                     <Image src={faceSrc(i)} alt="" width={64} height={64} unoptimized draggable={false} loading={near ? 'eager' : 'lazy'} />
                   </span>
                   <span className="cpd-play">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z" /></svg>
+                    <svg width="11" height="11"><use href="#cpd-i-play" /></svg>
                   </span>
                   <span className="cpd-cam">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><rect x="2.5" y="6.5" width="13" height="11" rx="2.5" /><path d="M15.5 10.5l5-3v9l-5-3z" /></svg>
+                    <svg width="12" height="12"><use href="#cpd-i-cam" /></svg>
                     <span className="cpd-eq"><i /><i /><i /></span>
                   </span>
                   <span className="cpd-progress"><i /></span>
@@ -283,8 +294,8 @@ export default function CreatorPlatformDemo() {
                   <span className="cpd-add">
                     <em>Shortlisted</em>
                     <span className="cpd-add-icon">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                      <svg width="12" height="12"><use href="#cpd-i-plus" /></svg>
+                      <svg width="12" height="12"><use href="#cpd-i-tick" /></svg>
                     </span>
                   </span>
                 </div>
