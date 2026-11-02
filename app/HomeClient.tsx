@@ -206,8 +206,7 @@ const SERVICES = [
   {
     key:'organic-productions', group:'Organic', tag:'Organic Social Productions', icon:'🎬',
     bg:'linear-gradient(165deg,#022E00,#06A040 50%,#08F683)', accent:GRN,
-    // Filler clips until Zahira uploads Organic Social Productions examples
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048353/tsv-website/scripted-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048375/tsv-website/scripted-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048392/tsv-website/scripted-3.mp4'],
+    thumbs:['/videos/organic-productions-1.mp4','/videos/organic-productions-2.mp4','/videos/organic-productions-3.mp4'],
     desc:'Game shows, podcasts, skits and social series, fully produced by our team.',
     modalDesc:'For concepts that need more than one person and a phone. We develop the strategy, concepts and scripts and cast the right actors and creators. We plan the studios, locations and props, then direct, film and edit every video. The finish can be lo-fi or polished, whichever suits the idea.',
     whenBest:'When you want a recurring format your audience comes back for, like a game show, podcast or series. Also when an idea needs several people, a location or props to land.',

@@ -23,9 +23,6 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/about`, siteName: 'The Social Vision', type: 'website', images: ['/opengraph-image'] },
 };
 
-// Only people who are on the team today.
-const TEAM = [AUTHORS.zahira, AUTHORS.elisa];
-
 const FACTS = [
   { val: '200M+', label: 'Organic views' },
   { val: '300+',  label: 'Vetted UK creators' },
@@ -73,7 +70,7 @@ export default function AboutPage() {
       <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', color: PD }}>
         <style>{`
           .blog-nav-link:hover { color: ${PD} !important; }
-          @media (max-width: 760px) { .ab-team, .ab-how { grid-template-columns: minmax(0,1fr) !important; } .ab-facts { grid-template-columns: repeat(2, minmax(0,1fr)) !important; } }
+          @media (max-width: 760px) { .ab-how { grid-template-columns: minmax(0,1fr) !important; } .ab-facts { grid-template-columns: repeat(2, minmax(0,1fr)) !important; } }
         `}</style>
         <SiteNav />
 
@@ -97,25 +94,6 @@ export default function AboutPage() {
                 <div style={{ fontSize: 13, color: MU, marginTop: 4 }}>{f.label}</div>
               </div>
             ))}
-          </section>
-
-          <section style={{ marginBottom: 72 }}>
-            <p style={label}>The team</p>
-            <h2 style={h2}>Who you&rsquo;ll work with</h2>
-            <div className="ab-team" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0,1fr))', gap: 16, marginTop: 24 }}>
-              {TEAM.map(m => (
-                <div key={m.name} style={{ display: 'flex', gap: 18, alignItems: 'flex-start', background: WH, border: `1.5px solid ${BR}`, borderRadius: 20, padding: 22 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={m.avatar} alt={m.name} width={72} height={72} style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
-                  <div>
-                    <div style={{ ...DISP, fontSize: 17, fontWeight: 800 }}>{m.name}</div>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: P, margin: '2px 0 8px' }}>{m.role.replace(' @ The Social Vision', '')}</div>
-                    <p style={{ fontSize: 14.5, lineHeight: 1.7, color: MU, margin: 0 }}>{m.bio}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p style={{ ...body, marginTop: 20 }}>Behind the team is a vetted network of 300+ UK creators, briefed to your brand guidelines. You don&rsquo;t manage them. We do.</p>
           </section>
 
           <section style={{ marginBottom: 72 }}>
