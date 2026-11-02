@@ -615,7 +615,9 @@ body::before {
 
 .cpd-name { margin-top: 8px; font-size: 13px; font-weight: 800; letter-spacing: -.01em; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cpd-foot { position: relative; height: 22px; margin-top: 6px; }
-.cpd-tags { height: 100%; display: flex; align-items: center; gap: 4px; padding-right: 28px; overflow: hidden; }
+/* A tag that doesn't fit wraps onto a hidden second line, so narrow cards
+   show one whole tag rather than a clipped one. */
+.cpd-tags { box-sizing: border-box; height: 100%; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 4px; padding: 2px 28px 0 0; overflow: hidden; }
 .cpd-tags span { flex: none; padding: 3px 7px; border-radius: 20px; background: rgba(33,0,93,0.06); font-size: 10px; font-weight: 700; line-height: 1.3; }
 .cpd-tags span:first-child { background: rgba(124,1,255,0.1); color: #7C01FF; }
 /* The shortlist button is a full-width pill clipped down to its icon, so
