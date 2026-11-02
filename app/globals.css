@@ -550,19 +550,22 @@ body::before {
 
 /* The grid: one transform scrolls the track (set in script); each card's
    slot arrives as --c3/--r3 and --c2/--r2, and the container query below
-   picks the pair for the layout in use. */
+   picks the pair for the layout in use. No will-change and only 2D card
+   transforms: a tall layer held from page load slowed the hero videos'
+   loading under Lighthouse, and the scroll's translate3d promotes the track
+   once it actually moves. */
 .cpd-grid { flex: 1; position: relative; overflow: hidden; }
 .cpd-grid::after {
   content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 72px; z-index: 5; pointer-events: none;
   background: linear-gradient(rgba(255,255,255,0), #fff);
 }
-.cpd-track { position: absolute; top: 6px; left: 14px; right: 14px; --cols: 3; --gap: 12px; will-change: transform; }
+.cpd-track { position: absolute; top: 6px; left: 14px; right: 14px; --cols: 3; --gap: 12px; }
 .cpd-card {
   --c: var(--c3); --r: var(--r3);
   position: absolute; top: 0; left: 0; z-index: 1; box-sizing: border-box;
   width: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); height: 156px; padding: 8px;
   background: #fff; border: 1px solid #ECE5FF; border-radius: 14px; box-shadow: 0 2px 8px rgba(33,0,93,0.05);
-  transform: translate3d(calc(var(--c) * (100% + var(--gap))), calc(var(--r) * (100% + var(--gap)) + var(--dy, 0px) + var(--lift, 0px)), 0) scale(var(--zoom, 1));
+  transform: translate(calc(var(--c) * (100% + var(--gap))), calc(var(--r) * (100% + var(--gap)) + var(--dy, 0px) + var(--lift, 0px))) scale(var(--zoom, 1));
   transition: transform .7s cubic-bezier(.6,0,.2,1) var(--delay, 0ms), opacity .4s ease, border-color .3s;
 }
 .cpd-card::after {
