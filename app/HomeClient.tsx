@@ -388,9 +388,10 @@ function HofCard({ card, videoSrc, poster }: {
   return (
     <div style={{ flexShrink:0, width:210, borderRadius:18, background:WH, overflow:'hidden', boxShadow:'0 4px 24px rgba(33,0,93,0.18)', cursor:videoSrc?'pointer':'default', position:'relative' }} onClick={toggle}>
       {/* Tags */}
-      <div style={{ display:'flex', gap:6, padding:'12px 12px 0', flexWrap:'wrap' }}>
-        <span style={{ fontSize:11, fontWeight:700, color:PD, background:'rgba(33,0,93,0.07)', padding:'3px 10px', borderRadius:20 }}>{card.contentType}</span>
-        <span style={{ fontSize:11, fontWeight:700, color:card.distribution==='Paid'?WH:P, background:card.distribution==='Paid'?PD:'rgba(124,1,255,0.1)', padding:'3px 10px', borderRadius:20 }}>{card.distribution}</span>
+      {/* One row on every card, so the videos line up across the carousel */}
+      <div style={{ display:'flex', gap:5, padding:'12px 12px 0', flexWrap:'nowrap' }}>
+        <span style={{ fontSize:10.5, fontWeight:700, color:PD, background:'rgba(33,0,93,0.07)', padding:'3px 8px', borderRadius:20, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', minWidth:0 }}>{card.contentType}</span>
+        <span style={{ fontSize:10.5, fontWeight:700, color:card.distribution==='Paid'?WH:P, background:card.distribution==='Paid'?PD:'rgba(124,1,255,0.1)', padding:'3px 8px', borderRadius:20, whiteSpace:'nowrap', flexShrink:0 }}>{card.distribution}</span>
       </div>
       {/* Video area — fills to bottom, brand pill + view count overlaid */}
       <div style={{ position:'relative', margin:'10px 12px 12px', borderRadius:12, overflow:'hidden', background:'rgba(33,0,93,0.06)', aspectRatio:'9/16' }}>
