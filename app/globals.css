@@ -503,3 +503,176 @@ body::before {
 /* Shared footer (app/SiteFooter.tsx): hover states the homepage footer sets in script. */
 .site-footer-link:hover { color: #FFD600 !important; }
 .site-footer-social:hover { border-color: #FFD600 !important; color: #FFD600 !important; }
+
+/* How it works: creator platform mock-up (app/CreatorPlatformDemo.tsx).
+   The slot keeps the old collage's footprint: raised beside the intro line
+   only where the intro can't run underneath it. */
+.cpd-slot { width: 100%; max-width: 520px; height: 600px; margin-left: auto; }
+@media (min-width: 1260px) { .cpd-slot { margin-top: -130px; } }
+@media (max-width: 768px)  { .cpd-slot { max-width: 440px; height: 470px; margin: -24px auto 0; } }
+
+.cpd {
+  position: relative; height: 100%; display: flex; flex-direction: column; overflow: hidden;
+  background: #fff; color: #21005D; border-radius: 22px; container-type: inline-size;
+  box-shadow: 0 32px 80px rgba(5,0,22,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+  -webkit-user-select: none; user-select: none;
+}
+.cpd-bar { flex: none; height: 56px; display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid #F0EAFF; }
+.cpd-dots { flex: none; display: flex; gap: 5px; }
+.cpd-dots i { width: 8px; height: 8px; border-radius: 50%; background: #FF7ED3; }
+.cpd-dots i:nth-child(2) { background: #FFD600; }
+.cpd-dots i:nth-child(3) { background: #08F683; }
+.cpd-search {
+  flex: 1; min-width: 0; height: 32px; display: flex; align-items: center; gap: 7px; padding: 0 11px;
+  border-radius: 9px; background: #F6F2FF; color: rgba(33,0,93,0.5); font-size: 12px; font-weight: 600;
+  white-space: nowrap; overflow: hidden;
+}
+.cpd-search svg { flex: none; }
+.cpd-count {
+  flex: none; height: 32px; display: flex; align-items: center; gap: 7px; padding: 0 12px 0 5px;
+  border-radius: 100px; background: #21005D; color: #fff; font-size: 12px; font-weight: 700; white-space: nowrap;
+  animation: cpd-bump .5s cubic-bezier(.3,1.7,.5,1);
+}
+.cpd-count b {
+  width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  background: #08F683; color: #21005D; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+.cpd-chips {
+  flex: none; display: flex; gap: 6px; padding: 10px 14px 8px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, #000 78%, transparent); mask-image: linear-gradient(90deg, #000 78%, transparent);
+}
+.cpd-chip {
+  flex: none; height: 27px; display: inline-flex; align-items: center; padding: 0 11px; border-radius: 100px;
+  border: 1.5px solid #E4DCFF; background: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap;
+  transition: background .25s, border-color .25s, color .25s;
+}
+.cpd-chip.is-on { background: #7C01FF; border-color: #7C01FF; color: #fff; }
+
+/* The grid: one transform scrolls the track (set in script); each card's
+   slot arrives as --c3/--r3 and --c2/--r2, and the container query below
+   picks the pair for the layout in use. */
+.cpd-grid { flex: 1; position: relative; overflow: hidden; }
+.cpd-grid::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 72px; z-index: 5; pointer-events: none;
+  background: linear-gradient(rgba(255,255,255,0), #fff);
+}
+.cpd-track { position: absolute; top: 6px; left: 14px; right: 14px; --cols: 3; --gap: 12px; will-change: transform; }
+.cpd-card {
+  --c: var(--c3); --r: var(--r3);
+  position: absolute; top: 0; left: 0; z-index: 1; box-sizing: border-box;
+  width: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); height: 156px; padding: 8px;
+  background: #fff; border: 1px solid #ECE5FF; border-radius: 14px; box-shadow: 0 2px 8px rgba(33,0,93,0.05);
+  transform: translate3d(calc(var(--c) * (100% + var(--gap))), calc(var(--r) * (100% + var(--gap)) + var(--dy, 0px) + var(--lift, 0px)), 0) scale(var(--zoom, 1));
+  transition: transform .7s cubic-bezier(.6,0,.2,1) var(--delay, 0ms), opacity .4s ease, border-color .3s;
+}
+.cpd-card::after {
+  content: ''; position: absolute; inset: -1px; border-radius: 14px; pointer-events: none;
+  box-shadow: 0 18px 38px rgba(33,0,93,0.24); opacity: 0; transition: opacity .35s;
+}
+.cpd-card.is-out { opacity: 0; --zoom: .9; z-index: 0; }
+.cpd-card.is-back { z-index: 2; }
+.cpd-track.is-returning .cpd-card { transition: transform .7s cubic-bezier(.6,0,.2,1) var(--delay, 0ms), opacity .35s ease .4s, border-color .3s; }
+.cpd-card.is-hover { --lift: -6px; --zoom: 1.04; z-index: 3; border-color: #D9C8FF; transition-duration: .35s; }
+.cpd-card.is-hover::after { opacity: 1; }
+
+.cpd-media { position: relative; height: 84px; border-radius: 10px; display: grid; place-items: center; overflow: hidden; }
+.cpd-face {
+  width: 62px; height: 62px; border-radius: 50%; overflow: hidden; background: #fff;
+  box-shadow: 0 0 0 3px #fff, 0 6px 14px rgba(33,0,93,0.16);
+}
+.cpd-face img { display: block; width: 100%; height: 100%; transition: transform 2.2s cubic-bezier(.2,.6,.3,1); }
+.cpd-card.is-playing .cpd-face img { transform: scale(1.14); }
+.cpd-play {
+  position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%;
+  display: grid; place-items: center; padding-left: 2px; box-sizing: border-box; background: rgba(33,0,93,0.62);
+  opacity: 0; transition: opacity .25s;
+}
+.cpd-card.is-hover .cpd-play { opacity: 1; }
+.cpd-card.is-playing .cpd-play, .cpd-card.is-open .cpd-play { opacity: 0; }
+.cpd-cam {
+  position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; color: #7C01FF; box-shadow: 0 2px 6px rgba(33,0,93,0.12);
+}
+.cpd-cam > * { grid-area: 1 / 1; transition: opacity .2s; }
+.cpd-eq { display: flex; align-items: flex-end; gap: 1.5px; height: 9px; opacity: 0; }
+.cpd-eq i { width: 2px; height: 100%; border-radius: 1px; background: #E820A4; transform-origin: bottom; transform: scaleY(.4); }
+.cpd-card.is-playing .cpd-cam svg { opacity: 0; }
+.cpd-card.is-playing .cpd-eq { opacity: 1; }
+.cpd-card.is-playing .cpd-eq i { animation: cpd-eq .45s ease-in-out infinite alternate; }
+.cpd-card.is-playing .cpd-eq i:nth-child(2) { animation-delay: -.2s; }
+.cpd-card.is-playing .cpd-eq i:nth-child(3) { animation-delay: -.33s; }
+.cpd-progress {
+  position: absolute; left: 8px; right: 8px; bottom: 6px; height: 3px; border-radius: 2px; overflow: hidden;
+  background: rgba(255,255,255,0.8); opacity: 0; transition: opacity .25s;
+}
+.cpd-progress i { display: block; height: 100%; background: #7C01FF; transform-origin: left; transform: scaleX(0); }
+.cpd-card.is-playing .cpd-progress { opacity: 1; }
+.cpd-card.is-playing .cpd-progress i { animation: cpd-progress 1.8s linear forwards; }
+
+.cpd-name { margin-top: 8px; font-size: 13px; font-weight: 800; letter-spacing: -.01em; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cpd-foot { position: relative; height: 22px; margin-top: 6px; }
+.cpd-tags { height: 100%; display: flex; align-items: center; gap: 4px; padding-right: 28px; overflow: hidden; }
+.cpd-tags span { flex: none; padding: 3px 7px; border-radius: 20px; background: rgba(33,0,93,0.06); font-size: 10px; font-weight: 700; line-height: 1.3; }
+.cpd-tags span:first-child { background: rgba(124,1,255,0.1); color: #7C01FF; }
+/* The shortlist button is a full-width pill clipped down to its icon, so
+   opening it never moves anything around it. */
+.cpd-add {
+  position: absolute; inset: 0; display: flex; align-items: center; border-radius: 11px;
+  background: #F1E9FF; color: #7C01FF;
+  clip-path: inset(0 0 0 calc(100% - 22px) round 11px);
+  transition: clip-path .4s cubic-bezier(.6,0,.2,1), background .25s, color .25s;
+}
+.cpd-add em { flex: 1; text-align: center; font-style: normal; font-size: 11px; font-weight: 800; }
+.cpd-add-icon { flex: none; width: 22px; height: 22px; display: grid; place-items: center; }
+.cpd-add-icon svg { grid-area: 1 / 1; transition: opacity .2s; }
+.cpd-add-icon svg + svg { opacity: 0; }
+.cpd-card.is-hover .cpd-add { background: #7C01FF; color: #fff; }
+.cpd-card.is-picked .cpd-add { background: #08F683; color: #21005D; }
+.cpd-card.is-picked .cpd-add-icon svg { opacity: 0; }
+.cpd-card.is-picked .cpd-add-icon svg + svg { opacity: 1; }
+.cpd-card.is-open .cpd-add { clip-path: inset(0 0 0 0 round 11px); }
+
+.cpd-cursor { position: absolute; top: 0; left: 0; z-index: 10; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.cpd-cursor.is-on { opacity: 1; }
+.cpd-cursor.is-glide { transition: opacity .3s, transform .8s cubic-bezier(.55,0,.2,1); }
+.cpd-cursor svg { display: block; margin: -1px 0 0 -2px; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3)); transform-origin: 2px 2px; animation: cpd-press .3s ease; }
+.cpd-tap {
+  position: absolute; z-index: 9; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; pointer-events: none;
+  background: rgba(124,1,255,0.22); border: 2px solid rgba(124,1,255,0.5); box-sizing: border-box;
+  animation: cpd-tap .55s ease-out forwards;
+}
+.cpd-fly {
+  position: absolute; top: 0; left: 0; z-index: 9; border-radius: 50%; pointer-events: none;
+  box-shadow: 0 0 0 3px #fff, 0 10px 24px rgba(33,0,93,0.3);
+  animation: cpd-fly .55s cubic-bezier(.55,0,.25,1) forwards;
+}
+
+/* Phones and narrow columns: two columns, a shorter bar, one tag per card. */
+@container (max-width: 440px) {
+  .cpd-bar { height: 50px; gap: 8px; padding: 0 12px; }
+  .cpd-dots, .cpd-long { display: none; }
+  .cpd-chips { padding: 9px 12px 7px; }
+  .cpd-track { left: 12px; right: 12px; --cols: 2; --gap: 10px; }
+  .cpd-card { --c: var(--c2); --r: var(--r2); height: 146px; }
+  .cpd-media { height: 76px; }
+  .cpd-face { width: 56px; height: 56px; }
+  .cpd-tags span + span { display: none; }
+  .cpd-tap { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+}
+
+/* Reduced motion shows one still (set in script): no transitions or delays,
+   so it lands at once and the cursor measures the settled card. */
+@media (prefers-reduced-motion: reduce) {
+  .cpd, .cpd * { transition: none !important; animation: none !important; }
+}
+
+@keyframes cpd-bump     { 40% { transform: scale(1.12); } }
+@keyframes cpd-eq       { to { transform: scaleY(1); } }
+@keyframes cpd-progress { to { transform: scaleX(1); } }
+@keyframes cpd-press    { 50% { transform: scale(.8); } }
+@keyframes cpd-tap      { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
+@keyframes cpd-fly {
+  from { transform: translate(var(--fx), var(--fy)); }
+  80%  { opacity: 1; }
+  to   { transform: translate(var(--tx), var(--ty)) scale(.36); opacity: 0; }
+}
