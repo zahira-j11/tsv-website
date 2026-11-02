@@ -14,7 +14,7 @@ export const HOW_WE_WORK: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We do the work end to end. You approve twice: first the concepts, the scripts and the casting, then the final video. Every client has a dedicated account manager. There are two calls a month, one to pitch the content and one to go through the numbers. Retainers are from £2,000 a month (ex VAT), on a 3-month initial term.',
+        text: 'We do the work end to end. You approve twice: first the concepts, the scripts and the casting, then the final video. Every client has a dedicated account manager. There are two calls a month, one to pitch the content and one to go through the numbers. The retainer is monthly, on a 3-month initial term.',
       },
       {
         type: 'steps',
@@ -59,7 +59,7 @@ export const HOW_WE_WORK: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'Revisions and reshoots are on [approvals and revisions](/docs/approvals-and-revisions). What the fee covers is on [pricing](/docs/reference/pricing). The testing split is [the 70/20/10 rule](/blog/70-20-10-content-rule).',
+        text: 'Revisions and reshoots are on [approvals and revisions](/docs/approvals-and-revisions). What the fee covers is on [what’s included](/docs/reference/pricing). The testing split is [the 70/20/10 rule](/blog/70-20-10-content-rule).',
       },
       {
         type: 'faq',

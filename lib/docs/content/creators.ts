@@ -60,7 +60,7 @@ export const CREATORS: DocPage[] = [
     description:
       'The content we make includes perpetual usage rights. Paid use is not included. Spark Ads, whitelisting and partnership ads need a separate written agreement and creator authorisation.',
     schema: 'Article',
-    related: { href: '/docs/reference/pricing', label: 'Pricing and what’s included' },
+    related: { href: '/docs/reference/pricing', label: 'What the retainer includes' },
     blocks: [
       {
         type: 'p',

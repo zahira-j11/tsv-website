@@ -30,7 +30,7 @@ export const GET_STARTED: DocPage[] = [
         type: 'ul',
         items: [
           '[How long until first content is live?](/docs/quickstart) 14–21 days from signing.',
-          '[How much does UGC cost in the UK?](/docs/reference/pricing) From £2,000 a month (ex VAT).',
+          '[What does a content retainer include?](/docs/reference/pricing) Strategy, creators, editing, posting and reporting in one monthly fee.',
           '[How to brief UGC creators](/docs/briefing-ugc-creators).',
           '[UGC agency UK](/ugc-agency), the overview for buyers comparing agencies.',
           '[Questions we get asked](/docs/faq), in the order prospects actually ask them.',

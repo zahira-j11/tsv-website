@@ -4,17 +4,17 @@ export const REFERENCE: DocPage[] = [
   {
     slug: 'reference/pricing',
     section: 'reference',
-    navLabel: 'Pricing',
-    title: 'How much does UGC cost in the UK?',
-    seoTitle: 'How much does UGC cost in the UK? | The Social Vision',
+    navLabel: 'What’s included',
+    title: 'What does a content retainer include?',
+    seoTitle: 'What does a content retainer include? | The Social Vision',
     description:
-      'Retainers are from £2,000 a month (ex VAT). The fee covers strategy, creators, editing, revisions, posting and reporting. Ad spend is not included.',
+      'One monthly retainer, scoped to your goals, formats and volume. It covers strategy, creators, editing, revisions, posting and reporting. Ad spend is extra.',
     schema: 'Article',
     related: { href: '/case-studies', label: 'Case studies' },
     blocks: [
       {
         type: 'p',
-        text: 'From £2,000 a month (ex VAT). We work on a monthly retainer, as one flat fee tied to the deliverables, not as a day rate. The initial term is 3 months. After that it rolls monthly, with 30 days’ notice. Ad spend is not included.',
+        text: 'We work on a monthly retainer: one flat fee tied to the deliverables, not a day rate. It’s scoped to your goals, formats and content volume. The initial term is 3 months, then it rolls monthly with 30 days’ notice. Ad spend is not included.',
       },
       { type: 'h2', id: 'included', text: 'What the fee covers' },
       {
@@ -53,8 +53,8 @@ export const REFERENCE: DocPage[] = [
         type: 'faq',
         items: [
           {
-            q: 'How much does it cost, and what is the minimum?',
-            a: 'From £2,000 a month (ex VAT), as a monthly retainer. The initial term is 3 months, then rolling with 30 days’ notice. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. A per-video rate is not published.',
+            q: 'How is the retainer priced, and what is the minimum?',
+            a: 'It’s a monthly retainer, scoped after a discovery call. The initial term is 3 months, then it rolls with 30 days’ notice. Organic retainers include at least 16 videos a month. The paid minimum depends on the budget. We don’t publish a per-video rate.',
           },
           {
             q: 'Is there a commitment, or can we trial it first?',
@@ -136,7 +136,7 @@ export const REFERENCE: DocPage[] = [
           ['Vox pop', 'Another name for a [street interview](/docs/formats/street-interviews).'],
           ['Hi-fi ad', 'A higher-production paid video we plan and shoot. See [hi-fi ads](/docs/formats/hi-fi-ads).'],
           ['Scripted interaction', 'A planned scene with dialogue you approve. See [scripted interactions](/docs/formats/scripted-interactions).'],
-          ['Retainer', 'A monthly fee. From £2,000 a month (ex VAT). See [pricing](/docs/reference/pricing).'],
+          ['Retainer', 'A monthly fee, scoped to your goals, formats and content volume. See [what’s included](/docs/reference/pricing).'],
           ['Revisions', 'Included. The number of rounds is agreed in each brief. See [approvals](/docs/approvals-and-revisions).'],
           ['Usage', 'Perpetual usage rights on the content we make. Paid use is not included. See [usage rights](/docs/ugc-usage-rights).'],
           ['Spark Ad / partnership ad', 'Paid use of a video we made with our creators, with the creator\u2019s name still on it. It is not included in the usage rights. It needs a separate written agreement and creator authorisation. See [partnership ads](/docs/partnership-ads).'],

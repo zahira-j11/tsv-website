@@ -6,7 +6,7 @@ import { SITE_URL } from '@/lib/blog';
 
 const TITLE = 'UGC Agency UK | London UGC Creators for TikTok, Instagram and YouTube';
 const DESCRIPTION =
-  'The Social Vision is a UGC agency in the UK, based in London. We brief, cast and edit creator video for TikTok, Instagram and YouTube. Retainers from £2,000 a month (ex VAT).';
+  'The Social Vision is a UGC agency in the UK, based in London. We brief, cast and edit creator video for TikTok, Instagram and YouTube, on a monthly retainer.';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -33,7 +33,7 @@ const FAQS = [
   },
   {
     q: 'How much does a UGC agency cost in the UK?',
-    a: 'From £2,000 a month (ex VAT). It is a monthly retainer, on a 3-month initial term, then rolling with 30 days’ notice. A per-video rate is not published.',
+    a: 'It’s a monthly retainer, scoped to your goals, formats and how much content you need. The initial term is 3 months, then it rolls with 30 days’ notice. We don’t publish a per-video rate. You get a proposal after a discovery call.',
   },
   {
     q: 'Are you a UGC agency in London?',
@@ -88,7 +88,7 @@ const LINKS = [
   ['What is UGC?', '/docs/formats/ugc'],
   ['How a retainer runs', '/docs/how-we-work'],
   ['How to brief UGC creators', '/docs/briefing-ugc-creators'],
-  ['How much it costs', '/docs/reference/pricing'],
+  ['What the retainer includes', '/docs/reference/pricing'],
   ['Usage rights', '/docs/ugc-usage-rights'],
   ['Hooks, and how many to test', '/docs/ugc-hooks'],
   ['Paid social creative', '/paid-social-creative'],
@@ -160,10 +160,10 @@ export default function UgcAgencyPage() {
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>How pricing works</h2>
             <p style={body}>
-              From £2,000 a month (ex VAT). The retainer is one monthly fee, scoped to the goal and the formats, on a 3-month initial term. After that it rolls monthly, with 30 days’ notice. Strategy, creators, editing, revisions, organic posting and reporting are included. Ad spend is not. Revisions are included, and the number of rounds is agreed in each brief. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. The content includes perpetual usage rights. Paid use is not included. A per-video price is not published.
+              The retainer is one monthly fee, scoped to the goal, the formats and the content volume, on a 3-month initial term. After that it rolls monthly, with 30 days’ notice. Strategy, creators, editing, revisions, organic posting and reporting are included. Ad spend is not. Revisions are included, and the number of rounds is agreed in each brief. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. The content includes perpetual usage rights. Paid use is not included. A per-video price is not published.
             </p>
             <p style={body}>
-              The breakdown is on <a href="/docs/reference/pricing">how much UGC costs</a>. The month itself is on <a href="/docs/how-we-work">how a retainer runs</a>.
+              The breakdown is on <a href="/docs/reference/pricing">what the retainer includes</a>. The month itself is on <a href="/docs/how-we-work">how a retainer runs</a>.
             </p>
           </section>
 

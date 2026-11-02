@@ -21,8 +21,8 @@ export const FAQ: DocPage[] = [
         type: 'faq',
         items: [
           {
-            q: 'How much does it cost, and what is the minimum?',
-            a: 'From £2,000 a month (ex VAT). It is a monthly retainer. The initial term is 3 months, then rolling with 30 days’ notice. Organic retainers include a minimum of 16 videos a month. The paid minimum depends on the budget. A per-video rate is not published. See [pricing](/docs/reference/pricing).',
+            q: 'How is the retainer priced, and what is the minimum?',
+            a: 'It’s a monthly retainer, scoped after a discovery call. The initial term is 3 months, then it rolls with 30 days’ notice. Organic retainers include at least 16 videos a month. The paid minimum depends on the budget. We don’t publish a per-video rate. See [what the retainer includes](/docs/reference/pricing).',
           },
           {
             q: 'How does it actually work, and who does what?',
