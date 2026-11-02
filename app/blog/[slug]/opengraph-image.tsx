@@ -54,7 +54,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
         {/* Category pill */}
         <div
           style={{
-            display: 'inline-flex',
+            display: 'flex', // the image renderer rejects inline-flex
             alignItems: 'center',
             padding: '6px 16px',
             borderRadius: 999,
@@ -63,7 +63,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
             fontSize: 14,
             fontWeight: 600,
             marginBottom: 32,
-            width: 'fit-content',
+            alignSelf: 'flex-start', // fit-content isn't supported by the image renderer
           }}
         >
           {cat.label}
