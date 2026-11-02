@@ -26,8 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       siteName: 'The Social Vision',
       type: 'article',
+      // The site-wide share card: a file-based image can't sit under an optional catch-all route.
+      images: ['/opengraph-image'],
     },
-    twitter: { card: 'summary_large_image', title: doc.seoTitle, description: doc.description },
+    twitter: { card: 'summary_large_image', title: doc.seoTitle, description: doc.description, images: ['/opengraph-image'] },
   };
 }
 

@@ -499,3 +499,7 @@ body::before {
 /* Cookie banner: server-rendered, hidden before paint once a choice is stored
    (see CONSENT_DEFAULT_SCRIPT in lib/consent.ts). */
 .tsv-consented .tsv-cookie-banner { display: none !important; }
+
+/* Shared footer (app/SiteFooter.tsx): hover states the homepage footer sets in script. */
+.site-footer-link:hover { color: #FFD600 !important; }
+.site-footer-social:hover { border-color: #FFD600 !important; color: #FFD600 !important; }

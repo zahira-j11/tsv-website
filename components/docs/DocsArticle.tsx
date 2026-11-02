@@ -1,4 +1,5 @@
 import SiteNav from '@/app/SiteNav';
+import SiteFooter from '@/app/SiteFooter';
 import TrackedLink from '@/app/case-studies/TrackedLink';
 import { BOOK_CALL_HREF } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
@@ -12,6 +13,8 @@ import {
   neighbours,
   sectionOf,
   slugify,
+  DOCS_PUBLISHED,
+  DOCS_UPDATED,
 } from '@/lib/docs';
 import type { Block, DocPage } from '@/lib/docs/types';
 import { RichText } from './RichText';
@@ -43,11 +46,11 @@ function JsonLd({ doc }: { doc: DocPage }) {
       '@type': 'Article',
       headline: doc.title,
       description: doc.description,
-      datePublished: '2026-10-23',
-      dateModified: '2026-10-23',
+      datePublished: DOCS_PUBLISHED,
+      dateModified: DOCS_UPDATED,
       inLanguage: 'en-GB',
       mainEntityOfPage: url,
-      author: { '@type': 'Organization', name: 'The Social Vision', url: SITE_URL },
+      author: { '@id': `${SITE_URL}/#organization` },
       publisher: { '@id': `${SITE_URL}/#organization` },
     },
   ];
@@ -253,6 +256,7 @@ export default function DocsArticle({ doc }: { doc: DocPage }) {
           )}
         </aside>
       </div>
+      <SiteFooter />
       </div>
   );
 }

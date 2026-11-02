@@ -29,7 +29,7 @@ export const HOW_WE_WORK: DocPage[] = [
           },
           {
             title: 'Strategy call',
-            text: 'Your account manager pitches the month: the strategy, the concepts and the first copy. For street interviews, that includes the questions.',
+            text: 'Your account manager pitches the month: the strategy, the concepts and the first copy. For [street interviews](/street-interviews), that includes the questions.',
           },
           {
             title: 'You approve concepts, scripts and casting',
@@ -37,7 +37,7 @@ export const HOW_WE_WORK: DocPage[] = [
           },
           {
             title: 'Production',
-            text: 'For studio-style and street interview work, we handle location, filming and editing. For remote creator UGC, a creator in the network films from their own space and we edit in-house. Creators send raw footage.',
+            text: 'For studio-style and street interview work, we handle location, filming and editing. For [remote creator UGC](/ugc-agency), a creator in the network films from their own space and we edit in-house. Creators send raw footage.',
           },
           {
             title: 'Edit',

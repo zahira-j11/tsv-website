@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import SiteNav from '../../SiteNav';
+import SiteFooter from '../../SiteFooter';
 import TrackedLink from '../TrackedLink';
-import { CASES, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
+import { CASES, CASES_PUBLISHED, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
 import { industriesFor, industryPath } from '@/lib/industries';
 
@@ -46,6 +47,9 @@ function JsonLd({ c }: { c: CaseStudy }) {
       headline: c.title,
       description: c.headline,
       url,
+      mainEntityOfPage: url,
+      datePublished: CASES_PUBLISHED,
+      dateModified: CASES_PUBLISHED,
       image: `${SITE_URL}${c.thumb}`,
       author: { '@id': `${SITE_URL}/#organization` },
       publisher: { '@id': `${SITE_URL}/#organization` },
@@ -171,6 +175,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </section>
         </main>
       </div>
+      <SiteFooter />
     </>
   );
 }

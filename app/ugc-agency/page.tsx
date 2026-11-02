@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SiteNav from '../SiteNav';
+import SiteFooter from '../SiteFooter';
 import TrackedLink from '../case-studies/TrackedLink';
 import { BOOK_CALL_HREF, TESTIMONIALS } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
@@ -195,6 +196,7 @@ export default function UgcAgencyPage() {
           </section>
         </main>
       </div>
+      <SiteFooter />
     </>
   );
 }

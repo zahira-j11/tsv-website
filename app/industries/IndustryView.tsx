@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SiteNav from '../SiteNav';
+import SiteFooter from '../SiteFooter';
 import TrackedLink from '../case-studies/TrackedLink';
 import { industryPath, type Industry } from '@/lib/industries';
 import { BOOK_CALL_HREF } from '@/lib/caseStudies';
@@ -137,6 +138,7 @@ export default function IndustryView({ ind }: { ind: Industry }) {
           </section>
         </main>
       </div>
+      <SiteFooter />
     </>
   );
 }

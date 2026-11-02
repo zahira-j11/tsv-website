@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import SiteNav from '../SiteNav';
+import SiteFooter from '../SiteFooter';
 import TrackedLink from '../case-studies/TrackedLink';
 import { CASES, BOOK_CALL_HREF } from '@/lib/caseStudies';
-import { AUTHORS, SITE_URL } from '@/lib/blog';
+import { AUTHORS, SITE_URL, FOUNDER_ID } from '@/lib/blog';
 
 const BG = '#FEFDF8';
 const WH = '#FFFFFF';
@@ -50,6 +51,8 @@ const SCHEMA = [
   {
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': FOUNDER_ID,
+    url: `${SITE_URL}/about`,
     name: AUTHORS.zahira.name,
     jobTitle: AUTHORS.zahira.role,
     image: `${SITE_URL}${AUTHORS.zahira.avatar}`,
@@ -148,6 +151,7 @@ export default function AboutPage() {
           </section>
         </main>
       </div>
+      <SiteFooter />
     </>
   );
 }
