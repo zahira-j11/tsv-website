@@ -33,7 +33,7 @@ export const FORMATS: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'Creator-led organic is the cousin of this on the organic side: it should feel like someone made it at home. The site still lists that work as UGC-style creatives. Plum’s paid mix, including UGC-style videos, is the [case study](/case-studies/plum). The buyer overview is [UGC agency UK](/ugc-agency).',
+        text: 'Creator-led organic is the cousin of this on the organic side: it should feel like someone made it at home. The site lists that work as creator-led organic. Plum’s paid mix, including remote creator UGC, is the [case study](/case-studies/plum). The buyer overview is [UGC agency UK](/ugc-agency).',
       },
       {
         type: 'faq',
@@ -63,7 +63,7 @@ export const FORMATS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A street interview is a presenter asking people a question, cut into a short video. We write the questions and the strategy, the presenters come from our network, and you can approve who is on camera. We talk to more people than the edit needs, then hand-pick the answers. It is one of the organic types we make, next to UGC creators on your channels and creator-led video.',
+        text: 'A street interview is a presenter asking people a question, cut into a short video. We write the questions and the strategy, the presenters come from our network, and you can approve who is on camera. We talk to more people than the edit needs, then hand-pick the answers. It is one of the organic types we make, next to creator-led organic and organic social productions.',
       },
       {
         type: 'p',
@@ -97,7 +97,7 @@ export const FORMATS: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'On the site this sits with scripted interactions and with hi-fi paid ads. Plum’s paid work includes scripted interactions alongside UGC-style videos and hi-fi ads, written up in the [Plum case study](/case-studies/plum). The words are covered on [scripts vs talking points](/docs/ugc-scripts-vs-talking-points).',
+        text: 'On the site this sits under organic social productions (organic) and paid social productions (paid). Plum’s paid work includes paid social productions alongside remote creator UGC, written up in the [Plum case study](/case-studies/plum). The words are covered on [scripts vs talking points](/docs/ugc-scripts-vs-talking-points).',
       },
       {
         type: 'faq',
@@ -127,7 +127,7 @@ export const FORMATS: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'On the site this is hi-fi ads and paid social productions, for TikTok, Instagram and YouTube. A square version is available when you need one. The single paid video should still look and feel like an organic post, because a video that looks like a traditional advert is easy to skip. See [paid social creative](/paid-social-creative).',
+        text: 'On the site this is paid social productions, for TikTok, Instagram and YouTube. A square version is available when you need one. The single paid video should still look and feel like an organic post, because a video that looks like a traditional advert is easy to skip. See [paid social creative](/paid-social-creative).',
       },
       {
         type: 'faq',
@@ -143,17 +143,17 @@ export const FORMATS: DocPage[] = [
   {
     slug: 'formats/other',
     section: 'formats',
-    navLabel: 'UGC on your channels, trends, explainers',
+    navLabel: 'Creator-led, trends, explainers',
     title: 'What other short-form formats do you make?',
-    seoTitle: 'UGC creators on your channels, trend-led and explainer videos | The Social Vision',
+    seoTitle: 'Creator-led organic, trend-led and explainer videos | The Social Vision',
     description:
-      'Besides street interviews and UGC, the formats are UGC creators on your channels, trend-led videos, scripted interactions and educational explainers.',
+      'Besides street interviews and UGC, the formats are creator-led organic, organic social productions and paid social productions, with trend-led videos and explainers inside them.',
     schema: 'Article',
     related: { href: '/blog/70-20-10-content-rule', label: 'The 70/20/10 rule' },
     blocks: [
       {
         type: 'p',
-        text: 'Besides street interviews and UGC-style video, the formats on the site are UGC creators on your channels, trend-led content, scripted interactions and educational explainers. UGC creators on your channels means a recurring person on your own channels, so the audience can recognise them. Trend-led videos follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
+        text: 'The formats on the site are street interview content, organic social productions and creator-led organic for organic, and paid social productions and remote creator UGC for paid. Creator-led organic means a recurring person on your own channels, so the audience can recognise them. Trend-led videos follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
       },
       {
         type: 'p',

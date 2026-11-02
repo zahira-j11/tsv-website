@@ -89,11 +89,11 @@ function Orbs({ orbs }: { orbs: { size:number; color:string; opacity:number; cls
 // ─── Phone mockup data ─────────────────────────────────────
 const PHONES = [
   { bg:'linear-gradient(165deg,#1a0535 0%,#5a1a9a 55%,#0d0520 100%)', tag:'Street Interview', handle:'@thesocialvision', caption:'POV: We asked Londoners about money 🎤', likes:'4.2M', comments:'89K' },
-  { bg:'linear-gradient(165deg,#06051a 0%,#1e2080 55%,#0a0840 100%)', tag:'UGC creators',    handle:'@habito',          caption:'This changed my mortgage search forever 🏠', likes:'2.1M', comments:'34K' },
-  { bg:'linear-gradient(165deg,#15052a 0%,#5a1888 55%,#0d0520 100%)', tag:'Trend-Led',        handle:'@plum_app',        caption:'The savings trick nobody tells you 💸', likes:'8.7M', comments:'156K' },
-  { bg:'linear-gradient(165deg,#0e1525 0%,#1e3a70 55%,#060d25 100%)', tag:'UGC',              handle:'@prepkitchen',     caption:'Honest 30-day review 👀', likes:'1.8M', comments:'28K' },
-  { bg:'linear-gradient(165deg,#1a0a28 0%,#6a1a98 55%,#100518 100%)', tag:'Hi-Fi Ad',         handle:'@asos_uk',         caption:'Summer drop. Just landed ✨', likes:'3.2M', comments:'67K' },
-  { bg:'linear-gradient(165deg,#080e22 0%,#282a8a 55%,#050818 100%)', tag:'Scripted',         handle:'@monzo',           caption:'Wait until the end… 🤯', likes:'12.4M', comments:'220K' },
+  { bg:'linear-gradient(165deg,#06051a 0%,#1e2080 55%,#0a0840 100%)', tag:'Creator-Led',     handle:'@habito',          caption:'This changed my mortgage search forever 🏠', likes:'2.1M', comments:'34K' },
+  { bg:'linear-gradient(165deg,#15052a 0%,#5a1888 55%,#0d0520 100%)', tag:'Social Production',handle:'@plum_app',        caption:'The savings trick nobody tells you 💸', likes:'8.7M', comments:'156K' },
+  { bg:'linear-gradient(165deg,#0e1525 0%,#1e3a70 55%,#060d25 100%)', tag:'Remote UGC',       handle:'@prepkitchen',     caption:'Honest 30-day review 👀', likes:'1.8M', comments:'28K' },
+  { bg:'linear-gradient(165deg,#1a0a28 0%,#6a1a98 55%,#100518 100%)', tag:'Paid Production',  handle:'@asos_uk',         caption:'Summer drop. Just landed ✨', likes:'3.2M', comments:'67K' },
+  { bg:'linear-gradient(165deg,#080e22 0%,#282a8a 55%,#050818 100%)', tag:'Paid Production',  handle:'@monzo',           caption:'Wait until the end… 🤯', likes:'12.4M', comments:'220K' },
 ];
 type PhoneData = typeof PHONES[0];
 
@@ -175,86 +175,70 @@ const CLIENT_LOGOS = [
   { file:'17', name:'Freetrade' },
   { file:'18', name:'Cannaray' },
   { file:'19', name:'Hey Savi' },
+  { file:'20', name:'Simba' },
 ];
 
-const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','UGC creators on your channels','Trend-Led Content','Scripted Interactions','UGC Creatives','Hi-Fi Ads','Organic Growth','Zero Ad Spend','300+ Creators','200M+ Views'];
+const TICKER = ['TikTok','Instagram Reels','YouTube Shorts','Street Interviews','Creator-Led Organic','Organic Social Productions','Paid Social Productions','Remote Creator UGC','Organic Growth','Zero Ad Spend','300+ Creators','200M+ Views'];
 
 // Default hall-of-fame cards shown when backend has no data yet
 const HOF_DEFAULTS = [
   { contentType:'Street Interview',    distribution:'Organic', clientName:'AIApply',      clientLogoColor:'#6B63DE', viewCount:'1M+',   videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047854/tsv-website/aiapply-street.mp4',      logoSrc:undefined },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Habito',       clientLogoColor:'#FF6B6B', viewCount:'1.5M+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048070/tsv-website/habito-street.mp4',       logoSrc:'/logos/habito.png' },
-  { contentType:'Scripted Interaction',distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'200K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048297/tsv-website/plum-scripted.mp4',       logoSrc:'/logos/plum.png' },
+  { contentType:'Paid Social Production',distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'200K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048297/tsv-website/plum-scripted.mp4',       logoSrc:'/logos/plum.png' },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Blackbullion', clientLogoColor:'#1A1033', viewCount:'200K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047906/tsv-website/blackbullion-street.mp4', logoSrc:'/logos/blackbullion.png' },
-  { contentType:'UGC Style',           distribution:'Paid',    clientName:'Prep Kitchen', clientLogoColor:'#D97706', viewCount:'800K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048333/tsv-website/prepkitchen-ugc.mp4',     logoSrc:'/logos/prepkitchen.png' },
+  { contentType:'Remote Creator UGC',  distribution:'Paid',    clientName:'Prep Kitchen', clientLogoColor:'#D97706', viewCount:'800K+', videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048333/tsv-website/prepkitchen-ugc.mp4',     logoSrc:'/logos/prepkitchen.png' },
   { contentType:'Podcast',             distribution:'Paid',    clientName:'Prep Kitchen', clientLogoColor:'#D97706', viewCount:'',      videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048316/tsv-website/prepkitchen-podcast.mp4', logoSrc:'/logos/prepkitchen.png' },
-  { contentType:'Hi-Fi Ad Creative',   distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'',      videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048269/tsv-website/plum-hifi.mp4',           logoSrc:'/logos/plum.png' },
+  { contentType:'Paid Social Production',distribution:'Paid',    clientName:'Plum',         clientLogoColor:'#7C3AED', viewCount:'',      videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048269/tsv-website/plum-hifi.mp4',           logoSrc:'/logos/plum.png' },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Uni Compare',  clientLogoColor:'#2563EB', viewCount:'1M+',   videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048505/tsv-website/unicompare-street.mp4',   logoSrc:'/logos/unicompare.png' },
   { contentType:'Street Interview',    distribution:'Organic', clientName:'Habito',       clientLogoColor:'#FF6B6B', viewCount:'4M+',   videoSrc:'https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048063/tsv-website/habito-street-2.mp4',     logoSrc:'/logos/habito.png' },
 ];
 
 const SERVICES = [
   {
-    key:'street-interviews', tag:'Street Interviews', icon:'🎤',
+    key:'street-interviews', group:'Organic', tag:'Street Interview Content', icon:'🎤',
     bg:'linear-gradient(165deg,#3a0088,#A200FF 55%,#21005D)', accent:P,
     thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048070/tsv-website/habito-street.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047854/tsv-website/aiapply-street.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048505/tsv-website/unicompare-street.mp4'],
-    desc:'Real, unscripted reactions from the public. Authentic and highly engaging social content.',
-    modalDesc:'We go out onto the street and ask real people questions related to your brand, product or industry. The answers are unscripted, unfiltered and edited into short-form videos that feel completely native to TikTok and Reels. Because the content features real people rather than actors or spokespeople, it naturally builds trust and curiosity with viewers.',
+    desc:'Presenter-led conversations with the public. Real, unscripted reactions that feel native to social.',
+    modalDesc:'We build a question strategy around your brand, product or industry. Then a presenter from our network, of your choice, takes it to the street. The answers are unscripted, and we edit them into short-form videos that feel completely native to TikTok and Reels. Because the content features real people rather than actors or spokespeople, it naturally builds trust and curiosity.',
     whenBest:'When you want to grow your audience and reach people who have never heard of your brand. Street interviews travel well organically and consistently pull in views from outside your existing following.',
     bestFor:'Consumer brands, fintech and lifestyle companies that want to build awareness at scale without relying on paid ads.',
   },
   {
-    key:'ambassador', tag:'UGC creators on your channels', icon:'🤝',
+    key:'organic-productions', group:'Organic', tag:'Organic Social Productions', icon:'🎬',
+    bg:'linear-gradient(165deg,#022E00,#06A040 50%,#08F683)', accent:GRN,
+    // Filler clips until Zahira uploads Organic Social Productions examples
+    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048353/tsv-website/scripted-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048375/tsv-website/scripted-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048392/tsv-website/scripted-3.mp4'],
+    desc:'Game shows, podcasts, skits and social series, fully produced by our team.',
+    modalDesc:'For concepts that need more than one person and a phone. We develop the strategy, concepts and scripts and cast the right actors and creators. We plan the studios, locations and props, then direct, film and edit every video. The finish can be lo-fi or polished, whichever suits the idea.',
+    whenBest:'When you want a recurring format your audience comes back for, like a game show, podcast or series. Also when an idea needs several people, a location or props to land.',
+    bestFor:'Brands with ideas that need multiple actors, a location or props, and teams who want a recognisable series rather than one-off posts.',
+  },
+  {
+    key:'creator-led', group:'Organic', tag:'Creator-Led Organic', icon:'🤝',
     bg:'linear-gradient(165deg,#54153F,#E820A4 55%,#300825)', accent:MAG,
     thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047871/tsv-website/ambassador-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047876/tsv-website/ambassador-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782047886/tsv-website/ambassador-3.mp4'],
-    desc:'A recurring creator representing your brand, building familiarity and trust with your audience.',
-    modalDesc:'One creator becomes the consistent face of your brand on social. They appear regularly across your content, so your audience gets familiar with them over time and starts to associate them with your brand.',
-    whenBest:'When your product or service needs some explanation before someone buys. Educational content, explainers and opinion-led videos all perform well in this format because a familiar face delivering information consistently builds trust faster than a rotating cast of creators.',
+    desc:'One consistent creator representing your brand, building familiarity and trust.',
+    modalDesc:'One creator from our network, of your choice, becomes the consistent face of your brand on social and films remotely. We write the content strategy, script and sharpen the hooks, and edit every video. Formats include talking-to-camera, trends, routines and relatable storytelling, so your audience gets to know them and links them with your brand.',
+    whenBest:'When your product needs some explanation before someone buys. Explainers, trends and opinion-led videos all work well here, because a familiar face builds trust faster than a rotating cast.',
     bestFor:'Subscription services, DTC brands, health and wellness, and fintech companies where trust and familiarity play a big role in the buying decision.',
   },
   {
-    key:'trend-led', tag:'Trend-Led Content', icon:'⚡',
-    bg:'linear-gradient(165deg,#4a3000,#B07800 50%,#FFD600)', accent:YEL,
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048398/tsv-website/trend-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048410/tsv-website/trend-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048421/tsv-website/trend-3.mp4'],
-    desc:'Timely videos leveraging platform trends that feel native to social and drive engagement.',
-    modalDesc:'We track what is performing across TikTok, Reels and Shorts in real time and build content around trending sounds, formats and topics before the moment passes.',
-    whenBest:'When you want your brand to feel like it is part of what is happening right now rather than playing catch-up.',
-    bestFor:'Fashion, beauty, food and lifestyle brands whose audience lives on short-form platforms and responds to content that feels current.',
-  },
-  {
-    key:'scripted', tag:'Scripted Interactions', icon:'🎬',
-    bg:'linear-gradient(165deg,#022E00,#06A040 50%,#08F683)', accent:GRN,
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048353/tsv-website/scripted-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048375/tsv-website/scripted-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048392/tsv-website/scripted-3.mp4'],
-    desc:'Pre-planned, story-driven interactions that feel organic while delivering key brand messages.',
-    modalDesc:'We script and film interactions between two or more people that are built around your brand message. Because it features a real back and forth between people rather than someone speaking directly to camera, it feels natural to watch and fits straight into someone\'s feed without standing out as an ad.',
-    whenBest:'When you have a specific message to land but a traditional ad would not perform well on social. Scripted interactions let you be deliberate about what you say while still feeling like content someone would organically come across on TikTok or Reels.',
-    bestFor:'Apps, fintech and consumer tech brands that need to explain what they do or why someone should care, in a way that actually holds attention.',
-  },
-  {
-    key:'hi-fi-ads', tag:'Hi-Fi Ads', icon:'✨',
+    key:'paid-productions', group:'Paid', tag:'Paid Social Productions', icon:'✨',
     bg:'linear-gradient(165deg,#21005D,#5B01FF 55%,#0d0030)', accent:'#5B01FF',
     thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048214/tsv-website/hifi-ad-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048226/tsv-website/hifi-ad-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048247/tsv-website/hifi-ad-3.mp4'],
-    desc:'High-production videos for paid social. Strong hooks, clear messaging, polished visuals.',
-    modalDesc:'Higher production paid social ads built for Meta, TikTok and YouTube. These are designed to perform as paid creatives while still feeling native to the platform, so they hold attention rather than getting skipped.',
-    whenBest:'When you are running paid social and need a steady supply of fresh creatives. Ad fatigue is one of the biggest reasons paid performance drops, and having new content coming in consistently keeps your campaigns working harder for longer.',
-    bestFor:'E-commerce, DTC, fintech and consumer app brands that are actively spending on paid social and need creatives that convert, not just look good.',
+    desc:'Fully produced paid creative: game-show concepts, scripted street interviews and presenter-led ads.',
+    modalDesc:'For paid social ideas that need a more involved shoot. We develop the hook and creative strategy, cast the actors and creators, and plan locations and props. Then we direct, film and edit every asset for Meta, TikTok and YouTube. The look can range from natural and lo-fi to cinematic.',
+    whenBest:'When you have a specific message to land and a talking head won\'t carry it. Interactions, storylines and visual concepts hold attention, and a steady supply of fresh concepts stops ad fatigue.',
+    bestFor:'Fintech, consumer app, e-commerce and DTC brands spending on paid social, with concepts that need multiple talent, locations or props.',
   },
   {
-    key:'ugc', tag:'UGC-Style Creatives', icon:'📱',
+    key:'remote-ugc', group:'Paid', tag:'Remote Creator UGC', icon:'📱',
     bg:'linear-gradient(165deg,#3a0025,#E820A4 45%,#FF7ED3)', accent:PMAG,
     thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048333/tsv-website/prepkitchen-ugc.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048447/tsv-website/ugc-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048468/tsv-website/ugc-3.mp4'],
-    desc:'Creator storytelling meets product messaging. Relatable, authentic content that converts.',
-    modalDesc:'Low-fi, sit-down videos of a creator talking through their experience with your product the way a real customer would. Filmed and edited to look and feel like something you would naturally come across scrolling through your feed.',
+    desc:'Ads developed by us and filmed remotely by creators. Built for high-volume testing.',
+    modalDesc:'We develop the hook and creative brief and match the right creator from our network, who films each concept remotely. We then edit and polish every video so it looks native in the feed: POVs, testimonials, demos and problem-solution ads. Creators film in parallel, so you can test lots of angles at once.',
     whenBest:'When trust is the thing standing between someone and a purchase. We often use formats like stitches and reactions to show a problem and solution in a way that feels completely native to the platform rather than like an ad.',
-    bestFor:'Beauty, skincare, supplements, food, fashion, any product-led brand where social proof and relatability drive purchase decisions.',
-  },
-  {
-    key:'edu-explainers', tag:'Educational Explainers', icon:'🧠',
-    bg:'linear-gradient(165deg,#003D35,#00967B 55%,#006B57)', accent:'#00967B',
-    thumbs:['https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048782/tsv-website/explainer-1.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048872/tsv-website/explainer-2.mp4','https://res.cloudinary.com/dbjelnbfj/video/upload/q_auto,f_auto/v1782048986/tsv-website/explainer-3.mp4'],
-    desc:'High-value, expert-led content that positions your brand as the go-to resource in your niche.',
-    modalDesc:'We produce expert-led educational videos that answer the questions your audience is already asking. The content positions your brand as a trusted authority in your category and keeps people coming back.',
-    whenBest:'When you want to build a loyal following by giving real value before asking for anything in return. Educational content compounds over time and consistently performs well across both organic and paid.',
-    bestFor:'Financial services, health, tech and professional services brands that want to be seen as the go-to resource in their niche.',
+    bestFor:'Product-led brands where social proof drives purchases, and performance teams testing lots of angles.',
   },
 ];
 
@@ -310,7 +294,7 @@ const ROUTES = [
 const FAQS = [
   { q:'Are you based in London?',                          a:"Yes. The Social Vision is a London-based short-form content agency, and we work with apps and consumer brands across the UK." },
   { q:'Can you work alongside our in-house team and other agencies?', a:"Yes. We slot in around your team. We can be a full-service extension or purely handle the creator and production side while your team leads strategy. We're used to both." },
-  { q:'Can you handle organic content and paid creative together?', a:"Yes, and our most popular package does both: organic content that builds your audience on TikTok, Reels and Shorts, and paid creative (hi-fi ads, UGC-style and scripted) your performance team can test and scale. Plum uses us for paid social creative; Habito and Uni Compare for organic." },
+  { q:'Can you handle organic content and paid creative together?', a:"Yes, and our most popular package does both: organic content that builds your audience on TikTok, Reels and Shorts, and paid creative (Paid Social Productions and Remote Creator UGC) your performance team can test and scale. Plum uses us for paid social creative; Habito and Uni Compare for organic." },
   { q:'How do you work with our brand guidelines and sign-off?', a:"Every creator is briefed to your brand guidelines, and you approve concepts before we shoot. Revisions are included, so nothing goes live until your team is happy with it." },
   { q:'Do you work with regulated brands?',                a:"Yes. Much of our work is for fintech and mortgage brands such as Plum and Habito, so disclaimers and your compliance team's sign-off are built into every brief." },
   { q:'What results have you got?',                        a:"Habito reached 25M organic views in 8 months with zero ad spend. Uni Compare passed 1M views in its first 8 weeks. TALAB went from launch, with no audience, to 6,000 users. Each one is written up on our case studies page." },
@@ -504,13 +488,14 @@ function ServiceCard({ s, i, onOpen }: { s: typeof SERVICES[0]; i: number; onOpe
       </div>
       <div style={{ height: 3, background: s.accent }} />
       <div style={{ padding: '14px 16px 16px' }}>
+        <p style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,253,237,0.5)', margin: '0 0 5px' }}>{s.group}</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
           <span style={{ fontSize: 14 }}>{s.icon}</span>
           <span style={{ ...DISP, fontSize: 14, fontWeight: 800, color: WH, letterSpacing: '-.02em' }}>{s.tag}</span>
         </div>
         <p style={{
-          fontSize: 11.5, color: 'rgba(255,253,237,0.55)', lineHeight: 1.55, margin: '7px 0 0',
-          display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+          fontSize: 11.5, color: 'rgba(255,253,237,0.55)', lineHeight: 1.55, margin: '7px 0 0', minHeight: '4.65em',
+          display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden',
         }}>{s.desc}</p>
       </div>
     </div>

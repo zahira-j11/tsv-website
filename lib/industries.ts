@@ -53,8 +53,8 @@ export const INDUSTRIES: Industry[] = [
     formats: [
       { title: 'Street interviews about money.', href: '/street-interviews', body: "Real people answering the questions everyone wonders about: how much they spend, what they earn, whether they've started saving for a house. The brand asks the question and owns the conversation, without making claims." },
       { title: 'Storytime and real-life scenarios.', body: 'Relatable money moments, told by a presenter your audience trusts, that turn an abstract product into something people recognise from their own lives.' },
-      { title: 'Educational explainers.', body: "Short, plain-English answers to the questions people actually search for. This is the content that keeps getting found months after it's posted." },
-      { title: 'Paid creative built to test.', href: '/paid-social-creative', body: 'Hi-fi ads, UGC-style content and scripted interactions, made in volume so your performance team can test hooks and scale what wins.' },
+      { title: 'Creator-led explainers.', body: "Short, plain-English answers to the questions people actually search for. This is the content that keeps getting found months after it's posted." },
+      { title: 'Paid creative built to test.', href: '/paid-social-creative', body: 'Paid Social Productions and Remote Creator UGC, made in volume so your performance team can test hooks and scale what wins.' },
     ],
     processHeading: 'Built for regulated categories',
     processBody:
@@ -62,7 +62,7 @@ export const INDUSTRIES: Industry[] = [
     resultsHeading: 'Results from financial brands',
     results: [
       { slug: 'habito', client: 'Habito', body: "a digital mortgage broker that hadn't posted on social for over a year. Street interviews about buying a home took it to 25 million organic views in 8 months with zero ad spend, and average views per video from about 1,000 to 156,000." },
-      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We're its paid social creative partner, producing hi-fi ads, UGC-style content and scripted interactions so its performance team can test new formats at speed." },
+      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We're its paid social creative partner, producing Paid Social Productions and Remote Creator UGC so its performance team can test new formats at speed." },
     ],
     quote: {
       text: 'TSV have taken our organic TikTok to 25 million views in just eight months with zero ad spend.',
@@ -73,7 +73,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: 'Can short-form content work for regulated financial brands?', a: 'Yes. Habito, a mortgage broker, reached 25 million organic views in 8 months. The key is formats that create interest without making claims, like street interviews, with compliance sign-off built into every brief.' },
       { q: 'How do you handle compliance?', a: 'Disclaimers go into the brief from the start, you approve concepts before filming and edits before posting, and nothing goes live until your compliance team is happy.' },
-      { q: 'What formats work best for fintech on TikTok?', a: 'Street interviews about money, relatable storytime scenarios and plain-English explainers tend to perform best organically. For paid, a pipeline of hi-fi ads and UGC-style creative lets you test and scale.' },
+      { q: 'What formats work best for fintech on TikTok?', a: 'Street interviews about money, relatable storytime scenarios and plain-English explainers tend to perform best organically. For paid, a pipeline of Paid Social Productions and Remote Creator UGC lets you test and scale.' },
       { q: 'Can you do organic and paid together?', a: 'Yes. Habito is organic, Plum is paid creative, and many brands use us for both.' },
     ],
     closing: 'Your fintech brand deserves more than 300 views.',
@@ -101,7 +101,7 @@ export const INDUSTRIES: Industry[] = [
       'We plan each month around what students are going through, cast presenters your audience will relate to, and turn round content fast enough to catch the big moments. You approve every concept before we shoot and every edit before it goes live.',
     resultsHeading: 'Results from student brands',
     results: [
-      { slug: 'uni-compare', client: 'Uni Compare', body: 'a UK university comparison platform. Street interviews and scripted interactions about choosing a university passed 1 million views in the first 8 weeks, took average views per video from under 1,000 to 83,000, and contributed to a significant rise in app downloads.' },
+      { slug: 'uni-compare', client: 'Uni Compare', body: 'a UK university comparison platform. Street interviews and scripted skits about choosing a university passed 1 million views in the first 8 weeks, took average views per video from under 1,000 to 83,000, and contributed to a significant rise in app downloads.' },
       { slug: 'talab', client: 'TALAB', body: 'a student concierge app that came to us at launch with no audience. Street interviews about student life reached 1 million views in the first 5 weeks and helped it grow to 6,000 users.' },
     ],
     quote: {
@@ -132,9 +132,9 @@ export const INDUSTRIES: Industry[] = [
     formatsHeading: 'What works for apps on short-form',
     formats: [
       { title: 'Problem-first storytelling.', body: 'Open on the moment your user feels the problem, not on the app. The product shows up as the answer.' },
-      { title: 'UGC-style creative.', body: 'Creators from our network using the app the way your users do, filmed to feel native to the feed.' },
+      { title: 'Remote Creator UGC.', body: 'Creators from our network using the app the way your users do, filmed to feel native to the feed.' },
       { title: 'Street interviews.', href: '/street-interviews', body: 'Real people talking about the thing your app solves, which builds an audience around the topic, not just the product.' },
-      { title: 'Paid creative in volume.', href: '/paid-social-creative', body: 'Hi-fi ads, UGC-style content and scripted interactions with at least two hook variations per piece, so your performance team always has something new to test.' },
+      { title: 'Paid creative in volume.', href: '/paid-social-creative', body: 'Paid Social Productions and Remote Creator UGC with at least two hook variations per piece, so your performance team always has something new to test.' },
     ],
     processHeading: 'Organic and paid working together',
     processBody:
@@ -143,7 +143,7 @@ export const INDUSTRIES: Industry[] = [
     results: [
       { slug: 'talab', client: 'TALAB', body: 'a student concierge app that came to us at launch with no audience. Organic short-form content drove most of its growth to 6,000 users, with 1 million views in the first 5 weeks.' },
       { slug: 'uni-compare', client: 'Uni Compare', body: 'a university comparison platform. Average views per video went from under 1,000 to 83,000, and the content contributed to a significant rise in app downloads.' },
-      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We're its paid social creative partner, producing hi-fi ads, UGC-style content and scripted interactions so its performance team can test new formats at speed." },
+      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We're its paid social creative partner, producing Paid Social Productions and Remote Creator UGC so its performance team can test new formats at speed." },
     ],
     quote: {
       text: 'The Social Vision has unlocked a new level of creative production for us. We have been able to test new creatives and styles at speed which has helped us grow our paid social channels significantly.',
@@ -226,7 +226,7 @@ export const INDUSTRIES: Industry[] = [
       'We brief from your performance data and brand guidelines, cast from our network of 300+ vetted UK creators, and deliver ads on a rolling basis through the month, ready for TikTok, Meta and YouTube. You approve every concept before we shoot and every edit before it goes live. Your team never has to find, brief or chase a creator.',
     resultsHeading: 'Results from paid creative',
     results: [
-      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We became its dedicated paid social creative partner, producing hi-fi ads, UGC-style content and scripted interactions so its performance team could test new formats and scale winning concepts. That meant three times the creative output, with no creator management on Plum's side." },
+      { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We became its dedicated paid social creative partner, producing Paid Social Productions and Remote Creator UGC so its performance team could test new formats and scale winning concepts. That meant three times the creative output, with no creator management on Plum's side." },
     ],
     quote: {
       text: 'The Social Vision has unlocked a new level of creative production for us. We have been able to test new creatives and styles at speed which has helped us grow our paid social channels significantly.',

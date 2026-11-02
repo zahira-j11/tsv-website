@@ -126,8 +126,8 @@ export default function UgcAgencyPage() {
             <div className="ugc-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               {[
                 ['Remote creator UGC', 'Creators in the network film from their own space, to a brief we write after you approve the copy. They send raw footage. We edit.'],
-                ['UGC creators on your channels', 'A recurring face on your own brand channels: TikTok, Instagram and YouTube.'],
-                ['Hi-fi and scripted paid ads', 'Higher-production videos we shoot ourselves, still built with two hooks so your team has something to test.'],
+                ['Creator-led organic', 'A recurring face on your own brand channels: TikTok, Instagram and YouTube.'],
+                ['Paid social productions', 'Higher-production videos we shoot ourselves, still built with two hooks so your team has something to test.'],
                 ['Street interviews', 'A presenter, questions we write, and a location chosen for the people you want to hear from. The service page is separate.'],
               ].map(([title, text]) => (
                 <div key={title} style={{ background: WH, border: `1.5px solid ${BR}`, borderRadius: 18, padding: '20px 20px 16px' }}>
@@ -144,7 +144,7 @@ export default function UgcAgencyPage() {
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>Examples</h2>
             <p style={body}>
-              <a href="/case-studies/plum">Plum</a>, a money app, uses us as its paid social creative partner. The work is hi-fi ads, UGC-style content and scripted interactions, so the performance team can test without managing creators. Creative output went up three times.
+              <a href="/case-studies/plum">Plum</a>, a money app, uses us as its paid social creative partner. The work is Paid Social Productions and Remote Creator UGC, so the performance team can test without managing creators. Creative output went up three times.
             </p>
             {prep && (
               <figure style={{ margin: '18px 0', background: WH, border: `1.5px solid ${BR}`, borderRadius: 18, padding: '22px 24px' }}>
