@@ -389,9 +389,10 @@ function HofCard({ card, videoSrc, poster }: {
   return (
     <div style={{ flexShrink:0, width:210, borderRadius:18, background:WH, overflow:'hidden', boxShadow:'0 4px 24px rgba(33,0,93,0.18)', cursor:videoSrc?'pointer':'default', position:'relative' }} onClick={toggle}>
       {/* Tags */}
-      <div style={{ display:'flex', gap:6, padding:'12px 12px 0', flexWrap:'wrap' }}>
-        <span style={{ fontSize:11, fontWeight:700, color:PD, background:'rgba(33,0,93,0.07)', padding:'3px 10px', borderRadius:20 }}>{card.contentType}</span>
-        <span style={{ fontSize:11, fontWeight:700, color:card.distribution==='Paid'?WH:P, background:card.distribution==='Paid'?PD:'rgba(124,1,255,0.1)', padding:'3px 10px', borderRadius:20 }}>{card.distribution}</span>
+      {/* One row on every card, so the videos line up across the carousel */}
+      <div style={{ display:'flex', gap:5, padding:'12px 12px 0', flexWrap:'nowrap' }}>
+        <span style={{ fontSize:10.5, fontWeight:700, color:PD, background:'rgba(33,0,93,0.07)', padding:'3px 8px', borderRadius:20, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', minWidth:0 }}>{card.contentType}</span>
+        <span style={{ fontSize:10.5, fontWeight:700, color:card.distribution==='Paid'?WH:P, background:card.distribution==='Paid'?PD:'rgba(124,1,255,0.1)', padding:'3px 8px', borderRadius:20, whiteSpace:'nowrap', flexShrink:0 }}>{card.distribution}</span>
       </div>
       {/* Video area — fills to bottom, brand pill + view count overlaid */}
       <div style={{ position:'relative', margin:'10px 12px 12px', borderRadius:12, overflow:'hidden', background:'rgba(33,0,93,0.06)', aspectRatio:'9/16' }}>
@@ -586,8 +587,8 @@ function CasesCarousel() {
 
       {/* Dots */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 4 }}>
-        {CASES.map((_, i) => (
-          <button key={i} onClick={() => { setPage(i); scrollTo(i); }} style={{
+        {CASES.map((c, i) => (
+          <button key={i} aria-label={`Show the ${c.client} case study`} onClick={() => { setPage(i); scrollTo(i); }} style={{
             width: i === page ? 20 : 6, height: 6, borderRadius: 3,
             background: i === page ? P : 'rgba(33,0,93,0.18)',
             border: 'none', cursor: 'pointer', padding: 0,
@@ -911,7 +912,8 @@ export default function MarketingPage() {
           <div className="mkt-ticker" style={{ display:'flex', whiteSpace:'nowrap', width:'max-content', alignItems:'center', gap:0 }}>
             {[...CLIENT_LOGOS,...CLIENT_LOGOS].map((logo,i)=>(
               <div key={i} aria-hidden={i >= CLIENT_LOGOS.length} style={{ display:'inline-flex', alignItems:'center', padding:'0 48px', flexShrink:0 }}>
-                <Image src={`/logos/${logo.file}.png`} alt={i < CLIENT_LOGOS.length ? logo.name : ''} width={150} height={150} sizes="150px" style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
+                {/* The first logos are in view on load (on mobile they're the largest paint), so don't lazy-load them. */}
+                <Image src={`/logos/${logo.file}.png`} alt={i < CLIENT_LOGOS.length ? logo.name : ''} width={150} height={150} sizes="150px" priority={i < 2} loading={i < 2 ? undefined : i < 6 ? 'eager' : 'lazy'} style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
               </div>
             ))}
           </div>

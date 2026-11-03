@@ -41,9 +41,9 @@ export const INDUSTRIES: Industry[] = [
   {
     slug: 'fintech',
     label: 'Fintech and financial services',
-    metaTitle: 'Short-Form Content Agency for Fintech and Financial Services | The Social Vision',
+    metaTitle: 'Short-Form Content Agency for Fintech and Financial Services',
     metaDescription:
-      'London short-form content agency for fintech apps, mortgage brands and financial services. Organic TikTok, Reels and Shorts plus paid creative, with compliance sign-off built in.',
+      'London fintech social media agency: organic TikTok, Reels and Shorts plus paid creative for fintech apps and mortgage brands, with compliance sign-off.',
     headlineStart: 'Your fintech brand deserves',
     intro: [
       "Finance is one of the hardest categories to make work on social. People don't wake up wanting to watch a video about mortgages or savings accounts. Every line has to get past compliance. And most financial brands end up posting polished, careful content that nobody stops for.",
@@ -83,7 +83,7 @@ export const INDUSTRIES: Industry[] = [
     label: 'Education and student brands',
     metaTitle: 'Short-Form Content Agency for Education and Student Brands | The Social Vision',
     metaDescription:
-      'London short-form content agency for education and student brands. TikTok, Reels and Shorts that students actually watch and share, from street interviews to results-day content.',
+      'Student marketing agency in London: TikTok, Reels and Shorts that students watch and share, from street interviews to results-day content.',
     headlineStart: 'Your student brand deserves',
     intro: [
       'Students are the hardest audience to fake it with. They spot an ad in under a second, they live on TikTok, and they trust each other far more than any brand. Most education and student brands post content that looks like a prospectus, and it gets scrolled straight past.',
@@ -123,7 +123,7 @@ export const INDUSTRIES: Industry[] = [
     label: 'Consumer apps',
     metaTitle: 'Short-Form Content Agency for Consumer Apps | The Social Vision',
     metaDescription:
-      'London short-form content agency for consumer apps. Organic TikTok, Reels and Shorts that build an audience, plus paid creative in volume for your performance team.',
+      'Short-form content for app marketing teams: organic TikTok, Reels and Shorts that build an audience, plus paid creative in volume for performance.',
     headlineStart: 'Your app deserves',
     intro: [
       'Getting someone to download an app from a short video is a big ask. They have to stop scrolling, understand what the app does, believe it’s for them and care enough to leave TikTok. Most app content fails at the first step, because it opens on a screen recording and a logo.',

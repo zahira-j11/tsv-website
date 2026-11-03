@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import SiteNav from '../../SiteNav';
 import SiteFooter from '../../SiteFooter';
 import TrackedLink from '../TrackedLink';
-import { CASES, CASES_PUBLISHED, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
+import { CASES, CASES_PUBLISHED, CASE_SEO, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
 import { industriesFor, industryPath } from '@/lib/industries';
 
@@ -28,10 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCase(slug);
   if (!c) return {};
   const url = `${SITE_URL}/case-studies/${c.slug}`;
-  const title = `${c.title} | The Social Vision`;
+  const seo = CASE_SEO[c.slug];
+  const title = seo?.title ?? `${c.title} | The Social Vision`;
   return {
-    title,
-    description: c.headline,
+    title: { absolute: title },
+    description: seo?.description ?? c.headline,
     alternates: { canonical: url },
     openGraph: { title: c.title, description: c.headline, url, siteName: 'The Social Vision', type: 'article', images: [{ url: `${SITE_URL}${c.thumb}` }] },
     twitter: { card: 'summary_large_image', title: c.title, description: c.headline },

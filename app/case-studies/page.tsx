@@ -13,9 +13,9 @@ const PD = '#21005D';
 const MU = 'rgba(33,0,93,0.64)';
 const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
 
-const TITLE = 'Case Studies | The Social Vision, London Short-Form Content Agency';
+const TITLE = 'Short-Form Content Case Studies | The Social Vision';
 const DESCRIPTION =
-  'Short-form content results for apps and consumer brands: Habito’s 25M organic views with zero ad spend, Uni Compare’s 1M views in 8 weeks, TALAB’s 6,000 users from launch, and Plum’s paid social creative.';
+  'Short-form content case studies: Habito’s 25M views with zero ad spend, Uni Compare’s 1M views in 8 weeks, TALAB’s 6,000 users and Plum’s paid creative.';
 
 export const metadata: Metadata = {
   title: TITLE,
