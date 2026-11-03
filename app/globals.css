@@ -504,7 +504,7 @@ body::before {
 .site-footer-link:hover { color: #FFD600 !important; }
 .site-footer-social:hover { border-color: #FFD600 !important; color: #FFD600 !important; }
 
-/* How it works: portal mock-up (app/PortalTour.tsx).
+/* How it works: portal mock-up (app/CreatorPlatformDemo.tsx).
    A copy of the client view of the TSV portal, drawn at a fixed design size
    (800 x 720, or the portal's phone layout at 380 x 580) and scaled to the
    slot in script (--k). The slot's aspect ratio holds the space before it
@@ -520,7 +520,7 @@ body::before {
 .cpd {
   --ink: #21005D; --body: #625577; --muted: #746687; --primary: #6D00FF; --plum: #4D167E;
   --line: #E7DFFF; --line-strong: #CDB6F7; --lilac: #F2EBFF;
-  --live: #1A674E; --live-bg: #D9F2E9; --amber: #92400E; --amber-bg: #FEF3C7; --declined: #8B1E1E; --tint: #FBF9FF;
+  --live: #1A674E; --live-bg: #D9F2E9; --amber: #92400E; --declined: #8B1E1E;
   position: relative; height: 100%; overflow: hidden; border-radius: 18px; background: #21005D; color: var(--ink);
   /* The portal's sidebar is the section's own purple, so a deep shadow and
      a soft purple glow lift the frame off it, without an outline. The frame's
@@ -551,16 +551,9 @@ body::before {
 .cpd-powered { padding: 12px 16px 28px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 9px; color: rgba(255,255,255,0.25); }
 .cpd-topbar { display: none; flex: none; height: 50px; align-items: center; gap: 9px; padding: 0 16px; background: #fff; border-bottom: 1px solid #E8E3F2; font-size: 13px; font-weight: 700; }
 .cpd-topbar svg { margin-left: auto; color: #6B6883; }
-.cpd-topbar-title { display: grid; }
-.cpd-topbar-title em { grid-area: 1 / 1; font-style: normal; opacity: 0; transition: opacity .3s; }
-.cpd-topbar-title em.is-on { opacity: 1; }
 
 /* Main panel */
-.cpd-main { position: relative; flex: 1; min-width: 0; margin: 12px; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 8px 30px rgba(53,8,104,0.06); }
-.cpd-scene { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 22px 22px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .45s, transform .45s, visibility 0s linear .45s; }
-.cpd-scene.is-on { opacity: 1; visibility: visible; transform: none; transition: opacity .45s .1s, transform .45s .1s; }
-/* Each scene is a page that carries on below, fading out at the panel's foot. */
-.cpd-scene::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; height: 80px; background: linear-gradient(rgba(255,255,255,0), #fff); pointer-events: none; }
+.cpd-main { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; margin: 12px; padding: 22px 22px 0; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 8px 30px rgba(53,8,104,0.06); }
 .cpd-head { flex: none; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 .cpd-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--primary); }
 .cpd-title { margin-top: 4px; font-size: 27px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
@@ -571,11 +564,6 @@ body::before {
 .cpd-bar { display: block; height: 4px; margin-top: 7px; overflow: hidden; border-radius: 4px; background: var(--lilac); }
 .cpd-bar i { display: block; height: 100%; background: var(--primary); transform-origin: left; transition: transform .6s ease; }
 .cpd-link { display: block; margin-top: 6px; font-size: 11px; font-weight: 700; color: var(--primary); }
-.cpd-counts { flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-.cpd-counts span { display: flex; align-items: center; gap: 7px; padding: 5px 12px 5px 5px; border-radius: 100px; font-size: 10.5px; font-weight: 700; }
-.cpd-counts b { min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box; border-radius: 11px; display: grid; place-items: center; background: #fff; font-size: 10.5px; font-weight: 800; }
-.cpd-counts .is-waiting { background: var(--amber-bg); color: var(--amber); border: 1px solid #FDE68A; }
-.cpd-counts .is-done { background: var(--live-bg); color: var(--live); border: 1px solid #A3DFC6; }
 .cpd-tabs { flex: none; display: flex; align-items: center; gap: 5px; margin-top: 16px; }
 .cpd-tab { padding: 4.5px 9.5px; border: 1px solid var(--line); border-radius: 100px; background: #fff; font-size: 9.5px; font-weight: 700; white-space: nowrap; }
 .cpd-tab b { font-weight: 700; opacity: .7; }
@@ -589,7 +577,9 @@ body::before {
 /* Creator grid. One transform scrolls the track (set in script); each card's
    slot arrives as --c3/--r3 and --c2/--r2, and the layout picks a pair. */
 .cpd-grid { position: relative; flex: 1; margin: 14px -22px 0; overflow: hidden; }
-.cpd-grid::before { content: ''; position: absolute; top: 0; left: 0; right: 0; z-index: 5; height: 14px; background: linear-gradient(#fff, rgba(255,255,255,0)); pointer-events: none; }
+.cpd-grid::before, .cpd-grid::after { content: ''; position: absolute; left: 0; right: 0; z-index: 5; pointer-events: none; }
+.cpd-grid::before { top: 0; height: 14px; background: linear-gradient(#fff, rgba(255,255,255,0)); }
+.cpd-grid::after { bottom: 0; height: 80px; background: linear-gradient(rgba(255,255,255,0), #fff); }
 .cpd-track { position: absolute; top: 4px; left: 22px; right: 22px; --cols: 3; --gap: 12px; }
 .cpd-card {
   --c: var(--c3); --r: var(--r3);
@@ -618,103 +608,6 @@ body::before {
 .cpd-skills { margin-top: 6px; color: var(--body); }
 .cpd-chip { display: inline-block; box-sizing: border-box; max-width: 100%; margin-top: 8px; padding: 3px 9px; border-radius: 100px; background: var(--lilac); color: var(--plum); font-size: 10px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: top; }
 
-/* The campaign pipeline strip across the top of the campaign scenes. */
-.cpd-pipe { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 18px; padding: 12px 0 10px; border: 1px solid var(--line); border-radius: 14px; background: var(--tint); }
-.cpd-pipe span { position: relative; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
-.cpd-pipe span + span::before { content: ''; position: absolute; top: 11px; right: calc(50% + 15px); width: calc(100% - 30px); height: 2px; border-radius: 2px; background: #E8E3F2; }
-.cpd-pipe span.is-done + span::before, .cpd-pipe span.is-done + span.is-on::before { background: #5B01FF; }
-.cpd-pipe i { position: relative; z-index: 1; width: 24px; height: 24px; box-sizing: border-box; border-radius: 50%; display: grid; place-items: center; border: 2px solid #D4C8F5; background: #fff; color: #A78BFA; font-style: normal; transition: background .35s, border-color .35s, color .35s, box-shadow .35s; }
-.cpd-pipe i > * { grid-area: 1 / 1; transition: opacity .3s; }
-.cpd-pipe b { font-size: 10px; font-weight: 800; }
-.cpd-pipe svg { opacity: 0; }
-.cpd-pipe .is-on i { border-color: #5B01FF; background: #F0E8FF; color: #5B01FF; box-shadow: 0 0 0 4px rgba(91,1,255,0.12); }
-.cpd-pipe .is-done i { border-color: #5B01FF; background: #5B01FF; color: #fff; }
-.cpd-pipe .is-done b { opacity: 0; }
-.cpd-pipe .is-done svg { opacity: 1; }
-.cpd-pipe em { max-width: 80px; font-size: 9px; font-weight: 700; font-style: normal; line-height: 1.2; color: #C4BFD8; transition: color .35s; }
-.cpd-pipe .is-done em { color: var(--ink); }
-.cpd-pipe .is-on em { color: #5B01FF; }
-
-/* Concepts: reference clips, hooks and Approve, as on the portal's campaign
-   page. The second row runs on under the fade. */
-.cpd-concepts { flex: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
-.cpd-concept { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 16px; transition: transform .35s, box-shadow .35s, border-color .3s; }
-.cpd-concept.is-hover { transform: translateY(-4px); border-color: var(--line-strong); box-shadow: 0 18px 55px rgba(54,0,115,0.16); }
-.cpd-cmedia { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #1c1030; }
-.cpd-cmedia img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 2s cubic-bezier(.2,.6,.3,1); }
-.cpd-cmedia::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(20,0,50,0) 50%, rgba(20,0,50,0.5)); }
-.cpd-concept.is-playing .cpd-cmedia img { transform: scale(1.06); }
-.cpd-ref { position: absolute; top: 8px; left: 8px; z-index: 1; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 100px; background: rgba(15,5,35,0.55); color: #fff; font-size: 9px; font-weight: 700; }
-.cpd-cplay { position: absolute; top: 50%; left: 50%; z-index: 1; width: 38px; height: 38px; margin: -19px 0 0 -19px; padding-left: 2px; box-sizing: border-box; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,0.92); color: var(--primary); box-shadow: 0 8px 20px rgba(0,0,0,0.25); transition: opacity .3s, transform .3s; }
-.cpd-concept.is-playing .cpd-cplay { opacity: 0; transform: scale(.8); }
-.cpd-progress { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 1; height: 3px; overflow: hidden; border-radius: 3px; background: rgba(255,255,255,0.4); opacity: 0; transition: opacity .3s; }
-.cpd-progress i { display: block; height: 100%; background: #fff; transform: scaleX(0); transform-origin: left; }
-.cpd-concept.is-playing .cpd-progress { opacity: 1; }
-.cpd-concept.is-playing .cpd-progress i { animation: cpd-fill 1.5s linear forwards; }
-.cpd-cbody { padding: 10px 11px 12px; }
-.cpd-cformat { font-size: 9.5px; font-weight: 700; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cpd-cname { margin-top: 4px; font-size: 15px; font-weight: 800; letter-spacing: -.03em; }
-.cpd-chook { height: 30px; margin-top: 4px; overflow: hidden; font-size: 10px; line-height: 1.5; color: var(--body); }
-.cpd-cbtn { display: grid; height: 28px; margin-top: 10px; font-size: 11px; font-weight: 800; }
-.cpd-cbtn em { grid-area: 1 / 1; display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 10px; font-style: normal; transition: opacity .3s; }
-.cpd-cbtn em:first-child { background: #E8F5E9; color: #088001; border: 1px solid rgba(8,128,1,0.22); }
-.cpd-cbtn em + em { background: var(--live-bg); color: var(--live); border: 1px solid rgba(26,103,78,0.25); opacity: 0; }
-.cpd-concept.is-yes .cpd-cbtn em:first-child { opacity: 0; }
-.cpd-concept.is-yes .cpd-cbtn em + em { opacity: 1; }
-
-/* Content review: a cut with its comments, Request changes then Approve, and
-   the next video in the queue under the fade. The buttons sit under the
-   comments, or across the foot of the row on phones. */
-.cpd-review { flex: none; display: grid; grid-template-columns: 200px 1fr; grid-template-rows: 1fr auto; column-gap: 20px; margin-top: 18px; }
-.cpd-review.is-next { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
-.cpd-player { position: relative; grid-row: 1 / 3; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 18px; background: #000; box-shadow: 0 22px 50px rgba(33,0,93,0.22); }
-.cpd-player img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
-.cpd-player .cpd-cut2 { opacity: 0; transition: opacity .5s; }
-.is-cut3 .cpd-cut2, .is-cut4 .cpd-cut2 { opacity: 1; }
-.cpd-ver { position: absolute; top: 10px; left: 10px; z-index: 1; display: grid; }
-.cpd-ver em { grid-area: 1 / 1; padding: 4px 9px; border-radius: 100px; background: rgba(15,5,35,0.6); color: #fff; font-size: 10px; font-weight: 800; font-style: normal; transition: opacity .3s; }
-.cpd-ver em + em, .is-cut3 .cpd-ver em:first-child, .is-cut4 .cpd-ver em:first-child { opacity: 0; }
-.is-cut3 .cpd-ver em + em, .is-cut4 .cpd-ver em + em { opacity: 1; }
-.cpd-ready { position: absolute; left: 10px; bottom: 22px; z-index: 1; display: flex; align-items: center; gap: 4px; padding: 5px 9px; border-radius: 100px; background: rgba(255,255,255,0.94); color: var(--live); font-size: 10px; font-weight: 800; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
-.is-cut4 .cpd-ready { opacity: 1; transform: none; }
-.cpd-scrub { position: absolute; left: 12px; right: 12px; bottom: 10px; z-index: 1; height: 4px; overflow: hidden; border-radius: 4px; background: rgba(255,255,255,0.35); }
-.cpd-scrub i { display: block; height: 100%; background: #fff; transform: scaleX(0); transform-origin: left; animation: cpd-fill 2.2s linear forwards; }
-.cpd-rv { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.cpd-rlabel { font-size: 10px; font-weight: 700; color: var(--primary); }
-.cpd-rtitle { margin-top: 5px; font-size: 20px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
-.cpd-rstatus { display: grid; justify-items: start; margin-top: 10px; }
-.cpd-rstatus em { grid-area: 1 / 1; padding: 5px 11px; border-radius: 100px; font-size: 10.5px; font-weight: 800; font-style: normal; opacity: 0; transition: opacity .3s; }
-.cpd-rstatus em:nth-child(1) { background: var(--lilac); color: var(--plum); }
-.cpd-rstatus em:nth-child(2) { background: var(--amber-bg); color: var(--amber); }
-.cpd-rstatus em:nth-child(3) { background: var(--live-bg); color: var(--live); }
-.cpd-rstatus.is-s0 em:nth-child(1), .cpd-rstatus.is-s1 em:nth-child(2), .cpd-rstatus.is-s2 em:nth-child(3) { opacity: 1; }
-.cpd-rhead { margin-top: 16px; font-size: 11.5px; font-weight: 800; }
-.cpd-comment { display: flex; gap: 9px; margin-top: 10px; opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
-.cpd-comment.is-in { opacity: 1; transform: none; }
-.cpd-avatar { flex: none; width: 26px; height: 26px; overflow: hidden; border-radius: 50%; display: grid; place-items: center; background: var(--ink); }
-.cpd-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.cpd-avatar.is-you { background: linear-gradient(135deg, #FFE86F, #FF7ED3); color: var(--ink); font-size: 8px; font-weight: 800; }
-.cpd-comment > div { flex: 1; min-width: 0; padding: 8px 11px; border-radius: 4px 12px 12px 12px; background: var(--tint); border: 1px solid var(--line); }
-.cpd-comment b { display: block; font-size: 10px; font-weight: 800; }
-.cpd-comment b i { font-style: normal; font-weight: 600; color: var(--muted); }
-.cpd-comment p { margin-top: 4px; font-size: 11px; line-height: 1.45; }
-.cpd-rbtns { grid-column: 2; display: flex; gap: 8px; }
-.cpd-rbtn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; height: 34px; border-radius: 11px; font-size: 11.5px; font-weight: 800; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
-.rb-yes { flex: 1.2; display: grid; background: #E8F5E9; color: #088001; border: 1px solid rgba(8,128,1,0.22); }
-.rb-yes em { grid-area: 1 / 1; display: flex; align-items: center; justify-content: center; gap: 5px; font-style: normal; transition: opacity .3s; }
-.rb-yes em + em, .is-cut4 .rb-yes em:first-child { opacity: 0; }
-.is-cut4 .rb-yes em + em { opacity: 1; }
-.rb-changes { background: #fff; color: var(--amber); border: 1px solid rgba(146,64,14,0.3); }
-.is-cut1 .rb-changes, .is-cut2 .rb-changes { background: var(--amber-bg); }
-.is-cut4 .rb-yes { background: var(--live); border-color: var(--live); color: #fff; }
-
-/* Wide screens draw the portal taller, so the concept clips run at full 9:16
-   and the cut under review grows with them. */
-@media (min-width: 1260px) {
-  .cpd-cmedia { aspect-ratio: 9 / 16; }
-  .cpd-review { grid-template-columns: 230px 1fr; }
-}
-
 /* Decisions on the hovered card: Approve, Maybe, Reject, in the portal's colours. */
 .cpd-actions { position: absolute; left: 12px; right: 12px; bottom: 8px; display: flex; gap: 3px; padding: 3px; border-radius: 100px; background: rgba(255,255,255,0.95); box-shadow: 0 6px 18px rgba(33,0,93,0.2); opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; }
 .cpd-card.is-hover .cpd-actions { opacity: 1; transform: none; }
@@ -741,22 +634,7 @@ body::before {
   .cpd-canvas { width: 380px; height: 580px; flex-direction: column; }
   .cpd-side, .cpd-desc, .cpd-queue, .cpd-search, .cpd-skills { display: none; }
   .cpd-topbar, .cpd-lists { display: flex; }
-  .cpd-main { margin: 0; border: 0; border-radius: 0; box-shadow: none; }
-  .cpd-scene { padding: 16px 16px 0; }
-  .cpd-counts, .cpd-pipe { display: none; }
-  .cpd-concepts { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
-  .cpd-concept:nth-child(3n) { display: none; }
-  .cpd-review { grid-template-columns: 138px 1fr; grid-template-rows: auto auto; gap: 10px 12px; margin-top: 12px; }
-  .cpd-review.is-next { margin-top: 18px; padding-top: 18px; }
-  .cpd-player { grid-row: 1; border-radius: 14px; }
-  .cpd-rbtns { grid-column: 1 / 3; }
-  .cpd-rtitle { font-size: 15px; }
-  .cpd-rhead { margin-top: 10px; }
-  .cpd-comment { gap: 6px; margin-top: 7px; }
-  .cpd-comment > div { padding: 6px 8px; }
-  .cpd-comment p { font-size: 9.5px; }
-  .cpd-rbtns { gap: 6px; }
-  .cpd-rbtn { height: 30px; font-size: 10px; }
+  .cpd-main { margin: 0; padding: 16px 16px 0; border: 0; border-radius: 0; box-shadow: none; }
   .cpd-title { font-size: 24px; }
   .cpd-tabs { margin-top: 12px; gap: 4px; }
   .cpd-tab { padding: 4px 8px; font-size: 9.5px; }
@@ -773,66 +651,4 @@ body::before {
 }
 
 @keyframes cpd-press    { 50% { transform: scale(.8); } }
-@keyframes cpd-fill     { to { transform: scaleX(1); } }
 @keyframes cpd-tap      { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
-
-/* How it works steps (app/HowItWorksTour.tsx): the active one is lit, and its
-   line fills as the portal plays that step's scene. */
-.hiw-step { cursor: pointer; opacity: .45; transition: opacity .4s; }
-.hiw-step:hover { opacity: .75; }
-.hiw-step.is-on { opacity: 1; }
-.hiw-step-btn { padding: 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
-.hiw-step-btn:focus-visible { outline: 2px solid #08F683; outline-offset: 4px; border-radius: 4px; }
-.hiw-bar { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; overflow: hidden; border-radius: 2px; }
-.hiw-bar i { display: block; height: 100%; background: linear-gradient(90deg, #7C01FF, #E820A4); transform: scaleX(0); transform-origin: left; }
-
-/* Contact: what happens next (app/WhatHappensNext.tsx), the portal's campaign
-   timeline. Done stages fill (TSV purple, client plum), the active one rings,
-   and the line to the next stage fills as it completes. */
-.whn { max-width: 900px; margin: 0 auto 44px; padding: 26px 30px 24px; border-radius: 26px; background: #fff; border: 2px solid #E4DCFF; box-shadow: 0 14px 44px rgba(0,0,0,0.16); color: #21005D; --dot: 54px; }
-.whn-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
-.whn-eyebrow { font-family: var(--font-display); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #7C01FF; }
-.whn-title { margin-top: 6px; font-family: var(--font-display); font-size: 21px; font-weight: 800; letter-spacing: -.04em; line-height: 1.2; }
-.whn-current { flex: none; text-align: right; }
-.whn-current span { display: block; font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #A09CB8; }
-.whn-current b { display: grid; justify-items: end; margin-top: 3px; font-size: 13px; font-weight: 700; color: #5B01FF; }
-.whn-current em { grid-area: 1 / 1; font-style: normal; white-space: nowrap; opacity: 0; transition: opacity .35s; }
-.whn-current em.is-on { opacity: 1; }
-.whn-track { display: grid; grid-template-columns: repeat(6, 1fr); margin: 0; padding: 0; list-style: none; }
-.whn-track li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.whn-dot { position: relative; z-index: 1; width: var(--dot); height: var(--dot); box-sizing: border-box; border-radius: 50%; display: grid; place-items: center; background: #F8F5FF; border: 2px solid #D4C8F5; color: #A78BFA; transition: background .35s, border-color .35s, box-shadow .35s, color .35s; }
-.whn-track .is-you .whn-dot { background: #F2EFF8; color: #7C6BA0; }
-.whn-dot svg { grid-area: 1 / 1; transition: opacity .3s; }
-.whn-check { opacity: 0; color: #fff; }
-.whn-track .is-on .whn-dot { background: #F0E8FF; border-color: #5B01FF; color: #5B01FF; box-shadow: 0 0 0 5px rgba(91,1,255,0.12); }
-.whn-track .is-you.is-on .whn-dot { background: #EDE5FF; border-color: #21005D; color: #21005D; box-shadow: 0 0 0 5px rgba(33,0,93,0.10); }
-.whn-track .is-done .whn-dot { background: #5B01FF; border-color: #5B01FF; }
-.whn-track .is-you.is-done .whn-dot { background: #21005D; border-color: #21005D; }
-.whn-track .is-done .whn-icon { opacity: 0; }
-.whn-track .is-done .whn-check { opacity: 1; }
-.whn-owner { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; overflow: hidden; border-radius: 50%; border: 2px solid #fff; display: grid; place-items: center; background: #21005D; color: #fff; font-size: 7px; font-weight: 800; box-shadow: 0 2px 6px rgba(33,0,93,0.18); }
-.whn-owner img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.whn-label { margin-top: 10px; max-width: 96px; font-size: 12px; font-weight: 700; line-height: 1.25; color: #C4BFD8; transition: color .35s; }
-.whn-who { margin-top: 3px; font-size: 10.5px; font-weight: 700; color: #C4BFD8; transition: color .35s; }
-.whn-track .is-done .whn-label { color: #21005D; }
-.whn-track .is-on .whn-label { color: #5B01FF; }
-.whn-track .is-on .whn-who, .whn-track .is-done .whn-who { color: #746687; }
-.whn-track .is-you.is-on .whn-who, .whn-track .is-you.is-done .whn-who { color: #E820A4; }
-.whn-line { position: absolute; top: calc(var(--dot) / 2 - 1px); left: calc(50% + var(--dot) / 2 + 6px); right: calc(-50% + var(--dot) / 2 + 6px); height: 2px; overflow: hidden; border-radius: 2px; background: #E8E3F2; }
-.whn-line i { display: block; height: 100%; background: linear-gradient(90deg, #5B01FF, #AD20FF); transform: scaleX(0); transform-origin: left; transition: transform .6s ease; }
-.whn-track .is-done .whn-line i { transform: scaleX(1); }
-.whn-note { display: grid; margin-top: 22px; padding-top: 18px; border-top: 1px solid #EFE9FF; }
-.whn-note p { grid-area: 1 / 1; margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(33,0,93,0.64); text-align: center; opacity: 0; transition: opacity .35s; }
-.whn-note p.is-on { opacity: 1; }
-@media (max-width: 768px) {
-  .whn { --dot: 38px; padding: 20px 16px 18px; margin-bottom: 32px; }
-  .whn-head { margin-bottom: 18px; }
-  .whn-title { font-size: 17px; }
-  .whn-current { display: none; }
-  .whn-label, .whn-who { display: none; }
-  .whn-owner { width: 17px; height: 17px; top: -5px; right: -5px; font-size: 5.5px; }
-  .whn-dot svg { width: 17px; height: 17px; }
-  .whn-line { left: calc(50% + var(--dot) / 2 + 3px); right: calc(-50% + var(--dot) / 2 + 3px); }
-  .whn-note { margin-top: 16px; padding-top: 14px; }
-  .whn-note p { font-size: 13.5px; }
-}
