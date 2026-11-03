@@ -15,7 +15,7 @@ const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
 
 const TITLE = 'About The Social Vision | London Short-Form Content Agency';
 const DESCRIPTION =
-  'The Social Vision is a London-based short-form content agency. We plan, cast, film, edit and post TikTok, Reels and Shorts content for in-house marketing teams at apps and consumer brands.';
+  'The Social Vision is a London short-form content agency. We plan, cast, film, edit and post TikTok, Reels and Shorts for in-house teams at consumer brands.';
 
 export const metadata: Metadata = {
   title: TITLE,

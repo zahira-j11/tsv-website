@@ -20,7 +20,7 @@ const manrope = Manrope({
 // have been matching buyers to.
 const TITLE = 'The Social Vision | London Short-Form Content Agency';
 const DESCRIPTION =
-  'Your brand deserves more than 300 views. London short-form content agency for apps and consumer brands: strategy, creators, filming and posting across TikTok, Reels and Shorts.';
+  'Your brand deserves more than 300 views. London short-form content agency for apps and consumer brands, from strategy to posting on TikTok, Reels and Shorts.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -16,6 +16,21 @@ const WH   = '#FFFFFF';
 /** When the case-study pages went live (also their sitemap date). Bump when one is rewritten. */
 export const CASES_PUBLISHED = '2026-10-07';
 
+/** Google titles and descriptions where the on-page title or headline runs too long for search results. */
+export const CASE_SEO: Record<string, { title?: string; description?: string }> = {
+  habito:       { title: 'Habito TikTok Case Study: 25M Organic Views, Zero Ad Spend' },
+  'uni-compare': {
+    title: 'Uni Compare Case Study: 1M Views in 8 Weeks | The Social Vision',
+    description: 'Uni Compare passed 1 million views in its first 8 weeks of short-form content, and average views per video rose from under 1,000 to 83,000.',
+  },
+  plum: {
+    description: "Plum's paid social creative partner: Paid Social Productions and Remote Creator UGC, so its performance team can test and scale new creative quickly.",
+  },
+  talab: {
+    description: 'TALAB went from a new app with no audience to 6,000 users, with organic short-form content driving most of the growth and 1 million views in 5 weeks.',
+  },
+};
+
 export const CASES = [
   {
     slug:'habito', title:'How Habito reached 25 million organic views with zero ad spend',
