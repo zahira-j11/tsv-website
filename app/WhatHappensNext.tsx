@@ -5,7 +5,9 @@
 // (its lib/campaignStages.ts), and the look follows its campaign timeline.
 // The stages tick over one by one while the panel is on screen; only colours,
 // opacity and transforms change, so nothing shifts the layout. Reduced motion
-// shows the pipeline part-way through, without the ticking.
+// shows the pipeline part-way through, without the ticking. The TSV logo loads
+// as is (unoptimized): through the image optimiser it held up the hero videos
+// and stretched Lighthouse's desktop run from 10 s to 25 s.
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
@@ -66,7 +68,7 @@ export default function WhatHappensNext() {
             <span className="whn-dot">
               <svg className="whn-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={ICONS[i]} /></svg>
               <svg className="whn-check" width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10l4 4 8-8" /></svg>
-              <span className="whn-owner">{s.you ? 'You' : <Image src="/logos/tsv-logo-mark.png" alt="" width={22} height={22} />}</span>
+              <span className="whn-owner">{s.you ? 'You' : <Image src="/logos/tsv-logo-mark.png" alt="" width={22} height={22} unoptimized />}</span>
             </span>
             <span className="whn-label">{s.label}</span>
             <span className="whn-who">{s.you ? 'You' : 'TSV'}</span>

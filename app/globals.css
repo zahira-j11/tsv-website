@@ -521,14 +521,16 @@ body::before {
   --ink: #21005D; --body: #625577; --muted: #746687; --primary: #6D00FF; --plum: #4D167E;
   --line: #E7DFFF; --line-strong: #CDB6F7; --lilac: #F2EBFF;
   --live: #1A674E; --live-bg: #D9F2E9; --amber: #92400E; --amber-bg: #FEF3C7; --declined: #8B1E1E; --tint: #FBF9FF;
-  position: relative; height: 100%; overflow: hidden; border-radius: 18px; background: #F5F1FF; color: var(--ink);
+  position: relative; height: 100%; overflow: hidden; border-radius: 18px; background: #21005D; color: var(--ink);
   /* The portal's sidebar is the section's own purple, so a deep shadow and
-     a soft purple glow lift the frame off it, without an outline. */
+     a soft purple glow lift the frame off it, without an outline. The frame's
+     own fill is the sidebar's colour, not the portal's lilac (that sits on the
+     canvas), so the rounded clip leaves no light hairline at the corners. */
   box-shadow: 0 30px 70px rgba(4,0,18,0.7), 0 0 80px rgba(140,80,255,0.5);
   -webkit-user-select: none; user-select: none;
 }
 .cpd-canvas {
-  position: absolute; top: 0; left: 0; width: 800px; height: 720px; display: flex;
+  position: absolute; top: 0; left: 0; width: 800px; height: 720px; display: flex; background: #F5F1FF;
   transform: scale(var(--k, 0.7)); transform-origin: 0 0;
 }
 @media (min-width: 1260px) { .cpd-canvas { height: 904px; } }
