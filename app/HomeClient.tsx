@@ -6,7 +6,8 @@ import { track, isHubSpotBooking } from '@/lib/analytics';
 import { openCookieSettings } from '@/lib/consent';
 import { CASES, TESTIMONIALS, BOOK_CALL_HREF } from '@/lib/caseStudies';
 import ServicesSection from './ServicesSection';
-import CreatorPlatformDemo from './CreatorPlatformDemo';
+import HowItWorksTour from './HowItWorksTour';
+import WhatHappensNext from './WhatHappensNext';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -1033,23 +1034,8 @@ export default function MarketingPage() {
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:WH, lineHeight:1.05 }}>Never <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">agonise</em> over who’s going to be <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">on camera</em> again</h2>
             <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, marginTop:18, maxWidth:640 }}>We activate our 300+ creator network and put the right people in front of the camera for you.</p>
           </div>
-          <div className="mkt-process-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'start' }}>
-            {/* Steps */}
-            <div style={{ display:'flex', flexDirection:'column', gap:0 }}>
-              {STEPS.map((s,i)=>(
-                <div key={i} data-reveal data-reveal-delay={String(i*0.14)} style={{ padding:'32px 0', borderBottom: i<STEPS.length-1 ? '1px solid rgba(255,255,255,0.12)' : 'none' }}>
-                  <div style={{ fontSize:11, color:'rgba(255,255,255,0.35)', fontWeight:700, letterSpacing:'.1em', marginBottom:10 }}>{s.n}</div>
-                  <h3 style={{ ...DISP, fontSize:22, fontWeight:800, letterSpacing:'-.045em', color:WH, marginBottom:12 }}>{s.title}</h3>
-                  <p style={{ fontSize:15, color:'rgba(255,253,237,0.55)', lineHeight:1.85, fontWeight:400 }}>{s.body}</p>
-                </div>
-              ))}
-            </div>
-            {/* Creator platform mock-up: browse, filter, shortlist. Sized by
-                .cpd-slot in globals.css, so it holds its space before it loads. */}
-            <div className="cpd-slot" data-reveal data-reveal-delay="0.2">
-              <CreatorPlatformDemo />
-            </div>
-          </div>
+          {/* Steps beside the portal mock-up, which plays one scene per step */}
+          <HowItWorksTour steps={STEPS} />
         </div>
       </section>
 
@@ -1134,6 +1120,9 @@ export default function MarketingPage() {
             </h2>
             <p style={{ fontSize:17, color:'rgba(255,253,237,0.52)', lineHeight:1.8, fontWeight:400, maxWidth:760, margin:'0 auto' }}>Book a discovery call and we&rsquo;ll walk you through what handing social over to us would look like for your brand.</p>
           </div>
+
+          {/* What happens after the call: the portal's six campaign stages */}
+          <WhatHappensNext />
 
           {/* Discovery call card (expands the calendar in place) */}
           {!showCalendar && (
