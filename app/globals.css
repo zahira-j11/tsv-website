@@ -525,8 +525,10 @@ body::before {
   /* The portal's sidebar is the section's own purple, so a deep shadow and
      a soft purple glow lift the frame off it, without an outline. The frame's
      own fill is the sidebar's colour, not the portal's lilac (that sits on the
-     canvas), so the rounded clip leaves no light hairline at the corners. */
-  box-shadow: 0 30px 70px rgba(4,0,18,0.7), 0 0 80px rgba(140,80,255,0.5);
+     canvas), so the rounded clip leaves no light hairline at the corners.
+     A deeper shadow (0 30px 70px) made Chrome trickle the hero videos in and
+     stretched Lighthouse's desktop run from 10 s to 25 s, so keep these. */
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 90px rgba(124,1,255,0.4);
   -webkit-user-select: none; user-select: none;
 }
 .cpd-canvas {
