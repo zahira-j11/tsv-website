@@ -508,8 +508,12 @@ body::before {
    A copy of the client view of the TSV portal, drawn at a fixed design size
    (800 x 720, or the portal's phone layout at 380 x 580) and scaled to the
    slot in script (--k). The slot's aspect ratio holds the space before it
-   loads. Colours are the portal's own tokens. */
+   loads. Colours are the portal's own tokens. On wide screens the frame is
+   raised beside the intro line and drawn taller (800 x 904), so it fills
+   that space and still ends level with the three steps; below 1260px the
+   intro line would run under it. */
 .cpd-slot { width: 100%; max-width: 560px; aspect-ratio: 800 / 720; margin-left: auto; }
+@media (min-width: 1260px) { .cpd-slot { aspect-ratio: 800 / 904; margin-top: -130px; } }
 @media (max-width: 1099px) { .cpd-slot { max-width: 400px; aspect-ratio: 380 / 580; } }
 @media (max-width: 768px)  { .cpd-slot { max-width: 420px; margin: -24px auto 0; } }
 
@@ -528,6 +532,7 @@ body::before {
   position: absolute; top: 0; left: 0; width: 800px; height: 720px; display: flex;
   transform: scale(var(--k, 0.7)); transform-origin: 0 0;
 }
+@media (min-width: 1260px) { .cpd-canvas { height: 904px; } }
 
 /* Sidebar */
 .cpd-side { flex: none; width: 180px; display: flex; flex-direction: column; background: #21005D; color: #fff; }
