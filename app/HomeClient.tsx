@@ -586,8 +586,8 @@ function CasesCarousel() {
 
       {/* Dots */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 4 }}>
-        {CASES.map((_, i) => (
-          <button key={i} onClick={() => { setPage(i); scrollTo(i); }} style={{
+        {CASES.map((c, i) => (
+          <button key={i} aria-label={`Show the ${c.client} case study`} onClick={() => { setPage(i); scrollTo(i); }} style={{
             width: i === page ? 20 : 6, height: 6, borderRadius: 3,
             background: i === page ? P : 'rgba(33,0,93,0.18)',
             border: 'none', cursor: 'pointer', padding: 0,
@@ -911,7 +911,8 @@ export default function MarketingPage() {
           <div className="mkt-ticker" style={{ display:'flex', whiteSpace:'nowrap', width:'max-content', alignItems:'center', gap:0 }}>
             {[...CLIENT_LOGOS,...CLIENT_LOGOS].map((logo,i)=>(
               <div key={i} aria-hidden={i >= CLIENT_LOGOS.length} style={{ display:'inline-flex', alignItems:'center', padding:'0 48px', flexShrink:0 }}>
-                <Image src={`/logos/${logo.file}.png`} alt={i < CLIENT_LOGOS.length ? logo.name : ''} width={150} height={150} sizes="150px" style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
+                {/* The first logos are in view on load (on mobile they're the largest paint), so don't lazy-load them. */}
+                <Image src={`/logos/${logo.file}.png`} alt={i < CLIENT_LOGOS.length ? logo.name : ''} width={150} height={150} sizes="150px" priority={i < 2} loading={i < 2 ? undefined : i < 6 ? 'eager' : 'lazy'} style={{ height:150, width:'auto', filter:'brightness(0) opacity(0.28)', objectFit:'contain' }} />
               </div>
             ))}
           </div>
