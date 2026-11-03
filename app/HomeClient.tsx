@@ -6,6 +6,7 @@ import { track, isHubSpotBooking } from '@/lib/analytics';
 import { openCookieSettings } from '@/lib/consent';
 import { CASES, TESTIMONIALS, BOOK_CALL_HREF } from '@/lib/caseStudies';
 import ServicesSection from './ServicesSection';
+import CreatorPlatformDemo from './CreatorPlatformDemo';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -1043,9 +1044,10 @@ export default function MarketingPage() {
                 </div>
               ))}
             </div>
-            {/* Creator headshot collage */}
-            <div className="mkt-hidden-mobile" data-reveal data-reveal-delay="0.2" style={{ position:'relative', width:'100%', maxWidth:560, margin:'0 auto', marginTop:-150 }}>
-              <Image src="/creators-collage.png" alt="Creator network" width={1080} height={1350} sizes="560px" style={{ width:'100%', height:'auto', objectFit:'contain', display:'block' }} />
+            {/* Creator platform mock-up: browse, filter, shortlist. Sized by
+                .cpd-slot in globals.css, so it holds its space before it loads. */}
+            <div className="cpd-slot" data-reveal data-reveal-delay="0.2">
+              <CreatorPlatformDemo />
             </div>
           </div>
         </div>
