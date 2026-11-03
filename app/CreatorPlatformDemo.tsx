@@ -1,89 +1,107 @@
 'use client';
 
-// How it works: a looping mock-up of finding a creator on our platform. The
-// grid scrolls, a filter chip narrows it, one card plays a preview and gets
-// shortlisted, then the filter clears and the scroll carries on.
+// How it works: a looping mock-up of the client view of the TSV portal
+// (tsvportal.co.uk), drawn from the portal's own layout, copy and colours. A
+// casting list narrows the grid, a creator's profile opens and plays their
+// intro, they're approved, and the review counts tick over.
 //
-// Plain React and CSS transitions; the styles are the "cpd-" block in
+// The portal is drawn at a fixed design size and scaled to fit the slot (--k,
+// set in script), so it reads like a screenshot at any width; below 1100px it
+// switches to the portal's phone layout. Styles are the "cpd-" block in
 // globals.css. Cards sit on a doubled track that one transform scrolls, so the
-// scroll never visibly wraps. Each card gets its grid slot for both the 3- and
-// 2-column layouts as custom properties and a container query picks one, so
-// moving a card is just a transform transition. Everything that moves is a
-// transform, opacity or clip-path, so nothing shifts the page layout. The loop
-// only runs while the frame is on screen; reduced-motion visitors get a still.
+// scroll never visibly wraps; each card's slot comes in as custom properties
+// for both layouts, so moving a card is a transform transition. Everything
+// that moves is a transform or opacity, so nothing shifts the page layout. The
+// loop only runs while the frame is on screen; reduced motion gets a still.
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-// Faces are cut from public/creators-collage.png, the collage this replaced,
-// so every photo is one the site already shows. Names and tags are
-// placeholders, not the creators' real details.
-const CREATORS: { name:string; tags:[string, string] }[] = [
-  { name:'Mia',    tags:['Students', 'Food'] },
-  { name:'Sophie', tags:['Parents', 'Home'] },
-  { name:'Freya',  tags:['Beauty', 'Fashion'] },
-  { name:'Josh',   tags:['Fintech', 'Tech'] },
-  { name:'Lucy',   tags:['Fintech', 'Food'] },
-  { name:'Tom',    tags:['Parents', 'DIY'] },
-  { name:'Ellie',  tags:['Beauty', 'Health'] },
-  { name:'Jess',   tags:['Comedy', 'Food'] },
-  { name:'Sam',    tags:['Fintech', 'Gaming'] },
-  { name:'Hannah', tags:['Beauty', 'Travel'] },
-  { name:'Amy',    tags:['Fitness', 'Food'] },
-  { name:'Dan',    tags:['Fintech', 'Sport'] },
-  { name:'Chloe',  tags:['Beauty', 'Pets'] },
-  { name:'James',  tags:['Fintech', 'Home'] },
-  { name:'Kai',    tags:['Students', 'Music'] },
-  { name:'Megan',  tags:['Fintech', 'Travel'] },
-  { name:'Grace',  tags:['Beauty', 'Style'] },
-  { name:'Zara',   tags:['Beauty', 'Music'] },
+// Stock headshots supplied by Zahira (Nov 2026), cropped to the portal's 4:5
+// card. Names, cities, skills and lists are placeholders, never real creators.
+const CREATORS: { name:string; city:string; skills:string[]; list:number }[] = [
+  { name:'Callum R.', city:'London',     skills:['Acting', 'Presenting', 'Voiceover'],          list:1 },
+  { name:'Leo M.',    city:'Brighton',   skills:['Day-in-the-life', 'UGC Creation', 'Hosting'],  list:0 },
+  { name:'Hannah K.', city:'Manchester', skills:['Commercial Acting', 'Script Reading'],         list:1 },
+  { name:'Mia T.',    city:'London',     skills:['Presenting', 'Hosting', 'Voiceover'],          list:2 },
+  { name:'Sophie L.', city:'Leeds',      skills:['Acting', 'Voiceover', 'Script Reading'],       list:1 },
+  { name:'Ella P.',   city:'Bristol',    skills:['Tutorials/how-to Content', 'Day-in-the-life'], list:0 },
+  { name:'Grace O.',  city:'London',     skills:['Presenting', 'Hosting', 'Voiceover'],          list:2 },
+  { name:'Tom H.',    city:'London',     skills:['Commercial Acting', 'Presenting'],             list:1 },
+  { name:'Amy C.',    city:'Glasgow',    skills:['Hosting', 'Presenting'],                       list:2 },
+  { name:'Jess W.',   city:'Birmingham', skills:['UGC Creation', 'Day-in-the-life'],             list:0 },
+  { name:'Lucy B.',   city:'London',     skills:['Acting', 'Script Reading', 'Voiceover'],       list:1 },
+  { name:'Katie D.',  city:'Manchester', skills:['UGC Creation', 'Tutorials/how-to Content'],    list:0 },
+  { name:'Josh A.',   city:'London',     skills:['Presenting', 'Hosting'],                       list:2 },
+  { name:'Maya S.',   city:'Leeds',      skills:['UGC Creation', 'Voiceover'],                   list:0 },
+  { name:'Dan G.',    city:'London',     skills:['Commercial Acting', 'Voiceover'],              list:1 },
+  { name:'Sam E.',    city:'Bristol',    skills:['Hosting', 'Presenting', 'Voiceover'],          list:2 },
+  { name:'Ryan N.',   city:'Birmingham', skills:['Presenting', 'Script Reading'],                list:2 },
+  { name:'Zara J.',   city:'London',     skills:['Day-in-the-life', 'UGC Creation'],             list:0 },
 ];
 // The track holds the list twice and only tiles seamlessly when both column
 // counts divide it, so keep the list a multiple of 6.
 const N = CREATORS.length;
-const faceSrc = (i: number) => `/creators/creator-${String(i + 1).padStart(2, '0')}.webp`;
-const TINTS = ['#F1E9FF', '#FFE6F5', '#FFF4C2', '#DDFBEB'];
+const photo = (i: number) => `/creators/creator-${String(i + 1).padStart(2, '0')}.webp`;
 
-const CHIPS = ['UK · Female · 25–34', 'Fintech', 'Beauty', 'Parents', 'Students'];
-
-// Each round taps one chip. `matches` are the creators it leaves (indexes into
-// CREATORS) in slot order; `pick` gets shortlisted and sits in slots 0–3,
-// which are on screen in both layouts.
-const ROUNDS = [
-  { chip:0, matches:[1, 6, 2, 7, 9, 12],   pick:6  },
-  { chip:1, matches:[3, 4, 8, 11, 13, 15], pick:11 },
-  { chip:2, matches:[2, 6, 16, 9, 12, 17], pick:16 },
+// The client's casting lists, as in the portal sidebar. Counts are
+// placeholders and include creators beyond the 18 drawn here.
+const LISTS = [
+  { name:'UGC Casting Options',                short:'UGC Casting',      count:24 },
+  { name:'Hi-Fi Studio Shoot Casting Options', short:'Hi-Fi Studio',     count:14 },
+  { name:'Street Interview Casting',           short:'Street Interview', count:8 },
 ];
-// On the shortlist before the loop starts, so the counter opens at 2.
-const SHORTLISTED = [3, 15];
+const ALL = 46;
+const COUNTS = { review:18, approved:16, maybe:4, rejected:8 };
 
-const SPEED = 60; // px per second while browsing
+// Each round opens one casting list. `matches` are its creators (indexes into
+// CREATORS) in slot order; `pick` gets approved and sits in slots 0–3, which
+// are on screen in both layouts.
+const ROUNDS = [
+  { list:0, matches:[1, 5, 9, 11, 13, 17], pick:5 },
+  { list:1, matches:[0, 2, 4, 7, 10, 14],  pick:7 },
+  { list:2, matches:[3, 6, 8, 12, 15, 16], pick:8 },
+];
+// Zooms into the open creator's photo that stand in for their video thumbnails.
+const WORK = [
+  { origin:'50% 28%', zoom:1.25 },
+  { origin:'32% 40%', zoom:1.75 },
+  { origin:'50% 80%', zoom:1.1 },
+  { origin:'58% 40%', zoom:1.6 },
+];
+const SPEED = 60; // design px per second while browsing
+// Below this the portal switches to its phone layout, and the loop to taps.
+const COMPACT = '(max-width: 1099px)';
 
 type Pt = { x:number; y:number };
 type View = {
-  chip: number | null;
-  placed: number[] | null; // track position of each match while filtered
-  back: number[] | null;   // matches sliding home after the filter clears
-  rest: number;            // scroll offset when the filter went on
-  hover: number | null;    // track position of the card being previewed
+  list: number | null;     // casting list open in the sidebar; null is all creators
+  placed: number[] | null; // track position of each match while a list is open
+  back: number[] | null;   // matches sliding home after the list closes
+  rest: number;            // scroll offset when the list opened
+  hover: number | null;    // track position of the card under the cursor
+  open: boolean;           // profile showing
+  who: number;             // creator in the profile (kept while it slides away)
+  slot: number;            // their place in the list, for "2 of 6"
   playing: boolean;
-  open: boolean;           // "Shortlisted" pill showing on the hovered card
-  picked: number[];
-  count: number;
+  decided: boolean;
+  approved: number[];      // creators approved so far this loop
+  review: number;
+  yes: number;             // the Approved tab's count
   cursor: Pt & { on:boolean; glide:boolean; press:number };
   tap: (Pt & { id:number }) | null;
-  fly: { id:number; src:string; size:number; from:Pt; to:Pt } | null;
 };
 const START: View = {
-  chip:null, placed:null, back:null, rest:0, hover:null, playing:false, open:false,
-  picked:SHORTLISTED, count:SHORTLISTED.length,
-  cursor:{ x:0, y:0, on:false, glide:false, press:0 }, tap:null, fly:null,
+  list:null, placed:null, back:null, rest:0, hover:null, open:false, who:0, slot:0,
+  playing:false, decided:false, approved:[], review:COUNTS.review, yes:COUNTS.approved,
+  cursor:{ x:0, y:0, on:false, glide:false, press:0 }, tap:null,
 };
 
 export default function CreatorPlatformDemo() {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const gridRef  = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const frameRef  = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const gridRef   = useRef<HTMLDivElement>(null);
+  const trackRef  = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<View>(START);
   const [near, setNear] = useState(false);
   // The server sends one copy of the track; the second, which only matters
@@ -91,45 +109,48 @@ export default function CreatorPlatformDemo() {
   const [doubled, setDoubled] = useState(false);
 
   useEffect(() => {
-    const frame = frameRef.current, grid = gridRef.current, track = trackRef.current;
-    if (!frame || !grid || !track) return;
+    const frame = frameRef.current, canvas = canvasRef.current, grid = gridRef.current, track = trackRef.current;
+    if (!frame || !canvas || !grid || !track) return;
 
-    // Fetch the faces shortly before the frame arrives. Native lazy loading
+    // Fit the design-size portal to the frame.
+    const fit = () => frame.style.setProperty('--k', String(frame.clientWidth / canvas.offsetWidth));
+    fit();
+
+    // Fetch the photos shortly before the frame arrives. Native lazy loading
     // alone would leave cards blank until they scroll into the clipped grid.
     const nearObs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) { setNear(true); nearObs.disconnect(); }
     }, { rootMargin:'600px 0px' });
     nearObs.observe(frame);
 
-    const compact = window.matchMedia('(max-width: 768px)').matches; // phones get the short version
+    const compact = window.matchMedia(COMPACT).matches;
     const set = (patch: Partial<View> | ((v: View) => Partial<View>)) =>
       setView(v => ({ ...v, ...(typeof patch === 'function' ? patch(v) : patch) }));
-    const box = (sel: string) => {
-      const f = frame.getBoundingClientRect(), b = frame.querySelector(sel)!.getBoundingClientRect();
-      return { x:b.left - f.left, y:b.top - f.top, w:b.width, h:b.height };
-    };
+    // Cursor and taps live outside the scaled canvas, in frame pixels.
     const at = (sel: string, fx = 0.5, fy = 0.5): Pt => {
-      const b = box(sel);
-      return { x:b.x + b.w * fx, y:b.y + b.h * fy };
+      const f = frame.getBoundingClientRect(), b = frame.querySelector(sel)!.getBoundingClientRect();
+      return { x:b.left - f.left + b.width * fx, y:b.top - f.top + b.height * fy };
     };
     const point = (p: Pt, on = true, glide = true) => set(v => ({ cursor:{ ...v.cursor, ...p, on, glide } }));
     const tap = (p: Pt) => set(v => ({ tap:{ ...p, id:(v.tap?.id ?? 0) + 1 }, cursor:{ ...v.cursor, press:v.cursor.press + 1 } }));
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      // One still that tells the whole story: filter on, a creator shortlisted.
-      const r = ROUNDS[0];
-      set({ chip:r.chip, placed:r.matches, hover:r.pick, open:true, picked:[...SHORTLISTED, r.pick], count:SHORTLISTED.length + 1 });
+      // One still: a creator approved, the counts moved on, another card under the cursor.
+      set({ hover:4, approved:[ROUNDS[0].pick], review:COUNTS.review - 1, yes:COUNTS.approved + 1 });
       if (!compact) requestAnimationFrame(() => requestAnimationFrame(() =>
-        point(at(`[data-pos="${r.pick}"] .cpd-add-icon`, 0.45, 0.55), true, false)));
-      return () => nearObs.disconnect();
+        point(at('[data-pos="4"] .cpd-photo', 0.6, 0.55), true, false)));
+      const sizeObs = new ResizeObserver(fit);
+      sizeObs.observe(frame);
+      return () => { nearObs.disconnect(); sizeObs.disconnect(); };
     }
 
     setDoubled(true);
     let s = 0, v = 0, vTo = SPEED, t = 0, last = 0, raf = 0, next = 0, round = 0;
-    let m = { cols:3, pitch:168, H:N / 3 * 168, viewH:500 };
+    let m = { cols:3, pitch:340, H:N / 3 * 340, viewH:600 };
     let placed: number[] = [];
 
     const measure = () => {
+      fit();
       const cs = getComputedStyle(track);
       const cols = parseInt(cs.getPropertyValue('--cols'), 10) || 3;
       const pitch = (track.firstElementChild as HTMLElement).offsetHeight + (parseFloat(cs.getPropertyValue('--gap')) || 0);
@@ -145,57 +166,59 @@ export default function CreatorPlatformDemo() {
 
     const R = () => ROUNDS[round];
     const target = () => placed[R().matches.indexOf(R().pick)];
-    const chipAt = () => at(`[data-chip="${R().chip}"]`, 0.55, 0.65);
-    const cardAt = () => at(`[data-pos="${target()}"] .cpd-media`, 0.62, 0.62);
-    const addAt  = () => at(`[data-pos="${target()}"] .cpd-add-icon`, 0.45, 0.55);
+    // The sidebar holds the lists on desktop; the phone layout has a row of pills.
+    const listAt = (list: number | 'all') => at(compact ? `[data-pill="${list}"]` : `[data-list="${list}"]`, compact ? 0.5 : 0.35, 0.55);
+    const cardAt = () => at(`[data-pos="${target()}"] .cpd-photo`, 0.6, 0.55);
+    const approveAt = () => at('.cpd-dec.dec-yes', 0.5, 0.6);
+    const backAt = () => at('.cpd-back', 0.5, 0.6);
     const restAt = (): Pt => ({ x:frame.clientWidth * 0.8, y:frame.clientHeight * 0.9 });
 
+    const openList = () => set({ list:R().list });
     const filter = () => {
       v = 0; vTo = 0;
       placed = copies(R().matches);
       set({ placed, rest:s });
     };
-    const pick = () => {
-      const from = box(`[data-pos="${target()}"] .cpd-face`), to = box('.cpd-count b'), id = R().pick;
-      set(cur => ({
-        open:true, picked:[...cur.picked, id],
-        fly:{ id:(cur.fly?.id ?? 0) + 1, src:faceSrc(id), size:from.w, from:{ x:from.x, y:from.y },
-              to:{ x:to.x + (to.w - from.w) / 2, y:to.y + (to.h - from.w) / 2 } },
-      }));
-    };
-    const countUp  = () => set(c => ({ count:c.count + 1 }));
-    const unhover  = () => set({ hover:null, playing:false, open:false });
+    const openProfile = () => set({ hover:target(), open:true, who:R().pick, slot:R().matches.indexOf(R().pick), playing:false, decided:false });
+    const approve = () => set(cur => ({ decided:true, approved:[...cur.approved, R().pick] }));
+    const countOver = () => set(cur => ({ review:cur.review - 1, yes:cur.yes + 1 }));
+    const closeProfile = () => set({ open:false, hover:null, playing:false });
     // The matches slide home first; the rest fade back in behind them.
-    const unfilter = () => set(cur => ({ chip:null, placed:null, back:cur.placed }));
-    const resume   = () => { vTo = SPEED; set({ back:null }); };
+    const showAll = () => set(cur => ({ list:null, placed:null, back:cur.placed }));
+    const resume = () => { vTo = SPEED; set({ back:null }); };
 
     // [seconds into the round, what happens]
     const steps: [number, () => void][] = compact ? [
-      [1.7,  () => { vTo = 0; }],
-      [2.0,  () => { tap(chipAt()); set({ chip:R().chip }); }],
-      [2.1,  filter],
-      [3.2,  () => { tap(addAt()); set({ hover:target() }); pick(); }],
-      [3.65, countUp],
-      [4.6,  unhover],
-      [5.0,  () => { tap(chipAt()); unfilter(); }],
-      [5.45, resume],
+      [1.6,  () => { vTo = 0; }],
+      [1.9,  () => { tap(listAt(R().list)); openList(); }],
+      [2.0,  filter],
+      [3.1,  () => { tap(cardAt()); openProfile(); }],
+      [3.5,  () => set({ playing:true })],
+      [4.2,  () => { tap(approveAt()); approve(); }],
+      [4.5,  countOver],
+      [5.5,  () => { tap(backAt()); closeProfile(); }],
+      [6.2,  () => { tap(listAt('all')); showAll(); }],
+      [6.7,  resume],
     ] : [
-      [2.3,  () => point(restAt(), false, false)],
-      [2.35, () => point(chipAt())],
-      [3.0,  () => { vTo = 0; }],
-      [3.4,  () => { tap(chipAt()); set({ chip:R().chip }); }],
-      [3.5,  filter],
-      [4.5,  () => point(cardAt())],
-      [5.2,  () => set({ hover:target() })],
-      [5.5,  () => set({ playing:true })],
-      [7.25, () => point(addAt())],
-      [7.65, () => { tap(addAt()); pick(); }],
-      [8.15, countUp],
-      [8.8,  () => { unhover(); point(chipAt()); }],
-      [9.45, () => { tap(chipAt()); unfilter(); }],
-      [9.95, () => { resume(); point(restAt(), false); }],
+      [2.2,  () => point(restAt(), false, false)],
+      [2.25, () => point(listAt(R().list))],
+      [2.9,  () => { vTo = 0; }],
+      [3.3,  () => { tap(listAt(R().list)); openList(); }],
+      [3.4,  filter],
+      [4.4,  () => point(cardAt())],
+      [4.9,  () => set({ hover:target() })],
+      [5.3,  () => { tap(cardAt()); openProfile(); }],
+      [5.9,  () => set({ playing:true })],
+      [7.3,  () => point(approveAt())],
+      [7.7,  () => { tap(approveAt()); approve(); }],
+      [8.0,  countOver],
+      [8.9,  () => point(backAt())],
+      [9.3,  () => { tap(backAt()); closeProfile(); }],
+      [9.9,  () => point(listAt('all'))],
+      [10.3, () => { tap(listAt('all')); showAll(); }],
+      [10.8, () => { resume(); point(restAt(), false); }],
     ];
-    const cycle = compact ? 7.6 : 11;
+    const cycle = compact ? 8.4 : 12;
 
     const tick = (ts: number) => {
       const dt = last ? Math.min((ts - last) / 1000, 0.05) : 0;
@@ -205,8 +228,8 @@ export default function CreatorPlatformDemo() {
       if (t >= cycle) {
         t -= cycle; next = 0;
         round = (round + 1) % ROUNDS.length;
-        // Back to the starting shortlist once every round has played.
-        if (round === 0) set({ picked:SHORTLISTED, count:SHORTLISTED.length });
+        // Back to the starting counts once every round has played.
+        if (round === 0) set({ approved:[], review:COUNTS.review, yes:COUNTS.approved });
       }
       v += (vTo - v) * Math.min(1, dt * 5);
       s = (s + v * dt) % m.H;
@@ -226,89 +249,154 @@ export default function CreatorPlatformDemo() {
     return () => { cancelAnimationFrame(raf); runObs.disconnect(); nearObs.disconnect(); sizeObs.disconnect(); };
   }, []);
 
-  const { cursor, tap, fly } = view;
+  const { cursor, tap } = view;
+  const who = CREATORS[view.who];
+  const img = (i: number) => (
+    <Image src={photo(i)} alt="" width={336} height={420} unoptimized draggable={false} loading={near ? 'eager' : 'lazy'} />
+  );
   return (
     <div ref={frameRef} className="cpd" role="img"
-      aria-label="Mock-up of the TSV creator platform: scrolling through creator cards, filtering by audience and shortlisting a creator.">
-      {/* Card icons, defined once and reused by every card */}
-      <svg className="cpd-sprite" aria-hidden="true">
-        <symbol id="cpd-i-cam" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><rect x="2.5" y="6.5" width="13" height="11" rx="2.5" /><path d="M15.5 10.5l5-3v9l-5-3z" /></g></symbol>
-        <symbol id="cpd-i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff" /></symbol>
-        <symbol id="cpd-i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" /></symbol>
-        <symbol id="cpd-i-tick" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" /></symbol>
-      </svg>
-      <div className="cpd-bar" aria-hidden="true">
-        <span className="cpd-dots"><i /><i /><i /></span>
-        <span className="cpd-search">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
-          <span>Search <span className="cpd-long">300+ vetted </span>creators</span>
-        </span>
-        <span key={view.count} className="cpd-count"><b>{view.count}</b>shortlisted</span>
-      </div>
+      aria-label="Mock-up of the TSV client portal: browsing the creators The Social Vision has put forward, opening a casting list, viewing a creator’s profile and approving them.">
+      <div ref={canvasRef} className="cpd-canvas" aria-hidden="true">
+        <aside className="cpd-side">
+          <div className="cpd-brand"><span className="cpd-logo">YB</span>Your Brand</div>
+          <nav className="cpd-nav">
+            <p className="cpd-nav-head">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M11 14s1-1 1-4a4 4 0 10-8 0c0 3 1 4 1 4h6zM6 2a2 2 0 100 4 2 2 0 000-4z" /></svg>
+              Creator Network
+            </p>
+            <span data-list="all" className={`cpd-nav-item${view.list === null ? ' is-on' : ''}`}><span>All creators</span><b>{ALL}</b></span>
+            {LISTS.map((l, i) => (
+              <span key={l.name} data-list={i} className={`cpd-nav-item${view.list === i ? ' is-on' : ''}`}><span>{l.name}</span><b>{l.count}</b></span>
+            ))}
+            <p className="cpd-nav-head">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z M12 12l8-4.5 M12 12v9 M12 12L4 7.5" /></svg>
+              Shipping<i className="cpd-badge">3</i>
+            </p>
+            <p className="cpd-nav-head">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 2h12v10H2zM5 12v2M11 12v2M3.5 14h9" /></svg>
+              Resources
+            </p>
+          </nav>
+          <span className="cpd-help">? Help</span>
+          <p className="cpd-powered">Powered by The Social Vision</p>
+        </aside>
 
-      <div className="cpd-chips" aria-hidden="true">
-        {CHIPS.map((c, i) => (
-          <span key={c} data-chip={i} className={`cpd-chip${view.chip === i ? ' is-on' : ''}`}>{c}</span>
-        ))}
-      </div>
+        <div className="cpd-topbar">
+          <span className="cpd-logo">YB</span>Your Brand
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M3 5h14v2H3zM3 9h14v2H3zM3 13h14v2H3z" /></svg>
+        </div>
 
-      <div ref={gridRef} className="cpd-grid" aria-hidden="true">
-        <div ref={trackRef} className={`cpd-track${view.back ? ' is-returning' : ''}`}>
-          {Array.from({ length:doubled ? N * 2 : N }, (_, pos) => {
-            const i = pos % N, c = CREATORS[i];
-            const k = view.placed ? view.placed.indexOf(pos) : -1; // slot among the matches
-            const slot = k >= 0 ? k : pos;
-            const hover = view.hover === pos;
-            const cls = ['cpd-card',
-              view.placed && k < 0 && 'is-out',
-              view.back?.includes(pos) && 'is-back',
-              hover && 'is-hover',
-              hover && view.playing && 'is-playing',
-              hover && view.open && 'is-open',
-              view.picked.includes(i) && 'is-picked',
-            ].filter(Boolean).join(' ');
-            const style = {
-              '--c3':slot % 3, '--r3':Math.floor(slot / 3),
-              '--c2':slot % 2, '--r2':Math.floor(slot / 2),
-              '--dy':`${k >= 0 ? view.rest : 0}px`,
-              '--delay':`${k >= 0 ? k * 45 : 0}ms`,
-            } as React.CSSProperties;
-            return (
-              <div key={pos} data-pos={pos} className={cls} style={style}>
-                <div className="cpd-media" style={{ background:TINTS[i % TINTS.length] }}>
-                  <span className="cpd-face">
-                    <Image src={faceSrc(i)} alt="" width={64} height={64} unoptimized draggable={false} loading={near ? 'eager' : 'lazy'} />
-                  </span>
-                  <span className="cpd-play">
-                    <svg width="11" height="11"><use href="#cpd-i-play" /></svg>
-                  </span>
-                  <span className="cpd-cam">
-                    <svg width="12" height="12"><use href="#cpd-i-cam" /></svg>
-                    <span className="cpd-eq"><i /><i /><i /></span>
-                  </span>
-                  <span className="cpd-progress"><i /></span>
-                </div>
-                <div className="cpd-name">{c.name}</div>
-                <div className="cpd-foot">
-                  <span className="cpd-tags"><span>{c.tags[0]}</span><span>{c.tags[1]}</span></span>
-                  <span className="cpd-add">
-                    <em>Shortlisted</em>
-                    <span className="cpd-add-icon">
-                      <svg width="12" height="12"><use href="#cpd-i-plus" /></svg>
-                      <svg width="12" height="12"><use href="#cpd-i-tick" /></svg>
-                    </span>
-                  </span>
-                </div>
+        <div className="cpd-main">
+          <div className="cpd-head">
+            <div>
+              <p className="cpd-eyebrow">Creator network</p>
+              <p className="cpd-title">Creators for you</p>
+              <p className="cpd-desc">Creators The Social Vision has put forward for you. Open a profile to see their work, then approve, maybe or reject.</p>
+            </div>
+            <div className="cpd-queue">
+              <p><span className="cpd-num">{view.review}</span> of {ALL} left to review</p>
+              <span className="cpd-bar"><i style={{ transform:`scaleX(${(ALL - view.review) / ALL})` }} /></span>
+              <span className="cpd-link">Continue reviewing →</span>
+            </div>
+          </div>
+
+          <div className="cpd-tabs">
+            <span className="cpd-tab is-on">To Review <b>{view.review}</b></span>
+            <span className="cpd-tab">Approved <b>{view.yes}</b></span>
+            <span className="cpd-tab">Maybe <b>{COUNTS.maybe}</b></span>
+            <span className="cpd-tab">Rejected <b>{COUNTS.rejected}</b></span>
+            <span className="cpd-search">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+              Search by name
+            </span>
+          </div>
+
+          <div className="cpd-lists">
+            <span data-pill="all" className={`cpd-pill${view.list === null ? ' is-on' : ''}`}>All creators <b>{ALL}</b></span>
+            {LISTS.map((l, i) => (
+              <span key={l.name} data-pill={i} className={`cpd-pill${view.list === i ? ' is-on' : ''}`}>{l.short} <b>{l.count}</b></span>
+            ))}
+          </div>
+
+          <div ref={gridRef} className="cpd-grid">
+            <div ref={trackRef} className={`cpd-track${view.back ? ' is-returning' : ''}`}>
+              {Array.from({ length:doubled ? N * 2 : N }, (_, pos) => {
+                const i = pos % N, c = CREATORS[i];
+                const k = view.placed ? view.placed.indexOf(pos) : -1; // slot among the matches
+                const slot = k >= 0 ? k : pos;
+                const cls = ['cpd-card',
+                  view.placed && k < 0 && 'is-out',
+                  view.back?.includes(pos) && 'is-back',
+                  view.hover === pos && 'is-hover',
+                  view.approved.includes(i) && 'is-yes',
+                ].filter(Boolean).join(' ');
+                const style = {
+                  '--c3':slot % 3, '--r3':Math.floor(slot / 3),
+                  '--c2':slot % 2, '--r2':Math.floor(slot / 2),
+                  '--dy':`${k >= 0 ? view.rest : 0}px`,
+                  '--delay':`${k >= 0 ? k * 45 : 0}ms`,
+                } as React.CSSProperties;
+                return (
+                  <div key={pos} data-pos={pos} className={cls} style={style}>
+                    <div className="cpd-photo">
+                      {img(i)}
+                      <span className="cpd-status"><em>To Review</em><em>Approved</em></span>
+                    </div>
+                    <div className="cpd-body">
+                      <p className="cpd-name">{c.name}</p>
+                      <p className="cpd-loc">{c.city}, United Kingdom</p>
+                      <p className="cpd-skills">{c.skills.join(' · ')}</p>
+                      <span className="cpd-chip">{LISTS[c.list].name}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className={`cpd-profile${view.open ? ' is-open' : ''}${view.playing ? ' is-playing' : ''}${view.decided ? ' is-yes' : ''}`}>
+            <div className="cpd-strip">
+              <span className="cpd-back">← All creators</span>
+              <span className="cpd-pos"><b>{view.slot + 1} of 6</b> in To Review</span>
+              <span className="cpd-step"><i>‹ Previous</i><i>Next ›</i></span>
+            </div>
+            <div className="cpd-strip cpd-decide">
+              <span className="cpd-pname">{who.name}</span>
+              <span className="cpd-status"><em>To Review</em><em>Approved</em></span>
+              <span className="cpd-decisions">
+                <span className="cpd-dec dec-yes"><em>✓</em>Approve</span>
+                <span className="cpd-dec dec-maybe">Maybe</span>
+                <span className="cpd-dec dec-no">Reject</span>
+              </span>
+            </div>
+            <p className="cpd-moved"><span>{who.name.split(' ')[0]} moved to Approved</span><u>Undo</u></p>
+            <div className="cpd-pbody">
+              <div className="cpd-pphoto">
+                {img(view.who)}
+                <span className="cpd-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z" /></svg></span>
+                <span className="cpd-progress"><i /></span>
               </div>
-            );
-          })}
+              <div className="cpd-pinfo">
+                <p className="cpd-loc">{who.city}, United Kingdom</p>
+                <p className="cpd-skills">{who.skills.join(' · ')}</p>
+                <span className="cpd-chip">{LISTS[who.list].name}</span>
+                <span className="cpd-lines"><i /><i /><i /><i /></span>
+              </div>
+            </div>
+            {/* Their work: the portal shows a creator's videos under the profile. */}
+            <div className="cpd-work">
+              {WORK.map(w => (
+                <span key={w.origin} className="cpd-reel" style={{ '--origin':w.origin, '--zoom':w.zoom } as React.CSSProperties}>
+                  {img(view.who)}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z" /></svg>
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      {fly && (
-        <Image key={fly.id} className="cpd-fly" src={fly.src} alt="" width={64} height={64} unoptimized aria-hidden="true"
-          style={{ width:fly.size, height:fly.size, '--fx':`${fly.from.x}px`, '--fy':`${fly.from.y}px`, '--tx':`${fly.to.x}px`, '--ty':`${fly.to.y}px` } as React.CSSProperties} />
-      )}
       {tap && <span key={tap.id} className="cpd-tap" style={{ left:tap.x, top:tap.y }} aria-hidden="true" />}
       <span className={`cpd-cursor${cursor.on ? ' is-on' : ''}${cursor.glide ? ' is-glide' : ''}`}
         style={{ transform:`translate(${cursor.x}px,${cursor.y}px)` }} aria-hidden="true">
