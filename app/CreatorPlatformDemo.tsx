@@ -17,29 +17,26 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-// A made-up client, so the mock-up shows no real brand.
-const BRAND = { name:'Glowmoor', mark:'G' };
-
 // Stock headshots supplied by Zahira (Nov 2026), cropped to the portal's 4:5
 // card. Names, cities, skills and lists are placeholders, never real creators.
 const CREATORS: { name:string; city:string; skills:string[]; list:number }[] = [
-  { name:'Callum R.', city:'London',     skills:['Acting', 'Presenting', 'Voiceover'],          list:0 },
+  { name:'Callum R.', city:'London',     skills:['Acting', 'Presenting', 'Voiceover'],          list:1 },
   { name:'Leo M.',    city:'Brighton',   skills:['Day-in-the-life', 'UGC Creation', 'Hosting'],  list:0 },
   { name:'Hannah K.', city:'Manchester', skills:['Commercial Acting', 'Script Reading'],         list:1 },
-  { name:'Mia T.',    city:'London',     skills:['Presenting', 'Hosting', 'Voiceover'],          list:1 },
-  { name:'Sophie L.', city:'Leeds',      skills:['Acting', 'Voiceover', 'Script Reading'],       list:0 },
+  { name:'Mia T.',    city:'London',     skills:['Presenting', 'Hosting', 'Voiceover'],          list:2 },
+  { name:'Sophie L.', city:'Leeds',      skills:['Acting', 'Voiceover', 'Script Reading'],       list:1 },
   { name:'Ella P.',   city:'Bristol',    skills:['Tutorials/how-to Content', 'Day-in-the-life'], list:0 },
-  { name:'Grace O.',  city:'London',     skills:['Presenting', 'Hosting', 'Voiceover'],          list:1 },
+  { name:'Grace O.',  city:'London',     skills:['Presenting', 'Hosting', 'Voiceover'],          list:2 },
   { name:'Tom H.',    city:'London',     skills:['Commercial Acting', 'Presenting'],             list:1 },
-  { name:'Amy C.',    city:'Glasgow',    skills:['Hosting', 'Presenting'],                       list:1 },
+  { name:'Amy C.',    city:'Glasgow',    skills:['Hosting', 'Presenting'],                       list:2 },
   { name:'Jess W.',   city:'Birmingham', skills:['UGC Creation', 'Day-in-the-life'],             list:0 },
-  { name:'Lucy B.',   city:'London',     skills:['Acting', 'Script Reading', 'Voiceover'],       list:0 },
+  { name:'Lucy B.',   city:'London',     skills:['Acting', 'Script Reading', 'Voiceover'],       list:1 },
   { name:'Katie D.',  city:'Manchester', skills:['UGC Creation', 'Tutorials/how-to Content'],    list:0 },
-  { name:'Josh A.',   city:'London',     skills:['Presenting', 'Hosting'],                       list:1 },
+  { name:'Josh A.',   city:'London',     skills:['Presenting', 'Hosting'],                       list:2 },
   { name:'Maya S.',   city:'Leeds',      skills:['UGC Creation', 'Voiceover'],                   list:0 },
   { name:'Dan G.',    city:'London',     skills:['Commercial Acting', 'Voiceover'],              list:1 },
-  { name:'Sam E.',    city:'Bristol',    skills:['Hosting', 'Presenting', 'Voiceover'],          list:1 },
-  { name:'Ryan N.',   city:'Birmingham', skills:['Presenting', 'Script Reading'],                list:1 },
+  { name:'Sam E.',    city:'Bristol',    skills:['Hosting', 'Presenting', 'Voiceover'],          list:2 },
+  { name:'Ryan N.',   city:'Birmingham', skills:['Presenting', 'Script Reading'],                list:2 },
   { name:'Zara J.',   city:'London',     skills:['Day-in-the-life', 'UGC Creation'],             list:0 },
 ];
 // The track holds the list twice and only tiles seamlessly when both column
@@ -50,8 +47,9 @@ const photo = (i: number) => `/creators/creator-${String(i + 1).padStart(2, '0')
 // The client's casting lists, as in the portal sidebar. Counts are
 // placeholders and include creators beyond the 18 drawn here.
 const LISTS = [
-  { name:'UGC',              count:28 },
-  { name:'Street Interview', count:18 },
+  { name:'UGC',              count:20 },
+  { name:'High Production',  count:14 },
+  { name:'Street Interview', count:12 },
 ];
 const ALL = 46;
 const COUNTS = { review:18, approved:16, maybe:4, rejected:8 };
@@ -60,8 +58,9 @@ const COUNTS = { review:18, approved:16, maybe:4, rejected:8 };
 // CREATORS) in slot order; `pick` gets approved and sits in slot 1, the top
 // row in both layouts, so the frame never has to scroll to show it.
 const ROUNDS = [
-  { list:0, matches:[1, 5, 0, 4, 9, 10, 11, 13, 17], pick:5 },
-  { list:1, matches:[2, 6, 3, 7, 8, 12, 14, 15, 16], pick:6 },
+  { list:0, matches:[1, 5, 9, 11, 13, 17], pick:5 },
+  { list:1, matches:[0, 7, 2, 4, 10, 14],  pick:7 },
+  { list:2, matches:[3, 6, 8, 12, 15, 16], pick:6 },
 ];
 const SPEED = 60; // design px per second while browsing
 // Below this the portal switches to its phone layout, and the loop to taps.
@@ -155,8 +154,11 @@ export default function CreatorPlatformDemo() {
 
     const R = () => ROUNDS[round];
     const target = () => placed[R().matches.indexOf(R().pick)];
-    // The sidebar holds the lists on desktop; the phone layout has a row of pills.
-    const listAt = (list: number | 'all') => at(compact ? `[data-pill="${list}"]` : `[data-list="${list}"]`, compact ? 0.5 : 0.35, 0.55);
+    // The sidebar holds the lists on desktop, with Creator Network as the way
+    // back to everyone; on phones a row of pills, and the open one is tapped again.
+    const listAt = (list: number | 'all') => compact
+      ? at(`[data-pill="${list === 'all' ? R().list : list}"]`, 0.5, 0.55)
+      : at(`[data-list="${list}"]`, 0.35, 0.55);
     const cardAt = () => at(`[data-pos="${target()}"] .cpd-photo`, 0.6, 0.4);
     const approveAt = () => at(`[data-pos="${target()}"] .dec-yes`, 0.55, 0.6);
     const restAt = (): Pt => ({ x:frame.clientWidth * 0.8, y:frame.clientHeight * 0.9 });
@@ -236,23 +238,20 @@ export default function CreatorPlatformDemo() {
       aria-label="Mock-up of the TSV client portal: browsing the creators The Social Vision has put forward, opening a casting list and approving a creator.">
       <div ref={canvasRef} className="cpd-canvas" aria-hidden="true">
         <aside className="cpd-side">
-          <div className="cpd-brand"><span className="cpd-logo">{BRAND.mark}</span>{BRAND.name}</div>
           <nav className="cpd-nav">
-            <p className="cpd-nav-head">
+            <span data-list="all" className={`cpd-nav-head${view.list === null ? ' is-on' : ''}`}>
               <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M11 14s1-1 1-4a4 4 0 10-8 0c0 3 1 4 1 4h6zM6 2a2 2 0 100 4 2 2 0 000-4z" /></svg>
               Creator Network
-            </p>
-            <span data-list="all" className={`cpd-nav-item${view.list === null ? ' is-on' : ''}`}><span>All creators</span><b>{ALL}</b></span>
+            </span>
             {LISTS.map((l, i) => (
               <span key={l.name} data-list={i} className={`cpd-nav-item${view.list === i ? ' is-on' : ''}`}><span>{l.name}</span><b>{l.count}</b></span>
             ))}
           </nav>
-          <span className="cpd-help">? Help</span>
           <p className="cpd-powered">Powered by The Social Vision</p>
         </aside>
 
         <div className="cpd-topbar">
-          <span className="cpd-logo">{BRAND.mark}</span>{BRAND.name}
+          Creator Network
           <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M3 5h14v2H3zM3 9h14v2H3zM3 13h14v2H3z" /></svg>
         </div>
 
@@ -282,7 +281,6 @@ export default function CreatorPlatformDemo() {
           </div>
 
           <div className="cpd-lists">
-            <span data-pill="all" className={`cpd-pill${view.list === null ? ' is-on' : ''}`}>All creators <b>{ALL}</b></span>
             {LISTS.map((l, i) => (
               <span key={l.name} data-pill={i} className={`cpd-pill${view.list === i ? ' is-on' : ''}`}>{l.name} <b>{l.count}</b></span>
             ))}

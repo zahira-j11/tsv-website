@@ -531,20 +531,19 @@ body::before {
 
 /* Sidebar */
 .cpd-side { flex: none; width: 180px; display: flex; flex-direction: column; background: #21005D; color: #fff; }
-.cpd-brand { display: flex; align-items: center; gap: 10px; padding: 18px 14px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; font-weight: 600; }
-.cpd-logo { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, #FFB199, #E5738F); color: #fff; font-size: 16px; font-weight: 800; }
-.cpd-nav { flex: 1; padding: 14px 10px; }
-.cpd-nav-head { display: flex; align-items: center; gap: 10px; padding: 9px 8px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); }
-.cpd-nav-head svg { flex: none; color: rgba(255,255,255,0.6); }
+.cpd-nav { flex: 1; padding: 18px 10px; }
+/* Creator Network doubles as the way back to everyone, so it lights up like a list. */
+.cpd-nav-head { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); transition: background .25s; }
+.cpd-nav-head svg { flex: none; color: rgba(255,255,255,0.6); transition: color .25s; }
+.cpd-nav-head.is-on { background: #5B01FF; }
+.cpd-nav-head.is-on svg { color: #fff; }
 .cpd-nav-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 2px 0 2px 16px; padding: 8px 10px; border-radius: 12px; font-size: 12px; color: rgba(255,255,255,0.58); transition: background .25s, color .25s; }
 .cpd-nav-item span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .cpd-nav-item b { flex: none; font-weight: 500; color: rgba(255,255,255,0.45); transition: color .25s; }
 .cpd-nav-item.is-on { background: #5B01FF; color: #fff; }
 .cpd-nav-item.is-on b { color: #fff; }
-.cpd-help { align-self: flex-start; margin: 0 14px 14px; padding: 8px 16px; border-radius: 100px; background: linear-gradient(135deg, #7C01FF, #E820A4); font-size: 13px; font-weight: 700; }
 .cpd-powered { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 9px; color: rgba(255,255,255,0.25); }
 .cpd-topbar { display: none; flex: none; height: 50px; align-items: center; gap: 9px; padding: 0 16px; background: #fff; border-bottom: 1px solid #E8E3F2; font-size: 13px; font-weight: 700; }
-.cpd-topbar .cpd-logo { width: 26px; height: 26px; font-size: 12px; }
 .cpd-topbar svg { margin-left: auto; color: #6B6883; }
 
 /* Main panel */
@@ -606,7 +605,7 @@ body::before {
 /* Decisions on the hovered card: Approve, Maybe, Reject, in the portal's colours. */
 .cpd-actions { position: absolute; left: 7px; right: 7px; bottom: 7px; display: flex; gap: 4px; padding: 4px; border-radius: 100px; background: rgba(255,255,255,0.95); box-shadow: 0 6px 18px rgba(33,0,93,0.2); opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; }
 .cpd-card.is-hover .cpd-actions { opacity: 1; transform: none; }
-.cpd-dec { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 5px 0; border: 1px solid; border-radius: 100px; background: #fff; font-size: 10px; font-weight: 700; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
+.cpd-dec { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 2px; padding: 6px 0; border: 1px solid; border-radius: 100px; background: #fff; font-size: 8.5px; font-weight: 700; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
 .cpd-dec em { font-style: normal; opacity: .45; transition: opacity .25s; }
 .dec-yes { flex: 1.35; border-color: rgba(26,103,78,0.3); color: var(--live); }
 .dec-maybe { border-color: rgba(146,64,14,0.3); color: var(--amber); }
