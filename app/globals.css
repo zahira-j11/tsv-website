@@ -506,12 +506,11 @@ body::before {
 
 /* How it works: portal mock-up (app/CreatorPlatformDemo.tsx).
    A copy of the client view of the TSV portal, drawn at a fixed design size
-   (800 x 1000, or the portal's phone layout at 380 x 720) and scaled to the
+   (800 x 720, or the portal's phone layout at 380 x 580) and scaled to the
    slot in script (--k). The slot's aspect ratio holds the space before it
    loads. Colours are the portal's own tokens. */
-.cpd-slot { width: 100%; max-width: 560px; aspect-ratio: 800 / 1000; margin-left: auto; }
-@media (min-width: 1260px) { .cpd-slot { margin-top: -130px; } }
-@media (max-width: 1099px) { .cpd-slot { max-width: 400px; aspect-ratio: 380 / 720; } }
+.cpd-slot { width: 100%; max-width: 560px; aspect-ratio: 800 / 720; margin-left: auto; }
+@media (max-width: 1099px) { .cpd-slot { max-width: 400px; aspect-ratio: 380 / 580; } }
 @media (max-width: 768px)  { .cpd-slot { max-width: 420px; margin: -24px auto 0; } }
 
 .cpd {
@@ -519,18 +518,21 @@ body::before {
   --line: #E7DFFF; --line-strong: #CDB6F7; --lilac: #F2EBFF;
   --live: #1A674E; --live-bg: #D9F2E9; --amber: #92400E; --declined: #8B1E1E;
   position: relative; height: 100%; overflow: hidden; border-radius: 18px; background: #F5F1FF; color: var(--ink);
-  box-shadow: 0 32px 80px rgba(5,0,22,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+  /* The portal's sidebar is the section's own purple, so a light edge, a
+     faint bezel and a glow keep the frame from melting into it. */
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.3), 0 0 0 8px rgba(255,255,255,0.08),
+              0 30px 80px rgba(0,0,0,0.55), 0 0 110px rgba(124,1,255,0.45);
   -webkit-user-select: none; user-select: none;
 }
 .cpd-canvas {
-  position: absolute; top: 0; left: 0; width: 800px; height: 1000px; display: flex;
+  position: absolute; top: 0; left: 0; width: 800px; height: 720px; display: flex;
   transform: scale(var(--k, 0.7)); transform-origin: 0 0;
 }
 
 /* Sidebar */
 .cpd-side { flex: none; width: 180px; display: flex; flex-direction: column; background: #21005D; color: #fff; }
 .cpd-brand { display: flex; align-items: center; gap: 10px; padding: 18px 14px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; font-weight: 600; }
-.cpd-logo { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--primary); font-size: 12px; font-weight: 800; }
+.cpd-logo { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, #FFB199, #E5738F); color: #fff; font-size: 16px; font-weight: 800; }
 .cpd-nav { flex: 1; padding: 14px 10px; }
 .cpd-nav-head { display: flex; align-items: center; gap: 10px; padding: 9px 8px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); }
 .cpd-nav-head svg { flex: none; color: rgba(255,255,255,0.6); }
@@ -539,11 +541,10 @@ body::before {
 .cpd-nav-item b { flex: none; font-weight: 500; color: rgba(255,255,255,0.45); transition: color .25s; }
 .cpd-nav-item.is-on { background: #5B01FF; color: #fff; }
 .cpd-nav-item.is-on b { color: #fff; }
-.cpd-badge { margin-left: auto; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: #FFC9EC; color: var(--ink); font-size: 11px; font-weight: 800; font-style: normal; }
 .cpd-help { align-self: flex-start; margin: 0 14px 14px; padding: 8px 16px; border-radius: 100px; background: linear-gradient(135deg, #7C01FF, #E820A4); font-size: 13px; font-weight: 700; }
 .cpd-powered { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 9px; color: rgba(255,255,255,0.25); }
 .cpd-topbar { display: none; flex: none; height: 50px; align-items: center; gap: 9px; padding: 0 16px; background: #fff; border-bottom: 1px solid #E8E3F2; font-size: 13px; font-weight: 700; }
-.cpd-topbar .cpd-logo { width: 26px; height: 26px; font-size: 10px; background: var(--lilac); }
+.cpd-topbar .cpd-logo { width: 26px; height: 26px; font-size: 12px; }
 .cpd-topbar svg { margin-left: auto; color: #6B6883; }
 
 /* Main panel */
@@ -588,7 +589,7 @@ body::before {
 .cpd-track.is-returning .cpd-card { transition: transform .7s cubic-bezier(.6,0,.2,1) var(--delay, 0ms), opacity .35s ease .4s, border-color .3s, box-shadow .3s; }
 .cpd-card.is-hover { --lift: -4px; z-index: 3; border-color: var(--line-strong); box-shadow: 0 18px 55px rgba(54,0,115,0.16); transition-duration: .35s; }
 .cpd-photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--lilac); }
-.cpd-photo img, .cpd-pphoto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cpd-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cpd-status { position: absolute; top: 8px; left: 8px; display: grid; }
 .cpd-status em { grid-area: 1 / 1; justify-self: start; padding: 4px 9px; border-radius: 100px; font-size: 10px; font-weight: 700; font-style: normal; white-space: nowrap; transition: opacity .3s; }
 .cpd-status em:first-child { background: var(--primary); color: #fff; }
@@ -602,56 +603,16 @@ body::before {
 .cpd-skills { margin-top: 6px; color: var(--body); }
 .cpd-chip { display: inline-block; box-sizing: border-box; max-width: 100%; margin-top: 8px; padding: 3px 9px; border-radius: 100px; background: var(--lilac); color: var(--plum); font-size: 10px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: top; }
 
-/* Profile, as the portal shows it once a card is opened */
-.cpd-profile { position: absolute; inset: 0; z-index: 6; padding: 22px; background: #fff; transform: translateX(104%); transition: transform .5s cubic-bezier(.6,0,.2,1); }
-.cpd-profile.is-open { transform: none; }
-.cpd-strip { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border-left: 3px solid var(--primary); border-radius: 0 14px 14px 0; background: rgba(242,235,255,0.7); font-size: 12px; color: var(--body); }
-.cpd-back { font-weight: 700; color: var(--primary); }
-.cpd-pos b { color: var(--ink); }
-.cpd-step { display: flex; gap: 6px; }
-.cpd-step i { padding: 5px 12px; border: 1px solid var(--line-strong); border-radius: 100px; background: #fff; color: var(--ink); font-style: normal; font-weight: 700; }
-.cpd-step i + i { background: var(--primary); border-color: var(--primary); color: #fff; }
-.cpd-decide { justify-content: flex-start; margin-top: 10px; }
-.cpd-pname { font-size: 15px; font-weight: 800; color: var(--ink); }
-.cpd-decide .cpd-status { position: static; }
-.cpd-decisions { display: flex; gap: 6px; margin-left: auto; }
-.cpd-dec { display: inline-flex; align-items: center; gap: 4px; padding: 6px 13px; border: 1px solid; border-radius: 100px; background: #fff; font-size: 12px; font-weight: 700; transition: background .25s, color .25s, border-color .25s; }
+/* Decisions on the hovered card: Approve, Maybe, Reject, in the portal's colours. */
+.cpd-actions { position: absolute; left: 7px; right: 7px; bottom: 7px; display: flex; gap: 4px; padding: 4px; border-radius: 100px; background: rgba(255,255,255,0.95); box-shadow: 0 6px 18px rgba(33,0,93,0.2); opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; }
+.cpd-card.is-hover .cpd-actions { opacity: 1; transform: none; }
+.cpd-dec { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 5px 0; border: 1px solid; border-radius: 100px; background: #fff; font-size: 10px; font-weight: 700; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
 .cpd-dec em { font-style: normal; opacity: .45; transition: opacity .25s; }
-.dec-yes { border-color: rgba(26,103,78,0.3); color: var(--live); }
+.dec-yes { flex: 1.35; border-color: rgba(26,103,78,0.3); color: var(--live); }
 .dec-maybe { border-color: rgba(146,64,14,0.3); color: var(--amber); }
 .dec-no { border-color: rgba(139,30,30,0.3); color: var(--declined); }
-.cpd-profile.is-yes .dec-yes { background: var(--live); border-color: var(--live); color: #fff; }
-.cpd-profile.is-yes .dec-yes em { opacity: 1; }
-.cpd-moved { display: flex; justify-content: space-between; margin-top: 10px; padding: 9px 14px; border-radius: 14px; background: var(--live-bg); color: var(--live); font-size: 12px; font-weight: 700; opacity: 0; transform: translateY(-4px); transition: opacity .3s, transform .3s; }
-.cpd-moved u { text-underline-offset: 2px; }
-.cpd-profile.is-yes .cpd-moved { opacity: 1; transform: none; }
-.cpd-pbody { display: flex; gap: 18px; margin-top: 12px; }
-.cpd-pphoto { position: relative; flex: none; width: 46%; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 16px; background: var(--lilac); }
-.cpd-pphoto img { transition: transform 2s cubic-bezier(.2,.6,.3,1); }
-.cpd-profile.is-playing .cpd-pphoto img { transform: scale(1.06); }
-.cpd-play { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; padding-left: 3px; box-sizing: border-box; border-radius: 50%; display: grid; place-items: center; background: rgba(33,0,93,0.6); transition: opacity .3s; }
-.cpd-profile.is-playing .cpd-play { opacity: 0; }
-.cpd-progress { position: absolute; left: 12px; right: 12px; bottom: 12px; height: 4px; overflow: hidden; border-radius: 4px; background: rgba(255,255,255,0.8); opacity: 0; transition: opacity .3s; }
-.cpd-progress i { display: block; height: 100%; background: var(--primary); transform: scaleX(0); transform-origin: left; }
-.cpd-profile.is-playing .cpd-progress { opacity: 1; }
-.cpd-profile.is-playing .cpd-progress i { animation: cpd-progress 1.6s linear forwards; }
-.cpd-pinfo { flex: 1; min-width: 0; padding-top: 2px; }
-.cpd-pinfo .cpd-loc { margin-top: 0; font-size: 12px; }
-.cpd-pinfo .cpd-skills { margin-top: 8px; font-size: 12px; white-space: normal; }
-.cpd-lines { display: block; margin-top: 6px; }
-.cpd-lines i { display: block; height: 8px; margin-top: 10px; border-radius: 4px; background: var(--lilac); }
-.cpd-lines i:nth-child(1) { width: 92%; }
-.cpd-lines i:nth-child(2) { width: 78%; }
-.cpd-lines i:nth-child(3) { width: 85%; }
-.cpd-lines i:nth-child(4) { width: 60%; }
-.cpd-work { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
-.cpd-reel { position: relative; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 12px; background: var(--ink); }
-.cpd-reel img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(var(--zoom)); transform-origin: var(--origin); }
-.cpd-reel::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(33,0,93,0) 55%, rgba(33,0,93,0.6)); }
-.cpd-reel:nth-child(2)::after { background: linear-gradient(rgba(232,32,164,0.18), rgba(33,0,93,0.6)); }
-.cpd-reel:nth-child(3)::after { background: linear-gradient(rgba(255,214,0,0.14), rgba(33,0,93,0.6)); }
-.cpd-reel:nth-child(4)::after { background: linear-gradient(rgba(109,0,255,0.2), rgba(33,0,93,0.6)); }
-.cpd-reel svg { position: absolute; left: 8px; bottom: 8px; z-index: 1; }
+.cpd-card.is-yes .dec-yes { background: var(--live); border-color: var(--live); color: #fff; }
+.cpd-card.is-yes .dec-yes em { opacity: 1; }
 
 /* Cursor and taps sit outside the scaled canvas, in frame pixels. */
 .cpd-cursor { position: absolute; top: 0; left: 0; z-index: 10; pointer-events: none; opacity: 0; transition: opacity .3s; }
@@ -665,8 +626,8 @@ body::before {
 
 /* The portal's phone layout: top bar, list pills, two columns. */
 @media (max-width: 1099px) {
-  .cpd-canvas { width: 380px; height: 720px; flex-direction: column; }
-  .cpd-side, .cpd-desc, .cpd-queue, .cpd-search, .cpd-skills, .cpd-step { display: none; }
+  .cpd-canvas { width: 380px; height: 580px; flex-direction: column; }
+  .cpd-side, .cpd-desc, .cpd-queue, .cpd-search, .cpd-skills { display: none; }
   .cpd-topbar, .cpd-lists { display: flex; }
   .cpd-main { margin: 0; padding: 16px 16px 0; border: 0; border-radius: 0; box-shadow: none; }
   .cpd-title { font-size: 24px; }
@@ -675,10 +636,6 @@ body::before {
   .cpd-grid { margin: 12px -16px 0; }
   .cpd-track { left: 16px; right: 16px; --cols: 2; --gap: 10px; }
   .cpd-card { --c: var(--c2); --r: var(--r2); height: 292px; }
-  .cpd-profile { padding: 16px; }
-  .cpd-decide { flex-wrap: wrap; }
-  .cpd-decisions { width: 100%; margin-left: 0; }
-  .cpd-pinfo .cpd-skills { display: block; }
   .cpd-tap { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
 }
 
@@ -688,6 +645,5 @@ body::before {
   .cpd, .cpd * { transition: none !important; animation: none !important; }
 }
 
-@keyframes cpd-progress { to { transform: scaleX(1); } }
 @keyframes cpd-press    { 50% { transform: scale(.8); } }
 @keyframes cpd-tap      { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
