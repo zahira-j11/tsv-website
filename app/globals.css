@@ -503,3 +503,154 @@ body::before {
 /* Shared footer (app/SiteFooter.tsx): hover states the homepage footer sets in script. */
 .site-footer-link:hover { color: #FFD600 !important; }
 .site-footer-social:hover { border-color: #FFD600 !important; color: #FFD600 !important; }
+
+/* How it works: portal mock-up (app/CreatorPlatformDemo.tsx).
+   A copy of the client view of the TSV portal, drawn at a fixed design size
+   (800 x 720, or the portal's phone layout at 380 x 580) and scaled to the
+   slot in script (--k). The slot's aspect ratio holds the space before it
+   loads. Colours are the portal's own tokens. On wide screens the frame is
+   raised beside the intro line and drawn taller (800 x 904), so it fills
+   that space and still ends level with the three steps; below 1260px the
+   intro line would run under it. */
+.cpd-slot { width: 100%; max-width: 560px; aspect-ratio: 800 / 720; margin-left: auto; }
+@media (min-width: 1260px) { .cpd-slot { aspect-ratio: 800 / 904; margin-top: -130px; } }
+@media (max-width: 1099px) { .cpd-slot { max-width: 400px; aspect-ratio: 380 / 580; } }
+@media (max-width: 768px)  { .cpd-slot { max-width: 420px; margin: -24px auto 0; } }
+
+.cpd {
+  --ink: #21005D; --body: #625577; --muted: #746687; --primary: #6D00FF; --plum: #4D167E;
+  --line: #E7DFFF; --line-strong: #CDB6F7; --lilac: #F2EBFF;
+  --live: #1A674E; --live-bg: #D9F2E9; --amber: #92400E; --declined: #8B1E1E;
+  position: relative; height: 100%; overflow: hidden; border-radius: 18px; background: #21005D; color: var(--ink);
+  /* The portal's sidebar is the section's own purple, so a deep shadow and
+     a soft purple glow lift the frame off it, without an outline. The frame's
+     own fill is the sidebar's colour, not the portal's lilac (that sits on the
+     canvas), so the rounded clip leaves no light hairline at the corners.
+     A deeper shadow (0 30px 70px) made Chrome trickle the hero videos in and
+     stretched Lighthouse's desktop run from 10 s to 25 s, so keep these. */
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 90px rgba(124,1,255,0.4);
+  -webkit-user-select: none; user-select: none;
+}
+.cpd-canvas {
+  position: absolute; top: 0; left: 0; width: 800px; height: 720px; display: flex; background: #F5F1FF;
+  transform: scale(var(--k, 0.7)); transform-origin: 0 0;
+}
+@media (min-width: 1260px) { .cpd-canvas { height: 904px; } }
+
+/* Sidebar */
+.cpd-side { flex: none; width: 180px; display: flex; flex-direction: column; background: #21005D; color: #fff; }
+.cpd-nav { flex: 1; padding: 18px 10px; }
+/* Creator Network doubles as the way back to everyone, so it lights up like a list. */
+.cpd-nav-head { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); transition: background .25s; }
+.cpd-nav-head svg { flex: none; color: rgba(255,255,255,0.6); transition: color .25s; }
+.cpd-nav-head.is-on { background: #5B01FF; }
+.cpd-nav-head.is-on svg { color: #fff; }
+.cpd-nav-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 2px 0 2px 16px; padding: 8px 10px; border-radius: 12px; font-size: 12px; color: rgba(255,255,255,0.58); transition: background .25s, color .25s; }
+.cpd-nav-item span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.cpd-nav-item b { flex: none; font-weight: 500; color: rgba(255,255,255,0.45); transition: color .25s; }
+.cpd-nav-item.is-on { background: #5B01FF; color: #fff; }
+.cpd-nav-item.is-on b { color: #fff; }
+.cpd-powered { padding: 12px 16px 28px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 9px; color: rgba(255,255,255,0.25); }
+.cpd-topbar { display: none; flex: none; height: 50px; align-items: center; gap: 9px; padding: 0 16px; background: #fff; border-bottom: 1px solid #E8E3F2; font-size: 13px; font-weight: 700; }
+.cpd-topbar svg { margin-left: auto; color: #6B6883; }
+
+/* Main panel */
+.cpd-main { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; margin: 12px; padding: 22px 22px 0; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 8px 30px rgba(53,8,104,0.06); }
+.cpd-head { flex: none; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.cpd-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--primary); }
+.cpd-title { margin-top: 4px; font-size: 27px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.cpd-desc { margin-top: 6px; max-width: 330px; font-size: 12px; line-height: 1.55; color: var(--body); }
+.cpd-queue { flex: none; width: 178px; padding: 10px 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 25px rgba(53,8,104,0.06); }
+.cpd-queue p { font-size: 11.5px; font-weight: 800; }
+.cpd-num, .cpd-tab b { font-variant-numeric: tabular-nums; }
+.cpd-bar { display: block; height: 4px; margin-top: 7px; overflow: hidden; border-radius: 4px; background: var(--lilac); }
+.cpd-bar i { display: block; height: 100%; background: var(--primary); transform-origin: left; transition: transform .6s ease; }
+.cpd-link { display: block; margin-top: 6px; font-size: 11px; font-weight: 700; color: var(--primary); }
+.cpd-tabs { flex: none; display: flex; align-items: center; gap: 5px; margin-top: 16px; }
+.cpd-tab { padding: 4.5px 9.5px; border: 1px solid var(--line); border-radius: 100px; background: #fff; font-size: 9.5px; font-weight: 700; white-space: nowrap; }
+.cpd-tab b { font-weight: 700; opacity: .7; }
+.cpd-tab.is-on { background: var(--plum); border-color: var(--plum); color: #fff; }
+.cpd-search { margin-left: auto; display: flex; align-items: center; gap: 6px; width: 150px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 100px; font-size: 9.5px; color: var(--muted); }
+.cpd-lists { display: none; flex: none; gap: 6px; margin-top: 10px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); }
+.cpd-pill { flex: none; padding: 4px 8px; border: 1px solid var(--line); border-radius: 100px; background: #fff; font-size: 9.5px; font-weight: 700; white-space: nowrap; transition: background .25s, border-color .25s, color .25s; }
+.cpd-pill b { font-weight: 700; opacity: .6; }
+.cpd-pill.is-on { background: #5B01FF; border-color: #5B01FF; color: #fff; }
+
+/* Creator grid. One transform scrolls the track (set in script); each card's
+   slot arrives as --c3/--r3 and --c2/--r2, and the layout picks a pair. */
+.cpd-grid { position: relative; flex: 1; margin: 14px -22px 0; overflow: hidden; }
+.cpd-grid::before, .cpd-grid::after { content: ''; position: absolute; left: 0; right: 0; z-index: 5; pointer-events: none; }
+.cpd-grid::before { top: 0; height: 14px; background: linear-gradient(#fff, rgba(255,255,255,0)); }
+.cpd-grid::after { bottom: 0; height: 80px; background: linear-gradient(rgba(255,255,255,0), #fff); }
+.cpd-track { position: absolute; top: 4px; left: 22px; right: 22px; --cols: 3; --gap: 12px; }
+.cpd-card {
+  --c: var(--c3); --r: var(--r3);
+  position: absolute; top: 0; left: 0; z-index: 1; box-sizing: border-box; overflow: hidden;
+  width: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); height: 322px;
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  transform: translate(calc(var(--c) * (100% + var(--gap))), calc(var(--r) * (100% + var(--gap)) + var(--dy, 0px) + var(--lift, 0px))) scale(var(--zoom, 1));
+  transition: transform .7s cubic-bezier(.6,0,.2,1) var(--delay, 0ms), opacity .4s ease, border-color .3s, box-shadow .3s;
+}
+.cpd-card.is-out { opacity: 0; --zoom: .92; z-index: 0; }
+.cpd-card.is-back { z-index: 2; }
+.cpd-track.is-returning .cpd-card { transition: transform .7s cubic-bezier(.6,0,.2,1) var(--delay, 0ms), opacity .35s ease .4s, border-color .3s, box-shadow .3s; }
+.cpd-card.is-hover { --lift: -4px; z-index: 3; border-color: var(--line-strong); box-shadow: 0 18px 55px rgba(54,0,115,0.16); transition-duration: .35s; }
+.cpd-photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--lilac); }
+.cpd-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cpd-status { position: absolute; top: 8px; left: 8px; display: grid; }
+.cpd-status em { grid-area: 1 / 1; justify-self: start; padding: 4px 9px; border-radius: 100px; font-size: 10px; font-weight: 700; font-style: normal; white-space: nowrap; transition: opacity .3s; }
+.cpd-status em:first-child { background: var(--primary); color: #fff; }
+.cpd-status em + em { background: var(--live-bg); color: var(--live); opacity: 0; }
+.is-yes .cpd-status em:first-child { opacity: 0; }
+.is-yes .cpd-status em + em { opacity: 1; }
+.cpd-body { padding: 9px 11px 0; }
+.cpd-name { font-size: 14px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cpd-loc, .cpd-skills { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cpd-loc { margin-top: 2px; color: var(--muted); }
+.cpd-skills { margin-top: 6px; color: var(--body); }
+.cpd-chip { display: inline-block; box-sizing: border-box; max-width: 100%; margin-top: 8px; padding: 3px 9px; border-radius: 100px; background: var(--lilac); color: var(--plum); font-size: 10px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: top; }
+
+/* Decisions on the hovered card: Approve, Maybe, Reject, in the portal's colours. */
+.cpd-actions { position: absolute; left: 12px; right: 12px; bottom: 8px; display: flex; gap: 3px; padding: 3px; border-radius: 100px; background: rgba(255,255,255,0.95); box-shadow: 0 6px 18px rgba(33,0,93,0.2); opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; }
+.cpd-card.is-hover .cpd-actions { opacity: 1; transform: none; }
+.cpd-dec { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 2px; padding: 3.5px 0; border: 1px solid; border-radius: 100px; background: #fff; font-size: 7.5px; font-weight: 700; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
+.cpd-dec em { font-style: normal; opacity: .45; transition: opacity .25s; }
+.dec-yes { flex: 1.35; border-color: rgba(26,103,78,0.3); color: var(--live); }
+.dec-maybe { border-color: rgba(146,64,14,0.3); color: var(--amber); }
+.dec-no { border-color: rgba(139,30,30,0.3); color: var(--declined); }
+.cpd-card.is-yes .dec-yes { background: var(--live); border-color: var(--live); color: #fff; }
+.cpd-card.is-yes .dec-yes em { opacity: 1; }
+
+/* Cursor and taps sit outside the scaled canvas, in frame pixels. */
+.cpd-cursor { position: absolute; top: 0; left: 0; z-index: 10; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.cpd-cursor.is-on { opacity: 1; }
+.cpd-cursor.is-glide { transition: opacity .3s, transform .8s cubic-bezier(.55,0,.2,1); }
+.cpd-cursor svg { display: block; margin: -1px 0 0 -2px; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3)); transform-origin: 2px 2px; animation: cpd-press .3s ease; }
+.cpd-tap {
+  position: absolute; z-index: 9; width: 34px; height: 34px; margin: -17px 0 0 -17px; box-sizing: border-box; border-radius: 50%; pointer-events: none;
+  background: rgba(124,1,255,0.22); border: 2px solid rgba(124,1,255,0.5); animation: cpd-tap .55s ease-out forwards;
+}
+
+/* The portal's phone layout: top bar, list pills, two columns. */
+@media (max-width: 1099px) {
+  .cpd-canvas { width: 380px; height: 580px; flex-direction: column; }
+  .cpd-side, .cpd-desc, .cpd-queue, .cpd-search, .cpd-skills { display: none; }
+  .cpd-topbar, .cpd-lists { display: flex; }
+  .cpd-main { margin: 0; padding: 16px 16px 0; border: 0; border-radius: 0; box-shadow: none; }
+  .cpd-title { font-size: 24px; }
+  .cpd-tabs { margin-top: 12px; gap: 4px; }
+  .cpd-tab { padding: 4px 8px; font-size: 9.5px; }
+  .cpd-grid { margin: 12px -16px 0; }
+  .cpd-track { left: 16px; right: 16px; --cols: 2; --gap: 10px; }
+  .cpd-card { --c: var(--c2); --r: var(--r2); height: 292px; }
+  .cpd-tap { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+}
+
+/* Reduced motion shows one still (set in script): no transitions or delays,
+   so it lands at once and the cursor measures the settled card. */
+@media (prefers-reduced-motion: reduce) {
+  .cpd, .cpd * { transition: none !important; animation: none !important; }
+}
+
+@keyframes cpd-press    { 50% { transform: scale(.8); } }
+@keyframes cpd-tap      { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
