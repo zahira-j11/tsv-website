@@ -97,6 +97,10 @@ export const FAQ: DocPage[] = [
             a: 'No. We make [UGC](/ugc-agency) and short-form content, not influencer campaigns.',
           },
           {
+            q: 'Can we be the only brand in our category you work with?',
+            a: 'Yes. Category exclusivity is available for an additional fee.',
+          },
+          {
             q: 'Do you only edit if we send footage?',
             a: 'No. We don\u2019t offer edit-only work. A retainer includes filming and editing.',
           },

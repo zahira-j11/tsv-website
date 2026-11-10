@@ -19,7 +19,7 @@ export const CREATORS: DocPage[] = [
       { type: 'h2', id: 'roster', text: 'A roster, not a one-off search' },
       {
         type: 'p',
-        text: 'For an ongoing brand we build a roster you have already approved, often in the range of 10 to 30 creators, so a trend can be filmed without starting casting from zero. We usually recommend one face, or two, that the audience can recognise, and more in a month if you want the feed to look broader. If you need a demographic we do not have, we go and find them.',
+        text: 'For an ongoing brand we build a roster you have already approved, often in the range of 10 to 30 creators, so a trend can be filmed without starting casting from zero. We usually recommend one face, or two, that the audience can recognise, and more in a month if you want the feed to look broader. If you need a demographic we do not have, we go and find them. When a script needs a particular dynamic, such as a couple, two colleagues, or a parent and a grown-up child, we cast to that dynamic rather than to a single profile.',
       },
       { type: 'h2', id: 'platform', text: 'Where you review them' },
       {
