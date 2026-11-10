@@ -141,7 +141,7 @@ export const HOW_WE_WORK: DocPage[] = [
       },
       {
         type: 'p',
-        text: 'Street interviews are one way to stay inside those lines, because the video is people answering a question rather than the brand reading a claim. Habito’s street interviews are written up as a [case study](/case-studies/habito). Plum is the paid example: Paid Social Productions and Remote Creator UGC, on the [Plum case study](/case-studies/plum). Finance work is also on [fintech](/industries/fintech). What the FCA’s social media rules mean for short-form video is on [FCA financial promotions on social media](/blog/fca-financial-promotions-social-media).',
+        text: 'Street interviews are one way to stay inside those lines, because the video is people answering a question rather than the brand reading a claim. Habito’s street interviews are written up as a [case study](/case-studies/habito). Plum is the paid example: Paid Social Productions and Remote Creator UGC, on the [Plum case study](/case-studies/plum). Finance work is also on [fintech](/industries/fintech).',
       },
       {
         type: 'faq',
