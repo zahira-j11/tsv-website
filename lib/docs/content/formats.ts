@@ -14,7 +14,7 @@ export const FORMATS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'UGC, user-generated content, is the name we use for lower-fi video that is not polished like an advert. Remote creator UGC is the paid version: we write the strategy and the briefs, creators in our network film, we edit in-house, and you approve the cut. The video is for your channels or your ads.',
+        text: 'UGC, user-generated content, is the name we use for lower-fi video that is [not polished like an advert](/blog/ugc-ads-that-dont-look-like-ads). Remote creator UGC is the paid version: we write the strategy and the briefs, creators in our network film, we edit in-house, and you approve the cut. The video is for your channels or your ads.',
       },
       { type: 'h2', id: 'vs-influencer', text: 'UGC and influencer marketing' },
       {
@@ -153,7 +153,7 @@ export const FORMATS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'The formats on the site are street interview content, organic social productions and creator-led organic for organic, and paid social productions and remote creator UGC for paid. Creator-led organic means a recurring person on your own channels, so the audience can recognise them. Trend-led videos follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
+        text: 'The formats on the site are street interview content, organic social productions and creator-led organic for organic, and paid social productions and remote creator UGC for paid. [Creator-led organic](/blog/social-content-without-founder-on-camera) means a recurring person on your own channels, so the audience can recognise them. Trend-led videos follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
       },
       {
         type: 'p',

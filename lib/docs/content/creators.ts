@@ -14,7 +14,7 @@ export const CREATORS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We cast from a network of 300+ creators across the UK. They are real people, not AI, across ages, accents and backgrounds. You approve who is on screen before we film. We put forward more options than you need, including profiles and a self-tape, so the choice is yours rather than a single name.',
+        text: 'We cast from a network of 300+ creators across the UK. They are [real people, not AI](/blog/ai-generated-video-tiktok), across ages, accents and backgrounds. You approve who is on screen before we film. We put forward more options than you need, including profiles and a self-tape, so the choice is yours rather than a single name.',
       },
       { type: 'h2', id: 'roster', text: 'A roster, not a one-off search' },
       {

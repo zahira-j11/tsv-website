@@ -59,7 +59,7 @@ export const GUIDES: DocPage[] = [
       { type: 'h2', id: 'on-brand', text: 'Keeping it on brand' },
       {
         type: 'p',
-        text: 'Brand integrations are planned into the strategy, not stuck on at the end. If a video could be a television advert that happens to be on a phone, it usually will not work. For a lo-fi sketch, we would not recommend a logo sitting on the picture. Performance has been better without a logo overlay. Whether a logo belongs depends on the format.',
+        text: 'Brand integrations are planned into the strategy, not stuck on at the end. If a video could be a television advert that happens to be on a phone, it usually will not work. For a [lo-fi](/blog/lo-fi-vs-high-production-video) sketch, we would not recommend a logo sitting on the picture. Performance has been better without a logo overlay. Whether a logo belongs depends on the format.',
       },
       { type: 'h2', id: 'rights-shipping', text: 'Usage, shipping, revisions' },
       {
@@ -221,7 +221,7 @@ export const GUIDES: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'The first three months are for testing. We would not promise it in eight. Each paid asset is made with two hooks, so one idea is already more than one test. A format needs to be posted at least six to 12 times before you decide it does not work.',
+        text: 'The first three months are for testing. We would not promise it in eight. Each paid asset is made with [two hooks](/blog/ugc-ads-that-dont-look-like-ads), so one idea is already more than one test. A format needs to be posted at least six to 12 times before you decide it does not work.',
       },
       { type: 'h2', id: 'what-changes', text: 'What we change' },
       {

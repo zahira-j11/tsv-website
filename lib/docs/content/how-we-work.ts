@@ -177,12 +177,12 @@ export const HOW_WE_WORK: DocPage[] = [
       { type: 'h2', id: 'paid', text: 'Paid is a hand-over' },
       {
         type: 'p',
-        text: 'You approve the paid video, then your team runs the spend against it. While that is happening, we are already in production on the next batch. That is why paid creative sits a step behind the media plan. The service page is [paid social creative](/paid-social-creative).',
+        text: 'You approve the paid video, then your team runs the spend against it. While that is happening, we are already in production on [the next batch](/blog/paid-social-creative-refresh). That is why paid creative sits a step behind the media plan. The service page is [paid social creative](/paid-social-creative).',
       },
       { type: 'h2', id: 'on-camera', text: 'Your own people on camera' },
       {
         type: 'p',
-        text: 'The creator network is the default when your team does not want to be on camera. If someone on the team, or a founder, does want to be on camera, we can film with them. Casting is still yours to approve.',
+        text: 'The creator network is the default when [your team does not want to be on camera](/blog/social-content-without-founder-on-camera). If someone on the team, or a founder, does want to be on camera, we can film with them. Casting is still yours to approve.',
       },
       {
         type: 'faq',
