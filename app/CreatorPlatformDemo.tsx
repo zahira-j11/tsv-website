@@ -15,7 +15,7 @@
 // loop only runs while the frame is on screen; reduced motion gets a still.
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import RetryImage from './RetryImage';
 
 // Stock headshots supplied by Zahira (Nov 2026), cropped to the portal's 4:5
 // card. Names, cities, skills and lists are placeholders, never real creators.
@@ -307,7 +307,7 @@ export default function CreatorPlatformDemo() {
                 return (
                   <div key={pos} data-pos={pos} className={cls} style={style}>
                     <div className="cpd-photo">
-                      <Image src={photo(i)} alt="" width={336} height={420} unoptimized draggable={false} loading={near ? 'eager' : 'lazy'} />
+                      <RetryImage src={photo(i)} alt="" width={336} height={420} unoptimized draggable={false} loading={near ? 'eager' : 'lazy'} />
                       <span className="cpd-status"><em>To Review</em><em>Approved</em></span>
                       <span className="cpd-actions">
                         <span className="cpd-dec dec-yes"><em>✓</em>Approve</span>

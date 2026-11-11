@@ -7,6 +7,7 @@ import { openCookieSettings } from '@/lib/consent';
 import { CASES, TESTIMONIALS, BOOK_CALL_HREF } from '@/lib/caseStudies';
 import ServicesSection from './ServicesSection';
 import CreatorPlatformDemo from './CreatorPlatformDemo';
+import RetryImage from './RetryImage';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -21,6 +22,8 @@ const YEL  = '#FFD600';
 const MU   = 'rgba(33,0,93,0.64)';
 const SU   = 'rgba(33,0,93,0.28)';
 const BR   = '#E4DCFF';
+/** Sticky header height: 14px gap above the nav + the 54px nav. */
+const HEADER_H = 68;
 const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
 // Footer. Icons are Tabler's outline brand marks, drawn with stroke.
 const FOOTER_SOCIALS = [
@@ -568,8 +571,7 @@ function CasesCarousel() {
           >
             {/* Thumbnail */}
             <div style={{ position: 'relative', height: 260, background: c.g, overflow: 'hidden' }}>
-              <Image src={c.thumb} alt={c.client} fill sizes="(max-width: 768px) 100vw, 580px" style={{ objectFit: 'cover' }}
-                onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+              <RetryImage src={c.thumb} alt={c.client} fill sizes="(max-width: 768px) 100vw, 580px" style={{ objectFit: 'cover' }} />
               <span style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.95)', color: P, ...DISP, fontSize: 12, fontWeight: 700, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)' }}>{c.client}</span>
               <span style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.90)', color: PD, fontSize: 11, fontWeight: 600, padding: '5px 14px', borderRadius: 20, backdropFilter: 'blur(8px)', maxWidth: '55%', textAlign: 'right' }}>{c.format}</span>
             </div>
@@ -763,8 +765,10 @@ export default function MarketingPage() {
     <div style={{ background:BG }}>
     {/* Sticky header. The gap above the nav is padding, not the nav's margin:
         a margin would collapse through to the page and leave a strip of body
-        background showing above it. */}
-    <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:'transparent', paddingTop:14 }}>
+        background showing above it. The negative bottom margin lets the hero
+        (and its orbs) run up behind the nav instead of starting below it in a
+        hard line. */}
+    <div style={{ position:'sticky', top:0, zIndex:200, fontFamily:'var(--font-sans)', background:'transparent', paddingTop:14, marginBottom:-HEADER_H }}>
       {/* ══ NAV ══════════════════════════════════════════════ */}
       <nav className={`mkt-nav${scrolled?' mkt-nav-scrolled':''}`} style={{ position:'relative', margin:'0 auto', zIndex:100, width:'min(1200px,calc(100% - 32px))', height:54, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(24px)', borderRadius:100, border:`1px solid ${BR}`, boxShadow:'0 4px 28px rgba(33,0,93,0.10), 0 1px 0 rgba(255,255,255,0.8) inset', transition:'box-shadow 320ms' }}>
         <div style={{ height:'100%', padding:'0 10px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:16 }}>
@@ -811,7 +815,7 @@ export default function MarketingPage() {
     <div className="mkt-page" style={{ fontFamily:'var(--font-sans)', background:BG, color:PD, overflowX:'hidden' }}>
 
       {/* ══ HERO ═════════════════════════════════════════════ */}
-      <section className="mkt-hero" style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', overflow:'hidden', background:BG }}>
+      <section className="mkt-hero" style={{ position:'relative', minHeight:`calc(100vh + ${HEADER_H}px)`, paddingTop:HEADER_H, display:'flex', alignItems:'center', overflow:'hidden', background:BG }}>
         <Orbs orbs={[
           { size:500, color:YEL,  opacity:0.45, cls:'mkt-orb-c', top:'8%',    left:'-4%'  },
           { size:420, color:P,    opacity:0.18, cls:'mkt-orb-a', top:'-8%',   right:'-6%' },
