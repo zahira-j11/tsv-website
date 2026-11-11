@@ -6,6 +6,9 @@
  *
  * In `results[].body`, the client name is rendered as a link to its case
  * study, so the body starts after the name.
+ *
+ * Intros, format bodies, the process paragraph, result bodies and FAQ answers
+ * render [label](href) links (FAQ schema gets the plain words).
  */
 
 export type Industry = {
@@ -46,7 +49,7 @@ export const INDUSTRIES: Industry[] = [
       'London fintech social media agency: organic TikTok, Reels and Shorts plus paid creative for fintech apps and mortgage brands, with compliance sign-off.',
     headlineStart: 'Your fintech brand deserves',
     intro: [
-      "Finance is one of the hardest categories to make work on social. People don't wake up wanting to watch a video about mortgages or savings accounts. Every line has to get past compliance. And most financial brands end up posting polished, careful content that nobody stops for.",
+      "Finance is one of the hardest categories to make work on social. People don't wake up wanting to watch a video about mortgages or savings accounts. Every line has to get past compliance. And most financial brands end up posting [polished, careful content](/blog/lo-fi-vs-high-production-video) that nobody stops for.",
       "It doesn't have to be that way. Money is one of the things people are most curious about. They just don't want to hear about it from a logo.",
     ],
     formatsHeading: 'What works for financial brands on short-form',
@@ -86,13 +89,13 @@ export const INDUSTRIES: Industry[] = [
       'Student marketing agency in London: TikTok, Reels and Shorts that students watch and share, from street interviews to results-day content.',
     headlineStart: 'Your student brand deserves',
     intro: [
-      'Students are the hardest audience to fake it with. They spot an ad in under a second, they live on TikTok, and they trust each other far more than any brand. Most education and student brands post content that looks like a prospectus, and it gets scrolled straight past.',
+      'Students are the hardest audience to fake it with. [They spot an ad in under a second](/blog/ugc-ads-that-dont-look-like-ads), they live on TikTok, and they trust each other far more than any brand. Most education and student brands post content that looks like a prospectus, and it gets scrolled straight past.',
       'The brands that win with students make content students would make themselves, about the things they actually talk about.',
     ],
     formatsHeading: 'What works for reaching students on short-form',
     formats: [
       { title: 'Street interviews with students.', href: '/street-interviews', body: 'Real students answering questions about uni life, money, choosing a course and everything in between. The answers are relatable, the comments fill up, and the brand owns the conversation.' },
-      { title: 'Useful content they send to friends.', body: 'Lists and guides that solve a real problem. For one edtech client, a results-day list of every place giving away free food reached nearly a million views and 28,000 shares.' },
+      { title: 'Useful content they send to friends.', body: 'Lists and guides that solve a real problem. For one edtech client, a results-day list of every place giving away free food reached nearly a million views and [28,000 shares](/blog/shares-beat-views).' },
       { title: 'Moments in the student calendar.', body: 'Results day, clearing, freshers and exam season are when students are searching and sharing most. We plan around them.' },
       { title: 'Presenters students relate to.', body: 'People from our network who look and sound like your audience, so the content feels like it came from a peer, not a brand.' },
     ],
@@ -127,12 +130,12 @@ export const INDUSTRIES: Industry[] = [
     headlineStart: 'Your app deserves',
     intro: [
       'Getting someone to download an app from a short video is a big ask. They have to stop scrolling, understand what the app does, believe it’s for them and care enough to leave TikTok. Most app content fails at the first step, because it opens on a screen recording and a logo.',
-      'The apps that grow on short-form lead with the problem the app solves, put a real person on camera, and test hooks relentlessly.',
+      'The apps that grow on short-form lead with the problem the app solves, [put a real person on camera](/blog/ai-generated-video-tiktok), and [test hooks relentlessly](/blog/paid-social-creative-refresh).',
     ],
     formatsHeading: 'What works for apps on short-form',
     formats: [
       { title: 'Problem-first storytelling.', body: 'Open on the moment your user feels the problem, not on the app. The product shows up as the answer.' },
-      { title: 'Remote Creator UGC.', body: 'Creators from our network using the app the way your users do, filmed to feel native to the feed.' },
+      { title: 'Remote Creator UGC.', body: 'Creators from our network using the app the way your users do, [filmed to feel native to the feed](/blog/ugc-ads-that-dont-look-like-ads).' },
       { title: 'Street interviews.', href: '/street-interviews', body: 'Real people talking about the thing your app solves, which builds an audience around the topic, not just the product.' },
       { title: 'Paid creative in volume.', href: '/paid-social-creative', body: 'Paid Social Productions and Remote Creator UGC with at least two hook variations per piece, so your performance team always has something new to test.' },
     ],
@@ -153,9 +156,9 @@ export const INDUSTRIES: Industry[] = [
     clientsLine: "Apps we've worked with include Plum, TALAB, Uni Compare, Habito and Freetrade.",
     faqs: [
       { q: 'Can short-form content drive app downloads?', a: 'Yes. TALAB grew from launch to 6,000 users with organic short-form content driving most of that growth, and Uni Compare saw a significant rise in app downloads.' },
-      { q: 'Should we focus on organic or paid creative?', a: 'They work best together: organic builds an audience and shows which messages land, and paid scales the winners. We can do either or both.' },
+      { q: 'Should we focus on organic or paid creative?', a: '[They work best together](/blog/organic-vs-paid-social): organic builds an audience and shows which messages land, and paid scales the winners. We can do either or both.' },
       { q: 'How many ad variations do you produce?', a: 'Every paid piece comes with at least two hook variations, so your team can test from day one.' },
-      { q: 'Do we need to be on camera?', a: 'No. We cast creators and presenters from our network of 300+ vetted UK creators.' },
+      { q: 'Do we need to be on camera?', a: 'No. [We cast creators and presenters](/blog/social-content-without-founder-on-camera) from our network of 300+ vetted UK creators.' },
     ],
     closing: 'Your app deserves more than 300 views.',
   },
@@ -180,7 +183,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     processHeading: 'How a shoot runs',
     processBody:
-      'Each month starts with a strategy call where we pitch the concepts and questions for your approval. We cast the presenter, film for around four hours with a presenter, a videographer and someone from our team, and deliver edits on a rolling basis for you to approve before we schedule and post. First content is usually live within 14 to 21 days of signing.',
+      'Each month starts with a strategy call where we pitch the concepts and questions for your approval. We cast the presenter, [film for around four hours](/blog/how-a-street-interview-shoot-works) with a presenter, a videographer and someone from our team, and deliver edits on a rolling basis for you to approve before we schedule and post. First content is usually live within 14 to 21 days of signing.',
     resultsHeading: 'Results from street interviews',
     results: [
       { slug: 'habito', client: 'Habito', body: 'street interviews about buying a home took this digital mortgage broker to 25 million organic views in 8 months with zero ad spend.' },
@@ -211,7 +214,7 @@ export const INDUSTRIES: Industry[] = [
     headlineStart: '',
     headline: ['Your performance team deserves creative ', 'as fast as it can test.'],
     intro: [
-      'Your media buyers can launch a new test in minutes. Getting the next batch of creative usually takes weeks: briefs, finding creators, shoots, edits and rounds of feedback. So the best ideas wait, winning ads run until they wear out, and the whole account slows down to the speed of production.',
+      'Your media buyers can launch a new test in minutes. Getting the next batch of creative usually takes weeks: briefs, finding creators, shoots, edits and rounds of feedback. So the best ideas wait, [winning ads run until they wear out](/blog/paid-social-creative-refresh), and the whole account slows down to the speed of production.',
       "We take creative production off your team's plate and keep a steady pipeline of new ads coming, so testing never has to wait.",
     ],
     formatsHeading: 'What we make for paid',
@@ -237,7 +240,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: 'How quickly can we get new creative?', a: 'First content goes live within 14 to 21 days of signing. After that, we deliver new ads on a rolling basis every month.' },
       { q: 'How many ad variations do you give us?', a: 'Every piece comes with at least two hook variations, plus square versions when you need them.' },
-      { q: "What's the difference between Paid Social Productions and Remote Creator UGC?", a: 'Paid Social Productions are higher-production ads we plan and film, from scripted scenarios to game-show concepts. Remote Creator UGC is filmed by creators from our network in their own space, so it feels like a recommendation from a real customer.' },
+      { q: "What's the difference between Paid Social Productions and Remote Creator UGC?", a: 'Paid Social Productions are higher-production ads we plan and film, from scripted scenarios to game-show concepts. Remote Creator UGC is filmed by creators from our network in their own space, so [it feels like a recommendation from a real customer](/blog/ugc-ads-that-dont-look-like-ads).' },
       { q: 'Do you run the ads?', a: 'We focus on making the creative. Your performance team or media agency runs the campaigns, and we use the results to shape the next batch.' },
     ],
     closing: 'Your performance team deserves creative as fast as it can test.',

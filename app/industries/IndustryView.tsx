@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import SiteNav from '../SiteNav';
 import SiteFooter from '../SiteFooter';
 import TrackedLink from '../case-studies/TrackedLink';
+import { RichText } from '@/components/docs/RichText';
 import { industryPath, type Industry } from '@/lib/industries';
 import { BOOK_CALL_HREF } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
@@ -13,6 +14,9 @@ const PD = '#21005D';
 const MU = 'rgba(33,0,93,0.64)';
 const BR = '#E4DCFF';
 const DISP: React.CSSProperties = { fontFamily: 'var(--font-display)' };
+
+/** Body copy may carry [label](href) links; schema gets the plain words. */
+const plain = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
 /** Page metadata for an industry or format page. */
 export function industryMetadata(ind: Industry): Metadata {
@@ -43,7 +47,7 @@ function JsonLd({ ind }: { ind: Industry }) {
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: ind.faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      mainEntity: ind.faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: plain(f.a) } })),
     },
     {
       '@context': 'https://schema.org',
@@ -81,7 +85,7 @@ export default function IndustryView({ ind }: { ind: Industry }) {
                 ? <>{ind.headline[0]}<span className="mkt-gradient-text">{ind.headline[1]}</span></>
                 : <>{ind.headlineStart} more than <span className="mkt-gradient-text">300 views.</span></>}
             </h1>
-            {ind.intro.map(p => <p key={p.slice(0, 24)} style={{ ...body, fontSize: 18 }}>{p}</p>)}
+            {ind.intro.map(p => <p key={p.slice(0, 24)} style={{ ...body, fontSize: 18 }}><RichText text={p} /></p>)}
           </header>
 
           <section style={{ marginBottom: 56 }}>
@@ -92,7 +96,7 @@ export default function IndustryView({ ind }: { ind: Industry }) {
                   <div style={{ ...DISP, fontSize: 17, fontWeight: 800, marginBottom: 8 }}>
                     {f.href ? <a href={f.href} style={{ fontWeight: 800 }}>{f.title.replace(/\.$/, '')}</a> : f.title.replace(/\.$/, '')}
                   </div>
-                  <p style={{ fontSize: 15, lineHeight: 1.7, color: MU, margin: 0 }}>{f.body}</p>
+                  <p style={{ fontSize: 15, lineHeight: 1.7, color: MU, margin: 0 }}><RichText text={f.body} /></p>
                 </div>
               ))}
             </div>
@@ -100,14 +104,14 @@ export default function IndustryView({ ind }: { ind: Industry }) {
 
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>{ind.processHeading}</h2>
-            <p style={body}>{ind.processBody}</p>
+            <p style={body}><RichText text={ind.processBody} /></p>
           </section>
 
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>{ind.resultsHeading}</h2>
             {ind.results.map(r => (
               <p key={r.slug} style={body}>
-                <a href={`/case-studies/${r.slug}`}>{r.client}</a>: {r.body}
+                <a href={`/case-studies/${r.slug}`}>{r.client}</a>: <RichText text={r.body} />
               </p>
             ))}
             {ind.quote && (
@@ -125,7 +129,7 @@ export default function IndustryView({ ind }: { ind: Industry }) {
               {ind.faqs.map(f => (
                 <div key={f.q} style={{ background: WH, border: `1.5px solid ${BR}`, borderRadius: 16, padding: '20px 22px' }}>
                   <h3 style={{ ...DISP, fontSize: 16.5, fontWeight: 800, margin: '0 0 8px' }}>{f.q}</h3>
-                  <p style={{ fontSize: 15, lineHeight: 1.7, color: MU, margin: 0 }}>{f.a}</p>
+                  <p style={{ fontSize: 15, lineHeight: 1.7, color: MU, margin: 0 }}><RichText text={f.a} /></p>
                 </div>
               ))}
             </div>
