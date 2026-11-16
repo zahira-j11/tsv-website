@@ -45,7 +45,7 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
   ]},
   { title: 'Work with us', links: [
     { label: 'For Creators', href: 'https://www.tsvportal.co.uk/creator', external: true },
-    { label: 'Talk to our team', href: '/#contact' },
+    { label: 'Talk to our team', href: '/#book-a-call' },
     { label: 'FAQ', href: '/#faq' },
     { label: 'Privacy policy', href: '/privacy' },
   ]},
