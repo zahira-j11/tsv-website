@@ -56,7 +56,7 @@ const FOOTER_COLUMNS: { title:string; links:FooterLink[] }[] = [
   ]},
   { title:'Work with us', links:[
     { label:'For Creators', href:'https://www.tsvportal.co.uk/creator', external:true },
-    { label:'Talk to our team', section:'contact' },
+    { label:'Talk to our team', href:'#book-a-call' },
     { label:'FAQ', section:'faq' },
     { label:'Privacy policy', href:'/privacy' },
   ]},
@@ -444,7 +444,7 @@ function StatIcon({ type }: { type: string }) {
 }
 
 // ─── Case detail modal ─────────────────────────────────────
-function CaseModal({ c, onClose }: { c: typeof CASES[0]; onClose: () => void }) {
+function CaseModal({ c, onClose, onBook }: { c: typeof CASES[0]; onClose: () => void; onBook: (location: string) => void }) {
   return (
     <Portal>
     <div onClick={onClose} style={{
@@ -499,7 +499,7 @@ function CaseModal({ c, onClose }: { c: typeof CASES[0]; onClose: () => void }) 
         <p style={{ fontSize: 15, color: 'rgba(33,0,93,0.62)', lineHeight: 1.8, margin: '0 0 32px' }}>{c.modalBody}</p>
 
         {/* CTA */}
-        <a href="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-" target="_blank" rel="noopener noreferrer" onClick={()=>track('cta_click',{ location:`case_${c.client.toLowerCase().replace(/\s+/g,'_')}` })} style={{
+        <a href={BOOK_CALL_HREF} onClick={e=>{ e.preventDefault(); onClose(); onBook(`case_${c.client.toLowerCase().replace(/\s+/g,'_')}`); }} style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,
           background: P, color: '#fff', fontSize: 15, fontWeight: 700,
           padding: '14px 28px', borderRadius: 50, textDecoration: 'none',
@@ -513,7 +513,7 @@ function CaseModal({ c, onClose }: { c: typeof CASES[0]; onClose: () => void }) 
 }
 
 // ─── Cases carousel ───────────────────────────────────────
-function CasesCarousel() {
+function CasesCarousel({ onBook }: { onBook: (location: string) => void }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [openCase, setOpenCase] = useState<typeof CASES[0] | null>(null);
@@ -599,7 +599,7 @@ function CasesCarousel() {
         ))}
       </div>
 
-      {openCase && <CaseModal c={openCase} onClose={() => setOpenCase(null)} />}
+      {openCase && <CaseModal c={openCase} onClose={() => setOpenCase(null)} onBook={onBook} />}
     </div>
   );
 }
@@ -651,6 +651,8 @@ export default function MarketingPage() {
       setShowCalendar(true);
       track('calendar_open',{ location:'link' });
       window.setTimeout(() => document.getElementById('contact')?.scrollIntoView(), 0);
+      // Drop the hash so a second click on a #book-a-call link fires again.
+      history.replaceState(null, '', window.location.pathname + window.location.search);
     };
     open();
     window.addEventListener('hashchange', open);
@@ -839,7 +841,7 @@ export default function MarketingPage() {
             </p>
 
             <div className="mkt-h4 mkt-hero-ctas" style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
-              <a href="#contact" onClick={()=>track('cta_click',{ location:'hero_talk' })} className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}
+              <a href={BOOK_CALL_HREF} onClick={e=>{ e.preventDefault(); bookCall('hero_talk'); }} className="mkt-glow-cta" style={{ ...btnP, ...HERO_BTN, border:'2px solid transparent' }}
                 onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; }}
                 onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.transform='none'; }}>
                 Talk to our team
@@ -1072,7 +1074,7 @@ export default function MarketingPage() {
             <span style={{ display:'inline-block', background:'rgba(124,1,255,0.09)', color:P, fontSize:10, fontWeight:800, letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 18px', borderRadius:20, marginBottom:18 }}>Case studies</span>
             <h2 style={{ ...DISP, fontSize:'clamp(32px,4.2vw,62px)', fontWeight:800, letterSpacing:'-.055em', color:PD }}>See what <em style={{ fontStyle:'italic' }} className="mkt-gradient-text">we&apos;ve done.</em></h2>
           </div>
-          <CasesCarousel />
+          <CasesCarousel onBook={bookCall} />
           <div style={{ textAlign:'center', marginTop:28 }}>
             <a href="/case-studies" style={{ color:P, fontSize:14, fontWeight:700, textDecoration:'none' }}>Read all our case studies →</a>
           </div>
@@ -1107,7 +1109,7 @@ export default function MarketingPage() {
                     </div>
                   ))}
                 </div>
-                <a href="#contact" onClick={()=>track('cta_click',{ location:`pricing_${plan.name.toLowerCase().replace(/\s+/g,'_')}` })} style={{ display:'block', textAlign:'center', padding:'17px', borderRadius:14, textDecoration:'none', background:plan.hero?YEL:P, color:plan.hero?PD:'#fff', ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
+                <a href={BOOK_CALL_HREF} onClick={e=>{ e.preventDefault(); bookCall(`pricing_${plan.name.toLowerCase().replace(/\s+/g,'_')}`); }} style={{ display:'block', textAlign:'center', padding:'17px', borderRadius:14, textDecoration:'none', background:plan.hero?YEL:P, color:plan.hero?PD:'#fff', ...DISP, fontSize:14, fontWeight:800, transition:'all 160ms' }}
                   onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.opacity='.88'; (e.currentTarget as HTMLElement).style.transform='translateY(-1px)'; }}
                   onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.opacity='1'; (e.currentTarget as HTMLElement).style.transform='none'; }}>
                   {plan.cta}
@@ -1122,7 +1124,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ══ CTA ═══════════════════════════════════════════════ */}
-      <section id="contact" style={{ padding:'110px 28px', background:`linear-gradient(150deg,${PD} 0%,${P} 100%)`, position:'relative', overflow:'hidden' }}>
+      <section id="contact" className="mkt-contact" style={{ padding:'110px 28px', background:`linear-gradient(150deg,${PD} 0%,${P} 100%)`, position:'relative', overflow:'hidden' }}>
         <Orbs orbs={[
           { size:460, color:P,    opacity:0.22, cls:'mkt-orb-a', top:'-18%',   right:'4%'    },
           { size:340, color:MAG,  opacity:0.18, cls:'mkt-orb-b', bottom:'-16%',left:'6%'     },
@@ -1199,14 +1201,14 @@ export default function MarketingPage() {
 
           {/* Discovery calendar — same HubSpot embed, revealed inside this route */}
           {showCalendar && (
-            <div style={{ background:WH, border:`2px solid ${BR}`, borderRadius:26, padding:'30px 28px 28px', boxShadow:'0 24px 64px rgba(0,0,0,0.18)' }}>
+            <div className="mkt-cal-card" style={{ background:WH, border:`2px solid ${BR}`, borderRadius:26, padding:'30px 28px 28px', boxShadow:'0 24px 64px rgba(0,0,0,0.18)' }}>
               <button onClick={()=>setShowCalendar(false)} style={{ background:'none', border:'none', color:MU, fontSize:13, fontWeight:700, cursor:'pointer', padding:0, marginBottom:18, fontFamily:'inherit' }}>
                 ← Back to options
               </button>
               <div style={{ ...DISP, fontSize:10, fontWeight:800, color:SU, letterSpacing:'.12em', textTransform:'uppercase', marginBottom:10 }}>Ready to work together?</div>
               <h3 style={{ ...DISP, fontSize:23, fontWeight:800, letterSpacing:'-.04em', color:PD, marginBottom:8 }}>Book your discovery call</h3>
               <p style={{ fontSize:14.5, color:MU, lineHeight:1.7, marginBottom:22 }}>30&ndash;45 minutes to talk through your goals, what we&rsquo;d recommend, and scope and pricing.</p>
-              <div style={{ borderRadius:18, overflow:'hidden', border:`1.5px solid ${BR}` }}>
+              <div className="mkt-cal-frame" style={{ borderRadius:18, overflow:'hidden', border:`1.5px solid ${BR}` }}>
                 <iframe
                   src="https://meetings-eu1.hubspot.com/thesocialvision/social-discovery-call-?embed=true"
                   title="Book a discovery call"
