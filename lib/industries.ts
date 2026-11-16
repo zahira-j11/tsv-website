@@ -84,7 +84,7 @@ export const INDUSTRIES: Industry[] = [
   {
     slug: 'education',
     label: 'Education and student brands',
-    metaTitle: 'Short-Form Content Agency for Education and Student Brands | The Social Vision',
+    metaTitle: 'Student Marketing Agency for TikTok, Reels and Shorts',
     metaDescription:
       'Student marketing agency in London: TikTok, Reels and Shorts that students watch and share, from street interviews to results-day content.',
     headlineStart: 'Your student brand deserves',
@@ -166,7 +166,7 @@ export const INDUSTRIES: Industry[] = [
     slug: 'street-interviews',
     path: '/street-interviews',
     label: 'Street interviews',
-    metaTitle: 'Street Interview Content Agency in London | The Social Vision',
+    metaTitle: 'Street Interview Agency in London | The Social Vision',
     metaDescription:
       "We plan, cast, film and edit street interview content for brands in London and across the UK. The format behind Habito's 25 million organic views.",
     headlineStart: 'Street interviews that get',
@@ -178,7 +178,7 @@ export const INDUSTRIES: Industry[] = [
     formats: [
       { title: 'The question.', body: 'It has to be something people genuinely want to answer and others want to hear, connected to your brand without being about your product. We pitch the questions each month and you approve them.' },
       { title: 'The presenter.', body: 'Cast from our network to suit your audience: someone people stop for and open up to.' },
-      { title: 'The place and time.', body: 'Different parts of London give very different answers. We pick locations and times to find the people your brand wants to hear from.' },
+      { title: 'The place and time.', body: '[Different parts of London give very different answers](/blog/street-interview-marketing-uk). We pick locations and times to find the people your brand wants to hear from.' },
       { title: 'Consent and the edit.', body: "Everyone gives consent on camera before they're used. We interview 20 to 25 people per shoot, so only the best answers make the final cut." },
     ],
     processHeading: 'How a shoot runs',

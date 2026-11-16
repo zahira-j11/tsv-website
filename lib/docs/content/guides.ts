@@ -182,7 +182,7 @@ export const GUIDES: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We write the questions, you approve them with the rest of the concepts, and we cast a presenter you can approve before the shoot. The location is chosen for who you want to hear from: students near a university, office workers in the city, pet owners at a dog park. We speak to more people than the video will use, transcribe the answers, and hand-pick the best one for each question.',
+        text: 'We write the questions, you approve them with the rest of the concepts, and we cast a presenter you can approve before the shoot. The location is chosen for [who you want to hear from](/blog/street-interview-marketing-uk): students near a university, office workers in the city, pet owners at a dog park. We speak to more people than the video will use, transcribe the answers, and hand-pick the best one for each question.',
       },
       {
         type: 'steps',

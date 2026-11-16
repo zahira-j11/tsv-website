@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteNav from '../SiteNav';
 import SiteFooter from '../SiteFooter';
-import { getAllPosts, CATEGORIES, AUTHORS, type Category, type Post } from '@/lib/blog';
+import { getAllPosts, CATEGORIES, AUTHORS, SITE_URL, ORG_ID, type Category, type Post } from '@/lib/blog';
 
 export const metadata: Metadata = {
   title: 'Blog | The Social Vision',
@@ -84,6 +84,35 @@ function PostCard({ post }: { post: Post }) {
   );
 }
 
+function BlogJsonLd({ posts }: { posts: Post[] }) {
+  const schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      '@id': `${SITE_URL}/blog#blog`,
+      name: 'The Social Vision blog',
+      url: `${SITE_URL}/blog`,
+      publisher: { '@id': ORG_ID },
+      blogPost: posts.map(p => ({
+        '@type': 'BlogPosting',
+        headline: p.title,
+        url: `${SITE_URL}/blog/${p.slug}`,
+        datePublished: p.publishedAt,
+        dateModified: p.updatedAt ?? p.publishedAt,
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+      ],
+    },
+  ];
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
 export default function BlogIndex() {
   const posts = getAllPosts();
   const featured = posts.find(p => p.featured);
@@ -91,6 +120,7 @@ export default function BlogIndex() {
 
   return (
     <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
+      <BlogJsonLd posts={posts} />
       {/* Background orbs */}
       <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
         <div className="mkt-orb-c" style={{ position: 'absolute', width: 520, height: 520, borderRadius: '50%', background: 'radial-gradient(circle, #FFD600CC 0%, #FFD600AA 60%, #FFD60022 85%, transparent 100%)', opacity: 0.28, filter: 'blur(3px)', top: '2%', left: '-6%' }} />

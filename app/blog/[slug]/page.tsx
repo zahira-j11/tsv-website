@@ -68,7 +68,7 @@ function JsonLd({ post }: { post: Post }) {
   const author = AUTHORS[post.author] ?? AUTHORS.tsv;
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
@@ -87,8 +87,20 @@ function JsonLd({ post }: { post: Post }) {
     publisher: { '@id': ORG_ID },
     url: `${SITE_URL}/blog/${post.slug}`,
     mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-    image: `${SITE_URL}/blog/${post.slug}/opengraph-image`,
+    image: post.coverImage
+      ? [`${SITE_URL}${post.coverImage}`, `${SITE_URL}/blog/${post.slug}/opengraph-image`]
+      : `${SITE_URL}/blog/${post.slug}/opengraph-image`,
     keywords: post.tags.join(', '),
+    isPartOf: { '@id': `${SITE_URL}/blog#blog` },
+  };
+  const breadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE_URL}/blog/${post.slug}` },
+    ],
   };
   const answers = extractQuickAnswers(post.content);
   const faq = answers.length > 0 && {
@@ -96,7 +108,7 @@ function JsonLd({ post }: { post: Post }) {
     '@type': 'FAQPage',
     mainEntity: answers.map(x => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })),
   };
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq ? [schema, faq] : schema) }} />;
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq ? [schema, breadcrumbs, faq] : [schema, breadcrumbs]) }} />;
 }
 
 function CategoryChip({ category }: { category: Category }) {
