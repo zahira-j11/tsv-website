@@ -96,7 +96,7 @@ export const INDUSTRIES: Industry[] = [
     formats: [
       { title: 'Street interviews with students.', href: '/street-interviews', body: 'Real students answering questions about uni life, money, choosing a course and everything in between. The answers are relatable, the comments fill up, and the brand owns the conversation.' },
       { title: 'Useful content they send to friends.', body: 'Lists and guides that solve a real problem. For one edtech client, a results-day list of every place giving away free food reached nearly a million views and [28,000 shares](/blog/shares-beat-views).' },
-      { title: 'Moments in the student calendar.', body: 'Results day, clearing, freshers and exam season are when students are searching and sharing most. We plan around them.' },
+      { title: 'Moments in the student calendar.', body: 'Results day, clearing, freshers and exam season are when students are searching and sharing most. [We plan around them](/blog/how-to-market-to-university-students).' },
       { title: 'Presenters students relate to.', body: 'People from our network who look and sound like your audience, so the content feels like it came from a peer, not a brand.' },
     ],
     processHeading: 'Built around the student year',
