@@ -8,6 +8,7 @@ import { CASES, TESTIMONIALS, BOOK_CALL_HREF } from '@/lib/caseStudies';
 import ServicesSection from './ServicesSection';
 import CreatorPlatformDemo from './CreatorPlatformDemo';
 import RetryImage from './RetryImage';
+import { RichText } from '@/components/docs/RichText';
 
 // ─── Brand Palette ─────────────────────────────────────────
 const BG   = '#FEFDF8';
@@ -496,7 +497,7 @@ function CaseModal({ c, onClose, onBook }: { c: typeof CASES[0]; onClose: () => 
         </div>
 
         {/* Body */}
-        <p style={{ fontSize: 15, color: 'rgba(33,0,93,0.62)', lineHeight: 1.8, margin: '0 0 32px' }}>{c.modalBody}</p>
+        <p className="cs-rich" style={{ fontSize: 15, color: 'rgba(33,0,93,0.62)', lineHeight: 1.8, margin: '0 0 32px' }}><RichText text={c.modalBody} /></p>
 
         {/* CTA */}
         <a href={BOOK_CALL_HREF} onClick={e=>{ e.preventDefault(); onClose(); onBook(`case_${c.client.toLowerCase().replace(/\s+/g,'_')}`); }} style={{

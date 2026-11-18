@@ -58,7 +58,7 @@ export const CREATORS: DocPage[] = [
     title: 'What usage rights do you get?',
     seoTitle: 'UGC usage rights | The Social Vision',
     description:
-      'Perpetual usage rights, including ads from your brand account. Creator-handle Spark Ads, whitelisting and partnership ads need the creator’s written authorisation.',
+      'Perpetual usage rights, including ads from your brand account. Spark Ads, whitelisting and partnership ads need the creator’s written authorisation.',
     schema: 'Article',
     related: { href: '/docs/reference/pricing', label: 'What the retainer includes' },
     blocks: [
@@ -110,7 +110,7 @@ export const CREATORS: DocPage[] = [
     title: 'What are Spark Ads and partnership ads?',
     seoTitle: 'TikTok Spark Ads and Meta partnership ads | The Social Vision',
     description:
-      'Creator-handle Spark Ads, whitelisting and partnership ads run under the creator’s name. Ads from your own account are included; these need a separate written agreement and creator authorisation.',
+      'Spark Ads, whitelisting and partnership ads run under the creator’s name: they need a separate written agreement and creator authorisation.',
     schema: 'Article',
     related: { href: '/docs/ugc-usage-rights', label: 'Usage rights' },
     blocks: [

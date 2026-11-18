@@ -51,7 +51,7 @@ export default function CaseStudiesPage() {
             <span style={{ display: 'inline-block', background: 'rgba(124,1,255,0.09)', color: P, fontSize: 10, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', padding: '5px 18px', borderRadius: 20, marginBottom: 18 }}>Case studies</span>
             <h1 style={{ ...DISP, fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.045em', lineHeight: 1.05, margin: '0 0 18px' }}>Brands that got more than 300 views</h1>
             <p style={{ fontSize: 17, lineHeight: 1.75, color: MU, margin: 0 }}>
-              What we made and what happened next for apps and consumer brands we work with, from organic street interviews to paid social creative. The Social Vision is a London-based short-form content agency.
+              What we made and what happened next for apps and consumer brands we work with, from organic street interviews to paid social creative. The Social Vision is a <a href="/" style={{ color: P, fontWeight: 700, textDecoration: 'none' }}>London-based short-form content agency</a>.
             </p>
           </header>
 

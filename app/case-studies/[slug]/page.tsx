@@ -7,6 +7,7 @@ import TrackedLink from '../TrackedLink';
 import { CASES, CASES_PUBLISHED, CASE_SEO, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
 import { industriesFor, industryPath } from '@/lib/industries';
+import { RichText } from '@/components/docs/RichText';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -130,7 +131,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <section style={{ marginBottom: 36 }}>
             <Label>What we made</Label>
             <p style={{ fontSize: 15, fontWeight: 700, margin: '0 0 8px' }}>{c.strategy}</p>
-            <p style={{ fontSize: 16.5, lineHeight: 1.8, color: MU, margin: 0 }}>{c.modalBody}</p>
+            <p className="cs-rich" style={{ fontSize: 16.5, lineHeight: 1.8, color: MU, margin: 0 }}><RichText text={c.modalBody} /></p>
           </section>
 
           {quotes.length > 0 && (
@@ -156,7 +157,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <section style={{ background: `linear-gradient(150deg,${PD} 0%,${P} 100%)`, color: '#fff', borderRadius: 24, padding: '34px 30px', marginBottom: 56 }}>
             <h2 style={{ ...DISP, fontSize: 'clamp(24px,3vw,32px)', fontWeight: 800, letterSpacing: '-.03em', margin: '0 0 10px' }}>Your brand deserves more than 300 views.</h2>
             <p style={{ fontSize: 15.5, lineHeight: 1.7, color: 'rgba(255,253,237,0.75)', margin: '0 0 22px', maxWidth: 560 }}>
-              We&rsquo;re a London-based short-form content agency. Tell us where your social is stuck and we&rsquo;ll show you what we&rsquo;d change.
+              We&rsquo;re a <a href="/" style={{ color: 'inherit' }}>London-based short-form content agency</a>. Tell us where your social is stuck and we&rsquo;ll show you what we&rsquo;d change.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
               <TrackedLink href={BOOK_CALL_HREF} location={`case_page_${c.slug}`} style={{ background: '#FFD600', color: PD, fontWeight: 800, fontSize: 14, padding: '13px 24px', borderRadius: 100, textDecoration: 'none' }}>Book a discovery call</TrackedLink>

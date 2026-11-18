@@ -659,3 +659,7 @@ body::before {
 
 @keyframes cpd-press    { 50% { transform: scale(.8); } }
 @keyframes cpd-tap      { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
+
+/* Links inside case-study copy (lib/caseStudies.ts uses [label](href)) */
+.cs-rich a { color: #7C01FF; font-weight: 700; text-decoration: none; }
+.cs-rich a:hover { text-decoration: underline; }

@@ -67,7 +67,7 @@ export const CASES = [
     overview:'Uni Compare is a UK university comparison platform helping students find and apply for the right course. They wanted to build an organic presence on TikTok and Reels that actually reached students, without relying on paid ads.',
     strategy:'Street Interviews',
     stats:[{icon:'eye',val:'16M+',label:'Views'},{icon:'users',val:'10K+',label:'Followers gained'},{icon:'heart',val:'200K+',label:'Likes'},{icon:'trend',val:'83K',label:'Average views per video'}],
-    modalBody:'We created street interviews and scripted skits built around the topics students actually care about when choosing a university. The content drove multiple viral moments, took their average video from under 1,000 views to 83,000, and directly contributed to a significant rise in app downloads.',
+    modalBody:'We created street interviews and scripted skits built around [the topics students actually care about](/blog/how-to-market-to-university-students) when choosing a university. The content drove multiple viral moments, took their average video from under 1,000 views to 83,000, and directly contributed to a significant rise in app downloads.',
   },
   {
     slug:'talab', title:'How TALAB grew from launch to 6,000 users',
@@ -79,7 +79,7 @@ export const CASES = [
     overview:'TALAB is a student concierge app that came to us right at the point of launch. With no existing audience and a brand new product, they needed content that could build awareness fast among university students and convert that attention into app downloads.',
     strategy:'Street Interviews',
     stats:[{icon:'eye',val:'1M+',label:'Views in first 5 weeks'},{icon:'eye',val:'15M+',label:'Total views'},{icon:'users',val:'10K+',label:'Followers gained'},{icon:'trend',val:'6,000',label:'App users acquired'}],
-    modalBody:'We hit the streets from day one, creating content built around student life, culture and the kind of topics their audience genuinely cared about. TALAB grew from a brand new app with no social presence to 6,000 users, with organic short-form content playing a central role in driving that growth.',
+    modalBody:'We hit the streets from day one, creating [content built around student life](/blog/how-to-market-to-university-students), culture and the kind of topics their audience genuinely cared about. TALAB grew from a brand new app with no social presence to 6,000 users, with organic short-form content playing a central role in driving that growth.',
   },
 ];
 

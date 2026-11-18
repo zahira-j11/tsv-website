@@ -83,7 +83,7 @@ export const HOW_WE_WORK: DocPage[] = [
     title: 'How do revisions work?',
     seoTitle: 'Are revisions included with a UGC agency? | The Social Vision',
     description:
-      'Revisions are included. The number of rounds is agreed in each brief. If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case.',
+      'Revisions are included, with the number of rounds agreed in each brief. If our footage is not good enough, we reshoot at our own cost.',
     schema: 'Article',
     related: { href: '/docs/reference/extra-work', label: 'What counts as extra work' },
     blocks: [
@@ -120,9 +120,9 @@ export const HOW_WE_WORK: DocPage[] = [
     section: 'how',
     navLabel: 'Regulated brands',
     title: 'Can a regulated brand use UGC and street interviews?',
-    seoTitle: 'UGC and street interviews for regulated brands | The Social Vision',
+    seoTitle: 'UGC and street interviews for regulated brands',
     description:
-      'Yes. Send the guardrails at onboarding. Nothing goes live until compliance signs off.',
+      'Yes. Send the guardrails at onboarding: banned phrases and claims, and the disclaimer lines. Nothing goes live until compliance signs off.',
     schema: 'Article',
     related: { href: '/case-studies/habito', label: 'Habito case study' },
     blocks: [

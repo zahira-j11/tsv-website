@@ -6,7 +6,7 @@ export const GUIDES: DocPage[] = [
     section: 'guides',
     navLabel: 'How to brief UGC creators',
     title: 'How to brief UGC creators',
-    seoTitle: 'How to brief UGC creators | The Social Vision',
+    seoTitle: 'UGC brief: how to brief UGC creators | The Social Vision',
     description:
       'We write the creator brief after you approve the copy. It covers the objective, at least two hooks, the dialogue, the references, and who is on camera.',
     schema: 'HowTo',
@@ -86,7 +86,7 @@ export const GUIDES: DocPage[] = [
     section: 'guides',
     navLabel: 'Hooks for UGC ads',
     title: 'How many hooks should a UGC ad have?',
-    seoTitle: 'How many hooks should a UGC ad have? | The Social Vision',
+    seoTitle: 'UGC hooks: how many should an ad have? | The Social Vision',
     description:
       'Two per asset. We pitch two hooks with the concept, and each paid piece is built so the opening can be tested.',
     schema: 'Article',
@@ -213,9 +213,9 @@ export const GUIDES: DocPage[] = [
     section: 'guides',
     navLabel: 'Test paid creative',
     title: 'How do you test paid social creative?',
-    seoTitle: 'How to test UGC ads and avoid fatigue | The Social Vision',
+    seoTitle: 'Ad creative fatigue: how to test UGC ads | The Social Vision',
     description:
-      'The first three months are for testing. Each paid asset has two hooks. We judge a format after it has run, not after one post, and we do not promise results in eight weeks.',
+      'The first three months are for testing. Each paid asset has two hooks, and we judge a format after it has run, not after one post.',
     schema: 'Article',
     related: { href: '/case-studies/plum', label: 'Plum case study' },
     blocks: [

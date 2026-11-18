@@ -5,7 +5,7 @@ import TrackedLink from '../case-studies/TrackedLink';
 import { BOOK_CALL_HREF, TESTIMONIALS } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
 
-const TITLE = 'UGC Agency UK | London UGC Creators for TikTok, Instagram and YouTube';
+const TITLE = 'UGC Agency UK | London Creators for TikTok, Instagram and YouTube';
 const DESCRIPTION =
   'The Social Vision is a UGC agency in the UK, based in London. We brief, cast and edit creator video for TikTok, Instagram and YouTube, on a monthly retainer.';
 

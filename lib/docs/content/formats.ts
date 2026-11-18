@@ -6,9 +6,9 @@ export const FORMATS: DocPage[] = [
     section: 'formats',
     navLabel: 'UGC-style and remote UGC',
     title: 'What is UGC?',
-    seoTitle: 'What is UGC? | The Social Vision',
+    seoTitle: 'What is UGC content? | The Social Vision',
     description:
-      'UGC here means lower-fi creator video for your own channels or ads. We make UGC and short-form content. We don\u2019t run influencer marketing or influencer campaigns.',
+      'UGC here means lower-fi creator video for your own channels or ads. We make UGC and short-form content. We don\u2019t run influencer campaigns.',
     schema: 'Article',
     related: { href: '/ugc-agency', label: 'UGC agency UK' },
     blocks: [
@@ -145,9 +145,9 @@ export const FORMATS: DocPage[] = [
     section: 'formats',
     navLabel: 'Creator-led, trends, explainers',
     title: 'What other short-form formats do you make?',
-    seoTitle: 'Creator-led organic, trend-led and explainer videos | The Social Vision',
+    seoTitle: 'Creator-led organic content and explainers | The Social Vision',
     description:
-      'Besides street interviews and UGC, the formats are creator-led organic, organic social productions and paid social productions, with trend-led videos and explainers inside them.',
+      'Besides street interviews and UGC: creator-led organic, organic social productions and paid social productions, with trend-led videos and explainers.',
     schema: 'Article',
     related: { href: '/blog/70-20-10-content-rule', label: 'The 70/20/10 rule' },
     blocks: [

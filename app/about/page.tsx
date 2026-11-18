@@ -83,7 +83,7 @@ export default function AboutPage() {
               We make short-form content that gets brands more than <span className="mkt-gradient-text">300 views.</span>
             </h1>
             <p style={{ ...body, fontSize: 18 }}>
-              The Social Vision is a London-based short-form content agency. We plan, cast, film, edit and post TikTok, Instagram Reels and YouTube Shorts content for apps and consumer brands, from organic content that builds an audience to paid creative your performance team can scale.
+              The Social Vision is a <a href="/" style={{ color: P, fontWeight: 700, textDecoration: 'none' }}>London-based short-form content agency</a>. We plan, cast, film, edit and post TikTok, Instagram Reels and YouTube Shorts content for apps and consumer brands, from organic content that builds an audience to paid creative your performance team can scale.
             </p>
             <p style={body}>
               We work alongside in-house marketing teams, either as a full-service extension or handling creators and production while your team leads strategy.

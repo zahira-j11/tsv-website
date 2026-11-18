@@ -82,7 +82,7 @@ export default function SiteFooter() {
           ))}
         </div>
         <div style={{ paddingTop: 22, fontSize: 12, color: 'rgba(255,253,237,0.45)' }}>
-          © {new Date().getFullYear()} The Social Vision Ltd · London-based short-form content agency ·{' '}
+          © {new Date().getFullYear()} The Social Vision Ltd · <a href="/" className="site-footer-link" style={{ color: 'inherit' }}>London-based short-form content agency</a> ·{' '}
           <CookieSettingsLink label="Cookie settings" style={{ color: 'inherit' }} /> ·{' '}
           <a href="/feed.xml" className="site-footer-link" style={{ color: 'inherit' }}>RSS</a>
         </div>

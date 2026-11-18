@@ -71,7 +71,7 @@ export const REFERENCE: DocPage[] = [
     title: 'Are reshoots included?',
     seoTitle: 'Are UGC reshoots included? | The Social Vision',
     description:
-      'If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case. Revisions are included, and the number of rounds is agreed in each brief. Extra work is quoted per project.',
+      'If our footage is not good enough, we reshoot at our own cost. A reshoot after a client script change is quoted case by case, like other extra work.',
     schema: 'Article',
     related: { href: '/docs/approvals-and-revisions', label: 'Approvals and revisions' },
     blocks: [

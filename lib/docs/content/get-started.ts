@@ -8,7 +8,7 @@ export const GET_STARTED: DocPage[] = [
     title: 'What is a short-form content agency?',
     seoTitle: 'What is a short-form content agency? | The Social Vision',
     description:
-      'A short-form content agency plans, casts, films, edits and posts TikTok, Reels and Shorts. The Social Vision does that from London, for organic content and for paid ads.',
+      'A short-form content agency plans, casts, films, edits and posts TikTok, Reels and Shorts. The Social Vision does that from London, for organic and paid.',
     schema: 'Article',
     related: { href: '/about', label: 'About The Social Vision' },
     blocks: [
@@ -47,7 +47,7 @@ export const GET_STARTED: DocPage[] = [
     title: 'How long until first content is live?',
     seoTitle: 'How long until first content is live? | The Social Vision',
     description:
-      'First content goes live within 14–21 days of signing.',
+      'First content goes live within 14–21 days of signing: strategy and creator matching in week 1, production in week 2, the first batch live in week 3.',
     schema: 'HowTo',
     related: { href: '/case-studies/habito', label: 'Habito case study' },
     blocks: [
