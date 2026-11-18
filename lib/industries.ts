@@ -188,7 +188,7 @@ export const INDUSTRIES: Industry[] = [
     results: [
       { slug: 'habito', client: 'Habito', body: 'street interviews about buying a home took this digital mortgage broker to 25 million organic views in 8 months with zero ad spend.' },
       { slug: 'uni-compare', client: 'Uni Compare', body: 'street interviews about choosing a university passed 1 million views in the first 8 weeks.' },
-      { slug: 'talab', client: 'TALAB', body: 'street interviews about student life reached 1 million views in the first 5 weeks and helped the app grow to 6,000 users.' },
+      { slug: 'talab', client: 'TALAB', body: 'street interviews about [student life](/industries/education) reached 1 million views in the first 5 weeks and helped the app grow to 6,000 users.' },
     ],
     quote: {
       text: 'The Social Vision played a pivotal role in helping TALAB reach 1 million views within just the first 5 weeks of our collaboration.',

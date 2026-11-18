@@ -153,7 +153,7 @@ export const FORMATS: DocPage[] = [
     blocks: [
       {
         type: 'p',
-        text: 'The formats on the site are street interview content, organic social productions and creator-led organic for organic, and paid social productions and remote creator UGC for paid. [Creator-led organic](/blog/social-content-without-founder-on-camera) means a recurring person on your own channels, so the audience can recognise them. Trend-led videos follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
+        text: 'The formats on the site are [street interview content](/street-interviews), organic social productions and creator-led organic for organic, and paid social productions and remote creator UGC for paid. [Creator-led organic](/blog/social-content-without-founder-on-camera) means a recurring person on your own channels, so the audience can recognise them. Trend-led videos follow a format that is already moving, sent to a creator as a trending brief. Explainers answer a question the audience is already asking, in a voice you have approved.',
       },
       {
         type: 'p',
