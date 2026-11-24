@@ -1,13 +1,16 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts, SITE_URL } from '@/lib/blog';
-import { CASES, CASES_PUBLISHED } from '@/lib/caseStudies';
+import { CASES } from '@/lib/caseStudies';
 import { DOCS, DOCS_UPDATED, docPath } from '@/lib/docs';
 import { INDUSTRIES, industryPath } from '@/lib/industries';
 
 // Real change dates, not the build date: a lastmod that changes on every
 // deploy teaches Google to ignore it. Bump these when the page's content changes.
-const HOME_UPDATED = '2026-10-24';
-const UGC_AGENCY_UPDATED = '2026-11-02';
+const HOME_UPDATED = '2026-11-18';
+const UGC_AGENCY_UPDATED = '2026-11-24';
+// Case and industry pages gained links on existing phrases on 18 Nov.
+const CASES_UPDATED = '2026-11-18';
+const INDUSTRIES_UPDATED = '2026-11-18';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -22,25 +25,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/about`,
-      lastModified: new Date('2026-10-08'),
+      lastModified: new Date('2026-11-18'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/case-studies`,
-      lastModified: new Date(CASES_PUBLISHED),
+      lastModified: new Date(CASES_UPDATED),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     ...CASES.map(c => ({
       url: `${SITE_URL}/case-studies/${c.slug}`,
-      lastModified: new Date(CASES_PUBLISHED),
+      lastModified: new Date(CASES_UPDATED),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
     ...INDUSTRIES.map(i => ({
       url: `${SITE_URL}${industryPath(i)}`,
-      lastModified: new Date('2026-10-09'),
+      lastModified: new Date(INDUSTRIES_UPDATED),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),

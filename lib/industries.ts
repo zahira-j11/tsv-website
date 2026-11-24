@@ -76,7 +76,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: 'Can short-form content work for regulated financial brands?', a: 'Yes. Habito, a mortgage broker, reached 25 million organic views in 8 months. The key is formats that create interest without making claims, like street interviews, with compliance sign-off built into every brief.' },
       { q: 'How do you handle compliance?', a: 'Disclaimers go into the brief from the start, you approve concepts before filming and edits before posting, and nothing goes live until your compliance team is happy.' },
-      { q: 'What formats work best for fintech on TikTok?', a: 'Street interviews about money, relatable storytime scenarios and plain-English explainers tend to perform best organically. For paid, a pipeline of Paid Social Productions and Remote Creator UGC lets you test and scale.' },
+      { q: 'What formats work best for fintech on TikTok?', a: 'Street interviews about money, relatable storytime scenarios and plain-English explainers tend to perform best organically. For paid, a pipeline of Paid Social Productions and [Remote Creator UGC](/ugc-agency) lets you test and scale.' },
       { q: 'Can you do organic and paid together?', a: 'Yes. Habito is organic, Plum is paid creative, and many brands use us for both.' },
     ],
     closing: 'Your fintech brand deserves more than 300 views.',
