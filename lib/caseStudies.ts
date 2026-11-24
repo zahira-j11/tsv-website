@@ -85,6 +85,101 @@ export const CASES = [
 
 export type CaseStudy = typeof CASES[number];
 
+/**
+ * The longer write-up under "What we made", for the cases that have one.
+ * Text renders through RichText (**bold**, [label](href)). `faqs` also feed
+ * the page's FAQ schema, so keep their answers link-free.
+ */
+export type CaseSection = { h: string; paras?: string[]; bullets?: string[]; steps?: string[]; after?: string[] };
+export const CASE_STORY: Record<string, { updated: string; sections: CaseSection[]; faqs: { q: string; a: string }[] }> = {
+  habito: {
+    updated: '2026-11-24',
+    sections: [
+      {
+        h: 'Where Habito started',
+        paras: [
+          "Habito hadn't posted on social for over a year. The content it had posted before was averaging under 500 views, and viewers dropped off fast: average retention was 3.73%. Mortgages are one of the hardest categories on social. The brand can't make bold claims, and the subject feels dry to most people until they're buying.",
+        ],
+      },
+      {
+        h: 'Why street interviews',
+        paras: [
+          "In a street interview, the brand doesn't make claims. It asks questions, and members of the public answer in their own words. A stranger can say buying a home feels impossible or that mortgages are confusing. Habito could never open an advert with that, but in a street interview it's the hook.",
+          'About 95% of what we made for Habito was street interviews. Picking one format and sticking with it is what made the account grow. Each video taught the platform who to show the next one to, and the audience started to recognise the series.',
+        ],
+      },
+      {
+        h: 'How we ran it',
+        bullets: [
+          '**Questions about buying a home.** We wrote questions on the topics current and future homebuyers actually care about, and chose which answers made the cut.',
+          "**Locations chosen for the audience.** We filmed where working adults and would-be buyers are, not where tourists are.",
+          "**Consent on camera.** Every person was asked for permission to film and post at the start of the conversation. Anyone who said no doesn't appear.",
+          "**Guardrails agreed up front.** Banned phrases, the on-screen disclaimer and the questions were agreed before the shoot, so the edit didn't become the bottleneck.",
+          '**Planned on what worked.** Each month most of the content followed the formats already performing, a smaller share tested new questions, and a little tried something new. This is the [70/20/10 rule](/blog/70-20-10-content-rule).',
+        ],
+      },
+      {
+        h: 'What changed',
+        paras: [
+          'Over 8 months Habito reached 25 million organic views with zero ad spend. Average views per video went from about 1,000 to 156,000, with 10,000+ followers and 450,000+ likes. One "this or that" video about the best places to live was watched to the end by about 35% of viewers, against 3.73% retention on the earlier content. It passed half a million views.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'How did Habito get 25 million views without ads?', a: 'By posting street interviews about buying a home consistently for 8 months. About 95% of the content used that one format, so the audience learned to recognise it and the platform learned who to show it to.' },
+      { q: 'Can a mortgage brand use street interviews?', a: "Yes. The brand asks the questions and the public gives the answers, so the video doesn't make product claims. The banned phrases, the disclaimer and the questions are agreed before filming." },
+      { q: 'How long did it take Habito to see results?', a: 'Average views per video went from about 1,000 to 156,000 over the 8 months, and the account reached 25 million organic views in that time.' },
+    ],
+  },
+  plum: {
+    updated: '2026-11-24',
+    sections: [
+      {
+        h: 'What Plum needed',
+        paras: [
+          "Plum's performance marketing team tests new ads all the time on TikTok, Instagram and YouTube. They needed a steady supply of new creative to test, without the work of finding, briefing and chasing creators themselves.",
+        ],
+      },
+      {
+        h: 'What we make for Plum',
+        bullets: [
+          '**Paid Social Productions:** higher-production ads we plan and film ourselves.',
+          '**Remote Creator UGC:** talking-to-camera videos filmed by creators in our UK network, from their own space, to a brief we write.',
+          '**Scripted interactions:** short scenes between two or more people, written to feel unscripted.',
+        ],
+        after: ['Every paid piece goes out with at least two hooks, and a square version when Plum needs one, so each idea is already more than one test.'],
+      },
+      {
+        h: 'How the pipeline runs',
+        steps: [
+          'We pitch the concepts, the references and two hooks per ad.',
+          'Plum approves the copy and chooses the creators from a shortlist.',
+          'Creators film raw, and we edit in-house. Every video carries the disclaimer Plum needs.',
+          'Plum reviews the finished ads on Frame.io, where comments point to the exact moment in the video.',
+          "Plum's team runs the spend. Each month we look at what performed, and the next batch builds on the winners.",
+        ],
+      },
+      {
+        h: 'Lo-fi over clickbait',
+        paras: [
+          "For a money app, trust matters more than a shocking hook. Lo-fi videos with real people tend to feel more honest than clickbait. They also make compliance review easier, because nobody is making a claim the brand can't stand behind.",
+        ],
+      },
+      {
+        h: 'What changed',
+        paras: [
+          "Plum's creative output went up three times, and its performance team now tests new creatives and styles at speed. Plum doesn't manage any creators: we cast, brief and edit, and the team approves.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'What does a paid social creative partner do?', a: 'It makes the ads, so the performance team can focus on testing and spend. For Plum we plan the concepts, cast creators from our network, film or brief them, edit in-house, and deliver each ad with at least two hooks.' },
+      { q: "Who runs Plum's ads?", a: "Plum's own team. We make the creative and they run the campaigns and the budget." },
+      { q: 'How many hooks should a paid social ad have?', a: 'At least two per asset. We pitch both with the concept, so every idea goes out as two tests.' },
+    ],
+  },
+};
+
 export function getCase(slug: string): CaseStudy | undefined {
   return CASES.find(c => c.slug === slug);
 }

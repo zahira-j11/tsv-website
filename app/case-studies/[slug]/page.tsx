@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import SiteNav from '../../SiteNav';
 import SiteFooter from '../../SiteFooter';
 import TrackedLink from '../TrackedLink';
-import { CASES, CASES_PUBLISHED, CASE_SEO, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
+import { CASES, CASES_PUBLISHED, CASE_SEO, CASE_STORY, getCase, testimonialsFor, BOOK_CALL_HREF, type CaseStudy } from '@/lib/caseStudies';
 import { SITE_URL } from '@/lib/blog';
 import { industriesFor, industryPath } from '@/lib/industries';
 import { RichText } from '@/components/docs/RichText';
@@ -42,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function JsonLd({ c }: { c: CaseStudy }) {
   const url = `${SITE_URL}/case-studies/${c.slug}`;
-  const schema = [
+  const story = CASE_STORY[c.slug];
+  const schema: object[] = [
     {
       '@context': 'https://schema.org',
       '@type': 'Article',
@@ -51,7 +52,7 @@ function JsonLd({ c }: { c: CaseStudy }) {
       url,
       mainEntityOfPage: url,
       datePublished: CASES_PUBLISHED,
-      dateModified: CASES_PUBLISHED,
+      dateModified: story?.updated ?? CASES_PUBLISHED,
       image: `${SITE_URL}${c.thumb}`,
       author: { '@id': `${SITE_URL}/#organization` },
       publisher: { '@id': `${SITE_URL}/#organization` },
@@ -68,8 +69,18 @@ function JsonLd({ c }: { c: CaseStudy }) {
       ],
     },
   ];
+  if (story?.faqs.length) {
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: story.faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    });
+  }
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
+
+const h2: React.CSSProperties = { ...DISP, fontSize: 'clamp(22px,2.6vw,28px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.15, margin: '0 0 14px' };
+const prose: React.CSSProperties = { fontSize: 16.5, lineHeight: 1.8, color: MU, margin: '0 0 14px' };
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', color: P, margin: '0 0 10px' }}>{children}</p>;
@@ -83,6 +94,7 @@ export default async function CaseStudyPage({ params }: Props) {
   const quotes = testimonialsFor(c.client);
   const others = CASES.filter(o => o.slug !== c.slug);
   const industries = industriesFor(c.slug);
+  const story = CASE_STORY[c.slug];
 
   return (
     <>
@@ -90,6 +102,9 @@ export default async function CaseStudyPage({ params }: Props) {
       <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', color: PD }}>
         <style>{`
           .blog-nav-link:hover { color: ${PD} !important; }
+          .cs-story li { margin-bottom: 10px; }
+          .cs-story strong { color: ${PD}; }
+          .cs-story li::marker { color: ${P}; font-weight: 700; }
           .cs-more:hover { box-shadow: 0 8px 32px rgba(124,1,255,0.10); transform: translateY(-2px); }
           @media (max-width: 700px) { .cs-stats { grid-template-columns: 1fr 1fr !important; } .cs-more-grid { grid-template-columns: minmax(0,1fr) !important; } }
         `}</style>
@@ -133,6 +148,39 @@ export default async function CaseStudyPage({ params }: Props) {
             <p style={{ fontSize: 15, fontWeight: 700, margin: '0 0 8px' }}>{c.strategy}</p>
             <p className="cs-rich" style={{ fontSize: 16.5, lineHeight: 1.8, color: MU, margin: 0 }}><RichText text={c.modalBody} /></p>
           </section>
+
+          {story && (
+            <div className="cs-story cs-rich" style={{ marginBottom: 48 }}>
+              {story.sections.map(sec => (
+                <section key={sec.h} style={{ marginTop: 40 }}>
+                  <h2 style={h2}>{sec.h}</h2>
+                  {sec.paras?.map(t => <p key={t} style={prose}><RichText text={t} /></p>)}
+                  {sec.bullets && (
+                    <ul style={{ ...prose, paddingLeft: 22, listStyle: 'disc' }}>
+                      {sec.bullets.map(t => <li key={t}><RichText text={t} /></li>)}
+                    </ul>
+                  )}
+                  {sec.steps && (
+                    <ol style={{ ...prose, paddingLeft: 22, listStyle: 'decimal' }}>
+                      {sec.steps.map(t => <li key={t}><RichText text={t} /></li>)}
+                    </ol>
+                  )}
+                  {sec.after?.map(t => <p key={t} style={prose}><RichText text={t} /></p>)}
+                </section>
+              ))}
+              <section style={{ marginTop: 40 }}>
+                <h2 style={h2}>Quick answers</h2>
+                <div style={{ display: 'grid', gap: 12 }}>
+                  {story.faqs.map(f => (
+                    <div key={f.q} style={{ background: WH, border: `1.5px solid ${BR}`, borderRadius: 16, padding: '18px 20px' }}>
+                      <h3 style={{ ...DISP, fontSize: 16.5, fontWeight: 800, margin: '0 0 8px' }}>{f.q}</h3>
+                      <p style={{ fontSize: 15, lineHeight: 1.75, color: MU, margin: 0 }}>{f.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+          )}
 
           {quotes.length > 0 && (
             <section style={{ marginBottom: 48 }}>

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts, SITE_URL } from '@/lib/blog';
-import { CASES } from '@/lib/caseStudies';
+import { CASES, CASE_STORY } from '@/lib/caseStudies';
 import { DOCS, DOCS_UPDATED, docPath } from '@/lib/docs';
 import { INDUSTRIES, industryPath } from '@/lib/industries';
 
@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...CASES.map(c => ({
       url: `${SITE_URL}/case-studies/${c.slug}`,
-      lastModified: new Date(CASES_UPDATED),
+      lastModified: new Date(CASE_STORY[c.slug]?.updated ?? CASES_UPDATED),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
