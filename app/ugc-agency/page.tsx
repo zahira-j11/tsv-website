@@ -142,6 +142,17 @@ export default function UgcAgencyPage() {
           .ugc-body a { color: ${P}; font-weight: 700; text-decoration: none; }
           .ugc-body a:hover { text-decoration: underline; }
           @media (max-width: 700px) { .ugc-grid { grid-template-columns: minmax(0,1fr) !important; } }
+          /* On phones the comparison table stacks into one card per option. */
+          @media (max-width: 700px) {
+            .ugc-compare { min-width: 0 !important; }
+            .ugc-compare thead { display: none; }
+            .ugc-compare tr, .ugc-compare th, .ugc-compare td { display: block; }
+            .ugc-compare tr { padding: 6px 0 12px; }
+            .ugc-compare tr + tr { border-top: 1px solid ${BR}; }
+            .ugc-compare th, .ugc-compare td { border-top: none !important; padding: 6px 18px !important; }
+            .ugc-compare th { padding-top: 12px !important; }
+            .ugc-compare td::before { content: attr(data-label); display: block; font-size: 12.5px; font-weight: 700; color: ${PD}; }
+          }
         `}</style>
         <SiteNav />
         <main className="ugc-body" style={{ padding: '120px 20px 80px', maxWidth: 860, margin: '0 auto' }}>
@@ -179,7 +190,7 @@ export default function UgcAgencyPage() {
 
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>How a UGC video gets made</h2>
-            <ol style={{ margin: 0, paddingLeft: 22 }}>
+            <ol style={{ margin: 0, paddingLeft: 22, listStyle: 'decimal' }}>
               {STEPS.map(([lead, text]) => (
                 <li key={lead} style={{ ...body, marginBottom: 10 }}><strong style={{ color: PD }}>{lead}</strong> {text}</li>
               ))}
@@ -197,7 +208,7 @@ export default function UgcAgencyPage() {
                   {COMPARE.map(([who, ...cells], r) => (
                     <tr key={who} style={r === COMPARE.length - 1 ? { background: 'rgba(124,1,255,0.05)' } : undefined}>
                       <th scope="row" style={{ textAlign: 'left', padding: '14px 16px', color: PD, fontWeight: 800, borderTop: r ? `1px solid ${BR}` : undefined }}>{who}</th>
-                      {cells.map((c, i) => <td key={i} style={{ padding: '14px 16px', borderTop: r ? `1px solid ${BR}` : undefined }}>{c}</td>)}
+                      {cells.map((c, i) => <td key={i} data-label={COMPARE_HEAD[i + 1]} style={{ padding: '14px 16px', borderTop: r ? `1px solid ${BR}` : undefined }}>{c}</td>)}
                     </tr>
                   ))}
                 </tbody>
