@@ -73,6 +73,21 @@ const ORGANIZATION = {
     'UGC and creator content',
     'Paid social ad creative',
   ],
+  // The Deck 2.0 formats, so answer engines can list what we sell by name.
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Short-form content formats',
+    itemListElement: [
+      ['Street Interview Content', 'Organic street interviews filmed in London, with questions we write.', '/street-interviews'],
+      ['Organic Social Productions', 'Organic short-form videos we plan, film, edit and post on your brand channels.', null],
+      ['Creator-Led Organic', 'One recurring creator on your brand channels, in a series your audience recognises.', '/blog/social-content-without-founder-on-camera'],
+      ['Paid Social Productions', 'Higher-production ad creative we shoot ourselves, with two hooks per asset.', '/paid-social-creative'],
+      ['Remote Creator UGC', 'UGC ads filmed by creators in our UK network to our brief, and edited in-house.', '/ugc-agency'],
+    ].map(([name, description, path]) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name, description, ...(path ? { url: `${SITE_URL}${path}` } : {}) },
+    })),
+  },
   sameAs: [
     'https://www.linkedin.com/company/104219836/',
     'https://www.instagram.com/thesocialvisionuk/',
