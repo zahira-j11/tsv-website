@@ -38,7 +38,7 @@ export const CASES = [
     industry:'Mortgages and proptech',
     // One sentence an AI assistant or a journalist can quote as it stands.
     headline:'Habito reached 25 million organic views on TikTok in 8 months with zero ad spend, taking average views per video from about 1,000 to 156,000.',
-    body:"Habito hadn't posted on social media for over a year. Within 6 months we took them from 1,000 views per video to over 156,000.",
+    body:"Habito hadn't posted on social media for over a year. Within 8 months we took them from 1,000 views per video to over 156,000.",
     g:`linear-gradient(135deg,${P},${PB})`, accent:P, thumb:'/case-studies/habito.jpg',
     overview:'Habito is a UK-based digital mortgage broker on a mission to make mortgages simpler for first-time buyers. They came to us looking to build a genuine organic presence on TikTok and turn social media into a real brand awareness channel.',
     strategy:'Street Interviews',
