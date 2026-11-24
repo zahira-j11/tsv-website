@@ -52,9 +52,44 @@ const FAQS = [
     q: 'Do you do influencer marketing?',
     a: 'No. We make UGC and short-form content, not influencer campaigns.',
   },
+  {
+    q: 'Do you work with brands outside London?',
+    a: 'Yes. We’re based in London and work with brands across the UK. Remote creator UGC is filmed by creators in our UK network, so the brand doesn’t need to be in London.',
+  },
+  {
+    q: 'Are you a TikTok UGC agency?',
+    a: 'We make UGC for TikTok, Instagram Reels and YouTube Shorts. Paid pieces come with at least two hooks, and a square version when you need one, so the same idea can run on TikTok and Meta.',
+  },
+  {
+    q: 'How many hooks should a UGC ad have?',
+    a: 'Two per asset. We pitch both hooks with the concept, so one idea is already two tests.',
+  },
+  {
+    q: 'Who owns the UGC you make?',
+    a: 'You get perpetual usage rights, including running the videos as ads from your own brand account. Spark Ads, whitelisting and partnership ads run under the creator’s name, so they need a separate written agreement and the creator’s authorisation.',
+  },
+  {
+    q: 'Do creators keep the product?',
+    a: 'Yes. You ship the product to the creator at your cost, and they keep it.',
+  },
 ];
 
-const prep = TESTIMONIALS.find(t => t.client === 'Prep Kitchen');
+const STEPS = [
+  ['We pitch.', 'Your account manager brings the concepts, the references and two hooks per ad.'],
+  ['You approve the copy and the creator.', 'We put forward more creators than you need, with profiles and a self-tape, and you choose who is on screen.'],
+  ['The creator films.', 'Creators in our UK network film raw from their own space, to the brief we wrote. If the product needs to be on camera, you ship it to them, and they keep it.'],
+  ['We edit in-house.', 'Each paid piece goes out with at least two hook variations, plus a square version when you need one.'],
+  ['You approve the final video.', 'Paid videos are reviewed on Frame.io, where comments can point at the exact moment. Your team or your media agency then runs the ads.'],
+] as const;
+
+const COMPARE_HEAD = ['', 'Who writes the concept and brief', 'Who finds the creator', 'Who edits', 'Your team’s time'] as const;
+const COMPARE = [
+  ['Finding creators yourself', 'You', 'You', 'You, or the creator', 'Most'],
+  ['A UGC platform', 'You', 'You choose from applicants', 'Usually the creator, or you', 'Some'],
+  ['A UGC agency like us', 'We do', 'We shortlist, you approve', 'We do, in-house', 'You approve twice'],
+] as const;
+
+const plum = TESTIMONIALS.find(t => t.client === 'Plum' && t.role.startsWith('Performance'));
 
 const schema = [
   {
@@ -143,14 +178,52 @@ export default function UgcAgencyPage() {
           </section>
 
           <section style={{ marginBottom: 56 }}>
+            <h2 style={h2}>How a UGC video gets made</h2>
+            <ol style={{ margin: 0, paddingLeft: 22 }}>
+              {STEPS.map(([lead, text]) => (
+                <li key={lead} style={{ ...body, marginBottom: 10 }}><strong style={{ color: PD }}>{lead}</strong> {text}</li>
+              ))}
+            </ol>
+          </section>
+
+          <section style={{ marginBottom: 56 }}>
+            <h2 style={h2}>UGC agency, UGC platform, or finding creators yourself</h2>
+            <div style={{ overflowX: 'auto', background: WH, border: `1.5px solid ${BR}`, borderRadius: 18 }}>
+              <table className="ugc-compare" style={{ width: '100%', minWidth: 620, borderCollapse: 'collapse', fontSize: 14.5, lineHeight: 1.5, color: MU }}>
+                <thead>
+                  <tr>{COMPARE_HEAD.map((h, i) => <th key={i} scope="col" style={{ textAlign: 'left', padding: '14px 16px', color: PD, fontWeight: 800, borderBottom: `1.5px solid ${BR}` }}>{h}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {COMPARE.map(([who, ...cells], r) => (
+                    <tr key={who} style={r === COMPARE.length - 1 ? { background: 'rgba(124,1,255,0.05)' } : undefined}>
+                      <th scope="row" style={{ textAlign: 'left', padding: '14px 16px', color: PD, fontWeight: 800, borderTop: r ? `1px solid ${BR}` : undefined }}>{who}</th>
+                      {cells.map((c, i) => <td key={i} style={{ padding: '14px 16px', borderTop: r ? `1px solid ${BR}` : undefined }}>{c}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ ...body, marginTop: 16 }}>
+              A platform suits a team that already has a creative lead writing briefs and wants raw clips cheaply. An agency suits a team that wants finished ads, steadily, without managing creators.
+            </p>
+          </section>
+
+          <section style={{ marginBottom: 56 }}>
+            <h2 style={h2}>How we pick creators</h2>
+            <p style={body}>
+              We cast from 300+ creators across the UK. They&rsquo;re real people, not AI, across ages, accents and backgrounds. For an ongoing brand we build a roster you&rsquo;ve already approved, often 10 to 30 creators, so a new idea doesn&rsquo;t start casting from zero. When a script needs a particular dynamic, such as a couple or two colleagues, we cast for that. We work in English only.
+            </p>
+          </section>
+
+          <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>Examples</h2>
             <p style={body}>
               <a href="/case-studies/plum">Plum</a>, a money app, uses us as its paid social creative partner. The work is Paid Social Productions and Remote Creator UGC, so the performance team can test without managing creators. Creative output went up three times.
             </p>
-            {prep && (
+            {plum && (
               <figure style={{ margin: '18px 0', background: WH, border: `1.5px solid ${BR}`, borderRadius: 18, padding: '22px 24px' }}>
-                <blockquote style={{ margin: '0 0 10px', fontSize: 17, lineHeight: 1.7, fontStyle: 'italic', color: PD }}>&ldquo;{prep.quote}&rdquo;</blockquote>
-                <figcaption style={{ fontSize: 13.5, color: MU }}><strong style={{ color: PD }}>{prep.name}</strong>, {prep.role}</figcaption>
+                <blockquote style={{ margin: '0 0 10px', fontSize: 17, lineHeight: 1.7, fontStyle: 'italic', color: PD }}>&ldquo;{plum.quote}&rdquo;</blockquote>
+                <figcaption style={{ fontSize: 13.5, color: MU }}><strong style={{ color: PD }}>{plum.name}</strong>, {plum.role}</figcaption>
               </figure>
             )}
             <p style={body}>
