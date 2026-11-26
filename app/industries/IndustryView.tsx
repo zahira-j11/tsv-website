@@ -75,6 +75,17 @@ export default function IndustryView({ ind }: { ind: Industry }) {
           .ind-body a { color: ${P}; font-weight: 700; text-decoration: none; }
           .ind-body a:hover { text-decoration: underline; }
           @media (max-width: 700px) { .ind-formats { grid-template-columns: minmax(0,1fr) !important; } }
+          /* On phones the comparison table stacks into one card per option. */
+          @media (max-width: 700px) {
+            .ind-compare { min-width: 0 !important; }
+            .ind-compare thead { display: none; }
+            .ind-compare tr, .ind-compare th, .ind-compare td { display: block; }
+            .ind-compare tr { padding: 6px 0 12px; }
+            .ind-compare tr + tr { border-top: 1px solid ${BR}; }
+            .ind-compare th, .ind-compare td { border-top: none !important; padding: 6px 18px !important; }
+            .ind-compare th { padding-top: 12px !important; }
+            .ind-compare td::before { content: attr(data-label); display: block; font-size: 12.5px; font-weight: 700; color: ${PD}; }
+          }
         `}</style>
         <SiteNav />
 
@@ -102,10 +113,50 @@ export default function IndustryView({ ind }: { ind: Industry }) {
             </div>
           </section>
 
+          {ind.steps && (
+            <section style={{ marginBottom: 56 }}>
+              <h2 style={h2}>{ind.steps.heading}</h2>
+              <ol style={{ margin: 0, paddingLeft: 22, listStyle: 'decimal' }}>
+                {ind.steps.items.map(([lead, text]) => (
+                  <li key={lead} style={{ ...body, marginBottom: 10 }}><strong style={{ color: PD }}>{lead}</strong> <RichText text={text} /></li>
+                ))}
+              </ol>
+            </section>
+          )}
+
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>{ind.processHeading}</h2>
             <p style={body}><RichText text={ind.processBody} /></p>
           </section>
+
+          {ind.compare && (
+            <section style={{ marginBottom: 56 }}>
+              <h2 style={h2}>{ind.compare.heading}</h2>
+              <div style={{ overflowX: 'auto', background: WH, border: `1.5px solid ${BR}`, borderRadius: 18 }}>
+                <table className="ind-compare" style={{ width: '100%', minWidth: 620, borderCollapse: 'collapse', fontSize: 14.5, lineHeight: 1.5, color: MU }}>
+                  <thead>
+                    <tr>{ind.compare.head.map((h, i) => <th key={i} scope="col" style={{ textAlign: 'left', padding: '14px 16px', color: PD, fontWeight: 800, borderBottom: `1.5px solid ${BR}` }}>{h}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {ind.compare.rows.map(([who, ...cells], r, rows) => (
+                      <tr key={who} style={r === rows.length - 1 ? { background: 'rgba(124,1,255,0.05)' } : undefined}>
+                        <th scope="row" style={{ textAlign: 'left', padding: '14px 16px', color: PD, fontWeight: 800, borderTop: r ? `1px solid ${BR}` : undefined }}>{who}</th>
+                        {cells.map((c, i) => <td key={i} data-label={ind.compare!.head[i + 1]} style={{ padding: '14px 16px', borderTop: r ? `1px solid ${BR}` : undefined }}>{c}</td>)}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {ind.compare.after && <p style={{ ...body, marginTop: 16 }}><RichText text={ind.compare.after} /></p>}
+            </section>
+          )}
+
+          {ind.extra?.map(x => (
+            <section key={x.heading} style={{ marginBottom: 56 }}>
+              <h2 style={h2}>{x.heading}</h2>
+              {x.paras.map(p => <p key={p.slice(0, 24)} style={body}><RichText text={p} /></p>)}
+            </section>
+          ))}
 
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>{ind.resultsHeading}</h2>
@@ -122,6 +173,17 @@ export default function IndustryView({ ind }: { ind: Industry }) {
             )}
             {ind.clientsLine && <p style={{ ...body, fontSize: 15 }}>{ind.clientsLine}</p>}
           </section>
+
+          {ind.docsLinks && (
+            <section style={{ marginBottom: 56 }}>
+              <h2 style={h2}>Read the docs</h2>
+              <ul style={{ margin: 0, paddingLeft: 18 }}>
+                {ind.docsLinks.map(([label, href]) => (
+                  <li key={href} style={{ ...body, marginBottom: 6 }}><a href={href}>{label}</a></li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section style={{ marginBottom: 56 }}>
             <h2 style={h2}>Quick answers</h2>

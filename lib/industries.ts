@@ -30,12 +30,20 @@ export type Industry = {
   formatsHeading: string;
   /** `href` links a format's title to its own page (e.g. /street-interviews). */
   formats: { title: string; body: string; href?: string }[];
+  /** Optional numbered steps, shown after the formats. Each item is [bold lead, rest]. */
+  steps?: { heading: string; items: [string, string][] };
   processHeading: string;
   processBody: string;
+  /** Optional comparison table; the last row (us) is highlighted. Row cells start with the row label. */
+  compare?: { heading: string; head: string[]; rows: string[][]; after?: string };
+  /** Optional prose sections after the process section. */
+  extra?: { heading: string; paras: string[] }[];
   resultsHeading: string;
   results: { slug: string; client: string; body: string }[];
   quote?: { text: string; name: string; role: string };
   clientsLine?: string;
+  /** Optional "Read the docs" list of [label, href], shown before the FAQs. */
+  docsLinks?: [string, string][];
   faqs: { q: string; a: string }[];
   closing: string;
 };
@@ -210,7 +218,7 @@ export const INDUSTRIES: Industry[] = [
     label: 'Paid social creative',
     metaTitle: 'Performance Creative Agency in London | The Social Vision',
     metaDescription:
-      'London performance creative agency for UK brands. TikTok, Meta and YouTube ads and UGC ads, with at least two hook variations per piece, delivered all month.',
+      'London performance creative agency and paid social video production for UK brands. TikTok, Meta and YouTube ads with two hooks per piece, delivered all month.',
     headlineStart: '',
     headline: ['Your performance team deserves creative ', 'as fast as it can test.'],
     intro: [
@@ -224,9 +232,40 @@ export const INDUSTRIES: Industry[] = [
       { title: 'Every piece built to test.', body: 'At least two hook variations per piece, plus square versions when you need them, so one concept becomes several tests.' },
       { title: 'The next batch built from the last.', body: "We look at what's winning and make more of it: new hooks on winning concepts, new creators on winning scripts." },
     ],
+    steps: {
+      heading: 'How a paid ad gets made',
+      items: [
+        ['We pitch.', 'We read your performance data and brand guidelines, then bring the concepts, the references and two hooks per ad.'],
+        ['You approve the copy and the creator.', 'You sign off every concept before we shoot, and you choose who is on screen from a shortlist.'],
+        ['We film, or the creator does.', 'For Paid Social Productions we handle the location, the filming and the edit. For Remote Creator UGC, creators in our UK network film raw from their own space, to the brief we wrote.'],
+        ['We edit in-house.', 'Each piece goes out with at least two hook variations, plus a square version when you need one.'],
+        ['You approve the final ad.', 'Ads are reviewed on Frame.io, where comments point to the exact moment. Your team or your media agency runs the spend, and the next batch builds on what won.'],
+      ],
+    },
     processHeading: 'A creative pipeline, not a one-off project',
     processBody:
       'We brief from your performance data and brand guidelines, cast from our network of 300+ vetted UK creators, and deliver ads on a rolling basis through the month, ready for TikTok, Meta and YouTube. You approve every concept before we shoot and every edit before it goes live. Your team never has to find, brief or chase a creator.',
+    compare: {
+      heading: 'Who should make your paid creative?',
+      head: ['', 'Who writes concepts and hooks', 'How often new ads arrive', 'Built to test', 'Your team’s time'],
+      rows: [
+        ['Your own team', 'You', 'When someone has time', 'If you plan for it', 'Most'],
+        ['A video production company', 'Usually you', 'Project by project', 'Usually one finished edit', 'Some'],
+        ['A UGC platform', 'You', 'When creators deliver', 'Raw clips, you edit', 'Some'],
+        ['A performance creative agency like us', 'We do', 'Every month, on a rolling basis', 'At least two hooks per piece', 'You approve twice'],
+      ],
+      after: 'A production company suits a single campaign film. A performance creative agency suits a team that tests every week and needs new ads to keep coming.',
+    },
+    extra: [
+      {
+        heading: 'How we decide what to make next',
+        paras: [
+          'The first three months are for testing. A format needs to run at least six to 12 times before you decide it doesn’t work.',
+          'When something wins, most of the next batch stays with it, a smaller share iterates on it, and a little is pure testing. That’s [the 70/20/10 rule](/blog/70-20-10-content-rule). The things we change are the hook, the on-screen copy, the design, the format, the creator, and on paid, a harder call to action against a softer one.',
+          'For regulated brands, lo-fi videos with real people tend to feel more honest than clickbait. They also make compliance review easier, because nobody is making a claim the brand can’t stand behind. Send your banned phrases and disclaimer lines at onboarding, and nothing goes live until compliance signs off.',
+        ],
+      },
+    ],
     resultsHeading: 'Results from paid creative',
     results: [
       { slug: 'plum', client: 'Plum', body: "an AI-powered money app. We became its dedicated paid social creative partner, producing Paid Social Productions and Remote Creator UGC so its performance team could test new formats and scale winning concepts. That meant three times the creative output, with no creator management on Plum's side." },
@@ -237,11 +276,29 @@ export const INDUSTRIES: Industry[] = [
       role: 'Performance Marketing Manager, Plum',
     },
     clientsLine: "Brands we've made paid creative for include Plum and Prep Kitchen.",
+    docsLinks: [
+      ['What is a hi-fi ad?', '/docs/formats/hi-fi-ads'],
+      ['How many hooks should an ad have?', '/docs/ugc-hooks'],
+      ['How we test paid creative', '/docs/testing-paid-creative'],
+      ['How often to refresh paid creative', '/blog/paid-social-creative-refresh'],
+      ['UGC ads that don’t look like ads', '/blog/ugc-ads-that-dont-look-like-ads'],
+      ['Usage rights', '/docs/ugc-usage-rights'],
+      ['Partnership ads', '/docs/partnership-ads'],
+      ['Regulated brands', '/docs/regulated-brands'],
+      ['UGC agency', '/ugc-agency'],
+    ],
     faqs: [
       { q: 'How quickly can we get new creative?', a: 'First content goes live within 14 to 21 days of signing. After that, we deliver new ads on a rolling basis every month.' },
       { q: 'How many ad variations do you give us?', a: 'Every piece comes with at least two hook variations, plus square versions when you need them.' },
       { q: "What's the difference between Paid Social Productions and Remote Creator UGC?", a: 'Paid Social Productions are higher-production ads we plan and film, from scripted scenarios to game-show concepts. Remote Creator UGC is filmed by creators from our network in their own space, so [it feels like a recommendation from a real customer](/blog/ugc-ads-that-dont-look-like-ads).' },
       { q: 'Do you run the ads?', a: 'We focus on making the creative. Your performance team or media agency runs the campaigns, and we use the results to shape the next batch.' },
+      { q: 'What is a performance creative agency?', a: 'A performance creative agency makes ads built to be tested, so your performance team always has new creative to run. We plan the concepts, cast and film, edit in-house, and deliver each ad with at least two hooks. Your team or your media agency runs the spend.' },
+      { q: 'What is paid social video production?', a: 'Making video ads for TikTok, Instagram and YouTube. Ours come in two shapes: Paid Social Productions, which we plan and film, and Remote Creator UGC, which creators from our UK network film in their own space.' },
+      { q: 'How often should you refresh paid social creative?', a: 'Brands spending steadily on Meta and TikTok often need new ads every one to two weeks. The signal to watch is your own results: when performance drops while spend and targeting stay the same, [the creative is usually the reason](/blog/paid-social-creative-refresh).' },
+      { q: 'Which platforms do you make ads for?', a: 'TikTok, Instagram and Facebook (Meta), and YouTube. Every piece comes with at least two hooks, plus a square version when you need one for Meta feeds.' },
+      { q: 'Who owns the ads you make?', a: 'You get perpetual usage rights, including running the videos as ads from your own brand account. Spark Ads, whitelisting and partnership ads run under the creator’s name, so they need a separate written agreement and the creator’s authorisation.' },
+      { q: 'How much does paid social creative cost?', a: 'It’s a monthly retainer, scoped to your goals, formats and how much content you need. The initial term is 3 months, then it rolls with 30 days’ notice. We don’t publish a per-video rate. You get a proposal after a discovery call.' },
+      { q: 'Do you work with regulated brands?', a: 'Yes. [Plum](/case-studies/plum), a money app, is our paid example, and every video carries the disclaimer it needs. Send your banned phrases and disclaimer lines at onboarding, and nothing goes live until compliance signs off.' },
     ],
     closing: 'Your performance team deserves creative as fast as it can test.',
   },
