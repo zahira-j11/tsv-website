@@ -6,7 +6,7 @@ export const REFERENCE: DocPage[] = [
     section: 'reference',
     navLabel: 'What’s included',
     title: 'What does a content retainer include?',
-    seoTitle: 'What does a content retainer include? | The Social Vision',
+    seoTitle: 'Video content retainer: what’s included | The Social Vision',
     description:
       'One monthly retainer, scoped to your goals, formats and volume. It covers strategy, creators, editing, revisions, posting and reporting. Ad spend is extra.',
     schema: 'Article',

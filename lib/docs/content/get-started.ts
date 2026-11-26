@@ -23,7 +23,7 @@ export const GET_STARTED: DocPage[] = [
       { type: 'h2', id: 'what-we-make', text: 'What we make' },
       {
         type: 'p',
-        text: 'On the site, the organic formats are [street interview content](/street-interviews), organic social productions and creator-led organic. Creator-led organic means a recurring face on your own channels. Paid work is [remote creator UGC](/ugc-agency) and paid social productions for TikTok, Instagram and YouTube.',
+        text: 'On the site, the organic formats are [street interview content](/street-interviews), organic social productions and creator-led organic. Creator-led organic means a recurring face on your own channels. Paid work is [remote creator UGC](/ugc-agency) and [paid social productions](/paid-social-creative) for TikTok, Instagram and YouTube.',
       },
       { type: 'h2', id: 'where-to-go', text: 'Where to go next' },
       {
