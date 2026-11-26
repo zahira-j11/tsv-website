@@ -189,9 +189,35 @@ export const INDUSTRIES: Industry[] = [
       { title: 'The place and time.', body: '[Different parts of London give very different answers](/blog/street-interview-marketing-uk). We pick locations and times to find the people your brand wants to hear from.' },
       { title: 'Consent and the edit.', body: "Everyone gives consent on camera before they're used. We interview 20 to 25 people per shoot, so only the best answers make the final cut." },
     ],
+    steps: {
+      heading: 'How a street interview gets made',
+      items: [
+        ['We pitch the questions.', 'They’re part of the monthly strategy call, alongside the other concepts, and you approve them.'],
+        ['You approve the presenter.', 'We cast from our network to suit your audience, unless your own team wants to be on camera.'],
+        ['We pick the place.', 'It’s chosen for who you want to hear from: students near a university, office workers in the city, pet owners at a dog park.'],
+        ['We film.', 'Around four hours, with the presenter, a videographer and someone from our team. We talk to 20 to 25 people, and every person hears the consent line and answers it on camera before anything else. A shoot needs a week’s notice.'],
+        ['We cut the best answers.', 'A compilation video uses seven to ten answers. You approve every edit before we schedule and post it.'],
+      ],
+    },
     processHeading: 'How a shoot runs',
     processBody:
       'Each month starts with a strategy call where we pitch the concepts and questions for your approval. We cast the presenter, [film for around four hours](/blog/how-a-street-interview-shoot-works) with a presenter, a videographer and someone from our team, and deliver edits on a rolling basis for you to approve before we schedule and post. First content is usually live within 14 to 21 days of signing.',
+    extra: [
+      {
+        heading: 'Are street interviews staged?',
+        paras: [
+          'Ours are not. The people you see are members of the public who agreed to stop, and the answers are their own. We write the questions and the presenter asks follow-ups, but nobody is given lines. What we choose is which answers make the cut.',
+          'Some videos borrow the street interview look but are scripted from start to finish. For paid, we make those too: scripted street interviews with actors are one of our [Paid Social Productions](/paid-social-creative).',
+        ],
+      },
+      {
+        heading: 'Why street interviews work',
+        paras: [
+          'The question is the hook, and the answers vary from person to person. People also want to hear the end of a conversation. That drives watch time, completion and shares, which short-form algorithms reward. The brand is the context, not the content, so people watch it as entertainment, not an ad.',
+          'That’s also why the format suits regulated brands. The brand asks the question rather than making a claim.',
+        ],
+      },
+    ],
     resultsHeading: 'Results from street interviews',
     results: [
       { slug: 'habito', client: 'Habito', body: 'street interviews about buying a home took this digital mortgage broker to 25 million organic views in 8 months with zero ad spend.' },
@@ -204,11 +230,26 @@ export const INDUSTRIES: Industry[] = [
       role: 'CEO, TALAB',
     },
     clientsLine: "Brands we've made street interviews for include Habito, Uni Compare, TALAB and Blackbullion.",
+    docsLinks: [
+      ['What is a street interview video?', '/docs/formats/street-interviews'],
+      ['How to plan a street interview', '/docs/street-interview-planning'],
+      ['How a street interview shoot works', '/blog/how-a-street-interview-shoot-works'],
+      ['Street interview marketing: the complete guide', '/blog/street-interview-marketing-uk'],
+      ['Consent', '/docs/consent'],
+      ['Regulated brands', '/docs/regulated-brands'],
+      ['Habito case study', '/case-studies/habito'],
+    ],
     faqs: [
       { q: 'How long does a street interview shoot take?', a: 'Usually around four hours for one day, with the presenter, a videographer and someone from our team.' },
       { q: 'Do people need to give consent to be in a street interview?', a: "Yes. We read a consent line to every person at the start and record their answer on camera. Anyone who declines isn't used." },
       { q: 'Where in London do you film street interviews?', a: 'It depends on who you want to hear from. Commuter and office areas like the City or King’s Cross suit most brand briefs; tourist-heavy areas give fewer UK-relevant answers.' },
       { q: 'Do street interviews work for regulated brands?', a: 'Yes. Habito, a mortgage broker, reached 25 million organic views with street interviews. The brand asks the question rather than making claims.' },
+      { q: 'What does a street interview agency do?', a: 'It plans, films and edits street interview videos for brands. We write the questions, cast the presenter, choose the location, film, and cut the best answers into short videos for TikTok, Instagram and YouTube.' },
+      { q: 'Are street interviews staged?', a: 'Ours are not. The people are members of the public who stop to talk, and their answers are their own. We write the questions, but nobody is given lines.' },
+      { q: 'How many people do you interview on a shoot?', a: 'We aim for 20 to 25 people on a typical shoot. A single compilation video uses seven to ten answers.' },
+      { q: 'Can you make street interview ads?', a: 'Yes. For paid, we make scripted street interviews with actors as part of our [Paid Social Productions](/paid-social-creative), each with at least two hooks.' },
+      { q: 'How much does street interview content cost?', a: 'It’s a monthly retainer, scoped to your goals, formats and how much content you need. The initial term is 3 months, then it rolls with 30 days’ notice. We don’t publish a per-video rate. You get a proposal after a discovery call.' },
+      { q: 'How soon will our first street interview be live?', a: 'Usually within 14 to 21 days of signing. Week one is strategy and casting, week two is production, and by week three the first batch is going out.' },
     ],
     closing: 'Your brand deserves more than 300 views.',
   },
